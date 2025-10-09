@@ -10,6 +10,20 @@ from dotenv import load_dotenv
 load_dotenv() # load .env so we can use bot token
 
 sources = {
+    # 'announcements': {
+    #     'link': 'https://nomnomnami.com/index.html',
+    #     'file': 'home.html',
+    #     'parse': checkweb.parse_announcements,
+    #     'channel': 1327524115526979605,
+    #     'message': ''
+    # },
+    # 'newsfeed': {
+    #     'link': 'https://nomnomnami.com/index.html',
+    #     'file': 'home.html',
+    #     'parse': checkweb.parse_newsfeed,
+    #     'channel': 1327524115526979605,
+    #     'message': ''
+    # },
     'posts': {
         'link': 'https://nomnomnami.com/posts/index.html',
         'file': 'posts.html',
@@ -102,7 +116,9 @@ async def check_all():
 
 # THE BOT!!!!!
 
-client = discord.Client(intents=discord.Intents.all())
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
