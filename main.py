@@ -82,9 +82,8 @@ async def check_all():
             
             messages = checkweb.check(source)
             for message in messages:
-                await channel.send(content = source['message'],
-                                embed   = message['embed'])
-                if len(message['files']) >= 1:
+                await channel.send(source['message'], embed = message['embed'])
+                if len(message['files']) >= 1:  # i'll (situationally) put images in the embed later
                     await channel.send(files = message['files'])
             
             # report if issue was happening but it works now
@@ -104,9 +103,13 @@ client = discord.Client(intents=discord.Intents.default())
 
 @client.event
 async def on_ready():
+    # start
     print('Logged in as ' + str(client.user))
+    channel = client.get_channel(1074754885070897202)
+    await channel.send('i get up!')
 
-    while True:  # constantle check all sources
+    # loop: constantly check all sources
+    while True:
         await check_all()
         await asyncio.sleep(10)
             
