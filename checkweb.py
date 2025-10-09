@@ -306,9 +306,11 @@ def check(source):
     
     # call parse function for the source type
     messages: list[dict] = list(reversed(source['parse'](old_file, new_file)))
+    
     # save to file
-    # with open('saved/' + source['file'], 'wb') as file:
-    #     file.write(new_file)
+    with open('saved/' + source['file'], 'wb') as file:
+        file.write(new_file)
+
     for message in messages:
         message['files'] = []
         if 'images' in message.keys():

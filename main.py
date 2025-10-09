@@ -10,39 +10,44 @@ from dotenv import load_dotenv
 load_dotenv() # load .env so we can use bot token
 
 sources = {
-    # 'posts': {
-    #     'link': 'https://nomnomnami.com/posts/index.html',
-    #     'file': 'posts.html',
-    #     'parse': checkweb.parse_posts,
-    # },
-    # 'blog': {
-    #     'link': 'https://nomnomnami.com/blog/resources/main.js',
-    #     'file': 'blog.js',
-    #     'parse': checkweb.parse_blog
-    # },
-    # 'ask': {
-    #     'link': 'https://nomnomnami.com/ask/latest.html',
-    #     'file': 'ask.html',
-    #     'parse': checkweb.parse_ask
-    # },
-    # 'status.cafe': {
-    #     'link': 'https://status.cafe/users/nomnomnami.atom',
-    #     'file': 'nomnomnami.atom',
-    #     'parse': checkweb.parse_status_cafe
-    # },
-    # 'neocities': {
-    #     'link': 'https://neocities.org/site/nomnomnami',
-    #     'file': 'neocities.html',
-    #     'parse': checkweb.parse_neocities
-    # },
+    'posts': {
+        'link': 'https://nomnomnami.com/posts/index.html',
+        'file': 'posts.html',
+        'parse': checkweb.parse_posts,
+        'channel': 1327524115526979605
+    },
+    'blog': {
+        'link': 'https://nomnomnami.com/blog/resources/main.js',
+        'file': 'blog.js',
+        'parse': checkweb.parse_blog,
+        'channel': 1327524115526979605
+    },
+    'ask': {
+        'link': 'https://nomnomnami.com/ask/latest.html',
+        'file': 'ask.html',
+        'parse': checkweb.parse_ask,
+        'channel': 1330602659023028357
+    },
+    'status.cafe': {
+        'link': 'https://status.cafe/users/nomnomnami.atom',
+        'file': 'nomnomnami.atom',
+        'parse': checkweb.parse_status_cafe,
+        'channel': 1327524115526979605
+    },
+    'neocities': {
+        'link': 'https://neocities.org/site/nomnomnami',
+        'file': 'neocities.html',
+        'parse': checkweb.parse_neocities,
+        'channel': 1327524115526979605
+    },
     'trick': {
         'link': 'https://trick.pika.page/posts_feed',
         'file': 'posts_feed.rss',
-        'parse': checkweb.parse_trick
+        'parse': checkweb.parse_trick,
+        'channel': 1325920952529457153
     },
 }
 
-# data = json.load(open('data.json', 'r'))
 
 for s in sources:
     sources[s]['down'] = False
@@ -71,48 +76,13 @@ tree = discord.app_commands.CommandTree(client)
 async def on_ready():
     print('Logged in as ' + str(client.user))
 
-    await tree.sync(guild=client.get_guild(422163243528617994))
-    print('SYNCED')
-
-    # while True:
-    await check_all()
-    await asyncio.sleep(10)
+    while True:
+        await check_all()
+        await asyncio.sleep(10)
             
     #await client.close()
 
 
-@client.event
-async def on_message(message: discord.Message):
-    if message.content == 'kys':
-        await message.channel.send('oh ok')
-        await client.close()
-
-
-@tree.command(name='hello', description='uisakdjkd')
-async def hello(interaction: discord.Interaction):
-    await interaction.response.send_message('DIE', ephemeral=True)
-
-@tree.command(name='setchannel', description='uisakdjkd')
-async def setchannel(interaction: discord.Interaction):
-    await interaction.response.send_message('DIE')
-
-@tree.command(name='setmessage', description='yea')
-async def setmessage(interaction: discord.Interaction):
-    await interaction.response.send_message('ok')
-
-@tree.command(name='info', description='okasyd')
-async def info(interaction: discord.Interaction):
-    await interaction.response.send_message('DIE')
-
-
 load_dotenv()
+client.run(os.getenv("TOKEN"))
 
-#client.run(os.getenv("TOKEN"))
-
-
-print(os.getenv("TOKEN"))
-
-
-messages = checkweb.check(sources['trick'])
-for message in messages:
-    print(message['embed'].description)
