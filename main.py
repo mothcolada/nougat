@@ -54,21 +54,24 @@ sources = {
     },
 }
 
-
 for s in sources:
     sources[s]['issue'] = False
 
 
-async def report_status(s,ex,i):  # the sexi report system (source, exception, and issue) (clear )
+async def log(message):
+    print(message)
+    log_channel = client.get_channel(1425915517184512041)  # my #nougat-log channel
+    await log_channel.send(message)
+
+
+async def report_status(s,ex,i):  # the sexi report system (source, exception, and issue) (useful variable naming be damned)
     try:  # if anything goes wrong, tell me (mothcolada)
-        channel = client.get_channel(1425915517184512041)
         if i:  # issue!
-            await channel.send(content = '<@422162909582589963> ' + str(s) + ' ' + str(ex))
+            await log(content = '<@422162909582589963> ' + str(s) + ' ' + str(ex))
         else:
-            await channel.send(content = str(s) + ' ' + str(ex))
+            await log(content = str(s) + ' ' + str(ex))
     except:  # uhhhhhhhhh
         print('uh oh')
-        print(str(s) + ' ' + str(ex))
 
 
 async def check_all():
@@ -99,21 +102,27 @@ async def check_all():
 
 # THE BOT!!!!!
 
-client = discord.Client(intents=discord.Intents.default())
+client = discord.Client(intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
     # start
     print('Logged in as ' + str(client.user))
-    channel = client.get_channel(1074754885070897202)
-    await channel.send('i get up!')
+    await log('good morning')
 
     # loop: constantly check all sources
     while True:
         await check_all()
         await asyncio.sleep(10)
-            
-    # await client.close()
+
+
+@client.event
+async def on_message(message: discord.Message):
+    # if i send "die" in my #nougat-log channel, shut down the bot
+    if message.author.id == 422162909582589963 and message.channel.id == 1425915517184512041 and message.content == 'die':
+        await log('good night')
+        await client.close()
+
 
 load_dotenv()
 client.run(os.getenv("TOKEN"))
