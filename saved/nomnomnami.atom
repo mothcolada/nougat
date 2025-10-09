@@ -4,13 +4,25 @@
     <id>https://status.cafe/users/nomnomnami/</id>
     <link rel="self" href="https://status.cafe/users/nomnomnami.atom"></link>
     <link rel="alternate" href="https://status.cafe/users/nomnomnami" type="text/html"></link>
-    <updated>2025-10-08T20:18:33+00:00</updated>
+    <updated>2025-10-09T18:46:44+00:00</updated>
     <author>
         <name>nomnomnami</name>
         <uri>https://status.cafe/users/nomnomnami</uri>
     </author>
     <icon>https://nomnomnami.com/images/icon_nami.png</icon>
     <logo>https://nomnomnami.com/images/icon_nami.png</logo>
+    <entry>
+        <title>nomnomnami 🥳 it&#39;s syrup 2 demo release day~ yaaay~</title>
+        <id>https://status.cafe/users/nomnomnami/171011</id>
+        <link rel="alternate" href="https://status.cafe/statuses/171011" type="text/html"></link>
+        <published>2025-10-01T17:31:27+00:00</published>
+        <updated>2025-10-01T17:31:27+00:00</updated>
+        <author>
+            <name>nomnomnami</name>
+            <uri>https://status.cafe/users/nomnomnami</uri>
+        </author>
+        <content type="html">it&amp;#39;s syrup 2 demo release day~ yaaay~</content>
+    </entry>
     <entry>
         <title>nomnomnami 😶 i think i&#39;m obsessed with timber</title>
         <id>https://status.cafe/users/nomnomnami/169032</id>

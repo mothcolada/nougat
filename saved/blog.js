@@ -49,6 +49,11 @@ const navLinks = [
 const posts = [
 //new posts here
 {
+	"title": `moving my adult works off itch.io...`,
+	"filename": `2025-07-28-moving-my-adult-works-off-itchio`,
+	"tags": [`misc`],
+},
+{
 	"title": `dev diary: return to ash, and studio life!`,
 	"filename": `2025-06-04-dev-diary-return-to-ash-and-studio-life`,
 	"tags": [`dev diary`],

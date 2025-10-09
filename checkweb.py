@@ -290,13 +290,6 @@ def parse_neocities(old_file, new_file):
 def check(source):
     # ask internet pretty please give me the thing i want
     response = requests.get(source['link'])
-    if response.status_code != 200:
-        if not source['down']:  # if not yet marked as offline
-            print(str(source['link']) + ' returned status code ' + str(response.status_code))
-            source['down'] = True  # mark this link as being offline
-        return []
-    elif source['down']:  # if marked as offline, but it works, that means it's back up
-        print(str(source['link']) + ' is back online')
     
     # compare to currently saved version
     old_file = open('saved/' + source['file'], 'rb').read()
