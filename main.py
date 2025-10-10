@@ -10,20 +10,20 @@ from dotenv import load_dotenv
 load_dotenv() # load .env so we can use bot token
 
 sources = {
-    # 'announcements': {
-    #     'link': 'https://nomnomnami.com/index.html',
-    #     'file': 'home.html',
-    #     'parse': checkweb.parse_announcements,
-    #     'channel': 1327524115526979605,
-    #     'message': ''
-    # },
-    # 'newsfeed': {
-    #     'link': 'https://nomnomnami.com/index.html',
-    #     'file': 'home.html',
-    #     'parse': checkweb.parse_newsfeed,
-    #     'channel': 1327524115526979605,
-    #     'message': ''
-    # },
+    'home': {
+        'link': 'https://nomnomnami.com/index.html',
+        'file': 'announcements.html',
+        'parse': checkweb.parse_announcements,
+        'channel': 1327524115526979605,
+        'message': ''
+    },
+    'newsfeed': {
+        'link': 'https://nomnomnami.com/index.html',
+        'file': 'newsfeed.html',  # yes im downloading the same thing twice to different files its just easier that way idk
+        'parse': checkweb.parse_newsfeed,
+        'channel': 1327524115526979605,
+        'message': ''
+    },
     'posts': {
         'link': 'https://nomnomnami.com/posts/index.html',
         'file': 'posts.html',
@@ -85,7 +85,7 @@ async def report_status(s,ex,i):  # the sexi report system (source, exception, a
         else:
             await log(content = str(s) + ' ' + str(ex))
     except:  # uhhhhhhhhh
-        print('uh oh')
+        print('uh oh ' + str(s) + ' ' + str(ex))
 
 
 async def check_all():
@@ -125,11 +125,16 @@ async def on_ready():
     # start
     print('Logged in as ' + str(client.user))
     await log('good morning')
+    
+    
+    await check_all()
+    await client.close()
+
 
     # loop: constantly check all sources
-    while True:
-        await check_all()
-        await asyncio.sleep(10)
+    # while True:
+    #     await check_all()
+    #     await asyncio.sleep(10)
 
 
 @client.event

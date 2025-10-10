@@ -4,13 +4,25 @@
     <id>https://status.cafe/users/nomnomnami/</id>
     <link rel="self" href="https://status.cafe/users/nomnomnami.atom"></link>
     <link rel="alternate" href="https://status.cafe/users/nomnomnami" type="text/html"></link>
-    <updated>2025-10-09T20:37:00+00:00</updated>
+    <updated>2025-10-10T13:15:16+00:00</updated>
     <author>
         <name>nomnomnami</name>
         <uri>https://status.cafe/users/nomnomnami</uri>
     </author>
     <icon>https://nomnomnami.com/images/icon_nami.png</icon>
     <logo>https://nomnomnami.com/images/icon_nami.png</logo>
+    <entry>
+        <title>nomnomnami ✏️ writing and drawing up a storm... wahahaha i canno...</title>
+        <id>https://status.cafe/users/nomnomnami/173208</id>
+        <link rel="alternate" href="https://status.cafe/statuses/173208" type="text/html"></link>
+        <published>2025-10-10T04:25:54+00:00</published>
+        <updated>2025-10-10T04:25:54+00:00</updated>
+        <author>
+            <name>nomnomnami</name>
+            <uri>https://status.cafe/users/nomnomnami</uri>
+        </author>
+        <content type="html">writing and drawing up a storm... wahahaha i cannot wait to share...</content>
+    </entry>
     <entry>
         <title>nomnomnami 🥳 it&#39;s syrup 2 demo release day~ yaaay~</title>
         <id>https://status.cafe/users/nomnomnami/171011</id>
@@ -238,17 +250,5 @@
             <uri>https://status.cafe/users/nomnomnami</uri>
         </author>
         <content type="html">having to wait for things is suffering</content>
-    </entry>
-    <entry>
-        <title>nomnomnami 💀 the 10 year anniversary of syrup is coming up... i...</title>
-        <id>https://status.cafe/users/nomnomnami/142749</id>
-        <link rel="alternate" href="https://status.cafe/statuses/142749" type="text/html"></link>
-        <published>2025-06-15T16:58:22+00:00</published>
-        <updated>2025-06-15T16:58:22+00:00</updated>
-        <author>
-            <name>nomnomnami</name>
-            <uri>https://status.cafe/users/nomnomnami</uri>
-        </author>
-        <content type="html">the 10 year anniversary of syrup is coming up... in october... (screams)</content>
     </entry>
 </feed>
