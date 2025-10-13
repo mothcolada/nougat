@@ -156,7 +156,7 @@ def parse_posts(old_file, new_file):
         embed = discord.Embed(color       = 0xBDB7FF,
                               url         = 'https://nomnomnami.com/posts/',
                               description = html_to_discord(post)['text'],
-                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))
+                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))  # can i figure out the time zone thing later this sucks
         embed.set_author(     name        = '@nomnomnami',
                               url         = 'https://nomnomnami.com/posts/',
                               icon_url    = 'https://nomnomnami.com/images/icon_nami2.png'),
