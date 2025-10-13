@@ -102,8 +102,9 @@ def html_to_discord(html: BeautifulSoup):
     return {'text': text, 'images': images}
 
 
-def difference(new, old):  # all posts in
-    return [post for post in new if post not in old]
+def difference(new, old):  # all posts in new that arent in old (compared by text)
+    old_texts = list(old_post.text for old_post in old)
+    return [new_post for new_post in new if new_post.text not in old_texts]
 
 
 def parse_announcements(old_file, new_file):
@@ -155,7 +156,7 @@ def parse_posts(old_file, new_file):
         embed = discord.Embed(color       = 0xBDB7FF,
                               url         = 'https://nomnomnami.com/posts/',
                               description = html_to_discord(post)['text'],
-                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p'))
+                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=3))
         embed.set_author(     name        = '@nomnomnami',
                               url         = 'https://nomnomnami.com/posts/',
                               icon_url    = 'https://nomnomnami.com/images/icon_nami2.png'),

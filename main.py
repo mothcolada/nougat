@@ -7,8 +7,6 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv() # load .env so we can use bot token
-
 sources = {
     'home': {
         'link': 'https://nomnomnami.com/index.html',
@@ -141,6 +139,6 @@ async def on_message(message: discord.Message):
         await client.close()
 
 
-load_dotenv()
+load_dotenv()  # load .env so we can use bot token
 client.run(os.getenv("TOKEN"))
 
