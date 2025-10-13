@@ -102,6 +102,10 @@ def html_to_discord(html: BeautifulSoup):
     return {'text': text, 'images': images}
 
 
+def difference(new, old):  # all posts in
+    return [post for post in new if post not in old]
+
+
 def parse_announcements(old_file, new_file):
     old_announcement = BeautifulSoup(old_file, 'html.parser').find('article', {'id': 'announcement'})
     new_announcement = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'announcement'})
@@ -121,14 +125,10 @@ def parse_announcements(old_file, new_file):
 def parse_newsfeed(old_file, new_file):
     old_news = BeautifulSoup(old_file, 'html.parser').find('article', {'id': 'newsfeed'}).find_all('li')
     new_news = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'newsfeed'}).find_all('li')
-    news_to_post = []
-    for news in new_news:
-        if news not in old_news:
-            news_to_post.append(news)
+    news_to_post = difference(new_news, old_news)
 
     messages = []
     for news in news_to_post:
-        print(news)
         embed = discord.Embed(color       = 0x8E8D98,
                               url         = 'https://nomnomnami.com/',
                               description = paragraph(news))
@@ -142,10 +142,7 @@ def parse_newsfeed(old_file, new_file):
 def parse_posts(old_file, new_file):
     old_posts = BeautifulSoup(old_file, 'html.parser').find_all('article')
     new_posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
-    posts_to_post = []
-    for post in new_posts:
-        if post not in old_posts:
-            posts_to_post.append(post)
+    posts_to_post = difference(new_posts, old_posts)
 
     messages = []
     for post in posts_to_post:
@@ -180,10 +177,7 @@ def parse_posts(old_file, new_file):
 def parse_blog(old_file, new_file):
     old_posts = old_file.decode('utf-8').split('const posts = [')[1].split('];')[0].split('{')[1:]
     new_posts = new_file.decode('utf-8').split('const posts = [')[1].split('];')[0].split('{')[1:]
-    posts_to_post = []  # find posts added since last time
-    for post in new_posts:
-        if post not in old_posts:
-            posts_to_post.append(post)
+    posts_to_post = difference(new_posts, old_posts)
     
     messages = []
     for post in posts_to_post:
@@ -205,10 +199,7 @@ def parse_blog(old_file, new_file):
 def parse_ask(old_file, new_file):
     old_asks = BeautifulSoup(old_file, 'html.parser').find_all('article')
     new_asks = BeautifulSoup(new_file, 'html.parser').find_all('article')
-    asks_to_post = []
-    for ask in new_asks:
-        if ask not in old_asks:
-            asks_to_post.append(ask)
+    asks_to_post = difference(new_asks, old_asks)
 
     messages = []
     for ask in asks_to_post:
@@ -238,11 +229,7 @@ def parse_ask(old_file, new_file):
 def parse_status_cafe(old_file, new_file):            
     old_entries = BeautifulSoup(old_file, 'xml').find_all('entry')
     new_entries = BeautifulSoup(new_file, 'xml').find_all('entry')
-    
-    entries_to_post = []  # find entries added since last time
-    for entry in new_entries:
-        if entry not in old_entries:
-            entries_to_post.append(entry)
+    entries_to_post = difference(new_entries, old_entries)
 
     # make messages
     messages = []
@@ -255,17 +242,14 @@ def parse_status_cafe(old_file, new_file):
         embed.set_footer(     text        = 'status.cafe')
         messages.append({'embed': embed})
         
-
     return messages  # reversed to return in order of upload if there are several new updates
 
 
 def parse_trick(old_file, new_file):
     old_entries = BeautifulSoup(old_file, 'xml').find_all('entry')
     new_entries = BeautifulSoup(new_file, 'xml').find_all('entry')
-    entries_to_post = []  # find entries added since last time
-    for entry in new_entries:
-        if entry not in old_entries:
-            entries_to_post.append(entry)
+    entries_to_post = difference(new_entries, old_entries)
+
     # make messages
     messages = []
     for entry in entries_to_post:

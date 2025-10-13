@@ -15,56 +15,56 @@ sources = {
         'file': 'announcements.html',
         'parse': checkweb.parse_announcements,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1325598062198128640>'
     },
     'newsfeed': {
         'link': 'https://nomnomnami.com/index.html',
         'file': 'newsfeed.html',  # yes im downloading the same thing twice to different files its just easier that way idk
         'parse': checkweb.parse_newsfeed,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1327524420033712173>'
     },
     'posts': {
         'link': 'https://nomnomnami.com/posts/index.html',
         'file': 'posts.html',
         'parse': checkweb.parse_posts,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1327524420033712173>'
     },
     'blog': {
         'link': 'https://nomnomnami.com/blog/resources/main.js',
         'file': 'blog.js',
         'parse': checkweb.parse_blog,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1327524420033712173>'
     },
     'ask': {
         'link': 'https://nomnomnami.com/ask/latest.html',
         'file': 'ask.html',
         'parse': checkweb.parse_ask,
         'channel': 1330602659023028357,
-        'message': ''
+        'message': '<@&1427133678173294654>'
     },
     'status.cafe': {
         'link': 'https://status.cafe/users/nomnomnami.atom',
         'file': 'nomnomnami.atom',
         'parse': checkweb.parse_status_cafe,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1327524420033712173>'
     },
     'neocities': {
         'link': 'https://neocities.org/site/nomnomnami',
         'file': 'neocities.html',
         'parse': checkweb.parse_neocities,
         'channel': 1327524115526979605,
-        'message': ''
+        'message': '<@&1327524420033712173>'
     },
     'trick': {
         'link': 'https://trick.pika.page/posts_feed',
         'file': 'trick.rss',
         'parse': checkweb.parse_trick,
         'channel': 1325920952529457153,
-        'message': ''
+        'message': '<@&1327518346178203670>'
     },
 }
 
@@ -92,7 +92,7 @@ async def check_all():
     for s in sources:
         source = sources[s]
         try:
-            if str(client.user) == 'Nougat#2777':  # in namiverse act normally
+            if str(client.user) == 'Nougat#2777':  # in namiverse use namiverse channels
                 channel = client.get_channel(source['channel'])
             else:  # personal test bot
                 channel = client.get_channel(1074754885070897202)
@@ -125,16 +125,12 @@ async def on_ready():
     # start
     print('Logged in as ' + str(client.user))
     await log('good morning')
-    
-    
-    await check_all()
-    await client.close()
 
 
     # loop: constantly check all sources
-    # while True:
-    #     await check_all()
-    #     await asyncio.sleep(10)
+    while True:
+        await check_all()
+        await asyncio.sleep(10)
 
 
 @client.event
