@@ -326,4 +326,9 @@ def check(source):
                                             filename = image['src'].split('/')[-1],
                                             spoiler  = (image.parent == 'details'))  # spoiler if part of details (for posts)
                 message['files'].append(discord_file)
-    return messages
+    
+
+    if len(messages) < 5:  # to be expected 100% of the time
+        return messages
+    else:  # if october 22 happens again, it WON'T ping the whole server 80 fucking times. still need to fix the problem though, whatever it was
+        return messages[:5]

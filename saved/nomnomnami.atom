@@ -4,13 +4,25 @@
     <id>https://status.cafe/users/nomnomnami/</id>
     <link rel="self" href="https://status.cafe/users/nomnomnami.atom"></link>
     <link rel="alternate" href="https://status.cafe/users/nomnomnami" type="text/html"></link>
-    <updated>2025-10-13T18:37:33+00:00</updated>
+    <updated>2025-10-22T17:01:54+00:00</updated>
     <author>
         <name>nomnomnami</name>
         <uri>https://status.cafe/users/nomnomnami</uri>
     </author>
     <icon>https://nomnomnami.com/images/icon_nami.png</icon>
     <logo>https://nomnomnami.com/images/icon_nami.png</logo>
+    <entry>
+        <title>nomnomnami 😭 wish i made a web build of timber game so i can re...</title>
+        <id>https://status.cafe/users/nomnomnami/175515</id>
+        <link rel="alternate" href="https://status.cafe/statuses/175515" type="text/html"></link>
+        <published>2025-10-19T05:12:37+00:00</published>
+        <updated>2025-10-19T05:12:37+00:00</updated>
+        <author>
+            <name>nomnomnami</name>
+            <uri>https://status.cafe/users/nomnomnami</uri>
+        </author>
+        <content type="html">wish i made a web build of timber game so i can replay it on my phone in bed </content>
+    </entry>
     <entry>
         <title>nomnomnami ✏️ writing and drawing up a storm... wahahaha i canno...</title>
         <id>https://status.cafe/users/nomnomnami/173208</id>
@@ -238,17 +250,5 @@
             <uri>https://status.cafe/users/nomnomnami</uri>
         </author>
         <content type="html">BAD! END! THEATER!</content>
-    </entry>
-    <entry>
-        <title>nomnomnami 😭 having to wait for things is suffering</title>
-        <id>https://status.cafe/users/nomnomnami/143509</id>
-        <link rel="alternate" href="https://status.cafe/statuses/143509" type="text/html"></link>
-        <published>2025-06-18T17:01:41+00:00</published>
-        <updated>2025-06-18T17:01:41+00:00</updated>
-        <author>
-            <name>nomnomnami</name>
-            <uri>https://status.cafe/users/nomnomnami</uri>
-        </author>
-        <content type="html">having to wait for things is suffering</content>
     </entry>
 </feed>
