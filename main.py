@@ -29,6 +29,13 @@ sources = {
         'channel': 1327524115526979605,
         'message': '### New post! <@&1327524420033712173>'
     },
+    'posts': {
+        'link': 'https://nomnomnami.com/posts/timber.html',
+        'file': 'timber.html',
+        'parse': checkweb.parse_timber_posts,
+        'channel': 1327524115526979605,
+        'message': '### New Timber post! <@&1327524420033712173>'
+    },
     'blog': {
         'link': 'https://nomnomnami.com/blog/resources/main.js',
         'file': 'blog.js',
@@ -64,6 +71,13 @@ sources = {
         'channel': 1325920952529457153,
         'message': '### New Letter from Trick! <@&1327518346178203670>'
     },
+    # 'pillowfort': {
+    #     'link': 'https://www.pillowfort.social/nomnomnami',
+    #     'file': 'pillowfort.html',
+    #     'parse': checkweb.parse_pillowfort,
+    #     'channel': 1327524115526979605,
+    #     'message': '### New Pillowfort post! <@&1327524420033712173>'
+    # },
 }
 
 for s in sources:
@@ -94,7 +108,7 @@ async def check_all():
                 channel = client.get_channel(source['channel'])
             else:  # personal test bot
                 channel = client.get_channel(1074754885070897202)
-            
+
             messages = checkweb.check(source)
             for message in messages:
                 await channel.send(source['message'], embed = message['embed'])
@@ -124,6 +138,21 @@ async def on_ready():
     print('Logged in as ' + str(client.user))
     await log('good morning')
 
+    # if str(client.user) == 'Nougat#2777':  # in namiverse use namiverse channels
+    #     channel = client.get_channel(1327524115526979605)
+    # else:  # personal test bot
+    #     channel = client.get_channel(1074754885070897202)
+
+    # embed = discord.Embed(color=0x83254F,
+    #                       title       = 'text dump of NWT feelings',
+    #                     url         = 'https://www.pillowfort.social/posts/6792029',
+    #                     description = "i do very much miss having a site to post on with simple commenting function that i don't have to set up myself. i feel like i've reached the upper limit of what i can do on my neocities. i do like it a lot as a place to post updates still, but right now i'm timber-brained, i only want to talk to other people about timber even if it's just to say HE'S SO GOOD?? HE'S SO GOOD???????\n\nmy problem now is, i literally JUST made a page for it so now if i switch to posting here should i mirror the posts?!?!? that isn't gonna work for my rapidfire energy, i don't wanna make people check two places...! GHH...!!! do i post art here...?! i'm still finishing the game, i don't need to get distracted doing extra doodles...! but i want to?!?!? oh no...! oh it's so difficult...\n\nright now i hit a good stopping point in NWT so i'm trying to take care of my other work before diving into the final route and epilogues BUT IT'S VERY HARD TO RESIST NOT JUST MAKING THE REST OF THE GAME ASAP... ffgghghghhh...... that's the mood, i guess i will go ahead and set up my page a little more now.")
+    # embed.set_footer(     text        = 'Pillowfort')
+    # embed.set_author(     name        = 'nomnomnami',
+    #                           url         = 'https://www.pillowfort.social/nomnomnami',
+    #                           icon_url    = 'https://img3.pillowfort.social/avatars/0b440e5e9a0095678d00.jpeg'),
+    # await channel.send('### New Pillowfort post! <@&1327524420033712173>', embed=embed)
+    # await client.close()
 
     # loop: constantly check all sources
     while True:

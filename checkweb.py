@@ -154,12 +154,45 @@ def parse_posts(old_file, new_file):
                     tags.append(c.string)
 
         embed = discord.Embed(color       = 0xBDB7FF,
-                              url         = 'https://nomnomnami.com/posts/',
                               description = html_to_discord(post)['text'],
                               timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))  # can i figure out the time zone thing later this sucks
         embed.set_author(     name        = '@nomnomnami',
                               url         = 'https://nomnomnami.com/posts/',
                               icon_url    = 'https://nomnomnami.com/images/icon_nami2.png'),
+        if len(tags) == 0:
+            embed.set_footer( text        = 'posts')
+        else:
+            embed.set_footer( text        = 'posts  •  ' + '  '.join(tags))
+
+        images = []
+        for image in html_to_discord(post)['images']:
+            # file = discord.File()
+            images.append(image)
+
+        messages.append(({'embed': embed, 'images': images}))
+
+    return messages
+
+
+def parse_timber_posts(old_file, new_file):
+    old_posts = BeautifulSoup(old_file, 'html.parser').find_all('article')
+    new_posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
+    posts_to_post = difference(new_posts, old_posts)
+
+    messages = []
+    for post in posts_to_post:
+        tags = []
+        if post.find('section', {'class': 'tags'}) != None:
+            for c in post.find('section', {'class': 'tags'}).children:
+                if isinstance(c, Tag):
+                    tags.append(c.string)
+
+        embed = discord.Embed(color       = 0xBDB7FF,
+                              description = html_to_discord(post)['text'],
+                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))  # can i figure out the time zone thing later this sucks
+        embed.set_author(     name        = '@nomnomnami',
+                              url         = 'https://nomnomnami.com/posts/timber',
+                              icon_url    = 'https://nomnomnami.com/posts/images/icon_timber.png'),
         if len(tags) == 0:
             embed.set_footer( text        = 'posts')
         else:
@@ -300,6 +333,36 @@ def parse_neocities(old_file, new_file):
     return messages  # reversed to return in order of upload if there are several new updates
 
 
+def parse_pillowfort(old_file, new_file):
+    old_posts = BeautifulSoup(old_file, 'html.parser').find_all('div', {'class': 'post-container'})
+    new_posts = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'post-container'})
+
+    old_ids = list(post.find('a', {'class': 'like-button'})['id'] for post in old_posts)  # get ids of each posts
+    posts_to_post = []
+    for post in new_posts:
+        id = post.find('a', {'class': 'like-button'})['id']  # compare post ids
+        if id not in old_ids:
+            posts_to_post.append(post)
+
+    messages = []
+    for post in posts_to_post:
+        embed = discord.Embed(description = 'temp',)
+        tags = post.find('div', {'class': 'tags'})
+        if tags == None:
+            embed.set_footer( text        = 'Pillowfort')
+        else:
+            embed.set_footer( text        = 'Pillowfort  •  ' + tags.text)
+
+        images = []
+        # for image in html_to_discord(ask)['images']:
+        #     images.append(image)
+
+        messages.append(({'embed': embed, 'images': images}))
+
+
+    return messages
+
+
 def check(source):
     # ask internet pretty please give me the thing i want
     response = requests.get(source['link'])
@@ -331,4 +394,4 @@ def check(source):
     if len(messages) < 5:  # to be expected 100% of the time
         return messages
     else:  # if october 22 happens again, it WON'T ping the whole server 80 fucking times. still need to fix the problem though, whatever it was
-        return messages[:5]
+        return messages[:3]
