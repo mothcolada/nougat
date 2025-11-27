@@ -23,7 +23,7 @@
         "name": "posts",
         "link": "https://nomnomnami.com/posts",
         "channel": 1327524115526979605,
-        "message": "### New post!",
+        "message": "### New post! <@&1327524420033712173>",
         "embed": {
             "color": 12433407,
             "author_url": "https://nomnomnami.com/posts/",
