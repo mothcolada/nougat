@@ -325,7 +325,7 @@ def check(source):
     for post in posts:
         # limit description to 4000 chars
         if len(post['description']) > 4000:
-            post['description'] = post['description'][:4000] + f'\n### [READ MORE]({post['url']})'
+            post['description'] = post['description'][:4000] + '\n### [READ MORE](' + post['url'] + ')'
         # EMBED
         embed = discord.Embed(color       = source['embed']['color']       if 'color'       in source['embed'].keys() else None,
                               description = post['description'],           # description is mandatory
