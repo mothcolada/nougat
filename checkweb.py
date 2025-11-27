@@ -165,8 +165,8 @@ def parse_posts(new_file):
                          'author': '@nomnomnami',
                          'url': 'https://nomnomnami.com/posts',
                          'footer': footer,
-                         'timestamp': datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7),  # can i figure out the time zone thing later this sucks
-                         'id': int(datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
+                         'timestamp': datetime.datetime.strptime(post.find('time').string + '-0700', '%m/%d/%Y, %I:%M%p%z'),
+                         'id': int(datetime.datetime.strptime(post.find('time').string + '-0700', '%m/%d/%Y, %I:%M%p%z').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
 
     return messages
 
