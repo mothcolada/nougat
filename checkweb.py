@@ -6,6 +6,7 @@ import lxml
 import html
 from urllib.parse import urljoin
 import io
+import hashlib
 
 
 emoji = {
@@ -31,7 +32,12 @@ emoji = {
     'qmin': '<:icon_qmin:1425576779745202278>',
     'cassia': '<:icon_cassia:1425576791950495876>',
     'astra': '<:icon_astra:1425576802218410125>',
-    'vinegar': '<:icon_vinegar:1425576819385569360>'
+    'vinegar': '<:icon_vinegar:1425576819385569360>',
+    'salt': '<:icon_salt:1443398214203080715>',
+    'pepper': '<:icon_pepper:1443398245991583775>',
+    'timber': '<:icon_timber:1443398285225099364>',
+    'twigs': '<:icon_twigs:1443398319853408399>',
+    'senbei': '<:icon_senbei:1443398342326489238>',
 }
 
 
@@ -57,8 +63,7 @@ def paragraph(p):
                 text += '*' + clean(c.string) + '*'
             elif c.name == 'code':
                 text += '`' + clean(c.string) + '`'
-            else:
-                print('weird html thing: ' + c.name)
+
     return text.strip()
 
 
@@ -68,8 +73,13 @@ def html_to_discord(html: BeautifulSoup):
     for child in html.children:
         if child.name == 'p':
             text += '\n\n' + paragraph(child)
+            for grandchild in child.descendants:
+                if grandchild.name == 'img':  # TODO: differentiate between normal imgs and eggbug emojis maybe
+                    images.append(grandchild)
         elif child.name == 'h3':
             text += '\n### ' + paragraph(child)
+        elif child.name == 'small':
+            text += '\n\n-# ' + paragraph(child)
         elif child.name == 'ul':
             for grandchild in child.descendants:
                 if grandchild.name == 'li':
@@ -82,16 +92,19 @@ def html_to_discord(html: BeautifulSoup):
                     n += 1
         elif child.name == 'details':
             text += '\n\n' + paragraph(child.find('summary'))
-            text += '||' + html_to_discord(child)['text'] + '||'
-            for image in html_to_discord(child)['images']:
-                images.append(image)
+            text += '\n||' + html_to_discord(child)['text'].strip() + '||'
+            images = images + html_to_discord(child)['images']
         elif child.name == 'img':
             images.append(child)
         elif child.name == 'div':
-            if 'bubble' in child['class']:
+            if 'class' not in child.attrs:
+                text += html_to_discord(child)['text']
+                images = images + html_to_discord(child)['images']
+            elif 'bubble' in child['class']:
                 text += '\n> '+html_to_discord(child)['text'].replace('\n', '\n> ')
             elif 'response' in child['class']:
                 text += html_to_discord(child)['text']
+                images = images + html_to_discord(child)['images']
             elif 'asker' in child['class']:
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
@@ -99,17 +112,13 @@ def html_to_discord(html: BeautifulSoup):
             elif 'ask' in child['class']:
                 text += html_to_discord(child)['text']
 
+
     return {'text': text, 'images': images}
 
 
-def difference(new, old):  # all posts in new that arent in old (compared by text)
-    old_texts = list(old_post.text for old_post in old)
-    return [new_post for new_post in new if new_post.text not in old_texts]
 
-
-def parse_announcements(old_file, new_file):
-    old_announcement = BeautifulSoup(old_file, 'html.parser').find('article', {'id': 'announcement'})
-    new_announcement = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'announcement'})
+def parse_announcements(new_file):
+    posts = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'announcement'})
     messages = []
     if old_announcement != new_announcement:
         embed = discord.Embed(color       = 0xE4E4EC,
@@ -123,8 +132,7 @@ def parse_announcements(old_file, new_file):
     return messages
 
 
-def parse_newsfeed(old_file, new_file):
-    old_news = BeautifulSoup(old_file, 'html.parser').find('article', {'id': 'newsfeed'}).find_all('li')
+def parse_newsfeed(new_file):
     new_news = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'newsfeed'}).find_all('li')
     news_to_post = difference(new_news, old_news)
 
@@ -140,76 +148,30 @@ def parse_newsfeed(old_file, new_file):
     return messages
 
 
-def parse_posts(old_file, new_file):
-    old_posts = BeautifulSoup(old_file, 'html.parser').find_all('article')
-    new_posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
-    posts_to_post = difference(new_posts, old_posts)
+def parse_posts(new_file):
+    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
 
     messages = []
-    for post in posts_to_post:
-        tags = []
+    for post in posts:
+        footer = 'posts'
         if post.find('section', {'class': 'tags'}) != None:
-            for c in post.find('section', {'class': 'tags'}).children:
-                if isinstance(c, Tag):
-                    tags.append(c.string)
+            post.find('section', {'class': 'tags'})
+            tags = [c.string for c in post.find('section', {'class': 'tags'}).children if isinstance(c, Tag)]
+            if len(tags) > 0:
+                footer += '  •  ' + '  '.join(tags)
 
-        embed = discord.Embed(color       = 0xBDB7FF,
-                              description = html_to_discord(post)['text'],
-                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))  # can i figure out the time zone thing later this sucks
-        embed.set_author(     name        = '@nomnomnami',
-                              url         = 'https://nomnomnami.com/posts/',
-                              icon_url    = 'https://nomnomnami.com/images/icon_nami2.png'),
-        if len(tags) == 0:
-            embed.set_footer( text        = 'posts')
-        else:
-            embed.set_footer( text        = 'posts  •  ' + '  '.join(tags))
-
-        images = []
-        for image in html_to_discord(post)['images']:
-            # file = discord.File()
-            images.append(image)
-
-        messages.append(({'embed': embed, 'images': images}))
+        messages.append({'description': html_to_discord(post)['text'],
+                         'images': html_to_discord(post)['images'],
+                         'author': '@nomnomnami',
+                         'url': 'https://nomnomnami.com/posts',
+                         'footer': footer,
+                         'timestamp': datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7),  # can i figure out the time zone thing later this sucks
+                         'id': int(datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
 
     return messages
 
 
-def parse_timber_posts(old_file, new_file):
-    old_posts = BeautifulSoup(old_file, 'html.parser').find_all('article')
-    new_posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
-    posts_to_post = difference(new_posts, old_posts)
-
-    messages = []
-    for post in posts_to_post:
-        tags = []
-        if post.find('section', {'class': 'tags'}) != None:
-            for c in post.find('section', {'class': 'tags'}).children:
-                if isinstance(c, Tag):
-                    tags.append(c.string)
-
-        embed = discord.Embed(color       = 0xBDB7FF,
-                              description = html_to_discord(post)['text'],
-                              timestamp   = datetime.datetime.strptime(post.find('time').string, '%m/%d/%Y, %I:%M%p') + datetime.timedelta(hours=7))  # can i figure out the time zone thing later this sucks
-        embed.set_author(     name        = '@nomnomnami',
-                              url         = 'https://nomnomnami.com/posts/timber',
-                              icon_url    = 'https://nomnomnami.com/posts/images/icon_timber.png'),
-        if len(tags) == 0:
-            embed.set_footer( text        = 'posts')
-        else:
-            embed.set_footer( text        = 'posts  •  ' + '  '.join(tags))
-
-        images = []
-        for image in html_to_discord(post)['images']:
-            # file = discord.File()
-            images.append(image)
-
-        messages.append(({'embed': embed, 'images': images}))
-
-    return messages
-
-
-def parse_blog(old_file, new_file):
-    old_posts = old_file.decode('utf-8').split('const posts = [')[1].split('];')[0].split('{')[1:]
+def parse_blog(new_file):
     new_posts = new_file.decode('utf-8').split('const posts = [')[1].split('];')[0].split('{')[1:]
     posts_to_post = difference(new_posts, old_posts)
     
@@ -221,8 +183,7 @@ def parse_blog(old_file, new_file):
         url = 'https://nomnomnami.com/blog/posts/' + filename + '.html'
         page = BeautifulSoup(requests.get(url).content, 'html.parser')
 
-        embed = discord.Embed(color       = 0x69DBFF,
-                              title       = title,
+        embed = discord.Embed(title       = title,
                               url         = url,
                               description = paragraph(page.find('p')) + '\n### [READ MORE](' + url + ')')  # first paragraph
         embed.set_footer(     text        = 'blog  •  ' + '#' + '  #'.join(tags),)
@@ -230,82 +191,64 @@ def parse_blog(old_file, new_file):
     return messages  # reversed to return in order of upload if there are several new updates
 
 
-def parse_ask(old_file, new_file):
-    old_asks = BeautifulSoup(old_file, 'html.parser').find_all('article')
-    new_asks = BeautifulSoup(new_file, 'html.parser').find_all('article')
-    asks_to_post = difference(new_asks, old_asks)
+def parse_ask(new_file):
+    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
 
     messages = []
-    for ask in asks_to_post:
-        tags = []
-        for c in ask.find('section', {'class': 'tags'}).children:
-            if isinstance(c, Tag):
-                tags.append(c.string)
+    for post in posts:
+        bubbles = post.find_all('div', {'class': 'bubble'})
+        plain = ''.join([bubble.text.strip() for bubble in bubbles])
+        id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
+        
+        footer = 'ask'
+        if post.find('section', {'class': 'tags'}) != None:
+            post.find('section', {'class': 'tags'})
+            tags = [c.string for c in post.find('section', {'class': 'tags'}).children if isinstance(c, Tag)]
+            if len(tags) > 0:
+                footer += '  •  ' + '  '.join(tags)
 
-        embed = discord.Embed(color       = 0xFFD8A8,
-                              url         = 'https://nomnomnami.com/ask/latest',
-                              description = html_to_discord(ask)['text'],)
-        if len(tags) == 0:
-            embed.set_footer( text        = 'ask')
-        else:
-            embed.set_footer( text        = 'ask  •  ' + '  '.join(tags))
-
-        images = []
-        for image in html_to_discord(ask)['images']:
-            # file = discord.File()
-            images.append(image)
-
-        messages.append(({'embed': embed, 'images': images}))
-
-    return messages  # tuple woa
+        messages.append({'description': html_to_discord(post)['text'],
+                         'url': 'https://nomnomnami.com/ask/latest',
+                         'footer': footer,
+                         'id': id,
+                         'images': [image for image in html_to_discord(post)['images']]})
+    return messages
 
 
-def parse_status_cafe(old_file, new_file):            
-    old_entries = BeautifulSoup(old_file, 'xml').find_all('entry')
-    new_entries = BeautifulSoup(new_file, 'xml').find_all('entry')
-    entries_to_post = difference(new_entries, old_entries)
+def parse_status_cafe(new_file):
+    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
+
+    messages = []
+    for post in posts:
+        messages.append({'description': clean(post.find('content').string),
+                         'url': post.find('link')['href'],
+                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%X%z'),
+                         'author': ' '.join(post.find('title').string.split(' ')[:2]),
+                         'footer': 'status.cafe',
+                         'id': int(post.find('id').text.split('/')[-1])})
+    return messages
+
+
+def parse_trick(new_file):
+    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
 
     # make messages
     messages = []
-    for entry in entries_to_post:
-        embed = discord.Embed(description = clean(entry.find('content').string),
-                              timestamp   = datetime.datetime.strptime(entry.find('published').string, '%Y-%m-%dT%X%z'))
-        embed.set_author(     name        = ' '.join(entry.find('title').string.split(' ')[:2]),  # first two words of title (should be name and emoji)
-                              url         = entry.find('link')['href'],  # to status.cafe page for the post
-                              icon_url    = 'https://nomnomnami.com/images/icon_nami.png')
-        embed.set_footer(     text        = 'status.cafe')
-        messages.append({'embed': embed})
-        
-    return messages  # reversed to return in order of upload if there are several new updates
+    for post in posts:
+        content = BeautifulSoup(post.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
+
+        messages.append({'description': html_to_discord(content)['text'],
+                         'title': post.find('title').string,
+                         'url': post.find('link')['href'],
+                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%XZ'),
+                         'author': 'trick',
+                         'footer': 'Letters from Trick',
+                         'images': content.find_all('img'),
+                         'id': int(post.find('id').text.split('/')[-1])})
+    return messages
 
 
-def parse_trick(old_file, new_file):
-    old_entries = BeautifulSoup(old_file, 'xml').find_all('entry')
-    new_entries = BeautifulSoup(new_file, 'xml').find_all('entry')
-    entries_to_post = difference(new_entries, old_entries)
-
-    # make messages
-    messages = []
-    for entry in entries_to_post:
-        content = BeautifulSoup(entry.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
-        embed = discord.Embed(color       = 0xE47485,
-                              title       = entry.find('title').string,
-                              url         = entry.find('link')['href'],
-                              description = html_to_discord(content)['text'],
-                              timestamp   = datetime.datetime.strptime(entry.find('published').string, '%Y-%m-%dT%XZ'))
-        embed.set_author(     name        = 'Trick',
-                              url         = 'https://trick.pika.page',
-                              icon_url    = 'https://nomnomnami.com/games/treat/charasort/src/assets/chars/trick.png')
-        embed.set_image(      url         = content.find('img')['src'])
-        embed.set_footer(  text        = 'Letters from Trick')
-        messages.append({'embed': embed})
-        
-
-    return messages  # reversed to return in order of upload if there are several new updates
-
-
-def parse_neocities(old_file, new_file):
-    old_updates = BeautifulSoup(old_file, 'html.parser').find_all('div', {'class': 'news-item update'})
+def parse_neocities(new_file):
     new_updates = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'news-item update'})
     
     # find updates added since last time
@@ -333,65 +276,82 @@ def parse_neocities(old_file, new_file):
     return messages  # reversed to return in order of upload if there are several new updates
 
 
-def parse_pillowfort(old_file, new_file):
-    old_posts = BeautifulSoup(old_file, 'html.parser').find_all('div', {'class': 'post-container'})
-    new_posts = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'post-container'})
-
-    old_ids = list(post.find('a', {'class': 'like-button'})['id'] for post in old_posts)  # get ids of each posts
-    posts_to_post = []
-    for post in new_posts:
-        id = post.find('a', {'class': 'like-button'})['id']  # compare post ids
-        if id not in old_ids:
-            posts_to_post.append(post)
+def parse_pillowfort(new_file):
+    posts = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'post-container'})
 
     messages = []
-    for post in posts_to_post:
-        embed = discord.Embed(description = 'temp',)
-        tags = post.find('div', {'class': 'tags'})
-        if tags == None:
-            embed.set_footer( text        = 'Pillowfort')
-        else:
-            embed.set_footer( text        = 'Pillowfort  •  ' + tags.text)
-
-        images = []
-        # for image in html_to_discord(ask)['images']:
-        #     images.append(image)
-
-        messages.append(({'embed': embed, 'images': images}))
-
+    for post in posts:
+        messages.append({})
 
     return messages
 
 
+funcs = {
+    'announcements':    parse_announcements,
+    'newsfeed':         parse_newsfeed,
+    'posts':            parse_posts,
+    'timber':           parse_posts,
+    'blog':             parse_blog,
+    'ask':              parse_ask,
+    'status_cafe':      parse_status_cafe,
+    'neocities':        parse_neocities,
+    'trick':            parse_trick,
+    'pillowfort':       parse_pillowfort
+}
+
+
 def check(source):
     # ask internet pretty please give me the thing i want
-    response = requests.get(source['link'])
-    
-    # compare to currently saved version
-    old_file = open('saved/' + source['file'], 'rb').read()
-    new_file = response.content
-    if old_file == new_file:
-        return []  # nothing new, no updating necessary; will not happen for pages like status.cafe that update parts of its content regularly lol
-    
+    response = requests.get(source['link']) # , headers={'If-Modified-Since': source['last_modified']})
+    if 'Content-Type' in response.headers and 'application/atom+xml' in response.headers['Content-Type']:  # rss feed
+        pass #response = requests.get(source['link'], headers={'If-Modified-Since': source['last_modified']})
+    else:
+        if response.status_code == 304:  # not modified since
+            return []
+        source['last_modified'] = response.headers['Last-Modified']  # update last modified time
+
+    # response errors will be caught in main.py
+
     # call parse function for the source type
-    messages: list[dict] = list(reversed(source['parse'](old_file, new_file)))
-    
-    # save to file
-    with open('saved/' + source['file'], 'wb') as file:
-        file.write(new_file)
+    posts = list(reversed(funcs[source['name']](response.content)))  # reversed so earlier posts are read and sent first if there are multiple
+    # remove any already-seen posts
+    posts = [post for post in posts if post['id'] not in source['saved_ids']]
+    # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
+    for post in posts:
+        if post['id'] not in source['saved_ids']:
+            source['saved_ids'].append(post['id'])
 
-    for message in messages:
-        message['files'] = []
-        if 'images' in message.keys():
-            for image in message['images']:
-                response = requests.get(urljoin('https://nomnomnami.com', image['src']))
-                discord_file = discord.File(io.BytesIO(response.content),
-                                            filename = image['src'].split('/')[-1],
-                                            spoiler  = (image.parent == 'details'))  # spoiler if part of details (for posts)
-                message['files'].append(discord_file)
-    
+    messages = []
+    for post in posts:
+        # limit description to 4000 chars
+        if len(post['description']) > 4000:
+            post['description'] = post['description'][:4000] + f'\n### [READ MORE]({post['url']})'
+        # EMBED
+        embed = discord.Embed(color       = source['embed']['color']       if 'color'       in source['embed'].keys() else None,
+                              description = post['description'],           # description is mandatory
+                              title       = post['title']                  if 'title'       in post.keys()            else None,
+                              url         = post['url']                    if 'url'         in post.keys()            else None,
+                              timestamp   = post['timestamp']              if 'timestamp'   in post.keys()            else None)
+        if 'author' in post.keys():
+            embed.set_author( name        = post['author'],
+                              url         = source['embed']['author_url']  if 'author_url'  in source['embed'].keys() else None,
+                              icon_url    = source['embed']['author_icon'] if 'author_icon' in source['embed'].keys() else None)
+        embed.set_footer(     text        = post['footer'])                # footer is mandatory
+        
 
-    if len(messages) < 5:  # to be expected 100% of the time
-        return messages
-    else:  # if october 22 happens again, it WON'T ping the whole server 80 fucking times. still need to fix the problem though, whatever it was
-        return messages[:3]
+        images = []
+        if 'images' in post.keys():
+            if len(post['images']) == 1 and post['images'][0].parent.name != 'details':
+                embed.set_image(url=urljoin('https://nomnomnami.com', post['images'][0]['src']))
+            else:
+                for img in post['images']:
+                    response = requests.get(urljoin('https://nomnomnami.com', img['src']))
+                    filename = img['src'].split('/')[-1] + ('.png' if source['name'] == 'trick' else '')  # trick pika page exception
+                    discord_file = discord.File(io.BytesIO(response.content),
+                                                filename = filename,
+                                                spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
+                    images.append(discord_file)
+            
+        messages.append({'content': source['message'], 'embed': embed, 'images': images})
+    
+    return messages
