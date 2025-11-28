@@ -201,9 +201,9 @@ def parse_ask(new_file):
         id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
         
         footer = 'ask'
-        if post.find('section', {'class': 'tags'}) != None:
-            post.find('section', {'class': 'tags'})
-            tags = [c.string for c in post.find('section', {'class': 'tags'}).children if isinstance(c, Tag)]
+        if post.find('ul', {'class': 'tags'}) != None:
+            post.find('ul', {'class': 'tags'})
+            tags = ['#' + c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
             if len(tags) > 0:
                 footer += '  •  ' + '  '.join(tags)
 
@@ -325,7 +325,13 @@ def check(source):
     for post in posts:
         # limit description to 4000 chars
         if len(post['description']) > 4000:
-            post['description'] = post['description'][:4000] + '\n### [READ MORE](' + post['url'] + ')'
+            # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
+            emergency_spoil = ('||' in post['description'][:4000] and '||' in post['description'][4000:])
+            post['description'] = post['description'][:4000]
+            if emergency_spoil:
+                post['description'] += '||'
+            post['description'] += '\n## [READ MORE](' + post['url'] + ')'
+
         # EMBED
         embed = discord.Embed(color       = source['embed']['color']       if 'color'       in source['embed'].keys() else None,
                               description = post['description'],           # description is mandatory

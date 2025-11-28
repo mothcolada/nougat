@@ -36,7 +36,7 @@ async def check(source):
 
     # get all the messages to send
     messages = checkweb.check(source)
-    if len(messages) > 5:  # prevent spam pings if a bug happens that makes it detect 6+ new messages from one source at once
+    if (len(messages) > 3 and not source['name'] == 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
         raise Exception('too many messages to send')
 
     for message in messages:
@@ -46,23 +46,28 @@ async def check(source):
 
 
 async def check_all():
+    global sources
     for s in sources:
         if s in ['trick', 'posts', 'status_cafe', 'ask']:
             source = sources[s]
             try:
                 await check(source)
                 
+                # save new stuff
+                json.dump(sources, open('data.json', 'w'), indent=4)
                 # report if issue was happening but it works now
                 if source['issue']:
                     source['issue'] = False
                     await report_status(s, 'we did it reddit', source['issue'])
-            except Exception as e: # report if an issue happens
+
+            except Exception as e:
+                # reload
+                sources = json.load(open('data.json', 'r'))
+                # report if an issue happens
                 if not source['issue']:
                     source['issue'] = True
                     await report_status(s, e, source['issue'])
             
-            # save new stuff
-            json.dump(sources, open('data.json', 'w'), indent=4)
             await asyncio.sleep(1)  # avoid heartbeat blocking
 
 
