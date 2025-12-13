@@ -9,7 +9,7 @@ import io
 import hashlib
 
 
-emoji = {
+icons = {
     'eggbug': '<:icon_eggbug:1425576567945564272>',
     'anon': '<:icon_anon:1425576581815992320>',
     'treat': '<:icon_treat:1425576593018978385>',
@@ -39,6 +39,22 @@ emoji = {
     'twigs': '<:icon_twigs:1443398319853408399>',
     'senbei': '<:icon_senbei:1443398342326489238>',
 }
+emoji = {
+    'eggbug': '<:eggbug:1444074342576033793>',
+    'eggbug_asleep': '<:eggbug_asleep:1444074343951765686>',
+    'eggbug_devious': '<:eggbug_devious:1444074344845283390>',
+    'eggbug_heart_sob': '<:eggbug_heart_sob:1444074346296512592>',
+    'eggbug_nervous': '<:eggbug_nervous:1444074347986944132>',
+    'eggbug_pensive': '<:eggbug_pensive:1444074348473221152>',
+    'eggbug_pleading': '<:eggbug_pleading:1444074350050283550>',
+    'eggbug_relieved': '<:eggbug_relieved:1444074351011037265>',
+    'eggbug_shocked': '<:eggbug_shocked:1444074351853965444>',
+    'eggbug_smile_hearts': '<:eggbug_smile_hearts:1444074353208852710>',
+    'eggbug_sob': '<:eggbug_sob:1444074354487984181>',
+    'eggbug_tuesday': '<:eggbug_tuesday:1444074356060848168>',
+    'eggbug_uwu': '<:eggbug_uwu:1444074356878606396>',
+    'eggbug_wink': '<:eggbug_wink:1444074357914599537>'
+}
 
 
 
@@ -63,6 +79,8 @@ def paragraph(p):
                 text += '*' + clean(c.string) + '*'
             elif c.name == 'code':
                 text += '`' + clean(c.string) + '`'
+            elif c.name == 'small':
+                text += clean(c.string)
 
     return text.strip()
 
@@ -74,8 +92,11 @@ def html_to_discord(html: BeautifulSoup):
         if child.name == 'p':
             text += '\n\n' + paragraph(child)
             for grandchild in child.descendants:
-                if grandchild.name == 'img':  # TODO: differentiate between normal imgs and eggbug emojis maybe
-                    images.append(grandchild)
+                if grandchild.name == 'img':
+                    if '/ask/images/emoji/' in grandchild['src']:
+                        text += ' ' + emoji[grandchild['src'].split('/')[-1].split('.')[0]] + ' '
+                    else:
+                        images.append(grandchild)
         elif child.name == 'h3':
             text += '\n### ' + paragraph(child)
         elif child.name == 'small':
@@ -108,9 +129,11 @@ def html_to_discord(html: BeautifulSoup):
             elif 'asker' in child['class']:
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
-                text += emoji[child['class'][1]]
+                text += icons[child['class'][1]]
             elif 'ask' in child['class']:
                 text += html_to_discord(child)['text']
+            elif 'youtube-embed' in child['class']:
+                text += '\n' + child.find('iframe')['src']
 
 
     return {'text': text, 'images': images}
@@ -206,6 +229,9 @@ def parse_ask(new_file):
             tags = ['#' + c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
             if len(tags) > 0:
                 footer += '  •  ' + '  '.join(tags)
+        
+        if html_to_discord(post)['text'] == '':
+            continue
 
         messages.append({'description': html_to_discord(post)['text'],
                          'url': 'https://nomnomnami.com/ask/latest',
@@ -326,7 +352,7 @@ def check(source):
         # limit description to 4000 chars
         if len(post['description']) > 4000:
             # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
-            emergency_spoil = ('||' in post['description'][:4000] and '||' in post['description'][4000:])
+            emergency_spoil = ('||' in post['description'][:4000] and '||' in post['description'][3999:])
             post['description'] = post['description'][:4000]
             if emergency_spoil:
                 post['description'] += '||'
