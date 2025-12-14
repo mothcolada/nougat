@@ -38,9 +38,10 @@ icons = {
     'timber': '<:icon_timber:1443398285225099364>',
     'twigs': '<:icon_twigs:1443398319853408399>',
     'senbei': '<:icon_senbei:1443398342326489238>',
+    'oz': '<:icon_oz:1449615964873167029>',
     'manjuu': '<:icon_manjuu:1449580945740009482>',
     'dango': '<:icon_dango:1449580975234355361>',
-    'chai': '<:icon_chai:1449580999955714120>',
+    'chai': '<:icon_chai:1449580999955714120>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',
