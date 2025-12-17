@@ -38,10 +38,13 @@ icons = {
     'timber': '<:icon_timber:1443398285225099364>',
     'twigs': '<:icon_twigs:1443398319853408399>',
     'senbei': '<:icon_senbei:1443398342326489238>',
-    'oz': '<:icon_oz:1449615964873167029>',
     'manjuu': '<:icon_manjuu:1449580945740009482>',
+    'oz': '<:icon_oz:1449615964873167029>',
+    'chai': '<:icon_chai:1449580999955714120>',
     'dango': '<:icon_dango:1449580975234355361>',
-    'chai': '<:icon_chai:1449580999955714120>'
+    'phoenix': '<:icon_phoenix:1450670773009252533>',
+    'tundra': '<:icon_tundra:1450670774783578173>',
+    'drop': '<:icon_drop:1450670771704827924>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',
