@@ -230,7 +230,7 @@ def parse_ask(new_file):
         plain = ''.join([bubble.text.strip() for bubble in bubbles])
         id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
         
-        footer = 'the foxy catch!'
+        footer = 'ask'
         # if post.find('ul', {'class': 'tags'}) != None:
         #     post.find('ul', {'class': 'tags'})
         #     tags = ['#' + c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
