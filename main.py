@@ -44,5 +44,5 @@ async def on_reaction_remove(reaction: discord.Reaction, user: discord.Member):
 
 
 load_dotenv()
-client.run(os.getenv("NOUGAT_TOKEN"))
+client.run(os.getenv("TOKEN"))
 
