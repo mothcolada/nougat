@@ -13,7 +13,7 @@ async def log(message):
 
 
 async def report(message):  # i simplified this massively because i don't think it ended up being useful how it was
-    await log('<@422162909582589963> ' + message)
+    await log('<@422162909582589963> ' + str(message))
 
 
 def is_nougat():

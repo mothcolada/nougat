@@ -10,6 +10,8 @@ import character
 import starboard
 
 
+character.print_calendar(2026)
+
 @client.event
 async def on_ready():
     await general.log(f'good morning world i am {client.user.name}')
@@ -19,10 +21,10 @@ async def on_ready():
     # loop: constantly check all sources
     while True:
         try: await character.run()
-        except Exception as e: general.report(e)
+        except Exception as e: await general.report(e)
     
         try: await feeds.run()
-        except Exception as e: general.report(e)
+        except Exception as e: await general.report(e)
         
         await asyncio.sleep(10)
 

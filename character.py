@@ -28,7 +28,7 @@ async def run():
     # check 2: compare bytes of current icon and the icon we want to change it to, only continue if different
     current_icon = await server.icon.read()
     if new_icon == current_icon:
-        await general.log('same icon')
+        print('same icon')
         return
     # check 1 is enough in a vacuum, but with me pushing updates, check 2 is an extra failsafe
     # to not accidentally ping for a character who is already the icon
@@ -76,7 +76,7 @@ def get_char_for_date(date: datetime.datetime):
 
 def name_of_char(id):
     name = id.title()
-    if name[-1] in '0123456789':
+    if (name != '') and (name[-1] in '0123456789'):
         return name[:-1]
     return name
 
@@ -84,7 +84,7 @@ def name_of_char(id):
 def print_calendar(year):
     date = datetime.datetime(year, 1, 1)
     while date.year == year:
-        print(f'{date.month}/{date.day} - {daily_message(date)}')
+        print(f'{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}')
         date += datetime.timedelta(days=1)
 
 
