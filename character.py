@@ -30,7 +30,6 @@ async def run():
     if new_icon == current_icon:
         await general.log('same icon')
         return
-    await general.log('different icon')
     # check 1 is enough in a vacuum, but with me pushing updates, check 2 is an extra failsafe
     # to not accidentally ping for a character who is already the icon
 
@@ -62,8 +61,9 @@ def daily_message(date: datetime.datetime):
     if day in char_data['anniversaries'].keys():
         anniversaries = char_data['anniversaries'][day]
         for anniversary in anniversaries:
+            game_name = anniversary['game']
             game_age = date.year - anniversary['year']
-            message += f' Happy {ordinal(game_age)} anniversary to {anniversary['game']}!'
+            message += f' Happy {ordinal(game_age)} anniversary to {game_name}!'
 
     return message
 
