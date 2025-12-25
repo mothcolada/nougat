@@ -302,27 +302,5 @@
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT",
         "issue": false
-    },
-    "postscript": {
-        "name": "postscript",
-        "link": "https://nomnomnami.com/comics/foxycatch/extra01",
-        "channel": 1330602659023028357,
-        "message": "### <@&1427133678173294654>",
-        "embed": {
-            "color": 3952219
-        },
-        "saved_ids": [
-            "oppa gangnam style",
-            "/comics/images/foxycatch/ep01.png",
-            "/comics/images/foxycatch/ep10.png",
-            "/comics/images/foxycatch/ep11.png",
-            "/comics/images/foxycatch/ep12.png",
-            "/comics/images/foxycatch/ep13.png",
-            "/comics/images/foxycatch/ep14.png",
-            "/comics/images/foxycatch/ep15.png",
-            "/comics/images/foxycatch/ep17.png"
-        ],
-        "last_modified": "Mon, 22 Dec 2025 01:55:48 GMT",
-        "issue": false
     }
 }

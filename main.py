@@ -6,21 +6,25 @@ from dotenv import load_dotenv
 import general
 from general import client
 import feeds
-import starboard
 import character
+import starboard
 
 
 @client.event
 async def on_ready():
     await general.log(f'good morning world i am {client.user.name}')
 
+    # await starboard.refresh_all()
+
     # loop: constantly check all sources
-    await starboard.refresh_all()
     while True:
-        await feeds.run()
-        await asyncio.sleep(3)
-        # await character.run()
-        # await asyncio.sleep(3)
+        try: await character.run()
+        except Exception as e: general.report(e)
+    
+        try: await feeds.run()
+        except Exception as e: general.report(e)
+        
+        await asyncio.sleep(10)
 
 
 @client.event
@@ -31,18 +35,19 @@ async def on_message(message: discord.Message):
         await client.close()
 
 
-@client.event
-async def on_reaction_add(reaction: discord.Reaction, user: discord.Member):
-    if reaction.emoji.name == 'star':
-        await starboard.add_star(reaction, user)
+# starboard events
 
+# @client.event
+# async def on_reaction_add(reaction: discord.Reaction, user: discord.Member):
+#     if reaction.emoji.name == 'star':
+#         await starboard.add_star(reaction, user)
 
-@client.event
-async def on_reaction_remove(reaction: discord.Reaction, user: discord.Member):
-    if reaction.emoji.name == 'star':
-        await starboard.remove_star(reaction, user)
+# @client.event
+# async def on_reaction_remove(reaction: discord.Reaction, user: discord.Member):
+#     if reaction.emoji.name == 'star':
+#         await starboard.remove_star(reaction, user)
 
 
 load_dotenv()
-client.run(os.getenv("TOKEN"))
+client.run(os.getenv("NOUGAT_TOKEN"))
 

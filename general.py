@@ -12,11 +12,16 @@ async def log(message):
     await log_channel.send(message)
 
 
-async def report(s,ex,i):  # the sexi report system (source, exception, and issue) (useful variable naming be damned)
-    try:  # if anything goes wrong, tell me (mothcolada)
-        if i:  # issue!
-            await log(content = '<@422162909582589963> ' + str(s) + ' ' + str(ex))
-        else:
-            await log(content = str(s) + ' ' + str(ex))
-    except:  # uhhhhhhhhh
-        print('uh oh ' + str(s) + ' ' + str(ex))
+async def report(message):  # i simplified this massively because i don't think it ended up being useful how it was
+    await log('<@422162909582589963> ' + message)
+
+
+def is_nougat():
+    return (client.user.id == 1425561875885719634)
+
+
+def get_guild():
+    if is_nougat():
+        return client.get_guild(1325038200452022334)  # namiverse
+    else:
+        return client.get_guild(422163243528617994)  # bea hive

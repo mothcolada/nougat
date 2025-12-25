@@ -349,24 +349,6 @@ def parse_pillowfort(new_file):
     return messages
 
 
-def parse_postscript(new_file):
-    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
-
-    messages = []
-    for post in posts:
-        if post.find('img') == None:
-            id = 'oppa gangnam style'
-        else:
-            id = post.find('img')['src']
-
-        messages.append({'description': html_to_discord(post)['text'],
-                         'url': 'https://nomnomnami.com/comics/foxycatch/extra01',
-                         'footer': 'the foxy catch! - postscript',
-                         'id': id,
-                         'images': [image for image in html_to_discord(post)['images']]})
-    return list(reversed(messages))
-
-
 funcs = {
     'announcements':    parse_announcements,
     'newsfeed':         parse_newsfeed,
@@ -377,8 +359,7 @@ funcs = {
     'status_cafe':      parse_status_cafe,
     'neocities':        parse_neocities,
     'trick':            parse_trick,
-    'pillowfort':       parse_pillowfort,
-    'postscript':       parse_postscript  # remove afterwards
+    'pillowfort':       parse_pillowfort
 }
 
 
@@ -446,14 +427,14 @@ def feed(source):
 
 
 async def check(source):
-    if str(client.user) == 'Nougat#2777':  # in namiverse use namiverse channels
+    if general.is_nougat():  # in namiverse use namiverse channels
         channel = client.get_channel(source['channel'])
     else:  # personal test bot
         channel = client.get_channel(1074754885070897202)
 
     # get all the messages to send
     messages = feed(source)
-    if (len(messages) > 5 and source['name'] not in ['ask', 'postscript']) or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 100:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
         raise Exception('too many messages to send')
 
     for message in messages:
@@ -466,13 +447,12 @@ async def run():
     sources = json.load(open('feed_data.json', 'r'))  # probably dont need to load it every time but oh well
 
     for s in sources:
-        if s in ['postscript', 'posts', 'status_cafe', 'ask', 'trick']:
+        if s in ['posts', 'status_cafe', 'ask', 'trick']:
             source = sources[s]
             try:
                 await check(source)
                 
                 # save new stuff
-                print('dumping')
                 json.dump(sources, open('feed_data.json', 'w'), indent=4)
                 # report if issue was happening but it works now
                 if source['issue']:

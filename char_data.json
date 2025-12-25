@@ -1,124 +1,527 @@
 {
-    "server": {
-        "current": "timber",
-        "next": [
-            "timber", "pine", "tundra", "candy", "cotton", "mango", "castella", "trick", "pitaya", "lemonne", "danny"
-        ],
-        "events": {
-            "11/13": {
-                "character": "timber",
-                "message": "Timber! (Night with Timber releases today!)"
-            },
-            "12/19": {
-                "character": "gumdrop",
-                "message": "Happy birthday, Gumdrop!"
+    "last_changed": 0,
+    "calendar": [
+        "lime",
+        "pitaya",
+        "maia",
+        "peanut",
+        "brittle",
+        "tiramisu",
+        "mitsu",
+        "mrbrew",
+        "lilikoi",
+        "pip",
+        "squeak",
+        "phoenix",
+        "grenadine",
+        "trick",
+        "drop",
+        "mince",
+        "",
+        "",
+        "",
+        "",
+        "treat",
+        "",
+        "mango",
+        "powder",
+        "fennel",
+        "candy",
+        "cotton",
+        "timber",
+        "twigs",
+        "tundra",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "kamilla",
+        "eleni",
+        "lemonne",
+        "pitaya",
+        "dango",
+        "manjuu",
+        "mochi",
+        "",
+        "",
+        "",
+        "",
+        "trick",
+        "periwinkle",
+        "mochi",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "cassia",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "nil",
+        "spice",
+        "thyme",
+        "cassia",
+        "sardine queen",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "senbei",
+        "syrup",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "treat",
+        "",
+        "",
+        "moxie",
+        "salt",
+        "pepper",
+        "chai",
+        "",
+        "",
+        "astragalus",
+        "cassava",
+        "periwinkle",
+        "vinegar",
+        "",
+        "",
+        "maia",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "trick",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "thyme",
+        "spice",
+        "toffee",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "mochi",
+        "manjuu",
+        "senbei",
+        "brickzo",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "pastille",
+        "searina",
+        "baezel",
+        "poffin",
+        "",
+        "nami",
+        "",
+        "",
+        "",
+        "",
+        "moxie",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "butterscotch",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "twigs",
+        "baezel",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "treat",
+        "",
+        "",
+        "marzipan",
+        "jam",
+        "trick",
+        "lilium",
+        "orchid",
+        "nil",
+        "spice",
+        "thyme",
+        "syrup",
+        "vinegar",
+        "eleni",
+        "kamilla",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "timber",
+        "twigs",
+        "senbei",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "osmanthus",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "periwinkle",
+        "pastille",
+        "gumdrop",
+        "syrup",
+        "",
+        "",
+        "",
+        "mousse",
+        "trick8",
+        "phoenix",
+        "marmalade",
+        "basmati",
+        "saffron",
+        "sesame",
+        "souffle"
+    ],
+    "birthdays": [
+        "1/15",
+        "1/28",
+        "2/15",
+        "2/27",
+        "2/28",
+        "3/13",
+        "3/30",
+        "4/11",
+        "4/12",
+        "4/30",
+        "5/23",
+        "6/3",
+        "6/4",
+        "7/22",
+        "7/25",
+        "7/27",
+        "8/1",
+        "8/28",
+        "9/30",
+        "10/1",
+        "11/1",
+        "11/2",
+        "12/8",
+        "12/19"
+    ],
+    "anniversaries": {
+        "1/12": [
+            {
+                "game": "Part 2 of Trick Comes Home",
+                "year": 2025
             }
-        }
-    },
-    "data": {
-        "treat": {
-            "name": "Treat",
-            "connections": ["mochi", "moxie", "trick", "cotton", "candy"]
-        },
-        "mochi": {
-            "name": "Mochi",
-            "connections": ["treat", "moxie", "manjuu", "dango", "mango"]
-        },
-        "moxie": {
-            "name": "Moxie",
-            "connections": ["treat", "mochi", "salt", "pepper", "chai"]
-        },
-        "trick": {
-            "name": "Trick",
-            "connections": ["treat", "boreas", "pitaya", "phoenix", "grenadine"]
-        },
-        "manjuu": {
-            "name": "Manjuu",
-            "connections": ["mochi", "dango", "mango", "castella", "senbei"]
-        },
-        "dango": {
-            "name": "Dango",
-            "connections": ["mochi", "manjuu", "chai"]
-        },
-        "salt": {
-            "name": "Salt",
-            "connections": ["moxie", "pepper", "chai"]
-        },
-        "pepper": {
-            "name": "Pepper",
-            "connections": ["moxie", "salt", "chai"]
-        },
-        "chai": {
-            "name": "Chai",
-            "connections": ["moxie", "dango", "salt", "pepper"]
-        },
-        "cotton": {
-            "name": "Cotton",
-            "connections": ["treat", "candy", "mango"]
-        },
-        "candy": {
-            "name": "Candy",
-            "connections": ["treat", "cotton", "mango", "tundra"]
-        },
-        "mango": {
-            "name": "Mango",
-            "connections": ["mochi", "manjuu", "cotton", "candy", "castella"]
-        },
-        "castella": {
-            "name": "Castella",
-            "connections": ["manjuu", "trick", "mango"]
-        },
-        "senbei": {
-            "name": "Senbei",
-            "connections": ["manjuu", "timber", "osmanthus"]
-        },
-        "phoenix": {
-            "name": "Phoenix",
-            "connections": ["trick", "grenadine"]
-        },
-        "grenadine": {
-            "name": "Grenadine",
-            "connections": ["trick", "phoenix"]
-        },
-        "timber": {
-            "name": "Timber",
-            "connections": ["treat", "senbei", "tundra"]
-        },
-        "tundra": {
-            "name": "Tundra",
-            "connections": ["timber", "candy"]
-        },
-        "syrup": {
-            "name": "Syrup",
-            "connections": ["butterscotch", "gumdrop", "pastille"]
-        },
-        "gumdrop": {
-            "name": "Gumdrop",
-            "connections": ["syrup", "pastille"]
-        },
-        "pastille": {
-            "name": "Pastille",
-            "connections": ["syrup", "gumdrop"]
-        },
-        "butterscotch": {
-            "name": "Butterscotch",
-            "connections": ["syrup", "toffee", "osmanthus"]
-        },
-        "toffee": {
-            "name": "Toffee",
-            "connections": ["butterscotch", "malt", "barley"]
-        },
-        "malt": {
-            "name": "Malt",
-            "connections": ["toffee", "barley"]
-        },
-        "barley": {
-            "name": "Barley",
-            "connections": ["toffee", "malt"]
-        },
-        "osmanthus": {
-            "name": "Osmanthus",
-            "connections": ["senbei", "timber", "butterscotch"]
-        }
+        ],
+        "1/21": [
+            {
+                "game": "Lonely Wolf Treat",
+                "year": 2016
+            }
+        ],
+        "2/21": [
+            {
+                "game": "Friendly Bunny Mochi",
+                "year": 2016
+            }
+        ],
+        "2/26": [
+            {
+                "game": "Wandering Wolf Trick",
+                "year": 2017
+            }
+        ],
+        "2/27": [
+            {
+                "game": "Starry Flowers",
+                "year": 2021
+            }
+        ],
+        "3/30": [
+            {
+                "game": "her tears were my light",
+                "year": 2016
+            },
+            {
+                "game": "Contract Demon",
+                "year": 2019
+            }
+        ],
+        "3/31": [
+            {
+                "game": "Charm Studies",
+                "year": 2023
+            }
+        ],
+        "5/3": [
+            {
+                "game": "Clever Fox Moxie",
+                "year": 2016
+            }
+        ],
+        "5/9": [
+            {
+                "game": "Astra's Garden",
+                "year": 2022
+            }
+        ],
+        "5/15": [
+            {
+                "game": "drowning, drowning",
+                "year": 2020
+            }
+        ],
+        "6/4": [
+            {
+                "game": "Princess Poffin and the Spider Invasion",
+                "year": 2023
+            }
+        ],
+        "7/7": [
+            {
+                "game": "Mochi in Frosting",
+                "year": 2019
+            }
+        ],
+        "7/23": [
+            {
+                "game": "KAIMA",
+                "year": 2016
+            }
+        ],
+        "8/1": [
+            {
+                "game": "Lucky Number Moxie",
+                "year": 2022
+            }
+        ],
+        "10/20": [
+            {
+                "game": "Dreaming Treat",
+                "year": 2018
+            }
+        ],
+        "10/23": [
+            {
+                "game": "First Kiss at a Spooky Soiree",
+                "year": 2016
+            }
+        ],
+        "10/26": [
+            {
+                "game": "BAD END THEATER",
+                "year": 2021
+            }
+        ],
+        "10/31": [
+            {
+                "game": "Syrup and the Ultimate Sweet",
+                "year": 2015
+            },
+            {
+                "game": "Syrup 2: Candy Alchemy RPG",
+                "year": 2025
+            }
+        ],
+        "11/13": [
+            {
+                "game": "Night With Timber",
+                "year": 2025
+            }
+        ],
+        "12/25": [
+            {
+                "game": "Part 1 of Trick Comes Home",
+                "year": 2023
+            }
+        ]
     }
 }
