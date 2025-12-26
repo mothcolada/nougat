@@ -12,7 +12,7 @@ char_data = json.load(open('char_data.json', 'r'))
 
 
 async def run():
-    offset = datetime.timedelta(hours=-7)
+    offset = datetime.timedelta(hours=-5)
     mst = datetime.timezone(offset)
     now_mst = datetime.datetime.now(tz=mst)
 
