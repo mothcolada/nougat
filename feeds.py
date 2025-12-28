@@ -15,6 +15,7 @@ from general import client
 
 
 icons = {
+    'none': '<:icon_none:1454889234853793842>',
     'eggbug': '<:icon_eggbug:1425576567945564272>',
     'anon': '<:icon_anon:1425576581815992320>',
     'treat': '<:icon_treat:1425576593018978385>',
@@ -141,7 +142,10 @@ def html_to_discord(html: BeautifulSoup):
             elif 'asker' in child['class']:
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
-                text += icons[child['class'][1]]
+                if child['class'][1] in icons.keys():
+                    text += icons[child['class'][1]]
+                else:
+                    text += icons['none']
             elif 'ask' in child['class']:
                 text += html_to_discord(child)['text']
             elif 'youtube-embed' in child['class']:
