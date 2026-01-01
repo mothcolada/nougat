@@ -374,7 +374,6 @@ funcs = {
 
 
 def feed(source):
-    print('feed')
     # ask internet pretty please give me the thing i want
     response = requests.get(source['link']) # , headers={'If-Modified-Since': source['last_modified']})
     if 'Content-Type' in response.headers and 'application/atom+xml' in response.headers['Content-Type']:  # rss feed
