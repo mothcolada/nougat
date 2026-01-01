@@ -143,7 +143,7 @@ def html_to_discord(html: BeautifulSoup):
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
                 if child['class'][1] in icons.keys():
-                    text += icons[child['class'][1]]
+                    text += icons[child['class'][1]]  # TODO: actually test this
                 else:
                     text += icons['none']
             elif 'ask' in child['class']:
@@ -346,9 +346,15 @@ def parse_neocities(new_file):
 def parse_pillowfort(new_file):
     posts = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'post-container'})
 
+    print(str(BeautifulSoup(new_file, 'html.parser'))[:20000])
+
     messages = []
     for post in posts:
-        messages.append({})
+        # print(post)
+        # print(post.find('div', {'class': 'avatar'}).find('img'))
+        # print(post.find('a', {'title': 'link to post'})) # ['href'].split('/')[-1]
+        messages.append({'id': post.find({'title': 'link to post'})['href'].split('/')[-1],
+                         'author_icon': post.find('div', {'class': 'avatar'}).find('img')['src']})
 
     return messages
 
@@ -368,6 +374,7 @@ funcs = {
 
 
 def feed(source):
+    print('feed')
     # ask internet pretty please give me the thing i want
     response = requests.get(source['link']) # , headers={'If-Modified-Since': source['last_modified']})
     if 'Content-Type' in response.headers and 'application/atom+xml' in response.headers['Content-Type']:  # rss feed
@@ -375,7 +382,8 @@ def feed(source):
     else:
         if response.status_code == 304:  # not modified since
             return []
-        source['last_modified'] = response.headers['Last-Modified']  # update last modified time
+        if 'last_modified' in response.headers.keys():
+            source['last_modified'] = response.headers['Last-Modified']  # update last modified time
 
     # response errors will be caught in main.py
 
@@ -438,7 +446,7 @@ async def check(source):
 
     # get all the messages to send
     messages = feed(source)
-    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 100:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
         raise Exception('too many messages to send')
 
     for message in messages:
@@ -453,22 +461,13 @@ async def run():
     for s in sources:
         if s in ['posts', 'status_cafe', 'ask', 'trick']:
             source = sources[s]
-            try:
-                await check(source)
-                
-                # save new stuff
-                json.dump(sources, open('feed_data.json', 'w'), indent=4)
-                # report if issue was happening but it works now
-                if source['issue']:
-                    source['issue'] = False
-                    await general.report(s, 'we did it reddit', source['issue'])
-
-            except Exception as e:
-                # reload
-                sources = json.load(open('feed_data.json', 'r'))
-                # report if an issue happens
-                if not source['issue']:
-                    source['issue'] = True
-                    await general.report(s, e, source['issue'])
+            await check(source)
             
-            await asyncio.sleep(1)  # avoid heartbeat blocking
+            # save new stuff
+            json.dump(sources, open('feed_data.json', 'w'), indent=4)
+            # report if issue was happening but it works now
+            if source['issue']:
+                source['issue'] = False
+                await general.report('we did it reddit')
+
+            await asyncio.sleep(0.2)  # avoid heartbeat blocking

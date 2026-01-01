@@ -10,7 +10,7 @@ import character
 import starboard
 
 
-character.print_calendar(2026)
+# character.print_calendar(2026)
 
 @client.event
 async def on_ready():
