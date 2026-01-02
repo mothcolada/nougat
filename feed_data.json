@@ -190,13 +190,15 @@
     },
     "blog": {
         "name": "blog",
-        "link": "https://nomnomnami.com/blog/resources/main.js",
+        "link": "https://nomnomnami.pika.page/posts_feed",
         "channel": 1327524115526979605,
         "message": "### New blog post! <@&1327524420033712173>",
         "embed": {
             "color": 6937599
         },
-        "saved_ids": [],
+        "saved_ids": [
+            75015
+        ],
         "last_modified": "Mon, 28 Jul 2025 18:15:35 GMT",
         "issue": false
     },

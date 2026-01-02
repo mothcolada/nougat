@@ -213,8 +213,21 @@ def parse_posts(new_file):
 
 
 def parse_blog(new_file):
-    # new_posts = new_file.decode('utf-8').split('const posts = [')[1].split('];')[0].split('{')[1:]
-    # posts_to_post = difference(new_posts, old_posts)
+    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
+
+    # make messages
+    messages = []
+    for post in posts:
+        content = BeautifulSoup(post.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
+
+        url = post.find('link')['href']
+        messages.append({'description': (paragraph(content.find('p')) + f'\n### [READ MORE]({url})'),
+                         'title': post.find('title').string,
+                         'url': url,
+                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%XZ'),
+                         'footer': 'blog',
+                         'id': int(post.find('id').text.split('/')[-1])})
+    return messages
     
     # messages = []
     # for post in posts_to_post:
@@ -231,30 +244,6 @@ def parse_blog(new_file):
     #     messages.append({'embed': embed})
     # return messages  # reversed to return in order of upload if there are several new updates
     pass
-
-
-def parse_ask(new_file):
-    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
-
-    messages = []
-    for post in posts:
-        bubbles = post.find_all('div', {'class': 'bubble'})
-        plain = ''.join([bubble.text.strip() for bubble in bubbles])
-        id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
-        
-        footer = 'ask'
-        # if post.find('ul', {'class': 'tags'}) != None:
-        #     post.find('ul', {'class': 'tags'})
-        #     tags = ['#' + c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
-        #     if len(tags) > 0:
-        #         footer += '  •  ' + '  '.join(tags)
-
-        messages.append({'description': html_to_discord(post)['text'],
-                         'url': 'https://nomnomnami.com/ask/latest',
-                         'footer': footer,
-                         'id': id,
-                         'images': [image for image in html_to_discord(post)['images']]})
-    return messages
 
 
 def parse_ask(new_file):
@@ -458,7 +447,7 @@ async def run():
     sources = json.load(open('feed_data.json', 'r'))  # probably dont need to load it every time but oh well
 
     for s in sources:
-        if s in ['posts', 'status_cafe', 'ask', 'trick']:
+        if s in ['blog', 'posts', 'status_cafe', 'ask', 'trick']:
             source = sources[s]
             await check(source)
             
