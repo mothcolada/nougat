@@ -51,5 +51,5 @@ async def on_message(message: discord.Message):
 
 
 load_dotenv()
-client.run(os.getenv("NOUGAT_TOKEN"))
+client.run(os.getenv("TOKEN"))
 
