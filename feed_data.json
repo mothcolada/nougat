@@ -304,5 +304,33 @@
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT",
         "issue": false
+    },
+    "apoc": {
+        "name": "apoc",
+        "link": "https://another-piece-of-candy.thecomicseries.com/rss/",
+        "channel": 1325599067060965466,
+        "message": "### New APoC comic! <@&1325598094267650140>",
+        "embed": {
+            "color": 13512298
+        },
+        "saved_ids": [
+            2607968,
+            2607969,
+            2607977,
+            2607978,
+            2607979,
+            2607981,
+            2607982,
+            2607984,
+            2607991,
+            2607987,
+            2607989,
+            2607995,
+            2607996,
+            2607997,
+            2607998
+        ],
+        "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT",
+        "issue": false
     }
 }

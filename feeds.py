@@ -228,22 +228,6 @@ def parse_blog(new_file):
                          'footer': 'blog',
                          'id': int(post.find('id').text.split('/')[-1])})
     return messages
-    
-    # messages = []
-    # for post in posts_to_post:
-    #     title = post.split('"title": `')[1].split('`')[0]
-    #     filename = post.split('"filename": `')[1].split('`')[0]
-    #     tags = post.split('"tags": [`')[1].split('`]')[0].split('`, `')
-    #     url = 'https://nomnomnami.com/blog/posts/' + filename + '.html'
-    #     page = BeautifulSoup(requests.get(url).content, 'html.parser')
-
-    #     embed = discord.Embed(title       = title,
-    #                           url         = url,
-    #                           description = paragraph(page.find('p')) + '\n### [READ MORE](' + url + ')')  # first paragraph
-    #     embed.set_footer(     text        = 'blog  •  ' + '#' + '  #'.join(tags),)
-    #     messages.append({'embed': embed})
-    # return messages  # reversed to return in order of upload if there are several new updates
-    pass
 
 
 def parse_ask(new_file):
@@ -333,18 +317,40 @@ def parse_neocities(new_file):
 
 
 def parse_pillowfort(new_file):
-    posts = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'post-container'})
+    pass
+    # # not this: posts = BeautifulSoup(new_file, 'xml').find_all('item')
 
-    print(str(BeautifulSoup(new_file, 'html.parser'))[:20000])
+    # print(str(BeautifulSoup(new_file, 'html.parser'))[:20000])
 
+    # messages = []
+    # for post in posts:
+    #     # print(post)
+    #     # print(post.find('div', {'class': 'avatar'}).find('img'))
+    #     # print(post.find('a', {'title': 'link to post'})) # ['href'].split('/')[-1]
+    #     messages.append({'id': post.find({'title': 'link to post'})['href'].split('/')[-1],
+    #                      'author_icon': post.find('div', {'class': 'avatar'}).find('img')['src']})
+
+    # return messages
+
+
+def parse_apoc(new_file):
+    saved_ids = json.load(open('feed_data.json', 'r'))['apoc']['saved_ids']
+    # we want to check id early to avoid checking every single recent comic
+    posts = BeautifulSoup(new_file, 'xml').find_all('item')
     messages = []
     for post in posts:
-        # print(post)
-        # print(post.find('div', {'class': 'avatar'}).find('img'))
-        # print(post.find('a', {'title': 'link to post'})) # ['href'].split('/')[-1]
-        messages.append({'id': post.find({'title': 'link to post'})['href'].split('/')[-1],
-                         'author_icon': post.find('div', {'class': 'avatar'}).find('img')['src']})
-
+        soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
+        id = int(post.find('link').text.split('/')[-2])
+        if id not in saved_ids:
+            num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
+            authornotes = soup.find('div', {'class': 'authornotes'})
+            desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
+            messages.append({'id': id,
+                            'title': post.find('title').text,
+                            'url': f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
+                            'description': desc,
+                            'images': [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
+                            'footer': 'another piece of candy'})
     return messages
 
 
@@ -358,7 +364,8 @@ funcs = {
     'status_cafe':      parse_status_cafe,
     'neocities':        parse_neocities,
     'trick':            parse_trick,
-    'pillowfort':       parse_pillowfort
+    'pillowfort':       parse_pillowfort,
+    'apoc':             parse_apoc
 }
 
 
@@ -410,7 +417,7 @@ def feed(source):
 
         images = []
         if 'images' in post.keys():
-            if len(post['images']) == 1 and post['images'][0].parent.name != 'details':
+            if len(post['images']) == 1 and (post['images'][0].parent.name != 'details'):
                 embed.set_image(url=urljoin('https://nomnomnami.com', post['images'][0]['src']))
             else:
                 for img in post['images']:
@@ -434,7 +441,7 @@ async def check(source):
 
     # get all the messages to send
     messages = feed(source)
-    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+    if False: #(len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
         raise Exception('too many messages to send')
 
     for message in messages:
@@ -447,7 +454,7 @@ async def run():
     sources = json.load(open('feed_data.json', 'r'))  # probably dont need to load it every time but oh well
 
     for s in sources:
-        if s in ['blog', 'posts', 'status_cafe', 'ask', 'trick']:
+        if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
             source = sources[s]
             await check(source)
             
