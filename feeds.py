@@ -441,7 +441,7 @@ async def check(source):
 
     # get all the messages to send
     messages = feed(source)
-    if False: #(len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
         raise Exception('too many messages to send')
 
     for message in messages:

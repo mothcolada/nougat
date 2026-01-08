@@ -23,8 +23,8 @@ async def on_ready():
         try: await character.run()
         except Exception as e: await general.report(e)
     
-        await feeds.run()
-        #except Exception as e: await general.report(e)
+        try: await feeds.run()
+        except Exception as e: await general.report(e)
         
         await asyncio.sleep(10)
 
