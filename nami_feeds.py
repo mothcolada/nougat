@@ -1,7 +1,9 @@
+import discord
+from discord.ext import tasks, commands
+
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 import datetime
-import discord
 import lxml
 import html
 from urllib.parse import urljoin
@@ -10,8 +12,8 @@ import hashlib
 import asyncio
 import json
 
-import general
-from general import client
+
+# good lord this file is messy
 
 
 icons = {
@@ -215,7 +217,6 @@ def parse_posts(new_file):
 def parse_blog(new_file):
     posts = BeautifulSoup(new_file, 'xml').find_all('entry')
 
-    # make messages
     messages = []
     for post in posts:
         content = BeautifulSoup(post.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
@@ -428,41 +429,52 @@ def feed(source):
                                                 spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
                     images.append(discord_file)
             
-        messages.append({'content': source['message'], 'embed': embed, 'images': images})
+        messages.append({'content': f'-# <@&{source["message"]}>', 'embed': embed, 'images': images})
     
     return messages
 
 
-async def check(source):
-    if general.is_nougat():  # in namiverse use namiverse channels
-        channel = client.get_channel(source['channel'])
-    else:  # personal test bot
-        channel = client.get_channel(1074754885070897202)
+sources = json.load(open('feed_data.json', 'r'))
 
-    # get all the messages to send
-    messages = feed(source)
-    if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
-        raise Exception('too many messages to send')
+class NamiFeeds(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.feeds.start()
 
-    for message in messages:
-        await channel.send(message['content'], embed=message['embed'])
-        if 'images' in message.keys() and len(message['images']) >= 1:  # i'll (situationally) put images in the embed later
-            await channel.send(files=message['images'])
+    def cog_unload(self):
+        self.feeds.cancel()
+
+    @tasks.loop(seconds=10.0)
+    async def feeds(self):
+        sources = json.load(open('feed_data.json', 'r'))
+
+        for s in sources:
+            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+                source = sources[s]
+                await self.check(source)
+                
+                # save new stuff
+                json.dump(sources, open('feed_data.json', 'w'), indent=4)
+
+                await asyncio.sleep(0.2)  # avoid heartbeat blocking
 
 
-async def run():
-    sources = json.load(open('feed_data.json', 'r'))  # probably dont need to load it every time but oh well
+    async def check(self, source):
+        if self.bot.is_nougat:  # in namiverse use namiverse channels
+            channel = self.bot.get_channel(source['channel'])
+        else:  # personal test bot
+            channel = self.bot.get_channel(1074754885070897202)
 
-    for s in sources:
-        if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
-            source = sources[s]
-            await check(source)
-            
-            # save new stuff
-            json.dump(sources, open('feed_data.json', 'w'), indent=4)
-            # report if issue was happening but it works now
-            if source['issue']:
-                source['issue'] = False
-                await general.report('we did it reddit')
+        # get all the messages to send
+        messages = feed(source)
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+            raise Exception('too many messages to send')
 
-            await asyncio.sleep(0.2)  # avoid heartbeat blocking
+        for message in messages:
+            await channel.send(message['content'], embed=message['embed'])
+            if 'images' in message.keys() and len(message['images']) >= 1:  # i'll (situationally) put images in the embed later
+                await channel.send(files=message['images'])
+
+
+async def setup(bot):
+    await bot.add_cog(NamiFeeds(bot))
