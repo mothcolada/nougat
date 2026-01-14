@@ -23,25 +23,28 @@ class DailyCharacter(commands.Cog):
 
 
     async def new_character(self):
-        now_est = datetime.datetime.now(tz=est)
-        
-        char = get_char_for_date(now_est)
-        new_icon = open(f'faces/{char}.png', 'rb').read()
+        try:
+            now_est = datetime.datetime.now(tz=est)
+            
+            char = get_char_for_date(now_est)
+            new_icon = open(f'faces/{char}.png', 'rb').read()
 
-        # Namiverse (if Nougat) or bea hive (if miscolada)
-        server = self.bot.get_guild(1325038200452022334 if self.bot.is_nougat else 422163243528617994)
+            # Namiverse (if Nougat) or bea hive (if miscolada)
+            server = self.bot.get_guild(1325038200452022334 if self.bot.is_nougat else 422163243528617994)
 
-        # compare bytes of current icon and the icon we want to change it to, only continue if different
-        current_icon = await server.icon.read()
-        if new_icon == current_icon:
-            print('same icon')
-            return
+            # compare bytes of current icon and the icon we want to change it to, only continue if different
+            current_icon = await server.icon.read()
+            if new_icon == current_icon:
+                print('same icon')
+                return
 
-        await server.edit(icon=new_icon)
+            await server.edit(icon=new_icon)
 
-          # Daily Character thread (if Nougat) or personal testing channel (if miscolada)
-        channel = self.bot.get_channel(1330485605515264030 if self.bot.is_nougat else 1074754885070897202)  # Daily Character thread
-        await channel.send(daily_message(now_est))
+            # Daily Character thread (if Nougat) or personal testing channel (if miscolada)
+            channel = self.bot.get_channel(1330485605515264030 if self.bot.is_nougat else 1074754885070897202)  # Daily Character thread
+            await channel.send(daily_message(now_est))
+        except Exception as e:
+            self.bot.report(e)
 
 
 def daily_message(date: datetime.datetime):

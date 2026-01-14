@@ -446,17 +446,20 @@ class NamiFeeds(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
-        sources = json.load(open('feed_data.json', 'r'))
+        try:
+            sources = json.load(open('feed_data.json', 'r'))
 
-        for s in sources:
-            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
-                source = sources[s]
-                await self.check(source)
-                
-                # save new stuff
-                json.dump(sources, open('feed_data.json', 'w'), indent=4)
+            for s in sources:
+                if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+                    source = sources[s]
+                    await self.check(source)
+                    
+                    # save new stuff
+                    json.dump(sources, open('feed_data.json', 'w'), indent=4)
 
-                await asyncio.sleep(0.2)  # avoid heartbeat blocking
+                    await asyncio.sleep(0.5)  # avoid heartbeat blocking
+        except Exception as e:
+            self.bot.report(e)
 
 
     async def check(self, source):
