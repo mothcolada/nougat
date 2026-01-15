@@ -35,6 +35,8 @@ class Bot(commands.Bot):
         await self.log(f'good morning world i am {self.user.name}')
         await self.get_cog('DailyCharacter').new_character()  # try to change icon if outdated
 
+        # await self.get_channel(1330485605515264030).send('')
+
 
     async def on_message(self, message: discord.Message):
         # if i send "die" in my #nougat-log channel, shut down the bot
@@ -54,5 +56,5 @@ class Bot(commands.Bot):
 
 bot = Bot()
 load_dotenv()
-bot.run(os.getenv('NOUGAT_TOKEN'))
+bot.run(os.getenv('TOKEN'))
 
