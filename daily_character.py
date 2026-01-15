@@ -23,7 +23,7 @@ class DailyCharacter(commands.Cog):
 
 
     async def new_character(self):
-        try:
+        if True:
             now_est = datetime.datetime.now(tz=est)
             
             char = get_char_for_date(now_est)
@@ -43,8 +43,8 @@ class DailyCharacter(commands.Cog):
             # Daily Character thread (if Nougat) or personal testing channel (if miscolada)
             channel = self.bot.get_channel(1330485605515264030 if self.bot.is_nougat else 1074754885070897202)  # Daily Character thread
             await channel.send(daily_message(now_est))
-        except Exception as e:
-            self.bot.report(e)
+        # except Exception as e:
+        #     await self.bot.report(e)
 
 
 def daily_message(date: datetime.datetime):

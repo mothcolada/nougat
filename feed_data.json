@@ -3,7 +3,7 @@
         "name": "announcements",
         "link": "https://nomnomnami.com/index.html",
         "channel": 1327524115526979605,
-        "message": "1325598062198128640",
+        "role": 1325598062198128640,
         "embed": {},
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT",
@@ -13,7 +13,7 @@
         "name": "newsfeed",
         "link": "https://nomnomnami.com/index.html",
         "channel": 1327524115526979605,
-        "message": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {},
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT"
@@ -22,7 +22,7 @@
         "name": "posts",
         "link": "https://nomnomnami.com/posts",
         "channel": 1327524115526979605,
-        "message": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {
             "color": 12433407,
             "author_url": "https://nomnomnami.com/posts/",
@@ -33,7 +33,8 @@
             1768060320,
             1768180320,
             1768193700,
-            1768266360
+            1768266360,
+            1768410180
         ],
         "last_modified": "Sat, 20 Dec 2025 20:49:47 GMT"
     },
@@ -41,7 +42,7 @@
         "name": "timber_posts",
         "link": "https://nomnomnami.com/posts/timber",
         "channel": 1327524115526979605,
-        "role": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {},
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT"
@@ -50,12 +51,13 @@
         "name": "blog",
         "link": "https://nomnomnami.pika.page/posts_feed",
         "channel": 1327524115526979605,
-        "role": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {
             "color": 6937599
         },
         "saved_ids": [
-            75015
+            75015,
+            79288
         ],
         "last_modified": "Mon, 28 Jul 2025 18:15:35 GMT"
     },
@@ -63,7 +65,7 @@
         "name": "ask",
         "link": "https://nomnomnami.com/ask/latest",
         "channel": 1330602659023028357,
-        "message": "1427133678173294654",
+        "role": 1427133678173294654,
         "embed": {
             "color": 16767144
         },
@@ -76,7 +78,7 @@
         "name": "status_cafe",
         "link": "https://status.cafe/users/nomnomnami.atom",
         "channel": 1327524115526979605,
-        "message": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {
             "author_icon": "https://nomnomnami.com/images/icon_nami.png"
         },
@@ -112,7 +114,7 @@
         "name": "neocities",
         "link": "https://neocities.org/site/nomnomnami",
         "channel": 1327524115526979605,
-        "message": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {},
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT"
@@ -121,7 +123,7 @@
         "name": "trick",
         "link": "https://trick.pika.page/posts_feed",
         "channel": 1325920952529457153,
-        "message": "1327518346178203670",
+        "role": 1327518346178203670,
         "embed": {
             "color": 14972037,
             "author_url": "https://trick.pika.page",
@@ -153,7 +155,7 @@
         "name": "pillowfort",
         "link": "https://www.pillowfort.social/nomnomnami",
         "channel": 1327524115526979605,
-        "message": "1327524420033712173",
+        "role": 1327524420033712173,
         "embed": {},
         "saved_ids": [],
         "last_modified": "Tue, 15 Oct 2019 12:45:26 GMT"
@@ -162,7 +164,7 @@
         "name": "apoc",
         "link": "https://another-piece-of-candy.thecomicseries.com/rss/",
         "channel": 1325599067060965466,
-        "message": "1325598094267650140",
+        "role": 1325598094267650140,
         "embed": {
             "color": 13512298
         },
@@ -181,7 +183,8 @@
             2607995,
             2607996,
             2607997,
-            2607998
+            2607998,
+            2607999
         ]
     }
 }

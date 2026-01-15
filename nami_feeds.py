@@ -429,7 +429,7 @@ def feed(source):
                                                 spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
                     images.append(discord_file)
             
-        messages.append({'content': f'-# <@&{source["message"]}>', 'embed': embed, 'images': images})
+        messages.append({'content': f'-# <@&{source["role"]}>', 'embed': embed, 'images': images})
     
     return messages
 
@@ -446,7 +446,7 @@ class NamiFeeds(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
-        try:
+        if True:
             sources = json.load(open('feed_data.json', 'r'))
 
             for s in sources:
@@ -458,8 +458,8 @@ class NamiFeeds(commands.Cog):
                     json.dump(sources, open('feed_data.json', 'w'), indent=4)
 
                     await asyncio.sleep(0.5)  # avoid heartbeat blocking
-        except Exception as e:
-            self.bot.report(e)
+        # except Exception as e:
+        #     await self.bot.report(e)
 
 
     async def check(self, source):

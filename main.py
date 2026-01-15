@@ -48,11 +48,11 @@ class Bot(commands.Bot):
         await self.get_channel(1425915517184512041).send(message)  # my #nougat-log channel
 
 
-    # async def report(self, message):
-    #     await self.log('<@422162909582589963> ' + str(message))
+    async def report(self, message):
+        await self.log('<@422162909582589963> ' + str(message))
 
 
 bot = Bot()
 load_dotenv()
-bot.run(os.getenv('TOKEN'))
+bot.run(os.getenv('NOUGAT_TOKEN'))
 
