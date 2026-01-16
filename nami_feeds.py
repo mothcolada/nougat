@@ -479,5 +479,5 @@ class NamiFeeds(commands.Cog):
                 await channel.send(files=message['images'])
 
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     await bot.add_cog(NamiFeeds(bot))

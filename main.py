@@ -29,13 +29,12 @@ class Bot(commands.Bot):
         self.is_nougat = self.user.id == 1425561875885719634  # could be either Nougat or my test bot miscolada
         await self.load_extension('daily_character')
         await self.load_extension('nami_feeds')
+        await self.load_extension('refresh_frantically')
 
 
     async def on_ready(self):
         await self.log(f'good morning world i am {self.user.name}')
         await self.get_cog('DailyCharacter').new_character()  # try to change icon if outdated
-
-        # await self.get_channel(1330485605515264030).send('')
 
 
     async def on_message(self, message: discord.Message):
