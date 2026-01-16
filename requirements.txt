@@ -1,0 +1,7 @@
+discord.py
+asqlite
+requests
+python-dotenv
+beautifulsoup4
+jishaku
+tzdata; sys_platform == "win32"
