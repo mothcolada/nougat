@@ -1,59 +1,89 @@
-import discord
-from discord.ext import tasks, commands
 import asyncio
+import datetime
 import os
+import pathlib
+import pkgutil
+from functools import cached_property
+
+import aiohttp
+import asqlite
+import discord
+from discord.ext import commands
 from dotenv import load_dotenv
-import sqlite3
-
-# from daily_character import print_calendar
-# print_calendar(2026)
-
 
 # TODO: use database instead of json for nami feeds
 # TODO: add more characters to calendar (1/16 and later, oh my god please just do it it's so soon)
 
-# conn = sqlite3.connect('database.db')
-# cursor = conn.cursor()
+NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
+DATABASE_PATH = pathlib.Path(__file__) / "database.sqlite"  # FIXME: Make a configuration option
+
+INTENTS = discord.Intents.default()
+INTENTS.message_content = True
 
 
-class Bot(commands.Bot):
-    is_nougat: bool
+class Nougat(commands.Bot):
+    STARTED_AT: datetime.datetime
+    session: aiohttp.ClientSession
+    pool: asqlite.Pool
+    user: discord.ClientUser
 
-    def __init__(self):
-        intents = discord.Intents.default()
-        intents.message_content = True
-        super().__init__(command_prefix=commands.when_mentioned, intents=intents)
-
+    def __init__(
+        self,
+        command_prefix,
+        session: aiohttp.ClientSession,
+        pool: asqlite.Pool,
+        **options,
+    ) -> None:
+        super().__init__(command_prefix, **options)
+        self.session = session
+        self.pool = pool
+        self.STARTED_AT = discord.utils.utcnow()
 
     async def setup_hook(self):
-        self.is_nougat = self.user.id == 1425561875885719634  # could be either Nougat or my test bot miscolada
-        await self.load_extension('daily_character')
-        await self.load_extension('nami_feeds')
-        await self.load_extension('refresh_frantically')
-
+        extensions = [m.name for m in pkgutil.iter_modules(["extensions"], prefix="extensions.")]
+        for extension in extensions:
+            await self.load_extension(extension)
 
     async def on_ready(self):
-        await self.log(f'good morning world i am {self.user.name}')
-        await self.get_cog('DailyCharacter').new_character()  # try to change icon if outdated
+        await self.log(f"good morning world i am {self.user.name}")
 
-
-    async def on_message(self, message: discord.Message):
-        # if i send "die" in my #nougat-log channel, shut down the bot
-        if message.author.id == 422162909582589963 and message.channel.id == 1425915517184512041 and message.content == 'die':
-            await self.log('good night')
-            await self.close()
-
-
-    async def log(self, message):
+    async def log(self, message: str):
+        # TODO: Use logging instead of prints
+        # TODO: Use a webhook instead of get_channel().send
         print(message)
-        await self.get_channel(1425915517184512041).send(message)  # my #nougat-log channel
 
+        channel = self.get_channel(1425915517184512041)  # FIXME: Magic number -- my #nougat-log channel
+
+        if not channel:
+            raise RuntimeError("could not retrieve log channel")
+
+        await channel.send(message)  # type: ignore -- channel is assumed to support send
 
     async def report(self, message):
-        await self.log('<@422162909582589963> ' + str(message))
+        # TODO: Same as above, you probably want to use a webhook here
+        await self.log("<@422162909582589963> " + str(message))  # FIXME: Magic number
+
+    @cached_property
+    def is_nougat(self):
+        return self.user.id == NOUGAT_ID
 
 
-bot = Bot()
-load_dotenv()
-bot.run(os.getenv('TOKEN'))
+async def main():
+    load_dotenv()
 
+    async with (
+        aiohttp.ClientSession() as session,
+        asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
+        Nougat(
+            command_prefix=commands.when_mentioned,
+            pool=db_pool,
+            session=session,
+            intents=INTENTS,
+        ) as bot,
+    ):
+        discord.utils.setup_logging()
+        await bot.start(os.environ["TOKEN"])
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
