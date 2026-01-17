@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 # TODO: add more characters to calendar (1/16 and later, oh my god please just do it it's so soon)
 
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
-DATABASE_PATH = pathlib.Path(__file__) / "database.sqlite"  # FIXME: Make a configuration option
+DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
 
 INTENTS = discord.Intents.default()
 INTENTS.message_content = True
