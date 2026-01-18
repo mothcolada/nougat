@@ -9,7 +9,7 @@ char_data = json.load(open('calendar.json', 'r'))
 
 
 est = datetime.timezone(datetime.timedelta(hours=-5))
-midnight = datetime.time(hour=0, minute=27, tzinfo=est)
+midnight = datetime.time(hour=0, tzinfo=est)
 
 class DailyCharacter(commands.Cog):
     def __init__(self, bot):

@@ -9,7 +9,7 @@ class RefreshFrantically(commands.Cog):
         self.refresh.start()
     
 
-    @tasks.loop(seconds=5.0)
+    @tasks.loop(seconds=10.0)
     async def refresh(self):
         if self.bot.is_ready():
             response = requests.get('https://nomnomnami.itch.io/week-with-timber')
