@@ -12,7 +12,6 @@ import hashlib
 import asyncio
 import json
 
-
 # good lord this file is messy
 
 
@@ -446,7 +445,7 @@ class NamiFeeds(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
-        if True:
+        if self.bot.is_ready():
             sources = json.load(open('feed_data.json', 'r'))
 
             for s in sources:

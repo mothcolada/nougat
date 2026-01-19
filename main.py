@@ -12,7 +12,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 # TODO: use database instead of json for nami feeds
-# TODO: add more characters to calendar (1/16 and later, oh my god please just do it it's so soon)
+# TODO: add more characters to calendar
 
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
@@ -40,7 +40,7 @@ class Nougat(commands.Bot):
         self.STARTED_AT = discord.utils.utcnow()
 
     async def setup_hook(self):
-        extensions = [m.name for m in pkgutil.iter_modules(["extensions"], prefix="extensions.")]
+        extensions = [m.name for m in pkgutil.iter_modules(["extensions"], prefix="extensions.") if not m.name.startswith("_")]
         for extension in extensions:
             await self.load_extension(extension)
 
