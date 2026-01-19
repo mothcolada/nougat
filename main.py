@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import sqlite3
 
+
 # from daily_character import print_calendar
 # print_calendar(2026)
 
