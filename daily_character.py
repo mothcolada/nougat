@@ -3,7 +3,6 @@ import json
 import datetime
 import math
 import sqlite3
-from main import Bot
 
 
 char_data = json.load(open('calendar.json', 'r'))
@@ -13,7 +12,6 @@ est = datetime.timezone(datetime.timedelta(hours=-5))
 midnight = datetime.time(hour=0, tzinfo=est)
 
 class DailyCharacter(commands.Cog):
-    self.bot: Bot
     def __init__(self, bot):
         self.bot = bot
         self.daily_character.start()

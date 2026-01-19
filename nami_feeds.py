@@ -11,7 +11,6 @@ import io
 import hashlib
 import asyncio
 import json
-from main import Bot
 
 # good lord this file is messy
 
@@ -438,7 +437,7 @@ sources = json.load(open('feed_data.json', 'r'))
 
 class NamiFeeds(commands.Cog):
     def __init__(self, bot):
-        self.bot: Bot = bot
+        self.bot = bot
         self.feeds.start()
 
     def cog_unload(self):
