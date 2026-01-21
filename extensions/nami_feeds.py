@@ -1,16 +1,16 @@
-import discord
-from discord.ext import tasks, commands
+# fmt: off
+import asyncio
+import datetime
+import hashlib
+import html
+import io
+import json
+from urllib.parse import urljoin
 
+import discord
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
-import datetime
-import lxml
-import html
-from urllib.parse import urljoin
-import io
-import hashlib
-import asyncio
-import json
+from discord.ext import commands, tasks
 
 # good lord this file is messy
 
@@ -168,7 +168,7 @@ def parse_announcements(new_file):
     #     embed.set_image(      url         = urljoin('https://nomnomnami.com/', new_announcement.find('img')['src']))
     #     embed.set_footer(     text        = 'announcements')
     #     messages.append(({'embed': embed, 'images': []}))
-    
+
     # return messages
     pass
 
@@ -238,7 +238,7 @@ def parse_ask(new_file):
         bubbles = post.find_all('div', {'class': 'bubble'})
         plain = ''.join([bubble.text.strip() for bubble in bubbles])
         id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
-        
+
         footer = 'ask'
         # if post.find('ul', {'class': 'tags'}) != None:
         #     post.find('ul', {'class': 'tags'})
@@ -289,7 +289,7 @@ def parse_trick(new_file):
 
 def parse_neocities(new_file):
     # new_updates = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'news-item update'})
-    
+
     # # find updates added since last time
     # old_hrefs = list(update.find('a', {'class': 'local-date-title'})['href'] for update in old_updates)  # get hrefs of each update
     # updates_to_post = []
@@ -303,7 +303,7 @@ def parse_neocities(new_file):
     #     desc = ''
     #     for file in update.find_all('div', {'class': 'file'}):
     #         desc += '[' + file.find('span').text.strip() + '](' + file.find('a')['href'] + ')\n'  # add line with link for each file
-        
+
     #     embed = discord.Embed(color       = 0xE93250,  # update color (comment color is 0xDAEEA5 if i feel like adding that ig)
     #                           title       = update.find('div', {'class': 'text'}).text,
     #                           description = desc,
@@ -413,7 +413,7 @@ def feed(source):
                               url         = source['embed']['author_url']  if 'author_url'  in source['embed'].keys() else None,
                               icon_url    = source['embed']['author_icon'] if 'author_icon' in source['embed'].keys() else None)
         embed.set_footer(     text        = post['footer'])                # footer is mandatory
-        
+
 
         images = []
         if 'images' in post.keys():
@@ -427,9 +427,9 @@ def feed(source):
                                                 filename = filename,
                                                 spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
                     images.append(discord_file)
-            
+
         messages.append({'content': f'-# <@&{source["role"]}>', 'embed': embed, 'images': images})
-    
+
     return messages
 
 
@@ -445,18 +445,17 @@ class NamiFeeds(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
-        if self.bot.is_ready():
-            sources = json.load(open('feed_data.json', 'r'))
+        sources = json.load(open('feed_data.json', 'r'))
 
-            for s in sources:
-                if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
-                    source = sources[s]
-                    await self.check(source)
-                    
-                    # save new stuff
-                    json.dump(sources, open('feed_data.json', 'w'), indent=4)
+        for s in sources:
+            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+                source = sources[s]
+                await self.check(source)
 
-                    await asyncio.sleep(0.5)  # avoid heartbeat blocking
+                # save new stuff
+                json.dump(sources, open('feed_data.json', 'w'), indent=4)
+
+                await asyncio.sleep(0.5)  # avoid heartbeat blocking
         # except Exception as e:
         #     await self.bot.report(e)
 
@@ -478,5 +477,5 @@ class NamiFeeds(commands.Cog):
                 await channel.send(files=message['images'])
 
 
-async def setup(bot: commands.Bot):
+async def setup(bot):
     await bot.add_cog(NamiFeeds(bot))
