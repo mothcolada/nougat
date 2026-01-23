@@ -5,6 +5,7 @@ import hashlib
 import html
 import io
 import json
+import lxml  # do not remove
 from urllib.parse import urljoin
 
 import discord
