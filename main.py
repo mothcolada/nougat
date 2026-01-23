@@ -6,7 +6,7 @@ import pkgutil
 from functools import cached_property
 
 import aiohttp
-import asqlite
+# import asqlite
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -18,7 +18,7 @@ NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
 MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
 
-DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
+# DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
 
 INTENTS = discord.Intents.default()
 INTENTS.message_content = True
@@ -27,19 +27,19 @@ INTENTS.message_content = True
 class Nougat(commands.Bot):
     STARTED_AT: datetime.datetime
     session: aiohttp.ClientSession
-    pool: asqlite.Pool
+    # pool: asqlite.Pool
     user: discord.ClientUser
 
     def __init__(
         self,
         command_prefix,
         session: aiohttp.ClientSession,
-        pool: asqlite.Pool,
+        # pool: asqlite.Pool,
         **options,
     ) -> None:
         super().__init__(command_prefix, **options)
         self.session = session
-        self.pool = pool
+        # self.pool = pool
         self.STARTED_AT = discord.utils.utcnow()
 
     async def setup_hook(self):
@@ -75,10 +75,10 @@ async def main():
 
     async with (
         aiohttp.ClientSession() as session,
-        asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
+        # asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
         Nougat(
             command_prefix=commands.when_mentioned,
-            pool=db_pool,
+            # pool=db_pool,
             session=session,
             intents=INTENTS,
         ) as bot,
