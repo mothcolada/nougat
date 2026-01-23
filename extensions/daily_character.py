@@ -6,8 +6,17 @@ from discord.ext import commands, tasks
 
 # TODO: types
 
-char_data = json.load(open("calendar.json", "r"))  # FIXME: Unclosed file descriptor
 
+NAMIVERSE_ID = 1325038200452022334
+NAMIVERSE_DAILY_CHAR_THREAD = 1330485605515264030
+DAILY_CHAR_ROLE = 1330488425006239797
+
+TEST_GUILD_ID = 422163243528617994
+TEST_CHANNEL = 1074754885070897202
+
+
+
+char_data = json.load(open("calendar.json", "r"))  # FIXME: Unclosed file descriptor
 
 eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
 midnight = datetime.time(hour=0, minute=0, tzinfo=eastern_time)
@@ -36,9 +45,7 @@ class DailyCharacter(commands.Cog):
         char = get_char_for_date(now_est)
         new_icon = open(f"faces/{char}.png", "rb").read()  # FIXME: Unclosed file descriptor
 
-        # Namiverse (if Nougat) or bea hive (if miscolada)
-        # FIXME: Magic number
-        server = self.bot.get_guild(1325038200452022334 if self.bot.is_nougat else 422163243528617994)
+        server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
 
         # compare bytes of current icon and the icon we want to change it to, only continue if different
         current_icon = await server.icon.read()
@@ -48,17 +55,14 @@ class DailyCharacter(commands.Cog):
 
         await server.edit(icon=new_icon)
 
-        # Daily Character thread (if Nougat) or personal testing channel (if miscolada)
-        # FIXME: Magic number
-        channel = self.bot.get_channel(1330485605515264030 if self.bot.is_nougat else 1074754885070897202)  # Daily Character thread
+        channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_THREAD if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
         await channel.send(daily_message(now_est))
         # except Exception as e:
         #     await self.bot.report(e)
 
 
 def daily_message(date: datetime.datetime):
-    #  FIXME: Magic number
-    message = "<@&1330488425006239797> "  # daily character ping
+    message = f"<@&{DAILY_CHAR_ROLE}> "  # ping
 
     # "Treat!" or "Happy birthday, Treat!"
     day = f"{date.month}/{date.day}"

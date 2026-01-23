@@ -14,6 +14,7 @@ from discord.ext import commands, tasks
 
 # good lord this file is messy
 
+TEST_CHANNEL = 1074754885070897202
 
 icons = {
     'none': '<:icon_none:1454889234853793842>',
@@ -51,7 +52,8 @@ icons = {
     'dango': '<:icon_dango:1449580975234355361>',
     'phoenix': '<:icon_phoenix:1450670773009252533>',
     'tundra': '<:icon_tundra:1450670774783578173>',
-    'drop': '<:icon_drop:1450670771704827924>'
+    'drop': '<:icon_drop:1450670771704827924>',
+    'fennel': '<:icon_fennel:1464368764731527335>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',
@@ -116,9 +118,12 @@ def html_to_discord(html: BeautifulSoup):
         elif child.name == 'small':
             text += '\n\n-# ' + paragraph(child)
         elif child.name == 'ul':
-            for grandchild in child.descendants:
-                if grandchild.name == 'li':
-                    text += '\n- ' + paragraph(grandchild)
+            if 'tags' in child['class']:
+                pass
+            else:
+                for grandchild in child.descendants:
+                    if grandchild.name == 'li':
+                        text += '\n- ' + paragraph(grandchild)
         elif child.name == 'ol':
             for grandchild in child.descendants:
                 n = 1
@@ -240,13 +245,14 @@ def parse_ask(new_file):
         id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
 
         footer = 'ask'
-        # if post.find('ul', {'class': 'tags'}) != None:
-        #     post.find('ul', {'class': 'tags'})
-        #     tags = ['#' + c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
-        #     if len(tags) > 0:
-        #         footer += '  •  ' + '  '.join(tags)
+        if post.find('ul', {'class': 'tags'}) != None:
+            post.find('ul', {'class': 'tags'})
+            tags = [c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
+            if len(tags) > 0:
+                footer += '  •  ' + '  '.join(tags)
+        description = html_to_discord(post)['text']
 
-        messages.append({'description': html_to_discord(post)['text'],
+        messages.append({'description': description,
                          'url': 'https://nomnomnami.com/ask/latest',
                          'footer': footer,
                          'id': id,
@@ -448,7 +454,7 @@ class NamiFeeds(commands.Cog):
         sources = json.load(open('feed_data.json', 'r'))
 
         for s in sources:
-            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+            if s in ['ask']: # ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
                 source = sources[s]
                 await self.check(source)
 
@@ -464,11 +470,14 @@ class NamiFeeds(commands.Cog):
         if self.bot.is_nougat:  # in namiverse use namiverse channels
             channel = self.bot.get_channel(source['channel'])
         else:  # personal test bot
-            channel = self.bot.get_channel(1074754885070897202)
+            channel = self.bot.get_channel(TEST_CHANNEL)
+
+        if channel == None:
+            return
 
         # get all the messages to send
         messages = feed(source)
-        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 4+ new messages from one source at once
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 100:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             raise Exception('too many messages to send')
 
         for message in messages:

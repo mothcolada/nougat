@@ -15,6 +15,9 @@ from dotenv import load_dotenv
 # TODO: add more characters to calendar
 
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
+MOTHCOLADA_ID = 422162909582589963
+LOG_CHANNEL = 1425915517184512041
+
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
 
 INTENTS = discord.Intents.default()
@@ -52,7 +55,7 @@ class Nougat(commands.Bot):
         # TODO: Use a webhook instead of get_channel().send
         print(message)
 
-        channel = self.get_channel(1425915517184512041)  # FIXME: Magic number -- my #nougat-log channel
+        channel = self.get_channel(LOG_CHANNEL)
 
         if not channel:
             raise RuntimeError("could not retrieve log channel")
@@ -60,8 +63,7 @@ class Nougat(commands.Bot):
         await channel.send(message)  # type: ignore -- channel is assumed to support send
 
     async def report(self, message):
-        # TODO: Same as above, you probably want to use a webhook here
-        await self.log("<@422162909582589963> " + str(message))  # FIXME: Magic number
+        await self.log(f"<@{MOTHCOLADA_ID}> " + str(message))
 
     @cached_property
     def is_nougat(self):

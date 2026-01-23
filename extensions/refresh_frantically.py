@@ -11,10 +11,11 @@ class RefreshFrantically(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def refresh(self):
-        if self.bot.is_ready():
-            response = requests.get('https://nomnomnami.itch.io/week-with-timber')
-            if response.status_code != 404:
-                await self.bot.get_channel(1074754885070897202).send('<@422162909582589963> we might be back ' + str(response.status_code))
+        pass
+        # if self.bot.is_ready():
+        #     response = requests.get('https://nomnomnami.itch.io/week-with-timber')
+        #     if response.status_code < 404:
+        #         await self.bot.get_channel(1074754885070897202).send('<@422162909582589963> we might be back ' + str(response.status_code))
     
 
 async def setup(bot: commands.Bot):
