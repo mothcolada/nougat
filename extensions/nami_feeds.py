@@ -118,7 +118,7 @@ def html_to_discord(html: BeautifulSoup):
         elif child.name == 'small':
             text += '\n\n-# ' + paragraph(child)
         elif child.name == 'ul':
-            if 'tags' in child['class']:
+            if 'class' in child.attrs and 'tags' in child['class']:
                 pass
             else:
                 for grandchild in child.descendants:
@@ -454,7 +454,7 @@ class NamiFeeds(commands.Cog):
         sources = json.load(open('feed_data.json', 'r'))
 
         for s in sources:
-            if s in ['ask']: # ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
                 source = sources[s]
                 await self.check(source)
 
