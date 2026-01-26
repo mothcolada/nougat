@@ -346,9 +346,9 @@ def parse_apoc(new_file):
     posts = BeautifulSoup(new_file, 'xml').find_all('item')
     messages = []
     for post in posts:
-        soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
         id = int(post.find('link').text.split('/')[-2])
         if id not in saved_ids:
+            soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
             num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
             desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
