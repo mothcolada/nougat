@@ -443,12 +443,13 @@ def feed(source):
 sources = json.load(open('feed_data.json', 'r'))
 
 class NamiFeeds(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.feeds.start()
 
     def cog_unload(self):
         self.feeds.cancel()
+
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
@@ -467,6 +468,11 @@ class NamiFeeds(commands.Cog):
         #     await self.bot.report(e)
 
 
+    @feeds.before_loop
+    async def before_feeds(self):
+        await self.bot.wait_until_ready()
+
+
     async def check(self, source):
         if self.bot.is_nougat:  # in namiverse use namiverse channels
             channel = self.bot.get_channel(source['channel'])
@@ -478,7 +484,7 @@ class NamiFeeds(commands.Cog):
 
         # get all the messages to send
         messages = feed(source)
-        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 100:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+        if (len(messages) > 500 and source['name'] != 'ask') or len(messages) > 1000:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             raise Exception('too many messages to send')
 
         for message in messages:
