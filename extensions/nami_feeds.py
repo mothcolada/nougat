@@ -74,6 +74,35 @@ emoji = {
 }
 
 
+# later ill use these maybe
+
+class ImageAttachment():
+    def __init__(self, image, spoiler=False):
+        image = image
+        self.spoiler = spoiler
+
+
+class Message():
+    def __init__(
+        self,
+        description: str,
+        footer: str,
+        id: (int | str),
+        url: (str | None) = None,
+        author: (str | None) = None,
+        images: list[ImageAttachment] = [],
+        timestamp: (datetime.datetime | None) = None,
+    ):
+        self.description = description
+        self.footer = footer
+        self.id = id
+        self.url = url
+        self.author = author
+
+        self.images = images
+        self.timestamp = timestamp
+    
+
 
 def clean(string):
     return html.unescape(string).replace('*', '\\*')
@@ -97,6 +126,8 @@ def paragraph(p):
             elif c.name == 'code':
                 text += '`' + clean(c.string) + '`'
             elif c.name == 'small':
+                text += clean(c.string)
+            elif c.name == 'span':
                 text += clean(c.string)
 
     return text.strip()
@@ -157,6 +188,8 @@ def html_to_discord(html: BeautifulSoup):
                 text += html_to_discord(child)['text']
             elif 'youtube-embed' in child['class']:
                 text += '\n' + child.find('iframe')['src']
+        # elif child.name == 'span':
+        #     text += child.text.strip()
 
 
     return {'text': text, 'images': images}
@@ -266,6 +299,15 @@ def parse_status_cafe(new_file):
 
     messages = []
     for post in posts:
+        # messages.append(Message(
+        #     description = clean(post.find('content').string),
+        #     url = post.find('link')['href'],
+        #     timestamp = datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%X%z'),
+        #     author = ' '.join(post.find('title').string.split(' ')[:2]),
+        #     footer = 'status.cafe',
+        #     id = int(post.find('id').text.split('/')[-1])
+        # )
+
         messages.append({'description': clean(post.find('content').string),
                          'url': post.find('link')['href'],
                          'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%X%z'),
@@ -390,7 +432,8 @@ def feed(source):
     # response errors will be caught in main.py
 
     # call parse function for the source type
-    posts = list(reversed(funcs[source['name']](response.content)))  # reversed so earlier posts are read and sent first if there are multiple
+    posts: list = funcs[source['name']](response.content)
+    posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
     # remove any already-seen posts
     posts = [post for post in posts if post['id'] not in source['saved_ids']]
     # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
@@ -429,7 +472,9 @@ def feed(source):
             else:
                 for img in post['images']:
                     response = requests.get(urljoin('https://nomnomnami.com', img['src']))
-                    filename = img['src'].split('/')[-1] + ('.png' if source['name'] == 'trick' else '')  # trick pika page exception
+                    filename = img['src'].split('/')[-1]
+                    if source['name'] == 'trick':  # exception for trick pika page
+                        filename += '.png'
                     discord_file = discord.File(io.BytesIO(response.content),
                                                 filename = filename,
                                                 spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
@@ -479,18 +524,18 @@ class NamiFeeds(commands.Cog):
         else:  # personal test bot
             channel = self.bot.get_channel(TEST_CHANNEL)
 
-        if channel == None:
-            return
+        if not channel:
+            await self.bot.report('could not retrieve feed channel')
 
         # get all the messages to send
         messages = feed(source)
-        if (len(messages) > 500 and source['name'] != 'ask') or len(messages) > 1000:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
-            raise Exception('too many messages to send')
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+            await self.bot.report('too many messages to send')
 
         for message in messages:
-            await channel.send(message['content'], embed=message['embed'])
-            if 'images' in message.keys() and len(message['images']) >= 1:  # i'll (situationally) put images in the embed later
-                await channel.send(files=message['images'])
+            await channel.send(message['content'], embed=message['embed'])  # type: ignore -- channel is assumed to support send
+            if 'images' in message.keys() and len(message['images']) >= 1:
+                await channel.send(files=message['images'])  # type: ignore -- channel is assumed to support send
 
 
 async def setup(bot):
