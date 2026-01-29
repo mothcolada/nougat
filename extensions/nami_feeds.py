@@ -398,6 +398,7 @@ def parse_apoc(new_file):
                             'title': post.find('title').text,
                             'url': f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
                             'description': desc,
+                            # 'timestamp': datetime.datetime.strptime(post.find('pubDate').text, '%a, %d %b %Y %X %Z').timestamp(),
                             'images': [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
                             'footer': 'another piece of candy'})
     return messages

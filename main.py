@@ -50,6 +50,7 @@ class Nougat(commands.Bot):
     async def on_ready(self):
         await self.log(f"good morning world i am {self.user.name}")
 
+
     async def log(self, message: str):
         # TODO: Use logging instead of prints
         # TODO: Use a webhook instead of get_channel().send
