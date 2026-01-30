@@ -46,9 +46,18 @@ class DailyCharacter(commands.Cog):
         new_icon = open(f"faces/{char}.png", "rb").read()  # FIXME: Unclosed file descriptor
 
         server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
+        if not server:
+            raise Exception('server not found')
+            return
 
         # compare bytes of current icon and the icon we want to change it to, only continue if different
-        current_icon = await server.icon.read()
+
+        current_icon = server.icon
+        if not current_icon:
+            raise Exception('icon not found')
+            return
+        
+        current_icon = await current_icon.read()
         if new_icon == current_icon:
             print("same icon")
             return

@@ -6,7 +6,7 @@ import pkgutil
 from functools import cached_property
 
 import aiohttp
-import asqlite
+# import asqlite
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -27,14 +27,14 @@ INTENTS.message_content = True
 class Nougat(commands.Bot):
     STARTED_AT: datetime.datetime
     session: aiohttp.ClientSession
-    pool: asqlite.Pool
+    # pool: asqlite.Pool
     user: discord.ClientUser
 
     def __init__(
         self,
         command_prefix,
         session: aiohttp.ClientSession,
-        pool: asqlite.Pool,
+        # pool: asqlite.Pool,
         **options,
     ) -> None:
         super().__init__(command_prefix, **options)
@@ -76,7 +76,7 @@ async def main():
 
     async with (
         aiohttp.ClientSession() as session,
-        asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
+        # asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
         Nougat(
             command_prefix=commands.when_mentioned,
             pool=db_pool,
