@@ -39,7 +39,7 @@ class Nougat(commands.Bot):
     ) -> None:
         super().__init__(command_prefix, **options)
         self.session = session
-        self.pool = pool
+        # self.pool = pool
         self.STARTED_AT = discord.utils.utcnow()
 
     async def setup_hook(self):
@@ -79,7 +79,7 @@ async def main():
         # asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
         Nougat(
             command_prefix=commands.when_mentioned,
-            pool=db_pool,
+            # pool=db_pool,
             session=session,
             intents=INTENTS,
         ) as bot,
