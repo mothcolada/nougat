@@ -195,6 +195,13 @@ def html_to_discord(html: BeautifulSoup):
     return {'text': text, 'images': images}
 
 
+def format_datetime(input, source):
+    if source == 'posts':
+        input = input.replace(' 0:', ' 12:')  # nami, 0:00am does not EXIST, what are you DOING
+        return datetime.datetime.strptime(input, '%m/%d/%Y, %I:%M%p%z')
+    else:
+        return
+
 
 def parse_announcements(new_file):
     # posts = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'announcement'})
@@ -246,8 +253,8 @@ def parse_posts(new_file):
                          'author': '@nomnomnami',
                          'url': 'https://nomnomnami.com/posts',
                          'footer': footer,
-                         'timestamp': datetime.datetime.strptime(post.find('time').string + '-0700', '%m/%d/%Y, %I:%M%p%z'),
-                         'id': int(datetime.datetime.strptime(post.find('time').string + '-0700', '%m/%d/%Y, %I:%M%p%z').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
+                         'timestamp': format_datetime(post.find('time').string + '-0700', 'posts'),  # mountain time. im pretending daylight savings isnt real
+                         'id': int(format_datetime(post.find('time').string + '-0700', 'posts').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
 
     return messages
 
@@ -503,15 +510,16 @@ class NamiFeeds(commands.Cog):
 
         for s in sources:
             if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
-                source = sources[s]
-                await self.check(source)
+                try:
+                    source = sources[s]
+                    await self.check(source)
 
-                # save new stuff
-                json.dump(sources, open('feed_data.json', 'w'), indent=4)
+                    # save new stuff
+                    json.dump(sources, open('feed_data.json', 'w'), indent=4)
+                except Exception as e:
+                    await self.bot.report(e)
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
-        # except Exception as e:
-        #     await self.bot.report(e)
 
 
     @feeds.before_loop
