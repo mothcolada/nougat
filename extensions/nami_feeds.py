@@ -14,6 +14,9 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 from discord.ext import commands, tasks
 
 # good lord this file is messy
+# TODO: announcements, newsfeed, neocities, youtube, pillowfort
+
+GMT = datetime.timezone(datetime.timedelta(0), 'GMT')
 
 TEST_CHANNEL = 1074754885070897202
 
@@ -197,14 +200,15 @@ def html_to_discord(html: BeautifulSoup):
 
 def format_datetime(input, source):
     if source == 'posts':
-        input = input.replace(' 0:', ' 12:')  # nami, 0:00am does not EXIST, what are you DOING
+        input = input.replace(' 0:', ' 12:')  # nami, 0:00pm does not EXIST, what are you DOING
         return datetime.datetime.strptime(input, '%m/%d/%Y, %I:%M%p%z')
     else:
         return
 
 
-def parse_announcements(new_file):
-    # posts = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'announcement'})
+def parse_announcements(soup):
+    posts = soup.find('div', {'class': 'news-banner'})
+    
     # messages = []
     # if old_announcement != new_announcement:
     #     embed = discord.Embed(color       = 0xE4E4EC,
@@ -219,8 +223,8 @@ def parse_announcements(new_file):
     pass
 
 
-def parse_newsfeed(new_file):
-    # new_news = BeautifulSoup(new_file, 'html.parser').find('article', {'id': 'newsfeed'}).find_all('li')
+def parse_newsfeed(soup):
+    # new_news = soup.find('article', {'id': 'newsfeed'}).find_all('li')
     # news_to_post = difference(new_news, old_news)
 
     # messages = []
@@ -236,8 +240,8 @@ def parse_newsfeed(new_file):
     pass
 
 
-def parse_posts(new_file):
-    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
+def parse_posts(soup):
+    posts = soup.find_all('article')
 
     messages = []
     for post in posts:
@@ -259,8 +263,8 @@ def parse_posts(new_file):
     return messages
 
 
-def parse_blog(new_file):
-    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
+def parse_blog(soup):
+    posts = soup.find_all('entry')
 
     messages = []
     for post in posts:
@@ -276,8 +280,8 @@ def parse_blog(new_file):
     return messages
 
 
-def parse_ask(new_file):
-    posts = BeautifulSoup(new_file, 'html.parser').find_all('article')
+def parse_ask(soup):
+    posts = soup.find_all('article')
 
     messages = []
     for post in posts:
@@ -301,8 +305,8 @@ def parse_ask(new_file):
     return messages
 
 
-def parse_status_cafe(new_file):
-    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
+def parse_status_cafe(soup):
+    posts = soup.find_all('entry')
 
     messages = []
     for post in posts:
@@ -324,8 +328,8 @@ def parse_status_cafe(new_file):
     return messages
 
 
-def parse_trick(new_file):
-    posts = BeautifulSoup(new_file, 'xml').find_all('entry')
+def parse_trick(soup):
+    posts = soup.find_all('entry')
 
     # make messages
     messages = []
@@ -343,40 +347,31 @@ def parse_trick(new_file):
     return messages
 
 
-def parse_neocities(new_file):
-    # new_updates = BeautifulSoup(new_file, 'html.parser').find_all('div', {'class': 'news-item update'})
+def parse_neocities(soup):
+#     posts = BeautifulSoup(soup, 'lxml').find_all('item')
 
-    # # find updates added since last time
-    # old_hrefs = list(update.find('a', {'class': 'local-date-title'})['href'] for update in old_updates)  # get hrefs of each update
-    # updates_to_post = []
-    # for update in new_updates:
-    #     href = update.find('a', {'class': 'local-date-title'})['href']  # basically just compare updates by event id
-    #     if href not in old_hrefs:
-    #         updates_to_post.append(update)
+#     messages = []
+#     for post in posts:
+#         desc = ''
+#         for file in post.find_all('div', {'class': 'file'}):
+#             desc += '[' + file.find('span').text.strip() + '](' + file.find('a')['href'] + ')\n'  # add line with link for each file
 
-    # messages = []
-    # for update in updates_to_post:
-    #     desc = ''
-    #     for file in update.find_all('div', {'class': 'file'}):
-    #         desc += '[' + file.find('span').text.strip() + '](' + file.find('a')['href'] + ')\n'  # add line with link for each file
+#         messages.append({'title': post.find('div', {'class': 'text'}).text,
+#                          'description': desc,
+#                          'timestamp': datetime.datetime.fromtimestamp(int(post.find('a', {'class': 'local-date-title'})['data-timestamp'])),
+#                          'url': 'https://neocities.org' + post.find('img')['src'],  # first image (should be first file)
+#                          'footer': 'Neocities',
+#                          'id': })
 
-    #     embed = discord.Embed(color       = 0xE93250,  # update color (comment color is 0xDAEEA5 if i feel like adding that ig)
-    #                           title       = update.find('div', {'class': 'text'}).text,
-    #                           description = desc,
-    #                           timestamp   = datetime.datetime.fromtimestamp(int(update.find('a', {'class': 'local-date-title'})['data-timestamp'])))
-    #     embed.set_thumbnail(  url         = 'https://neocities.org' + update.find('img')['src'])  # first image (should be first file)
-    #     embed.set_footer(     text        = 'Neocities')
-    #     messages.append({'embed': embed})
-
-    # return messages  # reversed to return in order of upload if there are several new updates
+#     return messages
     pass
 
 
-def parse_pillowfort(new_file):
+def parse_pillowfort(soup):
     pass
-    # # not this: posts = BeautifulSoup(new_file, 'xml').find_all('item')
+    # # not this: posts = soup.find_all('item')
 
-    # print(str(BeautifulSoup(new_file, 'html.parser'))[:20000])
+    # print(str(soup)[:20000])
 
     # messages = []
     # for post in posts:
@@ -389,10 +384,10 @@ def parse_pillowfort(new_file):
     # return messages
 
 
-def parse_apoc(new_file):
+def parse_apoc(soup):
     saved_ids = json.load(open('feed_data.json', 'r'))['apoc']['saved_ids']
     # we want to check id early to avoid checking every single recent comic
-    posts = BeautifulSoup(new_file, 'xml').find_all('item')
+    posts = soup.find_all('item')
     messages = []
     for post in posts:
         id = int(post.find('link').text.split('/')[-2])
@@ -411,6 +406,11 @@ def parse_apoc(new_file):
     return messages
 
 
+def parse_youtube(new_file):
+    pass
+
+
+
 funcs = {
     'announcements':    parse_announcements,
     'newsfeed':         parse_newsfeed,
@@ -422,25 +422,30 @@ funcs = {
     'neocities':        parse_neocities,
     'trick':            parse_trick,
     'pillowfort':       parse_pillowfort,
-    'apoc':             parse_apoc
+    'apoc':             parse_apoc,
+    'youtube':          parse_youtube
 }
 
 
 def feed(source):
-    # ask internet pretty please give me the thing i want
-    response = requests.get(source['link']) # , headers={'If-Modified-Since': source['last_modified']})
-    if 'Content-Type' in response.headers and 'application/atom+xml' in response.headers['Content-Type']:  # rss feed
-        pass #response = requests.get(source['link'], headers={'If-Modified-Since': source['last_modified']})
-    else:
-        if response.status_code == 304:  # not modified since
-            return []
-        if 'last_modified' in response.headers.keys():
-            source['last_modified'] = response.headers['Last-Modified']  # update last modified time
+    last_modified = datetime.datetime.fromtimestamp(source['last_modified'], GMT)
+    last_modified_string = last_modified.strftime('%a, %d %b %Y %X %Z')
+    response = requests.get(source['link'], headers={'If-Modified-Since': last_modified_string})
 
-    # response errors will be caught in main.py
+    if response.status_code == 304:  # not modified since (FIXME: this seems to not actually ever happen?)
+        return []
+    elif 'Last-Modified' in response.headers.keys():
+        source['last_modified'] = int(datetime.datetime.strptime(response.headers['Last-Modified'], '%a, %d %b %Y %X %Z').timestamp())  # update last modified time
 
     # call parse function for the source type
-    posts: list = funcs[source['name']](response.content)
+    if 'text/html' in response.headers['Content-Type']:
+        soup = BeautifulSoup(response.content, 'html.parser')
+    elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type']:
+        soup = BeautifulSoup(response.content, 'xml')
+    else:
+        raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
+
+    posts: list = funcs[source['name']](soup)
     posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
     # remove any already-seen posts
     posts = [post for post in posts if post['id'] not in source['saved_ids']]
@@ -509,7 +514,7 @@ class NamiFeeds(commands.Cog):
         sources = json.load(open('feed_data.json', 'r'))
 
         for s in sources:
-            if s in ['apoc', 'blog', 'posts', 'status_cafe', 'ask', 'trick']:
+            if s in ['apoc', 'posts', 'status_cafe', 'ask', 'trick', 'blog']:
                 try:
                     source = sources[s]
                     await self.check(source)
@@ -538,8 +543,8 @@ class NamiFeeds(commands.Cog):
 
         # get all the messages to send
         messages = feed(source)
-        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
-            await self.bot.report('too many messages to send')
+        # if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+        #     await self.bot.report('too many messages to send')
 
         for message in messages:
             await channel.send(message['content'], embed=message['embed'])  # type: ignore -- channel is assumed to support send
