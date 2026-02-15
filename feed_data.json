@@ -462,15 +462,15 @@
     },
     "tcs": {
         "name": "tcs",
-        "link": "https://SOMETHINGSOMETHING.thecomicseries.com/rss/",
+        "link": "https://tcs.thecomicseries.com/rss/",
         "channel": 1325599067060965466,
         "role": 1325598094267650140,
         "embed": {
             "author": null,
             "author_url": null,
             "author_icon": null,
-            "footer": "TIMBER'S COMMUNITY SERVICE?",
-            "color": 0,
+            "footer": "Timber's Community Service",
+            "color": 2565927,
             "timestamp_format": "%a, %d %b %Y %X %Z"
         },
         "saved_ids": [
