@@ -481,15 +481,15 @@ def parse_tcs(soup):
         if id not in saved_ids:
             soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
             
-            num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
+            # num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
             desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
 
             message = Message('tcs',
-                              id = id,
+                              id = post.find('guid').string,
                               description = desc,
-                              title = post.find('title').text,
-                              url = f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
+                              title = post.find('title').string,
+                              url = post.find('link').string,
                               images = [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
                               timestamp = post.find('pubDate').text)
             messages.append(message)
@@ -513,7 +513,7 @@ funcs = {
     # 'neocities':        parse_neocities,
     'trick':            parse_trick,
     'apoc':             parse_apoc,
-    # 'tcs':              parse_tcs,
+    'tcs':              parse_tcs,
     # 'youtube':          parse_youtube
     # 'pillowfort':       parse_pillowfort,
 }
@@ -563,7 +563,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=10.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['apoc', 'posts', 'newsfeed', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['tcs', 'apoc', 'posts', 'newsfeed', 'ask', 'status_cafe', 'blog', 'trick']:
                 if True:
                     source = SOURCES[s]
                     await self.check(source)
