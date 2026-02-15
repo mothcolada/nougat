@@ -76,35 +76,103 @@ emoji = {
     'eggbug_wink': '<:eggbug_wink:1444074357914599537>'
 }
 
+SOURCES = json.load(open('feed_data.json', 'r'))
+
 
 # later ill use these maybe
 
 class ImageAttachment():
-    def __init__(self, image, spoiler=False):
-        image = image
+    def __init__(self, file_bytes, name: str, spoiler=False):
+        self.file_bytes = file_bytes
+        self.name = name
         self.spoiler = spoiler
 
 
 class Message():
     def __init__(
         self,
-        description: str,
-        footer: str,
+        source: str,
         id: (int | str),
+        description: str,
+        title: (str | None) = None,
         url: (str | None) = None,
         author: (str | None) = None,
-        images: list[ImageAttachment] = [],
-        timestamp: (datetime.datetime | None) = None,
+        author_icon: (str | None) = None,
+        images = [],
+        timestamp: (str | None) = None,
     ):
+        self.source      = SOURCES[source]
+        self.id          = id
         self.description = description
-        self.footer = footer
-        self.id = id
-        self.url = url
-        self.author = author
+        self.title       = title
+        self.url         = url    or self.source['embed']['url']
+        self.author      = author or self.source['embed']['author']
+        self.author_url  = self.source['embed']['author_url']
+        self.author_icon = author_icon or self.source['embed']['author_icon']
+        self.footer      = self.source['embed']['footer']
+        self.color       = self.source['embed']['color']
 
-        self.images = images
-        self.timestamp = timestamp
+        self.image = None
+        self.attachments = []            
+        if len(images) == 1 and (images[0].parent.name != 'details'):  # one unspoilered image
+            self.image = url=urljoin('https://nomnomnami.com', images[0]['src'])
+        else:
+            for img in images:
+                response = requests.get(urljoin('https://nomnomnami.com', img['src']))
+                filename = img['src'].split('/')[-1]
+                if source == 'trick':  # exception for trick pika page
+                    filename += '.png'
+                discord_file = discord.File(io.BytesIO(response.content),
+                                            filename = filename,
+                                            spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
+                self.attachments.append(discord_file)
+
+        self.timestamp = None
+        if timestamp:
+            self.timestamp = datetime.datetime.strptime(timestamp, self.source['embed']['timestamp_format'])
+
+        if len(self.description) > 4000:
+            # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
+            self.description = self.description[:4000]
+            if ('||' in self.description[:4000] and '||' in self.description[3999:]):
+                self.description += '||'
+            self.description += '\n## [READ MORE](' + self.url + ')'
+
     
+    def role_ping(self):
+        return f"-# <@&{self.source['role']}>"
+
+
+    def get_embed(self) -> discord.Embed:
+        embed = discord.Embed(color       = self.color,
+                              description = self.description,
+                              title       = self.title,
+                              url         = self.url,
+                              timestamp   = self.timestamp)
+        if self.image:
+            embed.set_image(  url         = self.image)
+        if self.author:
+            embed.set_author( name        = self.author,
+                              url         = self.author_url,
+                              icon_url    = self.author_icon)
+        embed.set_footer(     text        = self.footer)                # footer is mandatory
+        return embed
+
+
+    # messages = []
+    # for post in posts:
+    #     # limit description to 4000 chars
+        if len(self.description) > 4000:
+            # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
+            emergency_spoil = ('||' in self.description[:4000] and '||' in self.description[3999:])
+            self.description = self.description[:4000]
+            if emergency_spoil:
+                self.description += '||'
+            self.description += '\n## [READ MORE](' + post['url'] + ')'
+
+
+
+
 
 
 def clean(string):
@@ -198,12 +266,15 @@ def html_to_discord(html: BeautifulSoup):
     return {'text': text, 'images': images}
 
 
-def format_datetime(input, source):
-    if source == 'posts':
-        input = input.replace(' 0:', ' 12:')  # nami, 0:00pm does not EXIST, what are you DOING
-        return datetime.datetime.strptime(input, '%m/%d/%Y, %I:%M%p%z')
-    else:
-        return
+# def format_datetime(input, source):
+#     if source == 'posts':
+#         return datetime.datetime.strptime(input, '%m/%d/%Y, %I:%M%p%z')
+#     elif source in ['blog', 'trick']:
+#         return datetime.datetime.strptime(input, '%Y-%m-%dT%XZ')
+#     elif source == 'status.cafe':
+#         return datetime.datetime.strptime(input, '%Y-%m-%dT%X%z')
+#     else:
+#         return
 
 
 def parse_announcements(soup):
@@ -224,20 +295,16 @@ def parse_announcements(soup):
 
 
 def parse_newsfeed(soup):
-    # new_news = soup.find('article', {'id': 'newsfeed'}).find_all('li')
-    # news_to_post = difference(new_news, old_news)
+    posts = soup.find('article', {'id': 'newsfeed'}).find_all('li')
 
-    # messages = []
-    # for news in news_to_post:
-    #     embed = discord.Embed(color       = 0x8E8D98,
-    #                           url         = 'https://nomnomnami.com/',
-    #                           description = paragraph(news))
-    #     embed.set_footer(     text        = 'newsfeed')
+    messages = []
+    for post in posts:
+        message = Message('newsfeed',
+                          id = post.find('time').string,
+                          description = paragraph(post))
+        messages.append(message)
 
-    #     messages.append(({'embed': embed, 'images': []}))
-
-    # return messages
-    pass
+    return messages
 
 
 def parse_posts(soup):
@@ -252,13 +319,12 @@ def parse_posts(soup):
             if len(tags) > 0:
                 footer += '  •  ' + '  '.join(tags)
 
-        messages.append({'description': html_to_discord(post)['text'],
-                         'images': html_to_discord(post)['images'],
-                         'author': '@nomnomnami',
-                         'url': 'https://nomnomnami.com/posts',
-                         'footer': footer,
-                         'timestamp': format_datetime(post.find('time').string + '-0700', 'posts'),  # mountain time. im pretending daylight savings isnt real
-                         'id': int(format_datetime(post.find('time').string + '-0700', 'posts').timestamp())})  # should be fine as long as two posts don't have the same timestamp in separate page updates
+        message = Message('posts',
+                          id = post.find('time').string,  # should be fine as long as two posts don't have the same timestamp in separate page updates
+                          description = html_to_discord(post)['text'],
+                          images = html_to_discord(post)['images'],
+                          timestamp = post.find('time').string + '-0700')  # mountain time. im pretending daylight savings isnt real
+        messages.append(message)
 
     return messages
 
@@ -271,12 +337,14 @@ def parse_blog(soup):
         content = BeautifulSoup(post.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
 
         url = post.find('link')['href']
-        messages.append({'description': (paragraph(content.find('p')) + f'\n### [READ MORE]({url})'),
-                         'title': post.find('title').string,
-                         'url': url,
-                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%XZ'),
-                         'footer': 'blog',
-                         'id': int(post.find('id').text.split('/')[-1])})
+        message = Message('blog',
+                          id = post.find('id').string,
+                          description = (paragraph(content.find('p')) + f'\n### [READ MORE]({url})'),
+                          title = post.find('title').string,
+                          url = url,
+                          timestamp = post.find('published').string)
+        messages.append(message)
+
     return messages
 
 
@@ -287,21 +355,19 @@ def parse_ask(soup):
     for post in posts:
         bubbles = post.find_all('div', {'class': 'bubble'})
         plain = ''.join([bubble.text.strip() for bubble in bubbles])
-        id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest()
 
-        footer = 'ask'
         if post.find('ul', {'class': 'tags'}) != None:
             post.find('ul', {'class': 'tags'})
             tags = [c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
             if len(tags) > 0:
-                footer += '  •  ' + '  '.join(tags)
-        description = html_to_discord(post)['text']
+                tags = '  •  ' + '  '.join(tags)
 
-        messages.append({'description': description,
-                         'url': 'https://nomnomnami.com/ask/latest',
-                         'footer': footer,
-                         'id': id,
-                         'images': [image for image in html_to_discord(post)['images']]})
+        message = Message('ask',
+                          id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest(),
+                          description = html_to_discord(post)['text'],
+                          images = [image for image in html_to_discord(post)['images']])
+        messages.append(message)
+
     return messages
 
 
@@ -310,21 +376,15 @@ def parse_status_cafe(soup):
 
     messages = []
     for post in posts:
-        # messages.append(Message(
-        #     description = clean(post.find('content').string),
-        #     url = post.find('link')['href'],
-        #     timestamp = datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%X%z'),
-        #     author = ' '.join(post.find('title').string.split(' ')[:2]),
-        #     footer = 'status.cafe',
-        #     id = int(post.find('id').text.split('/')[-1])
-        # )
+        message = Message('status_cafe',
+                          id = post.find('id').string,
+                          description = clean(post.find('content').string),
+                          url = post.find('link')['href'],
+                          timestamp = post.find('published').string,
+                          author = ' '.join(post.find('title').string.split(' ')[:2]),
+                          author_icon = soup.find('icon').string)
+        messages.append(message)
 
-        messages.append({'description': clean(post.find('content').string),
-                         'url': post.find('link')['href'],
-                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%X%z'),
-                         'author': ' '.join(post.find('title').string.split(' ')[:2]),
-                         'footer': 'status.cafe',
-                         'id': int(post.find('id').text.split('/')[-1])})
     return messages
 
 
@@ -336,14 +396,15 @@ def parse_trick(soup):
     for post in posts:
         content = BeautifulSoup(post.find('content').string, 'html.parser').find('div', {'class': 'trix-content'})
 
-        messages.append({'description': html_to_discord(content)['text'],
-                         'title': post.find('title').string,
-                         'url': post.find('link')['href'],
-                         'timestamp': datetime.datetime.strptime(post.find('published').string, '%Y-%m-%dT%XZ'),
-                         'author': 'trick',
-                         'footer': 'Letters from Trick',
-                         'images': content.find_all('img'),
-                         'id': int(post.find('id').text.split('/')[-1])})
+        message = Message('trick',
+                          id = post.find('id').string,
+                          description = html_to_discord(content)['text'],
+                          title = post.find('title').string,
+                          url = post.find('link')['href'],
+                          images = content.find_all('img'),
+                          timestamp = post.find('published').string)
+        messages.append(message)
+
     return messages
 
 
@@ -393,37 +454,68 @@ def parse_apoc(soup):
         id = int(post.find('link').text.split('/')[-2])
         if id not in saved_ids:
             soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
+
             num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
             desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
-            messages.append({'id': id,
-                            'title': post.find('title').text,
-                            'url': f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
-                            'description': desc,
-                            # 'timestamp': datetime.datetime.strptime(post.find('pubDate').text, '%a, %d %b %Y %X %Z').timestamp(),
-                            'images': [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
-                            'footer': 'another piece of candy'})
+
+            message = Message('apoc',
+                              id = id,
+                              description = desc,
+                              title = post.find('title').text,
+                              url = f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
+                              images = [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
+                              timestamp = post.find('pubDate').text)
+            messages.append(message)
+
     return messages
 
 
-def parse_youtube(new_file):
+def parse_tcs(soup):
+    saved_ids = json.load(open('feed_data.json', 'r'))['tcs']['saved_ids']
+    # we want to check id early to avoid checking every single recent comic
+    posts = soup.find_all('item')
+    messages = []
+    for post in posts:
+        id = int(post.find('link').text.split('/')[-2])
+        if id not in saved_ids:
+            soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
+            
+            num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
+            authornotes = soup.find('div', {'class': 'authornotes'})
+            desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
+
+            message = Message('tcs',
+                              id = id,
+                              description = desc,
+                              title = post.find('title').text,
+                              url = f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
+                              images = [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
+                              timestamp = post.find('pubDate').text)
+            messages.append(message)
+
+    return messages
+
+
+def parse_youtube(soup):
     pass
 
 
 
 funcs = {
-    'announcements':    parse_announcements,
+    # 'announcements':    parse_announcements,
     'newsfeed':         parse_newsfeed,
     'posts':            parse_posts,
     'timber':           parse_posts,
     'blog':             parse_blog,
     'ask':              parse_ask,
     'status_cafe':      parse_status_cafe,
-    'neocities':        parse_neocities,
+    # 'neocities':        parse_neocities,
     'trick':            parse_trick,
-    'pillowfort':       parse_pillowfort,
     'apoc':             parse_apoc,
-    'youtube':          parse_youtube
+    # 'tcs':              parse_tcs,
+    # 'youtube':          parse_youtube
+    # 'pillowfort':       parse_pillowfort,
 }
 
 
@@ -447,58 +539,17 @@ def feed(source):
 
     posts: list = funcs[source['name']](soup)
     posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
+    
     # remove any already-seen posts
-    posts = [post for post in posts if post['id'] not in source['saved_ids']]
+    posts = [post for post in posts if post.id not in source['saved_ids']]
+    
     # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
     for post in posts:
-        if post['id'] not in source['saved_ids']:
-            source['saved_ids'].append(post['id'])
+        if post.id not in source['saved_ids']:
+            source['saved_ids'].append(post.id)
 
-    messages = []
-    for post in posts:
-        # limit description to 4000 chars
-        if len(post['description']) > 4000:
-            # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
-            emergency_spoil = ('||' in post['description'][:4000] and '||' in post['description'][3999:])
-            post['description'] = post['description'][:4000]
-            if emergency_spoil:
-                post['description'] += '||'
-            post['description'] += '\n## [READ MORE](' + post['url'] + ')'
+    return posts
 
-        # EMBED
-        embed = discord.Embed(color       = source['embed']['color']       if 'color'       in source['embed'].keys() else None,
-                              description = post['description'],           # description is mandatory
-                              title       = post['title']                  if 'title'       in post.keys()            else None,
-                              url         = post['url']                    if 'url'         in post.keys()            else None,
-                              timestamp   = post['timestamp']              if 'timestamp'   in post.keys()            else None)
-        if 'author' in post.keys():
-            embed.set_author( name        = post['author'],
-                              url         = source['embed']['author_url']  if 'author_url'  in source['embed'].keys() else None,
-                              icon_url    = source['embed']['author_icon'] if 'author_icon' in source['embed'].keys() else None)
-        embed.set_footer(     text        = post['footer'])                # footer is mandatory
-
-
-        images = []
-        if 'images' in post.keys():
-            if len(post['images']) == 1 and (post['images'][0].parent.name != 'details'):
-                embed.set_image(url=urljoin('https://nomnomnami.com', post['images'][0]['src']))
-            else:
-                for img in post['images']:
-                    response = requests.get(urljoin('https://nomnomnami.com', img['src']))
-                    filename = img['src'].split('/')[-1]
-                    if source['name'] == 'trick':  # exception for trick pika page
-                        filename += '.png'
-                    discord_file = discord.File(io.BytesIO(response.content),
-                                                filename = filename,
-                                                spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
-                    images.append(discord_file)
-
-        messages.append({'content': f'-# <@&{source["role"]}>', 'embed': embed, 'images': images})
-
-    return messages
-
-
-sources = json.load(open('feed_data.json', 'r'))
 
 class NamiFeeds(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -511,18 +562,16 @@ class NamiFeeds(commands.Cog):
 
     @tasks.loop(seconds=10.0)
     async def feeds(self):
-        sources = json.load(open('feed_data.json', 'r'))
-
-        for s in sources:
-            if s in ['apoc', 'posts', 'status_cafe', 'ask', 'trick', 'blog']:
-                try:
-                    source = sources[s]
+        for s in SOURCES:
+            if s in ['apoc', 'posts', 'newsfeed', 'ask', 'status_cafe', 'blog', 'trick']:
+                if True:
+                    source = SOURCES[s]
                     await self.check(source)
 
                     # save new stuff
-                    json.dump(sources, open('feed_data.json', 'w'), indent=4)
-                except Exception as e:
-                    await self.bot.report(e)
+                    json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
+                # except Exception as e:
+                #     await self.bot.report(e)
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
@@ -542,14 +591,16 @@ class NamiFeeds(commands.Cog):
             await self.bot.report('could not retrieve feed channel')
 
         # get all the messages to send
-        messages = feed(source)
+        messages: list[Message] = feed(source)
         # if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
         #     await self.bot.report('too many messages to send')
 
         for message in messages:
-            await channel.send(message['content'], embed=message['embed'])  # type: ignore -- channel is assumed to support send
-            if 'images' in message.keys() and len(message['images']) >= 1:
-                await channel.send(files=message['images'])  # type: ignore -- channel is assumed to support send
+            if len(message.attachments) > 10:
+                raise Exception('more than 10 files time to die')
+            await channel.send(message.role_ping(), embed=message.get_embed())  # type: ignore -- channel is assumed to support send
+            if len(message.attachments) > 0:
+                await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
 
 
 async def setup(bot):
