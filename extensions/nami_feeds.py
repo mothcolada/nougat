@@ -79,15 +79,6 @@ emoji = {
 SOURCES = json.load(open('feed_data.json', 'r'))
 
 
-# later ill use these maybe
-
-class ImageAttachment():
-    def __init__(self, file_bytes, name: str, spoiler=False):
-        self.file_bytes = file_bytes
-        self.name = name
-        self.spoiler = spoiler
-
-
 class Message():
     def __init__(
         self,
@@ -130,7 +121,11 @@ class Message():
         self.timestamp = None
         if timestamp:
             self.timestamp = datetime.datetime.strptime(timestamp, self.source['embed']['timestamp_format'])
+            # manually set tzinfo because %Z in strptime does not actually do anything???
+            if 'GMT' in timestamp:
+                self.timestamp = self.timestamp.replace(tzinfo=GMT)
 
+        # limit description to 4000 chars
         if len(self.description) > 4000:
             # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
             self.description = self.description[:4000]
@@ -155,24 +150,8 @@ class Message():
             embed.set_author( name        = self.author,
                               url         = self.author_url,
                               icon_url    = self.author_icon)
-        embed.set_footer(     text        = self.footer)                # footer is mandatory
+        embed.set_footer(     text        = self.footer)
         return embed
-
-
-    # messages = []
-    # for post in posts:
-    #     # limit description to 4000 chars
-        if len(self.description) > 4000:
-            # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
-            emergency_spoil = ('||' in self.description[:4000] and '||' in self.description[3999:])
-            self.description = self.description[:4000]
-            if emergency_spoil:
-                self.description += '||'
-            self.description += '\n## [READ MORE](' + post['url'] + ')'
-
-
-
-
 
 
 def clean(string):
