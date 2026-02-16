@@ -155,14 +155,13 @@ class Message():
 
 
 def clean(string):
-    return html.unescape(string).replace('*', '\\*')
+    return html.unescape(string).replace('*', '\\*').replace('\n', '')
 
 
 def paragraph(p):
     text = ''
     for c in p.children:
         if isinstance(c, NavigableString):
-            c: NavigableString = c
             text += clean(c)
         elif isinstance(c, Tag):
             if c.name == 'a':
@@ -436,7 +435,10 @@ def parse_apoc(soup):
 
             num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
-            desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
+            if authornotes:
+                desc = paragraph(authornotes.find('div', {'class': 'notecontent'}))
+            else:
+                desc = ''
 
             message = Message('apoc',
                               id = id,
@@ -462,7 +464,10 @@ def parse_tcs(soup):
             
             # num = int(soup.find('h2', {'class': 'comictitle'}).text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
-            desc = '' if authornotes == None else authornotes.find('div', {'class': 'notecontent'}).text
+            if authornotes:
+                desc = paragraph(authornotes.find('div', {'class': 'notecontent'}))
+            else:
+                desc = ''
 
             message = Message('tcs',
                               id = post.find('guid').string,

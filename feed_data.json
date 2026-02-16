@@ -103,9 +103,10 @@
             "2/5/2026, 6:17pm",
             "2/12/2026, 11:04am",
             "2/13/2026, 11:12am",
-            "2/14/2026, 7:51pm"
+            "2/14/2026, 7:51pm",
+            "2/16/2026, 1:29pm"
         ],
-        "last_modified": 1771145510
+        "last_modified": 1771295367
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -476,7 +477,8 @@
             "timestamp_format": "%a, %d %b %Y %X %Z"
         },
         "saved_ids": [
-            "https://tcs.thecomicseries.com/comics/pl/2722020/"
+            "https://tcs.thecomicseries.com/comics/pl/2722020/",
+            "https://tcs.thecomicseries.com/comics/pl/2722567/"
         ],
         "last_modified": 0
     },
