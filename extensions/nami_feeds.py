@@ -104,8 +104,8 @@ class Message():
         self.color       = self.source['embed']['color']
 
         self.image = None
-        self.attachments = []            
-        if len(images) == 1 and (images[0].parent.name != 'details'):  # one unspoilered image
+        self.attachments = []
+        if len(images) == 1 and (isinstance(images[0], dict) or (images[0].parent.name != 'details')):  # one unspoilered image
             self.image = url=urljoin('https://nomnomnami.com', images[0]['src'])
         else:
             for img in images:
@@ -115,7 +115,7 @@ class Message():
                     filename += '.png'
                 discord_file = discord.File(io.BytesIO(response.content),
                                             filename = filename,
-                                            spoiler  = (img.parent.name == 'details'))  # spoiler if part of details (for posts)
+                                            spoiler  = ((not isinstance(images[0], dict)) and img.parent.name == 'details'))  # spoiler if part of details (for posts)
                 self.attachments.append(discord_file)
 
         self.timestamp = None
@@ -412,20 +412,34 @@ def parse_neocities(soup):
 
 
 def parse_pillowfort(soup):
-    pass
-    # # not this: posts = soup.find_all('item')
+    posts_json = json.loads(soup)
+    posts = posts_json['posts']
+    messages = []
+    for post in posts:
+        url = f"https://www.pillowfort.social/posts/{post['id']}"
 
-    # print(str(soup)[:20000])
+        desc = html_to_discord(BeautifulSoup(post['content'], 'html.parser'))['text']
+        if '[READ-MORE]' in desc:
+            desc = desc.split('[READ-MORE]')[0] + f"( [Read More...]({url}) )"
 
-    # messages = []
-    # for post in posts:
-    #     # print(post)
-    #     # print(post.find('div', {'class': 'avatar'}).find('img'))
-    #     # print(post.find('a', {'title': 'link to post'})) # ['href'].split('/')[-1]
-    #     messages.append({'id': post.find({'title': 'link to post'})['href'].split('/')[-1],
-    #                      'author_icon': post.find('div', {'class': 'avatar'}).find('img')['src']})
+        images = []
+        for media in post['media']:
+            if media['media_type'] == 'picture':
+                images.append({'src': media['url']})
+            else:
+                desc += '\n\n' + media['url']
 
-    # return messages
+        message = Message('pillowfort',
+                          id = post['id'],
+                          title = post['title'],
+                          description = desc,
+                          url = url,
+                          images = images,
+                          timestamp = post['publish_at'],
+                          author = post['username'],
+                          author_icon = post['avatar_url'])
+        messages.append(message)
+    return messages
 
 
 def parse_apoc(soup):
@@ -519,7 +533,7 @@ funcs = {
     'tcs':              parse_tcs,
     'site_updates':     parse_site_updates,
     # 'youtube':          parse_youtube
-    # 'pillowfort':       parse_pillowfort,
+    'pillowfort':       parse_pillowfort,
 }
 
 
@@ -538,6 +552,8 @@ def feed(source):
         soup = BeautifulSoup(response.content, 'html.parser')
     elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type']:
         soup = BeautifulSoup(response.content, 'xml')
+    elif 'application/json' in response.headers['Content-Type']:
+        soup = response.content  # not actually soup
     else:
         raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
 
@@ -567,7 +583,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=10.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['pillowfort']: # ['pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
                 if True:
                     source = SOURCES[s]
                     await self.check(source)

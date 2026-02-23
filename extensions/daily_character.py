@@ -15,8 +15,9 @@ TEST_GUILD_ID = 422163243528617994
 TEST_CHANNEL = 1074754885070897202
 
 
-
-char_data = json.load(open("calendar.json", "r"))  # FIXME: Unclosed file descriptor
+calendar_json = open("calendar.json", "r")
+char_data = json.load(calendar_json)
+calendar_json.close()
 
 eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
 midnight = datetime.time(hour=0, minute=0, tzinfo=eastern_time)
@@ -48,14 +49,12 @@ class DailyCharacter(commands.Cog):
         server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
         if not server:
             raise Exception('server not found')
-            return
 
         # compare bytes of current icon and the icon we want to change it to, only continue if different
 
         current_icon = server.icon
         if not current_icon:
             raise Exception('icon not found')
-            return
         
         current_icon = await current_icon.read()
         if new_icon == current_icon:
@@ -98,8 +97,10 @@ def get_char_for_date(date: datetime.datetime):
 
 def name_of_char(id):
     # specifal formatting
-    if id == "Mrbrew":
+    if id == "mrbrew":
         return "Mr. Brew"
+    if id == "nougat":
+        return "Me"
 
     # other characters
     name = id.title()
@@ -125,3 +126,4 @@ def ordinal(n: int):  # stolen from stack overflow because i'm lazy
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(DailyCharacter(bot))
+

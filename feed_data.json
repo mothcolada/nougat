@@ -426,11 +426,37 @@
     },
     "pillowfort": {
         "name": "pillowfort",
-        "link": "https://www.pillowfort.social/nomnomnami",
+        "link": "https://www.pillowfort.social/nomnomnami/json/",
         "channel": 1327524115526979605,
         "role": 1327524420033712173,
-        "embed": {},
-        "saved_ids": [],
+        "embed": {
+            "color": 8594767,
+            "author_url": "https://www.pillowfort.social/nomnomnami",
+            "footer": "pillowfort",
+            "timestamp_format": "%Y-%m-%dT%X.%f%z"
+        },
+        "saved_ids": [
+            7103276,
+            7107396,
+            7111990,
+            7113794,
+            7113825,
+            7113834,
+            7119154,
+            7123001,
+            7126297,
+            7149265,
+            7157619,
+            7166479,
+            7201290,
+            7206058,
+            7226835,
+            7231341,
+            7266614,
+            7277697,
+            7277816,
+            7296664
+        ],
         "last_modified": 0
     },
     "apoc": {
