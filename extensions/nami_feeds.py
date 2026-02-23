@@ -120,10 +120,14 @@ class Message():
 
         self.timestamp = None
         if timestamp:
-            self.timestamp = datetime.datetime.strptime(timestamp, self.source['embed']['timestamp_format'])
-            # manually set tzinfo because %Z in strptime does not actually do anything???
-            if 'GMT' in timestamp:
-                self.timestamp = self.timestamp.replace(tzinfo=GMT)
+            if ':' in timestamp:  # "real" timestamp, has time
+                self.timestamp = datetime.datetime.strptime(timestamp, self.source['embed']['timestamp_format'])
+                # manually set tzinfo because %Z in strptime does not actually do anything???
+                if 'GMT' in timestamp:
+                    self.timestamp = self.timestamp.replace(tzinfo=GMT)
+            
+            else:  # day only timestamp
+                self.footer += '  •  ' + timestamp
 
         # limit description to 4000 chars
         if len(self.description) > 4000:
@@ -279,7 +283,8 @@ def parse_newsfeed(soup):
     for post in posts:
         message = Message('newsfeed',
                           id = post.find('time').string,
-                          description = paragraph(post))
+                          description = paragraph(post),
+                          timestamp = post.find('time').string)
         messages.append(message)
 
     return messages
@@ -481,6 +486,20 @@ def parse_tcs(soup):
     return messages
 
 
+def parse_site_updates(soup):
+    posts = soup.find('article', {'id': 'site-updates'}).find_all('li')
+
+    messages = []
+    for post in posts:
+        message = Message('site_updates',
+                          id = post.find('time').string + paragraph(post),  # two can have same date
+                          description = paragraph(post),
+                          timestamp = post.find('time').string)
+        messages.append(message)
+
+    return messages
+
+
 def parse_youtube(soup):
     pass
 
@@ -498,6 +517,7 @@ funcs = {
     'trick':            parse_trick,
     'apoc':             parse_apoc,
     'tcs':              parse_tcs,
+    'site_updates':     parse_site_updates,
     # 'youtube':          parse_youtube
     # 'pillowfort':       parse_pillowfort,
 }
@@ -547,7 +567,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=10.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['tcs', 'apoc', 'posts', 'newsfeed', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
                 if True:
                     source = SOURCES[s]
                     await self.check(source)

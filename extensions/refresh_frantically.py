@@ -16,6 +16,8 @@ class RefreshFrantically(commands.Cog):
             response = requests.get('https://nomnomnami.itch.io/week-with-timber?password=timbei5ever')
             soup = BeautifulSoup(response.content, 'html.parser')
             timestamp = soup.find('div', {'class': 'update_timestamp'})
+            if not timestamp:
+                return
             if timestamp.find('abbr')['title'] != '19 January 2026 @ 22:20 UTC':
                 await self.bot.get_channel(1074754885070897202).send('<@422162909582589963> we might be back ' + str(response.status_code))
     

@@ -53,9 +53,10 @@
             "2/5/2026",
             "2/6/2026",
             "2/12/2026",
-            "2/16/2026"
+            "2/16/2026",
+            "2/20/2026"
         ],
-        "last_modified": 1771281529
+        "last_modified": 1771642750
     },
     "posts": {
         "name": "posts",
@@ -104,9 +105,11 @@
             "2/12/2026, 11:04am",
             "2/13/2026, 11:12am",
             "2/14/2026, 7:51pm",
-            "2/16/2026, 1:29pm"
+            "2/16/2026, 1:29pm",
+            "2/22/2026, 8:17am",
+            "2/22/2026, 9:01am"
         ],
-        "last_modified": 1771295367
+        "last_modified": 1771805291
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -371,7 +374,8 @@
             "https://status.cafe/users/nomnomnami/203623",
             "https://status.cafe/users/nomnomnami/205837",
             "https://status.cafe/users/nomnomnami/206731",
-            "https://status.cafe/users/nomnomnami/207084"
+            "https://status.cafe/users/nomnomnami/207084",
+            "https://status.cafe/users/nomnomnami/208603"
         ],
         "last_modified": 0
     },
@@ -459,7 +463,8 @@
             2608000,
             2668459,
             2690745,
-            2690773
+            2690773,
+            2676437
         ],
         "last_modified": 0
     },
@@ -478,7 +483,8 @@
         },
         "saved_ids": [
             "https://tcs.thecomicseries.com/comics/pl/2722020/",
-            "https://tcs.thecomicseries.com/comics/pl/2722567/"
+            "https://tcs.thecomicseries.com/comics/pl/2722567/",
+            "https://tcs.thecomicseries.com/comics/pl/2722033/"
         ],
         "last_modified": 0
     },
@@ -497,5 +503,45 @@
         },
         "saved_ids": [],
         "last_modified": 0
+    },
+    "site_updates": {
+        "name": "site_updates",
+        "link": "https://nomnomnami.com/index.html",
+        "channel": 1327524115526979605,
+        "role": 1327524420033712173,
+        "embed": {
+            "url": "https://nomnomnami.com/",
+            "author": null,
+            "author_url": null,
+            "author_icon": null,
+            "footer": "site updates",
+            "color": 9342360
+        },
+        "saved_ids": [
+            "11/13/2025added a page that ranks the [word counts](https://nomnomnami.com/games/stats.html) for all my visual novels, i might add other stats to it later",
+            "11/18/2025new [guestbook](https://nomnomnami.atabook.org/) hosted through atabook since the old one broke! made an [archived version](https://nomnomnami.com/guestbook/archive.html) so the previous entries weren't lost.",
+            "11/21/2025homepage update! added cute banners to help the page be less text-heavy. so much going on in this website.......",
+            "11/23/2025new page! [the namiverse](https://nomnomnami.com/namiverse.html) is home to the official timeline for treat's world, and explains the connections between all my games... still a bit under construction tho.",
+            "12/2/2025[night with timber doodle comics](https://nomnomnami.com/comics/nwt/) gallery is LIVE!!! pretty happy with these pages so i will be updating my older galleries to match this month~",
+            "12/3/2025[treat](https://nomnomnami.com/comics/treat/) and [syrup](https://nomnomnami.com/comics/syrup/) doodle comic galleries are up!!! there are some new ones i'd never posted before in there, so enjoy looking~",
+            "12/6/2025FINALLY finished redoing my [doodle comics gallery](https://nomnomnami.com/comics/doodles.html)!!! my [autobio comics](https://nomnomnami.com/comics/autobio/) were the last set, yaaay",
+            "12/8/2025i have just completed construction of... a [character gallery](https://nomnomnami.com/characters/) for all my ocs!!!!!!!! i'll be adding pages to it slowly cuz they take a while to make.",
+            "12/12/2025new [site template](https://nomnomnami.com/templates/)! now you can make a fake wiki for your OCs too!!! live preview [here](https://nomnomnami.com/templates/thyme/). i also updated my [404 page](https://nomnomnami.com/not_found.html) to be htwml themed!",
+            "12/16/2025archive for [the foxy catch](https://nomnomnami.com/comics/foxycatch/) is live! updated the [moxdonald's](https://nomnomnami.com/comics/moxdonalds/) pages a bit too (mostly to be like hey there's a sequel lol)",
+            "12/20/2025updated [the foxy catch archive](https://nomnomnami.com/comics/foxycatch/) with the second half of the event!",
+            "12/22/2025[the foxy catch epilogue comic](https://nomnomnami.com/comics/foxycatch/extra02.html) is up, plus [chai's page](https://nomnomnami.com/characters/chai.html) in the character gallery! (i haven't been listing all of those in the site updates sorry)",
+            "1/1/2026added a [disgaea fan comics](https://nomnomnami.com/comics/disgaea/) gallery (full of old art from like 10 years ago), also updated my [news archive](https://nomnomnami.com/news/) up through november 2025",
+            "1/10/2026starting fresh on my [posts page](https://nomnomnami.com/posts/), archive for previous years is [here](https://nomnomnami.com/posts/archive/). small edits to my [FAQ](https://nomnomnami.com/faq.html) since someone pointed out a dead link.",
+            "1/12/2026added a new [downloads](https://nomnomnami.com/downloads/) page, gonna start making all sorts of things available on there... slowly",
+            "1/13/2026[art collections](https://nomnomnami.com/downloads/art-collections/) page is up, got rid of the temp treat downloads directory so all links should be fixed now... easier to find things from the single page i think",
+            "1/13/2026wait second massive update today, my [art gallery](https://nomnomnami.com/art/) is finally way more presentable?!?!?? still moving things around, but... it's looking gooooood!!!!!",
+            "1/17/2026new [contact form](https://nomnomnami.com/contact.html) just dropped... this one has FILE ATTACHMENTS!!! what an upgrade!!!!!",
+            "1/21/2026new character pages this week: [pastille](https://nomnomnami.com/characters/pastille.html), [toffee](https://nomnomnami.com/characters/toffee.html), and [butterscotch](https://nomnomnami.com/characters/butterscotch.html)",
+            "1/30/2026[fanart gallery](https://nomnomnami.com/art/fanart/) is live!!! still missing some sections tho... oh well. also updated my [projects page](https://nomnomnami.com/projects.html), it's a little better as a status tracker now!",
+            "2/3/2026finally fixed the comments on my [posts](https://nomnomnami.com/posts/) page",
+            "2/8/2026filled out the summaries for astra's garden and contract demon on the [namiverse](https://nomnomnami.com/namiverse.html) page, and added [syrup](https://nomnomnami.com/characters/syrup.html) and [gumdrop](https://nomnomnami.com/characters/gumdrop.html) to the character gallery (haven't written their comment sections yet though... i was just sick of their pages not being up yet haha)",
+            "2/18/2026answered [100 questions for artists](https://nomnomnami.com/ask/100q-art.html)"
+        ],
+        "last_modified": 1771642750
     }
 }
