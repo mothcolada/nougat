@@ -583,7 +583,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=10.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['pillowfort']: # ['pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
                 if True:
                     source = SOURCES[s]
                     await self.check(source)
