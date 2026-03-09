@@ -105,7 +105,7 @@ class Message():
 
         self.image = None
         self.attachments = []
-        if len(images) == 1 and (isinstance(images[0], dict) or (images[0].parent.name != 'details')):  # one unspoilered image
+        if len(images) == 1 and not self.is_spoiler(images[0]):  # one unspoilered image
             self.image = url=urljoin('https://nomnomnami.com', images[0]['src'])
         else:
             for img in images:
@@ -115,7 +115,7 @@ class Message():
                     filename += '.png'
                 discord_file = discord.File(io.BytesIO(response.content),
                                             filename = filename,
-                                            spoiler  = ((not isinstance(images[0], dict)) and img.parent.name == 'details'))  # spoiler if part of details (for posts)
+                                            spoiler  = self.is_spoiler(img))
                 self.attachments.append(discord_file)
 
         self.timestamp = None
@@ -136,6 +136,18 @@ class Message():
             if ('||' in self.description[:4000] and '||' in self.description[3999:]):
                 self.description += '||'
             self.description += '\n## [READ MORE](' + self.url + ')'
+
+
+    def is_spoiler(self, image: Tag):
+        if isinstance(image, dict):
+            return False
+        if not image.parent:
+            return False
+        if image.parent.name == 'details':
+            return True
+        if image.parent.parent and image.parent.parent.name == 'details':
+            return True
+        return False
 
     
     def role_ping(self):
@@ -418,11 +430,15 @@ def parse_pillowfort(soup):
     for post in posts:
         url = f"https://www.pillowfort.social/posts/{post['id']}"
 
-        desc = html_to_discord(BeautifulSoup(post['content'], 'html.parser'))['text']
-        if '[READ-MORE]' in desc:
-            desc = desc.split('[READ-MORE]')[0] + f"( [Read More...]({url}) )"
+        content: str = post['content']
+        content = content.replace('<p>[READ-MORE]</p>', f"<details><summary>( Read More... )</summary>")
+        content = content.replace('<p>[/READ-MORE]</p>', '</details>')
 
-        images = []
+        desc = html_to_discord(BeautifulSoup(content, 'html.parser'))['text']
+        # if '[READ-MORE]' in desc:
+        #     desc = desc.split('[READ-MORE]')[0] + f"( [Read More...]({url}) )"
+
+        images = html_to_discord(BeautifulSoup(content, 'html.parser'))['images']  # images = []
         for media in post['media']:
             if media['media_type'] == 'picture':
                 images.append({'src': media['url']})
@@ -516,6 +532,21 @@ def parse_site_updates(soup):
 
 def parse_youtube(soup):
     pass
+    # posts = soup.find_all('entry')
+
+    # messages = []
+    # for post in posts:
+    #     message = Message('youtube',
+    #                       author = post.find('author').find('name').string,
+    #                       title = post.find('title').string,
+    #                       url = post.find('link')['href'],
+    #                       id = post.find('id').string,
+    #                       description = 'examplesesess',
+    #                       images = [{'src': 'https://www.youtube.com/v/RwfRpffJf94'}],
+    #                       timestamp = post.find('published').string)
+    #     messages.append(message)
+
+    # return messages
 
 
 
@@ -532,7 +563,7 @@ funcs = {
     'apoc':             parse_apoc,
     'tcs':              parse_tcs,
     'site_updates':     parse_site_updates,
-    # 'youtube':          parse_youtube
+    # 'youtube':          parse_youtube,
     'pillowfort':       parse_pillowfort,
 }
 
@@ -550,7 +581,7 @@ def feed(source):
     # call parse function for the source type
     if 'text/html' in response.headers['Content-Type']:
         soup = BeautifulSoup(response.content, 'html.parser')
-    elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type']:
+    elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type'] or 'text/xml' in response.headers['Content-Type']:
         soup = BeautifulSoup(response.content, 'xml')
     elif 'application/json' in response.headers['Content-Type']:
         soup = response.content  # not actually soup

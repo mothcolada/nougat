@@ -2,7 +2,10 @@ import discord
 from discord.ext import commands, tasks
 import requests
 from bs4 import BeautifulSoup
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class RefreshFrantically(commands.Cog):
     def __init__(self, bot):
@@ -13,7 +16,7 @@ class RefreshFrantically(commands.Cog):
     @tasks.loop(seconds=15.0)
     async def refresh(self):
         if self.bot.is_ready():
-            response = requests.get('https://nomnomnami.itch.io/week-with-timber?password=timbei5ever')
+            response = requests.get(f"https://nomnomnami.itch.io/week-with-timber?password={os.environ['WWT_PASSWORD']}")
             soup = BeautifulSoup(response.content, 'html.parser')
             timestamp = soup.find('div', {'class': 'update_timestamp'})
             if not timestamp:

@@ -58,7 +58,7 @@
             "2/25/2026",
             "2/27/2026"
         ],
-        "last_modified": 1772261311
+        "last_modified": 1772764644
     },
     "posts": {
         "name": "posts",
@@ -112,9 +112,12 @@
             "2/22/2026, 9:01am",
             "2/26/2026, 8:20pm",
             "2/27/2026, 1:27pm",
-            "2/27/2026, 6:10pm"
+            "2/27/2026, 6:10pm",
+            "3/5/2026, 10:10am",
+            "3/5/2026, 10:16am",
+            "3/6/2026, 5:23pm"
         ],
-        "last_modified": 1772262737
+        "last_modified": 1772864607
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -471,7 +474,8 @@
             7314287,
             7315604,
             7315641,
-            7315685
+            7315685,
+            7354356
         ],
         "last_modified": 0
     },
@@ -511,7 +515,10 @@
             2676440,
             2717706,
             2718045,
-            2718117
+            2718117,
+            2729616,
+            2730200,
+            2729619
         ],
         "last_modified": 0
     },
@@ -533,7 +540,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2722567/",
             "https://tcs.thecomicseries.com/comics/pl/2722033/",
             "https://tcs.thecomicseries.com/comics/pl/2723188/",
-            "https://tcs.thecomicseries.com/comics/pl/2723716/"
+            "https://tcs.thecomicseries.com/comics/pl/2723716/",
+            "https://tcs.thecomicseries.com/comics/pl/2729628/",
+            "https://tcs.thecomicseries.com/comics/pl/2740666/"
         ],
         "last_modified": 0
     },
@@ -544,13 +553,29 @@
         "role": 1327524420033712173,
         "embed": {
             "author": null,
-            "author_url": null,
+            "author_url": "https://www.youtube.com/channel/UCSNzbhbYnbOFBVFzu_CQNmw",
             "author_icon": null,
             "footer": "youtube",
-            "color": null,
-            "timestamp_format": "%Y-%m-%dT%X%:z"
+            "color": 16711731,
+            "timestamp_format": "%Y-%m-%dT%X%z"
         },
-        "saved_ids": [],
+        "saved_ids": [
+            "yt:video:T40coFcP5EE",
+            "yt:video:zc5VAXBJnTY",
+            "yt:video:faqIbW8R2ZA",
+            "yt:video:XZZ1zeFIMdk",
+            "yt:video:XcWEDoB1Wc8",
+            "yt:video:OriIhF79c0g",
+            "yt:video:h-3_AqQJo6Y",
+            "yt:video:Vxeap6zGLu4",
+            "yt:video:dAuSUvSyB2o",
+            "yt:video:PsVjis6K73I",
+            "yt:video:A_cHOWaJ47w",
+            "yt:video:cA09HheTlLM",
+            "yt:video:I36yIni3ylQ",
+            "yt:video:RwfRpffJf94",
+            "yt:video:LwIA8w642B4"
+        ],
         "last_modified": 0
     },
     "site_updates": {
@@ -591,8 +616,9 @@
             "2/8/2026filled out the summaries for astra's garden and contract demon on the [namiverse](https://nomnomnami.com/namiverse.html) page, and added [syrup](https://nomnomnami.com/characters/syrup.html) and [gumdrop](https://nomnomnami.com/characters/gumdrop.html) to the character gallery (haven't written their comment sections yet though... i was just sick of their pages not being up yet haha)",
             "2/18/2026answered [100 questions for artists](https://nomnomnami.com/ask/100q-art.html)",
             "2/26/2026made a [random oc generator](https://nomnomnami.com/games/random-oc.html)",
-            "2/27/2026made a [random pairing generator](https://nomnomnami.com/games/random-pairing.html) too"
+            "2/27/2026made a [random pairing generator](https://nomnomnami.com/games/random-pairing.html) too",
+            "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)"
         ],
-        "last_modified": 1772261311
+        "last_modified": 1772764644
     }
 }
