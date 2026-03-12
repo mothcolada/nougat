@@ -440,10 +440,11 @@ def parse_pillowfort(soup):
 
         images = html_to_discord(BeautifulSoup(content, 'html.parser'))['images']  # images = []
         for media in post['media']:
-            if media['media_type'] == 'picture':
-                images.append({'src': media['url']})
-            else:
-                desc += '\n\n' + media['url']
+            if media['url']:  # not null/None
+                if media['media_type'] == 'picture':
+                    images.append({'src': media['url']})
+                else:
+                    desc += '\n\n' + media['url']
 
         message = Message('pillowfort',
                           id = post['id'],
