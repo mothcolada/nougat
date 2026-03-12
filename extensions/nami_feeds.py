@@ -428,6 +428,9 @@ def parse_pillowfort(soup):
     posts = posts_json['posts']
     messages = []
     for post in posts:
+        if post['reblogged_from_post_id']:  # do not count reblogs from other accounts
+            continue
+
         url = f"https://www.pillowfort.social/posts/{post['id']}"
 
         content: str = post['content']
