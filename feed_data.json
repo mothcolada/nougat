@@ -115,9 +115,10 @@
             "2/27/2026, 6:10pm",
             "3/5/2026, 10:10am",
             "3/5/2026, 10:16am",
-            "3/6/2026, 5:23pm"
+            "3/6/2026, 5:23pm",
+            "3/17/2026, 9:33am"
         ],
-        "last_modified": 1772864607
+        "last_modified": 1773779613
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -483,7 +484,12 @@
             7366959,
             7366971,
             7366973,
-            7366980
+            7366980,
+            7370363,
+            7370654,
+            7370657,
+            7370868,
+            7390007
         ],
         "last_modified": 0
     },
@@ -552,7 +558,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2723716/",
             "https://tcs.thecomicseries.com/comics/pl/2729628/",
             "https://tcs.thecomicseries.com/comics/pl/2740666/",
-            "https://tcs.thecomicseries.com/comics/pl/2742039/"
+            "https://tcs.thecomicseries.com/comics/pl/2742039/",
+            "https://tcs.thecomicseries.com/comics/pl/2745391/",
+            "https://tcs.thecomicseries.com/comics/pl/2756362/"
         ],
         "last_modified": 0
     },

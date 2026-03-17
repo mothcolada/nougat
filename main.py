@@ -66,6 +66,7 @@ class Nougat(commands.Bot):
     async def report(self, message):
         await self.log(f"<@{MOTHCOLADA_ID}> " + str(message))
 
+
     @cached_property
     def is_nougat(self):
         return self.user.id == NOUGAT_ID

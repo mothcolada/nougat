@@ -628,7 +628,7 @@ class NamiFeeds(commands.Cog):
                 # except Exception as e:
                 #     await self.bot.report(e)
 
-                await asyncio.sleep(0.5)  # avoid heartbeat blocking
+                await asyncio.sleep(1)  # avoid heartbeat blocking
 
 
     @feeds.before_loop
