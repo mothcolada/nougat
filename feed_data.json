@@ -4,9 +4,17 @@
         "link": "https://nomnomnami.com/index.html",
         "channel": 1327524115526979605,
         "role": 1325598062198128640,
-        "embed": {},
-        "saved_ids": [],
-        "last_modified": 0
+        "embed": {
+            "author": null,
+            "author_url": null,
+            "author_icon": null,
+            "footer": "announcement",
+            "color": 15000812
+        },
+        "saved_ids": [
+            "/images/announcement-tcs.png"
+        ],
+        "last_modified": 1772764644
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -659,8 +667,7 @@
             "footer": "status",
             "color": 6973555
         },
-        "saved_ids": [
-        ],
+        "saved_ids": [],
         "last_modified": 1774035767
     }
 }

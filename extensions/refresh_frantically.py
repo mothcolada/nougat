@@ -13,7 +13,7 @@ class RefreshFrantically(commands.Cog):
         self.refresh.start()
     
 
-    @tasks.loop(seconds=15.0)
+    @tasks.loop(seconds=20.0)
     async def refresh(self):
         if self.bot.is_ready():
             response = requests.get(f"https://nomnomnami.itch.io/week-with-timber?password={os.environ['WWT_PASSWORD']}")

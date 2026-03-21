@@ -1,6 +1,7 @@
 # fmt: off
 import asyncio
 import datetime
+import zoneinfo
 import hashlib
 import html
 import io
@@ -272,20 +273,19 @@ def html_to_discord(html: BeautifulSoup):
 
 
 def parse_announcements(soup):
-    posts = soup.find('div', {'class': 'news-banner'})
+    news = soup.find('div', {'class': 'news-banner'})
     
-    # messages = []
-    # if old_announcement != new_announcement:
-    #     embed = discord.Embed(color       = 0xE4E4EC,
-    #                           title       = paragraph(new_announcement.find('h3')),
-    #                           url         = new_announcement.find('a')['href'],
-    #                           description = paragraph(new_announcement.find('p')))
-    #     embed.set_image(      url         = urljoin('https://nomnomnami.com/', new_announcement.find('img')['src']))
-    #     embed.set_footer(     text        = 'announcements')
-    #     messages.append(({'embed': embed, 'images': []}))
+    messages = [
+        Message('announcements',
+                id = news.find('img')['src'],
+                title = paragraph(news.find('h3')),
+                url = news.find('a')['href'],
+                description = paragraph(news.find('p')),
+                images = [news.find('img')],
+                timestamp = news.find('time').string)
+    ]
 
-    # return messages
-    pass
+    return messages
 
 
 def parse_newsfeed(soup):
@@ -572,7 +572,7 @@ def parse_youtube(soup):
 
 
 funcs = {
-    # 'announcements':    parse_announcements,
+    'announcements':    parse_announcements,
     'newsfeed':         parse_newsfeed,
     'posts':            parse_posts,
     'post_status':      parse_post_status,
@@ -624,6 +624,9 @@ def feed(source):
     return posts
 
 
+eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
+webcomic_time = datetime.time(hour=15, minute=0, second=0, tzinfo=eastern_time)  # 3pm EST
+
 class NamiFeeds(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -633,18 +636,34 @@ class NamiFeeds(commands.Cog):
         self.feeds.cancel()
 
 
-    @tasks.loop(seconds=10.0)
+    # # refresh for webcomic updates when they're expected
+    # @tasks.loop(time=webcomic_time, seconds=5.0, count=5)
+    # async def webcomic_feeds(self):
+    #     try:
+    #         source = SOURCES['apoc']
+    #         await self.check(source)
+    #         source = SOURCES['tcs']
+    #         await self.check(source)
+
+    #         # save new stuff
+    #         json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
+    #     except Exception as e:
+    #         await self.bot.report(e)
+
+
+
+    @tasks.loop(seconds=15.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
-                if True:
+            if s in ['announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+                try:
                     source = SOURCES[s]
                     await self.check(source)
 
                     # save new stuff
                     json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
-                # except Exception as e:
-                #     await self.bot.report(e)
+                except Exception as e:
+                    await self.bot.report(e)
 
                 await asyncio.sleep(1)  # avoid heartbeat blocking
 
