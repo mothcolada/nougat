@@ -534,6 +534,23 @@ def parse_site_updates(soup):
     return messages
 
 
+def parse_post_status(soup):
+    status = soup.find('section', {'id': 'status'})
+    table = status.find('table')
+    desc = ''
+    for tr in table.find_all('tr'):
+        th = tr.find('th')
+        td = tr.find('td')
+        desc += f"**{th.text}** {paragraph(td)}\n"
+
+    messages = [Message('post_status',
+                        id = status.find('time').string + desc,  # can change twice in a day i suppose
+                        description = desc,
+                        timestamp = status.find('time').string)]
+
+    return messages
+
+
 def parse_youtube(soup):
     pass
     # posts = soup.find_all('entry')
@@ -558,6 +575,7 @@ funcs = {
     # 'announcements':    parse_announcements,
     'newsfeed':         parse_newsfeed,
     'posts':            parse_posts,
+    'post_status':      parse_post_status,
     'timber':           parse_posts,
     'blog':             parse_blog,
     'ask':              parse_ask,
@@ -618,7 +636,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=10.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
                 if True:
                     source = SOURCES[s]
                     await self.check(source)
@@ -647,8 +665,8 @@ class NamiFeeds(commands.Cog):
 
         # get all the messages to send
         messages: list[Message] = feed(source)
-        # if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
-        #     await self.bot.report('too many messages to send')
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+            await self.bot.report('too many messages to send')
 
         for message in messages:
             if len(message.attachments) > 10:

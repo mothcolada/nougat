@@ -84,7 +84,10 @@ def daily_message(date: datetime.datetime):
         for anniversary in anniversaries:
             game_name = anniversary["game"]
             game_age = date.year - anniversary["year"]
-            message += f" Happy {ordinal(game_age)} anniversary to {game_name}!"
+            if game_age > 0:
+                message += f" Happy {ordinal(game_age)} anniversary to {game_name}!"
+            else:
+                message += f" Happy release day to {game_name}!"
 
     return message
 
