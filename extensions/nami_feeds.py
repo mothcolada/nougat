@@ -570,6 +570,29 @@ def parse_youtube(soup):
     # return messages
 
 
+def parse_patreon(soup):
+    posts_json = json.loads(soup)
+    posts = posts_json['data']
+
+    for include in posts_json['included']:
+        if include['type'] == 'campaign':
+            campaign = include
+            break
+
+    messages = []
+    for post in posts:
+        message = Message('patreon',
+                          id = post['id'],
+                          title = post['attributes']['title'],
+                          description = '',
+                          url = post['attributes']['url'],
+                          timestamp = post['attributes']['created_at'],
+                          author = campaign['attributes']['name'],
+                          author_icon = campaign['attributes']['avatar_photo_url'])
+        messages.append(message)
+    return messages
+
+
 
 funcs = {
     'announcements':    parse_announcements,
@@ -587,6 +610,7 @@ funcs = {
     'site_updates':     parse_site_updates,
     # 'youtube':          parse_youtube,
     'pillowfort':       parse_pillowfort,
+    'patreon':          parse_patreon
 }
 
 
@@ -600,12 +624,12 @@ def feed(source):
     elif 'Last-Modified' in response.headers.keys():
         source['last_modified'] = int(datetime.datetime.strptime(response.headers['Last-Modified'], '%a, %d %b %Y %X %Z').timestamp())  # update last modified time
 
-    # call parse function for the source type
+    # call parse function for the source type (html, xml, or json)
     if 'text/html' in response.headers['Content-Type']:
         soup = BeautifulSoup(response.content, 'html.parser')
     elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type'] or 'text/xml' in response.headers['Content-Type']:
         soup = BeautifulSoup(response.content, 'xml')
-    elif 'application/json' in response.headers['Content-Type']:
+    elif 'application/json' in response.headers['Content-Type'] or 'application/vnd.api+json' in response.headers['Content-Type']:
         soup = response.content  # not actually soup
     else:
         raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
@@ -655,7 +679,7 @@ class NamiFeeds(commands.Cog):
     @tasks.loop(seconds=15.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)
@@ -665,7 +689,7 @@ class NamiFeeds(commands.Cog):
                 except Exception as e:
                     await self.bot.report(e)
 
-                await asyncio.sleep(1)  # avoid heartbeat blocking
+                await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
 
     @feeds.before_loop
@@ -690,9 +714,15 @@ class NamiFeeds(commands.Cog):
         for message in messages:
             if len(message.attachments) > 10:
                 raise Exception('more than 10 files time to die')
-            await channel.send(message.role_ping(), embed=message.get_embed())  # type: ignore -- channel is assumed to support send
+            
+            m: discord.Message = await channel.send(message.role_ping(), embed=message.get_embed())  # type: ignore -- channel is assumed to support send
+            if self.bot.is_nougat:
+                await m.publish()
+
+
             if len(message.attachments) > 0:
-                await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
+                m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
+                await m.publish()
 
 
 async def setup(bot):
