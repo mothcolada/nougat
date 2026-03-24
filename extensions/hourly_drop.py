@@ -42,12 +42,12 @@ class HourlyDrop(commands.Cog):
     @tasks.loop(time=times)
     async def drop(self):
         if self.bot.is_ready():
-            pass
-            # time_since_start = datetime.datetime.now() - datetime.datetime.fromtimestamp(1774283000)
-            # hour = int(time_since_start.total_seconds() / 3600)
-
-            # channel = self.bot.get_channel(1485685766033117245 if self.bot.is_nougat else TEST_CHANNEL)
-            # await channel.send(f"Hour {hour} of posting Drop every hour until their game comes out", file=discord.File(f"drop/{hour}.png"))
+            print('drop time')
+            time_since_start = datetime.datetime.now() - datetime.datetime.fromtimestamp(1774321199)
+            hour = int(time_since_start.total_seconds() / 3600)
+            print(time_since_start.total_seconds() / 3600)
+            channel = self.bot.get_channel(1485685766033117245 if self.bot.is_nougat else TEST_CHANNEL)
+            await channel.send(f"Hour {hour} of posting Drop every hour until Escape from Wormwood comes out", file=discord.File(f"drop/{hour}.png"))
 
 
 async def setup(bot: commands.Bot):

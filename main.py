@@ -86,7 +86,7 @@ async def main():
         ) as bot,
     ):
         discord.utils.setup_logging()
-        await bot.start(os.environ["TOKEN"])
+        await bot.start(os.environ["NOUGAT_TOKEN"])
 
 
 if __name__ == "__main__":
