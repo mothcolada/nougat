@@ -675,11 +675,26 @@ class NamiFeeds(commands.Cog):
     #         await self.bot.report(e)
 
 
+    @tasks.loop(seconds=60.0)
+    async def feeds(self):
+        for s in SOURCES:
+            if s in ['blog', 'trick']:
+                try:
+                    source = SOURCES[s]
+                    await self.check(source)
+
+                    # save new stuff
+                    json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
+                except Exception as e:
+                    await self.bot.report(e)
+
+                await asyncio.sleep(0.5)  # avoid heartbeat blocking
+
 
     @tasks.loop(seconds=15.0)
     async def feeds(self):
         for s in SOURCES:
-            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick']:
+            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)
