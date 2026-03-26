@@ -1,0 +1,17 @@
+{
+    "https://nomnomnami.com/index.html": 10,
+    "https://nomnomnami.com/posts": 15,
+    "https://nomnomnami.com/posts/timber": 60,
+    "https://nomnomnami.com/ask/latest": 15 if in past 24h else 30,
+    
+    "https://another-piece-of-candy.thecomicseries.com/rss/": 5 if 3:00-3:01pm else 30,
+    "https://tcs.thecomicseries.com/rss/": 5 if 3:00-3:01pm else 30,
+    "https://trick.pika.page/posts_feed": 30,
+    "https://nomnomnami.pika.page/posts_feed": 30,
+    "https://status.cafe/users/nomnomnami.atom": 15,
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCSNzbhbYnbOFBVFzu_CQNmw": 30,
+    "https://neocities.org/site/nomnomnami/rss": DISABLED,
+
+    "https://www.pillowfort.social/nomnomnami/json/": 15,
+    "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=76451&sort=-published_at&json-api-version=1.0": 30
+}

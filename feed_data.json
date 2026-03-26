@@ -2,7 +2,7 @@
     "announcements": {
         "name": "announcements",
         "link": "https://nomnomnami.com/index.html",
-        "channel": 1327524115526979605,
+        "channel": 1325603603611914330,
         "role": 1325598062198128640,
         "embed": {
             "author": null,
@@ -12,9 +12,10 @@
             "color": 15000812
         },
         "saved_ids": [
-            "/images/announcement-tcs.png"
+            "/images/announcement-tcs.png",
+            "/images/announcement-efw.png"
         ],
-        "last_modified": 1772764644
+        "last_modified": 1774548903
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -64,9 +65,10 @@
             "2/16/2026",
             "2/20/2026",
             "2/25/2026",
-            "2/27/2026"
+            "2/27/2026",
+            "3/26/2026"
         ],
-        "last_modified": 1772764644
+        "last_modified": 1774548903
     },
     "posts": {
         "name": "posts",
@@ -401,7 +403,8 @@
             "https://status.cafe/users/nomnomnami/206731",
             "https://status.cafe/users/nomnomnami/207084",
             "https://status.cafe/users/nomnomnami/208603",
-            "https://status.cafe/users/nomnomnami/217403"
+            "https://status.cafe/users/nomnomnami/217403",
+            "https://status.cafe/users/nomnomnami/219560"
         ],
         "last_modified": 0
     },
@@ -508,7 +511,10 @@
             7390007,
             7410882,
             7433235,
-            7438365
+            7438365,
+            7441389,
+            7443337,
+            7444125
         ],
         "last_modified": 0
     },
@@ -553,7 +559,8 @@
             2730200,
             2729619,
             2690800,
-            2742604
+            2742604,
+            2759753
         ],
         "last_modified": 0
     },
@@ -657,9 +664,10 @@
             "2/18/2026answered [100 questions for artists](https://nomnomnami.com/ask/100q-art.html)",
             "2/26/2026made a [random oc generator](https://nomnomnami.com/games/random-oc.html)",
             "2/27/2026made a [random pairing generator](https://nomnomnami.com/games/random-pairing.html) too",
-            "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)"
+            "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)",
+            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out!"
         ],
-        "last_modified": 1772764644
+        "last_modified": 1774548903
     },
     "post_status": {
         "name": "post_status",
@@ -713,7 +721,8 @@
             "150809653",
             "151400901",
             "152101347",
-            "153783886"
+            "153783886",
+            "153925878"
         ],
         "last_modified": 0
     }

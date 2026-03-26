@@ -77,7 +77,7 @@ emoji = {
     'eggbug_wink': '<:eggbug_wink:1444074357914599537>'
 }
 
-SOURCES = json.load(open('feed_data.json', 'r'))
+SOURCES: dict = json.load(open('feed_data.json', 'r'))
 
 
 class Message():
@@ -614,40 +614,6 @@ funcs = {
 }
 
 
-def feed(source):
-    last_modified = datetime.datetime.fromtimestamp(source['last_modified'], GMT)
-    last_modified_string = last_modified.strftime('%a, %d %b %Y %X %Z')
-    response = requests.get(source['link'], headers={'If-Modified-Since': last_modified_string})
-
-    if response.status_code == 304:  # not modified since (FIXME: this seems to not actually ever happen?)
-        return []
-    elif 'Last-Modified' in response.headers.keys():
-        source['last_modified'] = int(datetime.datetime.strptime(response.headers['Last-Modified'], '%a, %d %b %Y %X %Z').timestamp())  # update last modified time
-
-    # call parse function for the source type (html, xml, or json)
-    if 'text/html' in response.headers['Content-Type']:
-        soup = BeautifulSoup(response.content, 'html.parser')
-    elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type'] or 'text/xml' in response.headers['Content-Type']:
-        soup = BeautifulSoup(response.content, 'xml')
-    elif 'application/json' in response.headers['Content-Type'] or 'application/vnd.api+json' in response.headers['Content-Type']:
-        soup = response.content  # not actually soup
-    else:
-        raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
-
-    posts: list = funcs[source['name']](soup)
-    posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
-    
-    # remove any already-seen posts
-    posts = [post for post in posts if post.id not in source['saved_ids']]
-    
-    # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
-    for post in posts:
-        if post.id not in source['saved_ids']:
-            source['saved_ids'].append(post.id)
-
-    return posts
-
-
 eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
 webcomic_time = datetime.time(hour=15, minute=0, second=0, tzinfo=eastern_time)  # 3pm EST
 
@@ -674,33 +640,20 @@ class NamiFeeds(commands.Cog):
     #     except Exception as e:
     #         await self.bot.report(e)
 
-
-    @tasks.loop(seconds=60.0)
-    async def feeds(self):
-        for s in SOURCES:
-            if s in ['blog', 'trick']:
-                try:
-                    source = SOURCES[s]
-                    await self.check(source)
-
-                    # save new stuff
-                    json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
-                except Exception as e:
-                    await self.bot.report(e)
-
-                await asyncio.sleep(0.5)  # avoid heartbeat blocking
-
-
     @tasks.loop(seconds=15.0)
     async def feeds(self):
+        # soups = {}
+        # for s in SOURCES:
+        #     if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
+        #         try:
+        #             source: str = SOURCES[s]
+        #             soups[source['link']] = self.get_feed(source)
+
         for s in SOURCES:
-            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe']:
+            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)
-
-                    # save new stuff
-                    json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
                 except Exception as e:
                     await self.bot.report(e)
 
@@ -711,18 +664,58 @@ class NamiFeeds(commands.Cog):
     async def before_feeds(self):
         await self.bot.wait_until_ready()
 
+    
+    def get_feed(self, source: dict):
+        last_modified = datetime.datetime.fromtimestamp(source['last_modified'], GMT)
+        last_modified_string = last_modified.strftime('%a, %d %b %Y %X %Z')
+        response = requests.get(source['link'], headers={'If-Modified-Since': last_modified_string})
+
+        if response.status_code == 304:  # not modified since (FIXME: this seems to not actually ever happen?)
+            return []
+        elif 'Last-Modified' in response.headers.keys():
+            source['last_modified'] = int(datetime.datetime.strptime(response.headers['Last-Modified'], '%a, %d %b %Y %X %Z').timestamp())  # update last modified time
+
+        # soupify file type of retrieved feed (html, xml, or json)
+        if 'text/html' in response.headers['Content-Type']:
+            soup = BeautifulSoup(response.content, 'html.parser')
+        elif 'application/atom+xml' in response.headers['Content-Type'] or 'application/xml' in response.headers['Content-Type'] or 'text/xml' in response.headers['Content-Type']:
+            soup = BeautifulSoup(response.content, 'xml')
+        elif 'application/json' in response.headers['Content-Type'] or 'application/vnd.api+json' in response.headers['Content-Type']:
+            soup = response.content  # not actually soup
+        else:
+            raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
+
+        return soup
+
+
+    def feed(self, source):
+        soup = self.get_feed(source)
+
+        posts: list = funcs[source['name']](soup)
+        posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
+        
+        # remove any already-seen posts
+        posts = [post for post in posts if post.id not in source['saved_ids']]
+        
+        # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
+        for post in posts:
+            if post.id not in source['saved_ids']:
+                source['saved_ids'].append(post.id)
+
+        return posts
+
 
     async def check(self, source):
-        if self.bot.is_nougat:  # in namiverse use namiverse channels
+        if self.bot.is_nougat:
             channel = self.bot.get_channel(source['channel'])
-        else:  # personal test bot
+        else:
             channel = self.bot.get_channel(TEST_CHANNEL)
 
         if not channel:
             await self.bot.report('could not retrieve feed channel')
 
         # get all the messages to send
-        messages: list[Message] = feed(source)
+        messages: list[Message] = self.feed(source)
         if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 10:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             await self.bot.report('too many messages to send')
 
@@ -738,6 +731,9 @@ class NamiFeeds(commands.Cog):
             if len(message.attachments) > 0:
                 m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
                 await m.publish()
+        
+        # save new stuff
+        json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
 
 
 async def setup(bot):
