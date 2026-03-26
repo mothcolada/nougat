@@ -671,7 +671,7 @@ class NamiFeeds(commands.Cog):
         response = requests.get(source['link'], headers={'If-Modified-Since': last_modified_string})
 
         if response.status_code == 304:  # not modified since (FIXME: this seems to not actually ever happen?)
-            return []
+            return None
         elif 'Last-Modified' in response.headers.keys():
             source['last_modified'] = int(datetime.datetime.strptime(response.headers['Last-Modified'], '%a, %d %b %Y %X %Z').timestamp())  # update last modified time
 
@@ -690,6 +690,8 @@ class NamiFeeds(commands.Cog):
 
     def feed(self, source):
         soup = self.get_feed(source)
+        if not soup:
+            return []
 
         posts: list = funcs[source['name']](soup)
         posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
