@@ -15,7 +15,7 @@
             "/images/announcement-tcs.png",
             "/images/announcement-efw.png"
         ],
-        "last_modified": 1774548903
+        "last_modified": 1775087365
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -66,9 +66,10 @@
             "2/20/2026",
             "2/25/2026",
             "2/27/2026",
-            "3/26/2026"
+            "3/26/2026",
+            "4/1/2026"
         ],
-        "last_modified": 1774548903
+        "last_modified": 1775087365
     },
     "posts": {
         "name": "posts",
@@ -133,9 +134,11 @@
             "3/22/2026, 1:03pm",
             "3/22/2026, 1:06pm",
             "3/23/2026, 2:02pm",
-            "3/23/2026, 6:03pm"
+            "3/23/2026, 6:03pm",
+            "3/31/2026, 8:54am",
+            "4/1/2026, 12:48pm"
         ],
-        "last_modified": 1774328637
+        "last_modified": 1775087296
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -449,7 +452,8 @@
             "tag:trick.pika.page,2005:Post/65974",
             "tag:trick.pika.page,2005:Post/70834",
             "tag:trick.pika.page,2005:Post/72747",
-            "tag:trick.pika.page,2005:Post/82965"
+            "tag:trick.pika.page,2005:Post/82965",
+            "tag:trick.pika.page,2005:Post/94078"
         ],
         "last_modified": 0
     },
@@ -514,7 +518,27 @@
             7438365,
             7441389,
             7443337,
-            7444125
+            7444125,
+            7447174,
+            7448134,
+            7448188,
+            7448219,
+            7457418,
+            7460433,
+            7460442,
+            7464664,
+            7465171,
+            7465776,
+            7470026,
+            7474537,
+            7474541,
+            7475338,
+            7476334,
+            7476896,
+            7479077,
+            7479355,
+            7479889,
+            7481249
         ],
         "last_modified": 0
     },
@@ -560,7 +584,8 @@
             2729619,
             2690800,
             2742604,
-            2759753
+            2759753,
+            2775351
         ],
         "last_modified": 0
     },
@@ -589,7 +614,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2745391/",
             "https://tcs.thecomicseries.com/comics/pl/2756362/",
             "https://tcs.thecomicseries.com/comics/pl/2762366/",
-            "https://tcs.thecomicseries.com/comics/pl/2767646/"
+            "https://tcs.thecomicseries.com/comics/pl/2767646/",
+            "https://tcs.thecomicseries.com/comics/pl/2767681/",
+            "https://tcs.thecomicseries.com/comics/pl/2772569/"
         ],
         "last_modified": 0
     },
@@ -665,9 +692,10 @@
             "2/26/2026made a [random oc generator](https://nomnomnami.com/games/random-oc.html)",
             "2/27/2026made a [random pairing generator](https://nomnomnami.com/games/random-pairing.html) too",
             "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)",
-            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out!"
+            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out!",
+            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out! updated [namiverse](https://nomnomnami.com/namiverse.html) page too (i realized TCS was missing on there lol)"
         ],
-        "last_modified": 1774548903
+        "last_modified": 1775087365
     },
     "post_status": {
         "name": "post_status",
@@ -683,9 +711,10 @@
             "color": 6973555
         },
         "saved_ids": [
-            "3/20/2026**working on:** DROP GAME\n**listening to:** [Polymadonna](https://www.youtube.com/watch?v=dlcGOhDS8KY) / NILFRUITS\n**the vibe:** new release next week wow\n**playing:** fields of mistria (or at least i was, i've mostly been watching youtube now)\n"
+            "3/20/2026**working on:** DROP GAME\n**listening to:** [Polymadonna](https://www.youtube.com/watch?v=dlcGOhDS8KY) / NILFRUITS\n**the vibe:** new release next week wow\n**playing:** fields of mistria (or at least i was, i've mostly been watching youtube now)\n",
+            "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n"
         ],
-        "last_modified": 1774328637
+        "last_modified": 1775087296
     },
     "patreon": {
         "name": "patreon",
@@ -722,7 +751,8 @@
             "151400901",
             "152101347",
             "153783886",
-            "153925878"
+            "153925878",
+            "154537391"
         ],
         "last_modified": 0
     }
