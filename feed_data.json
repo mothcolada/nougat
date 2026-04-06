@@ -15,7 +15,7 @@
             "/images/announcement-tcs.png",
             "/images/announcement-efw.png"
         ],
-        "last_modified": 1775087365
+        "last_modified": 1775286037
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -67,9 +67,10 @@
             "2/25/2026",
             "2/27/2026",
             "3/26/2026",
-            "4/1/2026"
+            "4/1/2026",
+            "4/3/2026"
         ],
-        "last_modified": 1775087365
+        "last_modified": 1775286037
     },
     "posts": {
         "name": "posts",
@@ -139,9 +140,10 @@
             "4/1/2026, 12:48pm",
             "4/1/2026, 10:13pm",
             "4/2/2026, 12:50pm",
-            "4/3/2026, 8:20am"
+            "4/3/2026, 8:20am",
+            "4/5/2026, 8:52pm"
         ],
-        "last_modified": 1775244023
+        "last_modified": 1775462066
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -174,7 +176,8 @@
             "tag:nomnomnami.pika.page,2005:Post/79288",
             "tag:nomnomnami.pika.page,2005:Post/80938",
             "tag:nomnomnami.pika.page,2005:Post/82912",
-            "tag:nomnomnami.pika.page,2005:Post/87537"
+            "tag:nomnomnami.pika.page,2005:Post/87537",
+            "tag:nomnomnami.pika.page,2005:Post/94867"
         ],
         "last_modified": 0
     },
@@ -545,7 +548,13 @@
             7481249,
             7486716,
             7486722,
-            7488622
+            7488622,
+            7490774,
+            7490794,
+            7490807,
+            7491066,
+            7496176,
+            7505395
         ],
         "last_modified": 0
     },
@@ -701,9 +710,10 @@
             "2/27/2026made a [random pairing generator](https://nomnomnami.com/games/random-pairing.html) too",
             "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)",
             "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out!",
-            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out! updated [namiverse](https://nomnomnami.com/namiverse.html) page too (i realized TCS was missing on there lol)"
+            "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out! updated [namiverse](https://nomnomnami.com/namiverse.html) page too (i realized TCS was missing on there lol)",
+            "4/3/2026updated many [character pages](https://nomnomnami.com/characters/)"
         ],
-        "last_modified": 1775087365
+        "last_modified": 1775286037
     },
     "post_status": {
         "name": "post_status",
@@ -722,7 +732,7 @@
             "3/20/2026**working on:** DROP GAME\n**listening to:** [Polymadonna](https://www.youtube.com/watch?v=dlcGOhDS8KY) / NILFRUITS\n**the vibe:** new release next week wow\n**playing:** fields of mistria (or at least i was, i've mostly been watching youtube now)\n",
             "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n"
         ],
-        "last_modified": 1775244023
+        "last_modified": 1775462066
     },
     "patreon": {
         "name": "patreon",

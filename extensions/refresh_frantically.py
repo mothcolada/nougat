@@ -13,11 +13,15 @@ class RefreshFrantically(commands.Cog):
         self.refresh.start()
     
 
-    @tasks.loop(seconds=20.0)
+    @tasks.loop(seconds=10.0)
     async def refresh(self):
         if self.bot.is_ready():
-            response = requests.get(f"https://nomnomnami.itch.io/week-with-timber?password={os.environ['WWT_PASSWORD']}")
+            headers = {
+                "Cookie": os.environ['WWT_COOKIE']
+            }
+            response = requests.get(f"https://nomnomnami.itch.io/week-with-timber?password={os.environ['WWT_PASSWORD']}", headers=headers)
             soup = BeautifulSoup(response.content, 'html.parser')
+            print(soup)
             timestamp = soup.find('div', {'class': 'update_timestamp'})
             if not timestamp:
                 return
