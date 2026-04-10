@@ -13,9 +13,10 @@
         },
         "saved_ids": [
             "/images/announcement-tcs.png",
-            "/images/announcement-efw.png"
+            "/images/announcement-efw.png",
+            "/images/announcement-cs.png"
         ],
-        "last_modified": 1775286037
+        "last_modified": 1775849754
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -68,9 +69,11 @@
             "2/27/2026",
             "3/26/2026",
             "4/1/2026",
-            "4/3/2026"
+            "4/3/2026",
+            "4/7/2026",
+            "4/10/2026"
         ],
-        "last_modified": 1775286037
+        "last_modified": 1775849754
     },
     "posts": {
         "name": "posts",
@@ -141,9 +144,14 @@
             "4/1/2026, 10:13pm",
             "4/2/2026, 12:50pm",
             "4/3/2026, 8:20am",
-            "4/5/2026, 8:52pm"
+            "4/5/2026, 8:52pm",
+            "4/7/2026, 7:50am",
+            "4/7/2026, 7:53am",
+            "4/7/2026, 7:57am",
+            "4/7/2026, 10:20am",
+            "4/8/2026, 11:12am"
         ],
-        "last_modified": 1775462066
+        "last_modified": 1775686379
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -374,9 +382,42 @@
             "333e9ccbc62c5a95bdc66e9f2067a9d7df36f9c4",
             "bd01b6c79b5ed3524338b62f2f819c3227275158",
             "34395d50d9bf6c70641ac9472a2fa6bcce897e2c",
-            "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+            "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+            "373ab9f6cd44bd55071a92140ff9ddfde605b214",
+            "a7d60a7b14c0aa832335e2cb918c2f7bf84132a7",
+            "eddc20a8c582698b594923f5d1bda7af0e373638",
+            "5073aec4ad212528f575d085deb847acbdc2e57e",
+            "d2f334e712fcdda9028d1945bd0fab54c256dc29",
+            "bffeb65640fcccfccbaf725fb176c5bc07f79a8a",
+            "7a45808a0a450b6a79f15a26f8b6bbb2cfa85b86",
+            "cc79093512b50fb527d28e83707a43206b5ff200",
+            "8befcd4dd8ce06d84a42cef567715151ccbeadd1",
+            "92a97e96a0405e7bed2f6182e2712d46c5225f84",
+            "f2c2744ab19ba69aee85136fee0ebc69719aab6f",
+            "ef673fbd8ab51153d816ee0b3f1dfa4e34a07d04",
+            "9731fc2af1169c13fc45f8e22dd6b4e6422fa37f",
+            "237b0130ec6dde88af9d6c2694723e498d087e7b",
+            "5a763177166fb94ba44d5176c6dfc99a07e57c06",
+            "725c0c227cd028342b12fde95cd2b03e68b31b33",
+            "63efc66b74ab38235cea37fc4fee8596a13c95c8",
+            "b83d2b13314f028fbac8436d53c34afeff8790ab",
+            "f69c1e4c4c63828b7d394409cc325d9d67cea1a2",
+            "4e65fceabb10528fc0bb97e405c6a08c667dbf6e",
+            "f01c199bb06fec8a576062a34b1f429a1bb10aa5",
+            "0d2859dc1011c316fed88cef3aa7df37163c92a0",
+            "e67119eff36a19df6c5c53a3f6d241abb1809e7c",
+            "5195400a391ac1c72c6444c4fb9e6f6613e86720",
+            "412e1aec82d88200e5acc02837108b460eb6eec8",
+            "b26dcb48a8ace8b2d3673bd1b12b81dcdc449fc4",
+            "21ce5f05e5ff487bf9f08a3a577881fbc2c265ec",
+            "3fd5b2c98633cd14d39b9fd28977fcec788bb8bb",
+            "62f702c6a543286037e9268f676949e0191e51a9",
+            "1d75604a2df4ec7ce085886b60b0709b12ceec6d",
+            "30d97a818a64ae1a7b9c506224fea55b6f611ce7",
+            "ab389b83f80728ff810f28ab91dad2e8635dcb58",
+            "fa956eef3af79d53839d12e25e076cc709daebfc"
         ],
-        "last_modified": 1769596338
+        "last_modified": 1775863263
     },
     "status_cafe": {
         "name": "status_cafe",
@@ -414,7 +455,8 @@
             "https://status.cafe/users/nomnomnami/208603",
             "https://status.cafe/users/nomnomnami/217403",
             "https://status.cafe/users/nomnomnami/219560",
-            "https://status.cafe/users/nomnomnami/221794"
+            "https://status.cafe/users/nomnomnami/221794",
+            "https://status.cafe/users/nomnomnami/224145"
         ],
         "last_modified": 0
     },
@@ -554,7 +596,16 @@
             7490807,
             7491066,
             7496176,
-            7505395
+            7505395,
+            7508289,
+            7508291,
+            7510879,
+            7517857,
+            7518216,
+            7518306,
+            7518315,
+            7519832,
+            7522811
         ],
         "last_modified": 0
     },
@@ -601,7 +652,8 @@
             2690800,
             2742604,
             2759753,
-            2775351
+            2775351,
+            2775467
         ],
         "last_modified": 0
     },
@@ -633,7 +685,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2767646/",
             "https://tcs.thecomicseries.com/comics/pl/2767681/",
             "https://tcs.thecomicseries.com/comics/pl/2772569/",
-            "https://tcs.thecomicseries.com/comics/pl/2782525/"
+            "https://tcs.thecomicseries.com/comics/pl/2782525/",
+            "https://tcs.thecomicseries.com/comics/pl/2783812/",
+            "https://tcs.thecomicseries.com/comics/pl/2789832/"
         ],
         "last_modified": 0
     },
@@ -711,9 +765,11 @@
             "3/5/2026updated faves list on my [about page](https://nomnomnami.com/about.html)",
             "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out!",
             "3/26/2026updated [game releases](https://nomnomnami.com/games/) and [character gallery](https://nomnomnami.com/characters/) since escape from wormwood came out! updated [namiverse](https://nomnomnami.com/namiverse.html) page too (i realized TCS was missing on there lol)",
-            "4/3/2026updated many [character pages](https://nomnomnami.com/characters/)"
+            "4/3/2026updated many [character pages](https://nomnomnami.com/characters/)",
+            "4/8/2026still updating [character pages](https://nomnomnami.com/characters/), added webcomic banners to my front page since i'm not writing each update in my newsfeed anymore",
+            "4/10/2026new [NWT doodle comic](https://nomnomnami.com/comics/nwt/) (from last month, but i will be posting an actual new one tomorrow too)"
         ],
-        "last_modified": 1775286037
+        "last_modified": 1775849754
     },
     "post_status": {
         "name": "post_status",
@@ -730,9 +786,10 @@
         },
         "saved_ids": [
             "3/20/2026**working on:** DROP GAME\n**listening to:** [Polymadonna](https://www.youtube.com/watch?v=dlcGOhDS8KY) / NILFRUITS\n**the vibe:** new release next week wow\n**playing:** fields of mistria (or at least i was, i've mostly been watching youtube now)\n",
-            "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n"
+            "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n",
+            "4/7/2026**working on:** week with timber\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** happy~!\n**playing:** mobile games\n"
         ],
-        "last_modified": 1775462066
+        "last_modified": 1775686379
     },
     "patreon": {
         "name": "patreon",
@@ -771,7 +828,8 @@
             "153783886",
             "153925878",
             "154537391",
-            "154608827"
+            "154608827",
+            "154947425"
         ],
         "last_modified": 0
     }
