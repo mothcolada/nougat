@@ -726,13 +726,14 @@ class NamiFeeds(commands.Cog):
                 raise Exception('more than 10 files time to die')
             
             m: discord.Message = await channel.send(message.role_ping(), embed=message.get_embed())  # type: ignore -- channel is assumed to support send
-            if self.bot.is_nougat:
+            if self.bot.is_nougat and channel.is_news():
                 await m.publish()
 
 
             if len(message.attachments) > 0:
                 m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
-                await m.publish()
+                if channel.is_news():
+                    await m.publish()
         
         # save new stuff
         json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
