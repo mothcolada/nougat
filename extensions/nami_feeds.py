@@ -240,7 +240,7 @@ def html_to_discord(html: BeautifulSoup):
                 images = images + html_to_discord(child)['images']
             elif 'bubble' in child['class']:
                 text += '\n> '+html_to_discord(child)['text'].replace('\n', '\n> ')
-            elif 'response' in child['class']:
+            elif 'response' in child['class'] or 'content' in child['class']:
                 text += html_to_discord(child)['text']
                 images = images + html_to_discord(child)['images']
             elif 'asker' in child['class']:
@@ -348,17 +348,21 @@ def parse_ask(soup):
 
     messages = []
     for post in posts:
-        bubbles = post.find_all('div', {'class': 'bubble'})
-        plain = ''.join([bubble.text.strip() for bubble in bubbles])
-
         if post.find('ul', {'class': 'tags'}) != None:
-            post.find('ul', {'class': 'tags'})
             tags = [c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
             if len(tags) > 0:
                 tags = '  •  ' + '  '.join(tags)
 
+        paragraph = post.find('p')
+        beginning = ''
+        if paragraph:
+            beginning = paragraph.text
+            if len(beginning) >= 20:
+                beginning = beginning[:20]
+        id = beginning + hashlib.sha1(bytes(post.text, 'utf-8')).hexdigest()
+
         message = Message('ask',
-                          id = hashlib.sha1(bytes(plain, 'utf-8')).hexdigest(),
+                          id = id,
                           description = html_to_discord(post)['text'],
                           images = [image for image in html_to_discord(post)['images']])
         messages.append(message)
