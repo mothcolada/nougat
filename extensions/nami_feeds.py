@@ -58,7 +58,8 @@ icons = {
     'phoenix': '<:icon_phoenix:1450670773009252533>',
     'tundra': '<:icon_tundra:1450670774783578173>',
     'drop': '<:icon_drop:1450670771704827924>',
-    'fennel': '<:icon_fennel:1464368764731527335>'
+    'fennel': '<:icon_fennel:1464368764731527335>',
+    'mason': '<:icon_mason:1493038274854260786>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',
@@ -189,6 +190,8 @@ def paragraph(p):
                 text += '**' + clean(c.string) + '**'
             elif c.name == 'em':
                 text += '*' + clean(c.string) + '*'
+            elif c.name == 'del':
+                text += '~~' + clean(c.string) + '~~'
             elif c.name == 'code':
                 text += '`' + clean(c.string) + '`'
             elif c.name == 'small':
