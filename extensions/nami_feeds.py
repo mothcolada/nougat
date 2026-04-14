@@ -725,7 +725,7 @@ class NamiFeeds(commands.Cog):
 
         # get all the messages to send
         messages: list[Message] = self.feed(source)
-        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 15:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 150:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             await self.bot.report('too many messages to send')
 
         for message in messages:
