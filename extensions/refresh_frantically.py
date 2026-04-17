@@ -21,7 +21,7 @@ class RefreshFrantically(commands.Cog):
             timestamp = soup.find('div', {'class': 'update_timestamp'})
             if not timestamp:
                 return
-            if timestamp.find('abbr')['title'] != '19 January 2026 @ 22:20 UTC':
+            if timestamp.find('abbr')['title'] != '17 April 2026 @ 20:03 UTC':
                 await self.bot.get_channel(1074754885070897202).send('<@422162909582589963> we might be back ' + str(response.status_code))
     
 
