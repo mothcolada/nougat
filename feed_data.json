@@ -16,7 +16,7 @@
             "/images/announcement-efw.png",
             "/images/announcement-cs.png"
         ],
-        "last_modified": 1776332031
+        "last_modified": 1776740639
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -75,7 +75,7 @@
             "4/13/2026",
             "4/15/2026"
         ],
-        "last_modified": 1776332031
+        "last_modified": 1776740639
     },
     "posts": {
         "name": "posts",
@@ -152,9 +152,14 @@
             "4/7/2026, 7:57am",
             "4/7/2026, 10:20am",
             "4/8/2026, 11:12am",
-            "4/13/2026, 10:09pm"
+            "4/13/2026, 10:09pm",
+            "4/17/2026, 1:17pm",
+            "4/18/2026, 1:04pm",
+            "4/19/2026, 8:36pm",
+            "4/20/2026, 10:30am",
+            "4/20/2026, 3:58pm"
         ],
-        "last_modified": 1776157792
+        "last_modified": 1776740332
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -605,7 +610,8 @@
             "https://status.cafe/users/nomnomnami/221794",
             "https://status.cafe/users/nomnomnami/224145",
             "https://status.cafe/users/nomnomnami/224482",
-            "https://status.cafe/users/nomnomnami/224791"
+            "https://status.cafe/users/nomnomnami/224791",
+            "https://status.cafe/users/nomnomnami/227391"
         ],
         "last_modified": 0
     },
@@ -759,7 +765,8 @@
             7542803,
             7555115,
             7555389,
-            7556521
+            7556521,
+            7561108
         ],
         "last_modified": 0
     },
@@ -808,7 +815,8 @@
             2759753,
             2775351,
             2775467,
-            2797445
+            2797445,
+            2802182
         ],
         "last_modified": 0
     },
@@ -925,9 +933,11 @@
             "4/3/2026updated many [character pages](https://nomnomnami.com/characters/)",
             "4/8/2026still updating [character pages](https://nomnomnami.com/characters/), added webcomic banners to my front page since i'm not writing each update in my newsfeed anymore",
             "4/10/2026new [NWT doodle comic](https://nomnomnami.com/comics/nwt/) (from last month, but i will be posting an actual new one tomorrow too)",
-            "4/15/2026new NWT doodle comic: [Mason AU](https://nomnomnami.com/comics/nwt/mason-act1.html)"
+            "4/15/2026new NWT doodle comic: [Mason AU](https://nomnomnami.com/comics/nwt/mason-act1.html)",
+            "4/19/2026updated my [links](https://nomnomnami.com/links/) page, i saw someone do tables for theirs and it's so much more readable than my old list lol. put the neighbors at the top and removed my web dev links because they're going in another section of the site that is still WIP (i had already moved them out of the html expecting to make it live sooner, oh well)",
+            "4/20/2026added a [fonts page](https://nomnomnami.com/downloads/fonts) where u can download all the fonts i've made (there's 3 of them)"
         ],
-        "last_modified": 1776332031
+        "last_modified": 1776740639
     },
     "post_status": {
         "name": "post_status",
@@ -946,9 +956,10 @@
             "3/20/2026**working on:** DROP GAME\n**listening to:** [Polymadonna](https://www.youtube.com/watch?v=dlcGOhDS8KY) / NILFRUITS\n**the vibe:** new release next week wow\n**playing:** fields of mistria (or at least i was, i've mostly been watching youtube now)\n",
             "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n",
             "4/7/2026**working on:** week with timber\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** happy~!\n**playing:** mobile games\n",
-            "4/13/2026**working on:** mason AU comics\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** i can't believe there's a second version of timbei to love now\n**playing:** there's no time for games\n"
+            "4/13/2026**working on:** mason AU comics\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** i can't believe there's a second version of timbei to love now\n**playing:** there's no time for games\n",
+            "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n"
         ],
-        "last_modified": 1776157792
+        "last_modified": 1776740332
     },
     "patreon": {
         "name": "patreon",
