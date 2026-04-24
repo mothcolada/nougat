@@ -1,6 +1,7 @@
 import datetime
 import json
 import zoneinfo
+import logging
 
 from discord.ext import commands, tasks
 
@@ -27,6 +28,7 @@ class DailyCharacter(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.daily_character.start()
+        print_calendar()
 
     def cog_unload(self):
         self.daily_character.cancel()
@@ -42,31 +44,32 @@ class DailyCharacter(commands.Cog):
 
     async def new_character(self):
         now_est = datetime.datetime.now(tz=eastern_time)
-
         char = get_char_for_date(now_est)
-        new_icon = open(f"faces/{char}.png", "rb").read()  # FIXME: Unclosed file descriptor
+        if char == '':
+            print('uhm')
+            await self.bot.report('daily character not set for today')
+        
+        with open(f"faces/{char}.png", "rb") as image:
+            new_icon = image.read()
 
         server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
         if not server:
             raise Exception('server not found')
 
         # compare bytes of current icon and the icon we want to change it to, only continue if different
-
         current_icon = server.icon
         if not current_icon:
             raise Exception('icon not found')
         
         current_icon = await current_icon.read()
         if new_icon == current_icon:
-            print("same icon")
+            logging.info("new icon matches current icon; cancelling daily character")
             return
 
         await server.edit(icon=new_icon)
 
         channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_THREAD if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
         await channel.send(daily_message(now_est))
-        # except Exception as e:
-        #     await self.bot.report(e)
 
 
 def daily_message(date: datetime.datetime):
@@ -93,17 +96,25 @@ def daily_message(date: datetime.datetime):
 
 
 def get_char_for_date(date: datetime.datetime):
-    # 2024 is a year with a leap day, calendar includes leap day for when it happens
-    day_in_year = (datetime.datetime(2024, date.month, date.day) - datetime.datetime(2024, 1, 1)).days
+    # 2016 is a year with a leap day, calendar includes leap day for when it happens
+    day_in_year = (datetime.datetime(2016, date.month, date.day) - datetime.datetime(2016, 1, 1)).days
     return char_data["daily"][day_in_year]
 
 
-def name_of_char(id):
+def name_of_char(id: str):
     # specifal formatting
+    if id == "":
+        return ""
     if id == "mrbrew":
         return "Mr. Brew"
+    if id == "canarymama":
+        return "Canary Mama"
+    if id == "ukulelebat":
+        return "Ukulele Bat"
     if id == "nougat":
         return "Me"
+    if id in ['searina', 'illi', 'ezel', 'vido']:
+        return id.upper()
 
     # other characters
     name = id.title()
@@ -112,10 +123,10 @@ def name_of_char(id):
     return name
 
 
-def print_calendar(year):
-    date = datetime.datetime(year, 1, 1)
-    while date.year == year:
-        print(f"{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}")
+def print_calendar():
+    date = datetime.datetime(2016, 1, 1)
+    while date.year == 2016:
+        logging.debug(f"{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}")
         date += datetime.timedelta(days=1)
 
 

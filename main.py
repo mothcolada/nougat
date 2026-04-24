@@ -4,6 +4,7 @@ import os
 import pathlib
 import pkgutil
 from functools import cached_property
+import logging
 
 import aiohttp
 # import asqlite
@@ -12,13 +13,12 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 # TODO: use database instead of json for nami feeds
-# TODO: add more characters to calendar
 
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
 MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
 
-DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"  # FIXME: Make a configuration option
+DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
 
 INTENTS = discord.Intents.default()
 INTENTS.message_content = True
@@ -29,6 +29,8 @@ class Nougat(commands.Bot):
     session: aiohttp.ClientSession
     # pool: asqlite.Pool
     user: discord.ClientUser
+    log_webhook: discord.Webhook
+
 
     def __init__(
         self,
@@ -42,29 +44,27 @@ class Nougat(commands.Bot):
         # self.pool = pool
         self.STARTED_AT = discord.utils.utcnow()
 
+        self.log_webhook = discord.Webhook.from_url(os.environ["WEBHOOK_URL"], session=session)
+
+
     async def setup_hook(self):
         extensions = [m.name for m in pkgutil.iter_modules(["extensions"], prefix="extensions.") if not m.name.startswith("_")]
         for extension in extensions:
             await self.load_extension(extension)
+
 
     async def on_ready(self):
         await self.log(f"good morning world i am {self.user.name}")
 
 
     async def log(self, message: str):
-        # TODO: Use logging instead of prints
-        # TODO: Use a webhook instead of get_channel().send
-        print(message)
+        logging.info(message)
+        await self.log_webhook.send(message, username=self.user.name)
 
-        channel = self.get_channel(LOG_CHANNEL)
-
-        if not channel:
-            raise RuntimeError("could not retrieve log channel")
-
-        await channel.send(message)  # type: ignore -- channel is assumed to support send
 
     async def report(self, message):
-        await self.log(f"<@{MOTHCOLADA_ID}> " + str(message))
+        logging.error(message)
+        await self.log_webhook.send(f"<@{MOTHCOLADA_ID}> {message}", username=self.user.name)
 
 
     @cached_property
@@ -87,6 +87,7 @@ async def main():
     ):
         discord.utils.setup_logging()
         await bot.start(os.environ["TOKEN"])
+
 
 
 if __name__ == "__main__":
