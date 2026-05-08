@@ -14,9 +14,10 @@
         "saved_ids": [
             "/images/announcement-tcs.png",
             "/images/announcement-efw.png",
-            "/images/announcement-cs.png"
+            "/images/announcement-cs.png",
+            "/images/announcement-cs2.png"
         ],
-        "last_modified": 1776920641
+        "last_modified": 1778202373
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -74,9 +75,12 @@
             "4/10/2026",
             "4/13/2026",
             "4/15/2026",
-            "4/22/2026"
+            "4/22/2026",
+            "4/30/2026",
+            "5/3/2026",
+            "5/7/2026"
         ],
-        "last_modified": 1776920641
+        "last_modified": 1778202373
     },
     "posts": {
         "name": "posts",
@@ -158,9 +162,21 @@
             "4/18/2026, 1:04pm",
             "4/19/2026, 8:36pm",
             "4/20/2026, 10:30am",
-            "4/20/2026, 3:58pm"
+            "4/20/2026, 3:58pm",
+            "4/24/2026, 5:14pm",
+            "4/24/2026, 9:48pm",
+            "4/25/2026, 1:25pm",
+            "4/26/2026, 3:15pm",
+            "4/29/2026, 8:07pm",
+            "4/30/2026, 12:05pm",
+            "5/1/2026, 5:00pm",
+            "5/2/2026, 9:41pm",
+            "5/3/2026, 7:23am",
+            "5/3/2026, 11:26am",
+            "5/7/2026, 2:00pm",
+            "5/7/2026, 5:32pm"
         ],
-        "last_modified": 1776740332
+        "last_modified": 1778214828
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -612,7 +628,8 @@
             "https://status.cafe/users/nomnomnami/224145",
             "https://status.cafe/users/nomnomnami/224482",
             "https://status.cafe/users/nomnomnami/224791",
-            "https://status.cafe/users/nomnomnami/227391"
+            "https://status.cafe/users/nomnomnami/227391",
+            "https://status.cafe/users/nomnomnami/230648"
         ],
         "last_modified": 0
     },
@@ -658,7 +675,8 @@
             "tag:trick.pika.page,2005:Post/70834",
             "tag:trick.pika.page,2005:Post/72747",
             "tag:trick.pika.page,2005:Post/82965",
-            "tag:trick.pika.page,2005:Post/94078"
+            "tag:trick.pika.page,2005:Post/94078",
+            "tag:trick.pika.page,2005:Post/101967"
         ],
         "last_modified": 0
     },
@@ -768,7 +786,16 @@
             7555389,
             7556521,
             7561108,
-            7577612
+            7577612,
+            7589580,
+            7593632,
+            7594570,
+            7594672,
+            7597587,
+            7626177,
+            7627427,
+            7627473,
+            7631787
         ],
         "last_modified": 0
     },
@@ -821,7 +848,10 @@
             2802182,
             2802955,
             2804528,
-            2804562
+            2804562,
+            2806025,
+            2810834,
+            2810940
         ],
         "last_modified": 0
     },
@@ -857,7 +887,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2783812/",
             "https://tcs.thecomicseries.com/comics/pl/2789832/",
             "https://tcs.thecomicseries.com/comics/pl/2794236/",
-            "https://tcs.thecomicseries.com/comics/pl/2799670/"
+            "https://tcs.thecomicseries.com/comics/pl/2799670/",
+            "https://tcs.thecomicseries.com/comics/pl/2808746/",
+            "https://tcs.thecomicseries.com/comics/pl/2821536/"
         ],
         "last_modified": 0
     },
@@ -940,9 +972,10 @@
             "4/10/2026new [NWT doodle comic](https://nomnomnami.com/comics/nwt/) (from last month, but i will be posting an actual new one tomorrow too)",
             "4/15/2026new NWT doodle comic: [Mason AU](https://nomnomnami.com/comics/nwt/mason-act1.html)",
             "4/19/2026updated my [links](https://nomnomnami.com/links/) page, i saw someone do tables for theirs and it's so much more readable than my old list lol. put the neighbors at the top and removed my web dev links because they're going in another section of the site that is still WIP (i had already moved them out of the html expecting to make it live sooner, oh well)",
-            "4/20/2026added a [fonts page](https://nomnomnami.com/downloads/fonts) where u can download all the fonts i've made (there's 3 of them)"
+            "4/20/2026added a [fonts page](https://nomnomnami.com/downloads/fonts) where u can download all the fonts i've made (there's 3 of them)",
+            "4/26/2026added new pages for my [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) screenshots/videos"
         ],
-        "last_modified": 1776920641
+        "last_modified": 1777847288
     },
     "post_status": {
         "name": "post_status",
@@ -964,7 +997,7 @@
             "4/13/2026**working on:** mason AU comics\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** i can't believe there's a second version of timbei to love now\n**playing:** there's no time for games\n",
             "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n"
         ],
-        "last_modified": 1776740332
+        "last_modified": 1777847207
     },
     "patreon": {
         "name": "patreon",
@@ -1007,7 +1040,10 @@
             "154947425",
             "155139171",
             "155883381",
-            "156384673"
+            "156384673",
+            "156688007",
+            "156888034",
+            "157035159"
         ],
         "last_modified": 0
     }

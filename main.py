@@ -54,10 +54,10 @@ class Nougat(commands.Bot):
 
 
     async def on_ready(self):
-        await self.log(f"good morning world i am {self.user.name}")
+        await self.log("good morning world")
 
 
-    async def log(self, message: str):
+    async def log(self, message):
         logging.info(message)
         await self.log_webhook.send(message, username=self.user.name)
 
@@ -87,7 +87,6 @@ async def main():
     ):
         discord.utils.setup_logging()
         await bot.start(os.environ["TOKEN"])
-
 
 
 if __name__ == "__main__":

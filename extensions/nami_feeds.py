@@ -662,7 +662,7 @@ class NamiFeeds(commands.Cog):
                     source = SOURCES[s]
                     await self.check(source)
                 except Exception as e:
-                    await self.bot.report(e)
+                    await self.bot.report(s + str(e))
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
@@ -690,7 +690,7 @@ class NamiFeeds(commands.Cog):
         elif 'application/json' in response.headers['Content-Type'] or 'application/vnd.api+json' in response.headers['Content-Type']:
             soup = response.content  # not actually soup
         else:
-            raise Exception(f'unrecognized content type {response.headers["Content-Type"]}')
+            raise Exception(f"unrecognized content type {response.headers['Content-Type']} for {source['name']}")
 
         return soup
 
