@@ -92,6 +92,7 @@ class Message():
         author: (str | None) = None,
         author_icon: (str | None) = None,
         images = [],
+        thumbnail: (str | None) = None,
         timestamp: (str | None) = None,
     ):
         self.source      = SOURCES[source]
@@ -104,6 +105,7 @@ class Message():
         self.author_icon = author_icon or self.source['embed']['author_icon']
         self.footer      = self.source['embed']['footer']
         self.color       = self.source['embed']['color']
+        self.thumbnail   = thumbnail
 
         self.image = None
         self.attachments = []
@@ -157,18 +159,20 @@ class Message():
 
 
     def get_embed(self) -> discord.Embed:
-        embed = discord.Embed(color       = self.color,
-                              description = self.description,
-                              title       = self.title,
-                              url         = self.url,
-                              timestamp   = self.timestamp)
+        embed = discord.Embed(  color       = self.color,
+                                description = self.description,
+                                title       = self.title,
+                                url         = self.url,
+                                timestamp   = self.timestamp)
+        embed.set_footer(       text        = self.footer)
         if self.image:
-            embed.set_image(  url         = self.image)
+            embed.set_image(    url         = self.image)
         if self.author:
-            embed.set_author( name        = self.author,
-                              url         = self.author_url,
-                              icon_url    = self.author_icon)
-        embed.set_footer(     text        = self.footer)
+            embed.set_author(   name        = self.author,
+                                url         = self.author_url,
+                                icon_url    = self.author_icon)
+        if self.thumbnail:
+            embed.set_thumbnail(url         = self.thumbnail)
         return embed
 
 
@@ -411,23 +415,26 @@ def parse_trick(soup):
 
 
 def parse_neocities(soup):
-#     posts = BeautifulSoup(soup, 'lxml').find_all('item')
+    saved_ids = json.load(open('feed_data.json', 'r'))['neocities']['saved_ids']
 
-#     messages = []
-#     for post in posts:
-#         desc = ''
-#         for file in post.find_all('div', {'class': 'file'}):
-#             desc += '[' + file.find('span').text.strip() + '](' + file.find('a')['href'] + ')\n'  # add line with link for each file
+    posts = soup.find_all('item')
+    messages = []
+    for post in posts:
+        id = post.find('guid').text
+        if id not in saved_ids:
+            new_soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
+            desc = '\n'.join([title.text.replace('\n', '') for title in new_soup.find_all('span', {'class': 'title'})])
 
-#         messages.append({'title': post.find('div', {'class': 'text'}).text,
-#                          'description': desc,
-#                          'timestamp': datetime.datetime.fromtimestamp(int(post.find('a', {'class': 'local-date-title'})['data-timestamp'])),
-#                          'url': 'https://neocities.org' + post.find('img')['src'],  # first image (should be first file)
-#                          'footer': 'Neocities',
-#                          'id': })
+            message = Message('neocities',
+                              id = id,
+                              description = desc,
+                              title = post.find('title').text,
+                              url = post.find('link').text,
+                              thumbnail = soup.find('image').find('url').text,
+                              timestamp = post.find('pubDate').text)
+            messages.append(message)
 
-#     return messages
-    pass
+    return messages
 
 
 def parse_pillowfort(soup):
@@ -610,7 +617,7 @@ funcs = {
     'blog':             parse_blog,
     'ask':              parse_ask,
     'status_cafe':      parse_status_cafe,
-    # 'neocities':        parse_neocities,
+    'neocities':        parse_neocities,
     'trick':            parse_trick,
     'apoc':             parse_apoc,
     'tcs':              parse_tcs,
@@ -651,13 +658,13 @@ class NamiFeeds(commands.Cog):
     async def feeds(self):
         # soups = {}
         # for s in SOURCES:
-        #     if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
+        #     if s in ['neocities', 'patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
         #         try:
         #             source: str = SOURCES[s]
         #             soups[source['link']] = self.get_feed(source)
 
         for s in SOURCES:
-            if s in ['patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
+            if s in ['neocities', 'patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)

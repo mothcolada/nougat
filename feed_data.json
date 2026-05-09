@@ -629,17 +629,37 @@
             "https://status.cafe/users/nomnomnami/224482",
             "https://status.cafe/users/nomnomnami/224791",
             "https://status.cafe/users/nomnomnami/227391",
-            "https://status.cafe/users/nomnomnami/230648"
+            "https://status.cafe/users/nomnomnami/230648",
+            "https://status.cafe/users/nomnomnami/233158"
         ],
         "last_modified": 0
     },
     "neocities": {
         "name": "neocities",
-        "link": "https://neocities.org/site/nomnomnami",
+        "link": "https://neocities.org/site/nomnomnami.rss",
         "channel": 1327524115526979605,
         "role": 1327524420033712173,
-        "embed": {},
-        "saved_ids": [],
+        "embed": {
+            "author": null,
+            "author_url": null,
+            "author_icon": null,
+            "footer": "neocities",
+            "color": 15282768,
+            "timestamp_format": "%a, %d %b %Y %X %z"
+        },
+        "saved_ids": [
+            "https://neocities.org/site/nomnomnami?event_id=6782514",
+            "https://neocities.org/site/nomnomnami?event_id=6798812",
+            "https://neocities.org/site/nomnomnami?event_id=6809904",
+            "https://neocities.org/site/nomnomnami?event_id=6814964",
+            "https://neocities.org/site/nomnomnami?event_id=6821121",
+            "https://neocities.org/site/nomnomnami?event_id=6838203",
+            "https://neocities.org/site/nomnomnami?event_id=6848434",
+            "https://neocities.org/site/nomnomnami?event_id=6854576",
+            "https://neocities.org/site/nomnomnami?event_id=6865295",
+            "https://neocities.org/site/nomnomnami?event_id=6881424",
+            "https://neocities.org/site/nomnomnami?event_id=6888059"
+        ],
         "last_modified": 0
     },
     "trick": {
@@ -889,7 +909,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2794236/",
             "https://tcs.thecomicseries.com/comics/pl/2799670/",
             "https://tcs.thecomicseries.com/comics/pl/2808746/",
-            "https://tcs.thecomicseries.com/comics/pl/2821536/"
+            "https://tcs.thecomicseries.com/comics/pl/2821536/",
+            "https://tcs.thecomicseries.com/comics/pl/2827871/"
         ],
         "last_modified": 0
     },
@@ -975,7 +996,7 @@
             "4/20/2026added a [fonts page](https://nomnomnami.com/downloads/fonts) where u can download all the fonts i've made (there's 3 of them)",
             "4/26/2026added new pages for my [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) screenshots/videos"
         ],
-        "last_modified": 1777847288
+        "last_modified": 1778202373
     },
     "post_status": {
         "name": "post_status",
@@ -995,9 +1016,10 @@
             "4/1/2026**working on:** date senbei (polish mode)\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** unhinged\n**playing:** old school runescape (help)\n",
             "4/7/2026**working on:** week with timber\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** happy~!\n**playing:** mobile games\n",
             "4/13/2026**working on:** mason AU comics\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** i can't believe there's a second version of timbei to love now\n**playing:** there's no time for games\n",
-            "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n"
+            "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n",
+            "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life\n"
         ],
-        "last_modified": 1777847207
+        "last_modified": 1778214828
     },
     "patreon": {
         "name": "patreon",
@@ -1043,7 +1065,8 @@
             "156384673",
             "156688007",
             "156888034",
-            "157035159"
+            "157035159",
+            "157545644"
         ],
         "last_modified": 0
     }
