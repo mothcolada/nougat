@@ -18,7 +18,7 @@
             "/images/announcement-cs2.png",
             "/images/announcement-ag.png"
         ],
-        "last_modified": 1778738713
+        "last_modified": 1779270384
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -84,7 +84,7 @@
             "5/11/2026",
             "5/13/2026"
         ],
-        "last_modified": 1778738713
+        "last_modified": 1779270384
     },
     "posts": {
         "name": "posts",
@@ -185,9 +185,12 @@
             "5/10/2026, 12:16pm",
             "5/11/2026, 12:16pm",
             "5/12/2026, 5:05pm",
-            "5/13/2026, 1:41pm"
+            "5/13/2026, 1:41pm",
+            "5/16/2026, 6:20pm",
+            "5/19/2026, 6:47pm",
+            "5/19/2026, 7:05pm"
         ],
-        "last_modified": 1778719308
+        "last_modified": 1779260599
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -642,7 +645,9 @@
             "https://status.cafe/users/nomnomnami/227391",
             "https://status.cafe/users/nomnomnami/230648",
             "https://status.cafe/users/nomnomnami/233158",
-            "https://status.cafe/users/nomnomnami/233416"
+            "https://status.cafe/users/nomnomnami/233416",
+            "https://status.cafe/users/nomnomnami/235939",
+            "https://status.cafe/users/nomnomnami/236542"
         ],
         "last_modified": 0
     },
@@ -673,7 +678,11 @@
             "https://neocities.org/site/nomnomnami?event_id=6888059",
             "https://neocities.org/site/nomnomnami?event_id=6899257",
             "https://neocities.org/site/nomnomnami?event_id=6910131",
-            "https://neocities.org/site/nomnomnami?event_id=6916710"
+            "https://neocities.org/site/nomnomnami?event_id=6916710",
+            "https://neocities.org/site/nomnomnami?event_id=6927409",
+            "https://neocities.org/site/nomnomnami?event_id=6933294",
+            "https://neocities.org/site/nomnomnami?event_id=6939768",
+            "https://neocities.org/site/nomnomnami?event_id=6950155"
         ],
         "last_modified": 0
     },
@@ -837,7 +846,15 @@
             7656307,
             7656882,
             7658972,
-            7660511
+            7660511,
+            7679419,
+            7679562,
+            7679644,
+            7679890,
+            7680423,
+            7681055,
+            7688190,
+            7693894
         ],
         "last_modified": 0
     },
@@ -897,7 +914,8 @@
             2810942,
             2810943,
             2810944,
-            2810945
+            2810945,
+            2826144
         ],
         "last_modified": 0
     },
@@ -937,7 +955,9 @@
             "https://tcs.thecomicseries.com/comics/pl/2808746/",
             "https://tcs.thecomicseries.com/comics/pl/2821536/",
             "https://tcs.thecomicseries.com/comics/pl/2827871/",
-            "https://tcs.thecomicseries.com/comics/pl/2831674/"
+            "https://tcs.thecomicseries.com/comics/pl/2831674/",
+            "https://tcs.thecomicseries.com/comics/pl/2836643/",
+            "https://tcs.thecomicseries.com/comics/pl/2839228/"
         ],
         "last_modified": 0
     },
@@ -1023,9 +1043,10 @@
             "4/20/2026added a [fonts page](https://nomnomnami.com/downloads/fonts) where u can download all the fonts i've made (there's 3 of them)",
             "4/26/2026added new pages for my [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) screenshots/videos",
             "5/8/2026redid my sidebar and changed the theme swapper to dark mode. sitemap update coming soon (i'm tired so i'm not sure it will be tonight)",
-            "5/9/2026[sitemap](https://nomnomnami.com/sitemap.html) updated!!"
+            "5/9/2026[sitemap](https://nomnomnami.com/sitemap.html) updated!!",
+            "5/19/2026i've been posting so much [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) stuff, please look at it. OH omg i updated my [projects](https://nomnomnami.com/projects.html) page, some of the info was outdated there sorry."
         ],
-        "last_modified": 1778738713
+        "last_modified": 1779270384
     },
     "post_status": {
         "name": "post_status",
@@ -1047,9 +1068,10 @@
             "4/13/2026**working on:** mason AU comics\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** i can't believe there's a second version of timbei to love now\n**playing:** there's no time for games\n",
             "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n",
             "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life\n",
-            "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
+            "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
+            "5/16/2026**working on:** astra's garden steam version\n**listening to:** [\u304a\u3068\u306a\u30d5\u30a9\u30d3\u30a2](https://www.youtube.com/watch?v=hfiKcOu7ezs) / \u9ed2\u3046\u3055\u304e\n**the vibe:** braindead\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
         ],
-        "last_modified": 1778719308
+        "last_modified": 1779260599
     },
     "patreon": {
         "name": "patreon",
@@ -1097,7 +1119,8 @@
             "156888034",
             "157035159",
             "157545644",
-            "158258534"
+            "158258534",
+            "158722913"
         ],
         "last_modified": 0
     }

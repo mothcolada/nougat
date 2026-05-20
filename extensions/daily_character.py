@@ -111,6 +111,8 @@ def name_of_char(id: str):
         return "Canary Mama"
     if id == "ukulelebat":
         return "Ukulele Bat"
+    if id == "sardinequeen":
+        return "Sardine Queen"
     if id == "nougat":
         return "Me"
     if id in ['searina', 'illi', 'ezel', 'vido']:
