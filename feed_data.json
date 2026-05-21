@@ -18,7 +18,7 @@
             "/images/announcement-cs2.png",
             "/images/announcement-ag.png"
         ],
-        "last_modified": 1779270384
+        "last_modified": 1779346558
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -84,7 +84,7 @@
             "5/11/2026",
             "5/13/2026"
         ],
-        "last_modified": 1779270384
+        "last_modified": 1779346558
     },
     "posts": {
         "name": "posts",
@@ -682,7 +682,8 @@
             "https://neocities.org/site/nomnomnami?event_id=6927409",
             "https://neocities.org/site/nomnomnami?event_id=6933294",
             "https://neocities.org/site/nomnomnami?event_id=6939768",
-            "https://neocities.org/site/nomnomnami?event_id=6950155"
+            "https://neocities.org/site/nomnomnami?event_id=6950155",
+            "https://neocities.org/site/nomnomnami?event_id=6956301"
         ],
         "last_modified": 0
     },
@@ -854,7 +855,8 @@
             7680423,
             7681055,
             7688190,
-            7693894
+            7693894,
+            7701911
         ],
         "last_modified": 0
     },
@@ -915,7 +917,8 @@
             2810943,
             2810944,
             2810945,
-            2826144
+            2826144,
+            2836027
         ],
         "last_modified": 0
     },
@@ -1044,9 +1047,10 @@
             "4/26/2026added new pages for my [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) screenshots/videos",
             "5/8/2026redid my sidebar and changed the theme swapper to dark mode. sitemap update coming soon (i'm tired so i'm not sure it will be tonight)",
             "5/9/2026[sitemap](https://nomnomnami.com/sitemap.html) updated!!",
-            "5/19/2026i've been posting so much [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) stuff, please look at it. OH omg i updated my [projects](https://nomnomnami.com/projects.html) page, some of the info was outdated there sorry."
+            "5/19/2026i've been posting so much [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) stuff, please look at it. OH omg i updated my [projects](https://nomnomnami.com/projects.html) page, some of the info was outdated there sorry.",
+            "5/20/2026[custom cursors](https://nomnomnami.com/downloads/cursors/) update: finished treat cursor and added linux downloads! (sorry i have not made more yet)"
         ],
-        "last_modified": 1779270384
+        "last_modified": 1779346558
     },
     "post_status": {
         "name": "post_status",

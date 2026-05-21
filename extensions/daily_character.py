@@ -109,6 +109,8 @@ def name_of_char(id: str):
         return "Mr. Brew"
     if id == "canarymama":
         return "Canary Mama"
+    if id == "crabwitch":
+        return "Crab Witch"
     if id == "ukulelebat":
         return "Ukulele Bat"
     if id == "sardinequeen":
