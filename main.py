@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
 MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
+MOD_ROLE_ID = 1325039139099381812
 
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
 
@@ -55,6 +56,18 @@ class Nougat(commands.Bot):
 
     async def on_ready(self):
         await self.log("good morning world")
+        # channel = self.get_channel(1445985711605158010)
+        # message = await channel.fetch_message(1512008175371554896)
+        # print(message.embeds[0])
+        # # embed = message.embeds[0]
+        # # embed.set_image(url='https://nomnomnami.com/images/announcement-ag_release.png')
+        # # await message.edit(content=message.content, embed=embed)
+        # await self.close()
+
+
+    async def on_message(self, message: discord.Message):
+        if (message.type == discord.MessageType.auto_moderation_action):
+            await message.channel.send(f"<@&{MOD_ROLE_ID}>")
 
 
     async def log(self, message):

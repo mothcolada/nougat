@@ -16,9 +16,11 @@
             "/images/announcement-efw.png",
             "/images/announcement-cs.png",
             "/images/announcement-cs2.png",
-            "/images/announcement-ag.png"
+            "/images/announcement-ag.png",
+            "/images/announcement-ag_release.png",
+            "/images/announcement-underlingpride.png"
         ],
-        "last_modified": 1779526420
+        "last_modified": 1780597127
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -83,9 +85,14 @@
             "5/9/2026",
             "5/11/2026",
             "5/13/2026",
-            "5/22/2026"
+            "5/22/2026",
+            "5/27/2026",
+            "5/28/2026",
+            "5/29/2026",
+            "6/1/2026",
+            "6/4/2026"
         ],
-        "last_modified": 1779526420
+        "last_modified": 1780597127
     },
     "posts": {
         "name": "posts",
@@ -193,9 +200,18 @@
             "5/21/2026, 7:16am",
             "5/22/2026, 1:01pm",
             "5/24/2026, 8:18am",
-            "5/24/2026, 3:00pm"
+            "5/24/2026, 3:00pm",
+            "5/28/2026, 10:08am",
+            "5/28/2026, 8:22pm",
+            "5/30/2026, 10:35am",
+            "5/31/2026, 10:40am",
+            "5/31/2026, 7:32pm",
+            "6/1/2026, 8:42am",
+            "6/1/2026, 4:21pm",
+            "6/3/2026, 10:01pm",
+            "6/4/2026, 7:34am"
         ],
-        "last_modified": 1779674773
+        "last_modified": 1780598119
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -230,7 +246,8 @@
             "tag:nomnomnami.pika.page,2005:Post/82912",
             "tag:nomnomnami.pika.page,2005:Post/87537",
             "tag:nomnomnami.pika.page,2005:Post/94867",
-            "tag:nomnomnami.pika.page,2005:Post/104697"
+            "tag:nomnomnami.pika.page,2005:Post/104697",
+            "tag:nomnomnami.pika.page,2005:Post/105481"
         ],
         "last_modified": 0
     },
@@ -604,9 +621,10 @@
             "I wanna sneak in thi14c4f613ec83d9f7c50b72edeb1c144c309a52a2",
             "Also want to add thi91a099911dee1a083e9721a1261cb02547cd9e67",
             "alright i'm all aske330039673233a4b65415aa389d0e8b1778e6f5fc",
-            "this is where the nec5cc9a22d806ddc7cf33fcb3eb43e7e346f187c0"
+            "this is where the nec5cc9a22d806ddc7cf33fcb3eb43e7e346f187c0",
+            "this is where the nebd562ccdf65e1613102befb22c33610052c9d14a"
         ],
-        "last_modified": 1776374708
+        "last_modified": 1780045050
     },
     "status_cafe": {
         "name": "status_cafe",
@@ -653,7 +671,10 @@
             "https://status.cafe/users/nomnomnami/233158",
             "https://status.cafe/users/nomnomnami/233416",
             "https://status.cafe/users/nomnomnami/235939",
-            "https://status.cafe/users/nomnomnami/236542"
+            "https://status.cafe/users/nomnomnami/236542",
+            "https://status.cafe/users/nomnomnami/239537",
+            "https://status.cafe/users/nomnomnami/241298",
+            "https://status.cafe/users/nomnomnami/241439"
         ],
         "last_modified": 0
     },
@@ -692,7 +713,12 @@
             "https://neocities.org/site/nomnomnami?event_id=6956301",
             "https://neocities.org/site/nomnomnami?event_id=6962779",
             "https://neocities.org/site/nomnomnami?event_id=6971799",
-            "https://neocities.org/site/nomnomnami?event_id=6977201"
+            "https://neocities.org/site/nomnomnami?event_id=6977201",
+            "https://neocities.org/site/nomnomnami?event_id=6993389",
+            "https://neocities.org/site/nomnomnami?event_id=6999292",
+            "https://neocities.org/site/nomnomnami?event_id=7015214",
+            "https://neocities.org/site/nomnomnami?event_id=7022856",
+            "https://neocities.org/site/nomnomnami?event_id=7035761"
         ],
         "last_modified": 0
     },
@@ -879,7 +905,24 @@
             7714918,
             7714938,
             7714952,
-            7715375
+            7715375,
+            7724702,
+            7724719,
+            7724784,
+            7724728,
+            7733052,
+            7724736,
+            7739277,
+            7724745,
+            7743135,
+            7743400,
+            7746808,
+            7748678,
+            7761445,
+            7768151,
+            7772069,
+            7772875,
+            7773429
         ],
         "last_modified": 0
     },
@@ -941,7 +984,13 @@
             2810944,
             2810945,
             2826144,
-            2836027
+            2836027,
+            2840551,
+            2840552,
+            2850205,
+            2850208,
+            2854168,
+            2866523
         ],
         "last_modified": 0
     },
@@ -984,7 +1033,10 @@
             "https://tcs.thecomicseries.com/comics/pl/2831674/",
             "https://tcs.thecomicseries.com/comics/pl/2836643/",
             "https://tcs.thecomicseries.com/comics/pl/2839228/",
-            "https://tcs.thecomicseries.com/comics/pl/2845454/"
+            "https://tcs.thecomicseries.com/comics/pl/2845454/",
+            "https://tcs.thecomicseries.com/comics/pl/2848242/",
+            "https://tcs.thecomicseries.com/comics/pl/2848798/",
+            "https://tcs.thecomicseries.com/comics/pl/2850283/"
         ],
         "last_modified": 0
     },
@@ -1073,9 +1125,11 @@
             "5/9/2026[sitemap](https://nomnomnami.com/sitemap.html) updated!!",
             "5/19/2026i've been posting so much [tomodachi life](https://nomnomnami.com/posts/tomodachi-life/) stuff, please look at it. OH omg i updated my [projects](https://nomnomnami.com/projects.html) page, some of the info was outdated there sorry.",
             "5/20/2026[custom cursors](https://nomnomnami.com/downloads/cursors/) update: finished treat cursor and added linux downloads! (sorry i have not made more yet)",
-            "5/22/2026new [character pages](https://nomnomnami.com/characters/)"
+            "5/22/2026new [character pages](https://nomnomnami.com/characters/)",
+            "5/28/2026redid the layout on my [guide to the namiverse](https://nomnomnami.com/namiverse.html) page so it's way less overwhelming and hopefully more useful!",
+            "6/3/2026pronoun update (new gender blurb [here](https://nomnomnami.com/about.html))"
         ],
-        "last_modified": 1779526420
+        "last_modified": 1780597127
     },
     "post_status": {
         "name": "post_status",
@@ -1098,9 +1152,10 @@
             "4/18/2026**working on:** steam releases/updates\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** productive\n**playing:** tomodachi life\n",
             "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life\n",
             "5/7/2026**working on:** astra's garden steam version\n**listening to:** [\u97f3\u6e90\u5410\u9732](https://www.youtube.com/watch?v=NQgNP67WSck) / \u30a2\u30dc\u30ac\u30c96\n**the vibe:** sleepy\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
-            "5/16/2026**working on:** astra's garden steam version\n**listening to:** [\u304a\u3068\u306a\u30d5\u30a9\u30d3\u30a2](https://www.youtube.com/watch?v=hfiKcOu7ezs) / \u9ed2\u3046\u3055\u304e\n**the vibe:** braindead\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
+            "5/16/2026**working on:** astra's garden steam version\n**listening to:** [\u304a\u3068\u306a\u30d5\u30a9\u30d3\u30a2](https://www.youtube.com/watch?v=hfiKcOu7ezs) / \u9ed2\u3046\u3055\u304e\n**the vibe:** braindead\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
+            "5/24/2026**working on:** this website\n**listening to:** [\u30b3\u30e0\u30ae\u30ce\u30d5\u30cd](https://www.youtube.com/watch?v=dwKxDNyE524) / \u3044\u3048\u306c\n**the vibe:** thinking so fucking hard\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
         ],
-        "last_modified": 1779494479
+        "last_modified": 1780598119
     },
     "patreon": {
         "name": "patreon",
@@ -1149,7 +1204,11 @@
             "157035159",
             "157545644",
             "158258534",
-            "158722913"
+            "158722913",
+            "159394565",
+            "159744979",
+            "159843603",
+            "159949566"
         ],
         "last_modified": 0
     }

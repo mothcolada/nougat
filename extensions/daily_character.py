@@ -49,7 +49,12 @@ class DailyCharacter(commands.Cog):
             print('uhm')
             await self.bot.report('daily character not set for today')
         
-        with open(f"faces/{char}.png", "rb") as image:
+        if now_est.month == 6:
+            filename = f"faces/pride/{char}.png"
+        else:
+            filename = f"faces/{char}.png"
+
+        with open(filename, "rb") as image:
             new_icon = image.read()
 
         server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
