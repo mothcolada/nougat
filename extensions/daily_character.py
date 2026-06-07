@@ -46,10 +46,9 @@ class DailyCharacter(commands.Cog):
         now_est = datetime.datetime.now(tz=eastern_time)
         char = get_char_for_date(now_est)
         if char == '':
-            print('uhm')
             await self.bot.report('daily character not set for today')
         
-        if now_est.month == 6:
+        if now_est.month == 6 or (now_est.month == 7 and now_est.day <= 7):
             filename = f"faces/pride/{char}.png"
         else:
             filename = f"faces/{char}.png"
