@@ -81,9 +81,16 @@ def daily_message(date: datetime.datetime):
 
     # "Treat!" or "Happy birthday, Treat!"
     day = f"{date.month}/{date.day}"
+    char_id = get_char_for_date(date)
+    char = name_of_char(char_id)
     if day in char_data["birthdays"]:
         message += "Happy birthday, "
-    message += name_of_char(get_char_for_date(date)) + "!"
+    if (date.month == 6 or (date.month == 7 and date.day <= 8)) and char_id in char_data["pride"].keys(): # pride
+        if day in char_data["birthdays"]:
+            message += char + "!"
+        message += f" {char} is {char_data['pride'][char_id]}!"
+    else:
+        message += char + "!"
 
     # "Happy 10th anniversary to Lonely Wolf Treat!"
     if day in char_data["anniversaries"].keys():
@@ -134,7 +141,7 @@ def name_of_char(id: str):
 def print_calendar():
     date = datetime.datetime(2016, 1, 1)
     while date.year == 2016:
-        logging.debug(f"{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}")
+        print(f"{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}")
         date += datetime.timedelta(days=1)
 
 
@@ -149,3 +156,4 @@ def ordinal(n: int):  # stolen from stack overflow because i'm lazy
 async def setup(bot: commands.Bot):
     await bot.add_cog(DailyCharacter(bot))
 
+print_calendar()
