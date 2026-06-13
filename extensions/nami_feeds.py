@@ -94,6 +94,7 @@ class Message():
         images = [],
         thumbnail: (str | None) = None,
         timestamp: (str | None) = None,
+        tags: (str | None) = None
     ):
         self.source      = SOURCES[source]
         self.id          = id
@@ -106,6 +107,7 @@ class Message():
         self.footer      = self.source['embed']['footer']
         self.color       = self.source['embed']['color']
         self.thumbnail   = thumbnail
+        self.tags        = tags
 
         self.image = None
         self.attachments = []
@@ -121,6 +123,9 @@ class Message():
                                             filename = filename,
                                             spoiler  = self.is_spoiler(img))
                 self.attachments.append(discord_file)
+
+        if tags:
+            self.footer += '  •  ' + tags
 
         self.timestamp = None
         if timestamp:
@@ -178,13 +183,15 @@ class Message():
         return embed
 
 
-def clean(string):
+def clean(string: str):
+    print(type(string))
     return html.unescape(string).replace('*', '\\*').replace('\n', '')
 
 
-def paragraph(p):
+def paragraph(p):  # TODO: totally rewrite this?? for tag in tag in <p> tag
     text = ''
     for c in p.children:
+        print(c, type(c), c.string, c.name)
         if isinstance(c, NavigableString):
             text += clean(c)
         elif isinstance(c, Tag):
@@ -201,7 +208,7 @@ def paragraph(p):
             elif c.name == 'code':
                 text += '`' + clean(c.string) + '`'
             elif c.name == 'small':
-                text += clean(c.string)
+                text += '-# ' + paragraph(c)
             elif c.name == 'span':
                 text += clean(c.string)
 
@@ -357,10 +364,10 @@ def parse_ask(soup):
 
     messages = []
     for post in posts:
-        if post.find('ul', {'class': 'tags'}) != None:
-            tags = [c.string for c in post.find('ul', {'class': 'tags'}).children if isinstance(c, Tag)]
-            if len(tags) > 0:
-                tags = '  •  ' + '  '.join(tags)
+        tags = ''
+        tags_element = post.find('ul', {'class': 'tags'})
+        if tags_element:
+            tags = '  '.join([c.string for c in tags_element.children if isinstance(c, Tag)])
 
         paragraph = post.find('p')
         beginning = ''
@@ -373,7 +380,8 @@ def parse_ask(soup):
         message = Message('ask',
                           id = id,
                           description = html_to_discord(post)['text'],
-                          images = [image for image in html_to_discord(post)['images']])
+                          images = [image for image in html_to_discord(post)['images']],
+                          tags = tags)
         messages.append(message)
 
     return messages
@@ -672,6 +680,7 @@ class NamiFeeds(commands.Cog):
                     await self.check(source)
                 except Exception as e:
                     await self.bot.report(s + str(e))
+                    exit()
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
