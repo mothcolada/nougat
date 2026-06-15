@@ -46,6 +46,7 @@ icons = {
     'cassia': '<:icon_cassia:1425576791950495876>',
     'astra': '<:icon_astra:1425576802218410125>',
     'vinegar': '<:icon_vinegar:1425576819385569360>',
+    'strudel': '<:icon_strudel:1515865545306538124>',
     'salt': '<:icon_salt:1443398214203080715>',
     'pepper': '<:icon_pepper:1443398245991583775>',
     'timber': '<:icon_timber:1443398285225099364>',
@@ -59,7 +60,12 @@ icons = {
     'tundra': '<:icon_tundra:1450670774783578173>',
     'drop': '<:icon_drop:1450670771704827924>',
     'fennel': '<:icon_fennel:1464368764731527335>',
-    'mason': '<:icon_mason:1493038274854260786>'
+    'mason': '<:icon_mason:1493038274854260786>',
+    'slate': '<:icon_slate:1515864471162322974>',
+    'searina': '<:icon_searina:1515864486710480896>',
+    'illi': '<:icon_illi:1515864501189345420>',
+    'vido': '<:icon_vido:1515864521783247070>',
+    'ezel': '<:icon_ezel:1515864532877316098>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',
@@ -184,14 +190,12 @@ class Message():
 
 
 def clean(string: str):
-    print(type(string))
     return html.unescape(string).replace('*', '\\*').replace('\n', '')
 
 
 def paragraph(p):  # TODO: totally rewrite this?? for tag in tag in <p> tag
     text = ''
     for c in p.children:
-        print(c, type(c), c.string, c.name)
         if isinstance(c, NavigableString):
             text += clean(c)
         elif isinstance(c, Tag):
@@ -367,7 +371,11 @@ def parse_ask(soup):
         tags = ''
         tags_element = post.find('ul', {'class': 'tags'})
         if tags_element:
-            tags = '  '.join([c.string for c in tags_element.children if isinstance(c, Tag)])
+            tags_list: list[str] = []
+            for c in tags_element.children:
+                if isinstance(c, Tag) and c.string:
+                    tags_list.append(c.string)
+            tags = '  '.join(tags_list)
 
         paragraph = post.find('p')
         beginning = ''
@@ -680,7 +688,6 @@ class NamiFeeds(commands.Cog):
                     await self.check(source)
                 except Exception as e:
                     await self.bot.report(s + str(e))
-                    exit()
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
