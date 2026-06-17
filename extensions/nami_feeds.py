@@ -114,21 +114,7 @@ class Message():
         self.color       = self.source['embed']['color']
         self.thumbnail   = thumbnail
         self.tags        = tags
-
-        self.image = None
-        self.attachments = []
-        if len(images) == 1 and not self.is_spoiler(images[0]):  # one unspoilered image
-            self.image = url=urljoin('https://nomnomnami.com', images[0]['src'])
-        else:
-            for img in images:
-                response = requests.get(urljoin('https://nomnomnami.com', img['src']))
-                filename = img['src'].split('/')[-1]
-                if source == 'trick':  # exception for trick pika page
-                    filename += '.png'
-                discord_file = discord.File(io.BytesIO(response.content),
-                                            filename = filename,
-                                            spoiler  = self.is_spoiler(img))
-                self.attachments.append(discord_file)
+        self.images      = images
 
         if tags:
             self.footer += '  •  ' + tags
@@ -169,6 +155,23 @@ class Message():
         if self.source['role']:
             return f"-# <@&{self.source['role']}>"
         return None
+    
+
+    def ready_images(self):
+        self.image = None
+        self.attachments = []
+        if len(self.images) == 1 and not self.is_spoiler(self.images[0]):  # one unspoilered image
+            self.image = urljoin('https://nomnomnami.com', self.images[0]['src'])
+        else:
+            for img in self.images:
+                response = requests.get(urljoin('https://nomnomnami.com', img['src']))
+                filename = img['src'].split('/')[-1]
+                if source == 'trick':  # exception for trick pika page
+                    filename += '.png'
+                discord_file = discord.File(io.BytesIO(response.content),
+                                            filename = filename,
+                                            spoiler  = self.is_spoiler(img))
+                self.attachments.append(discord_file)
 
 
     def get_embed(self) -> discord.Embed:
@@ -725,7 +728,7 @@ class NamiFeeds(commands.Cog):
         if not soup:
             return []
 
-        posts: list = funcs[source['name']](soup)
+        posts: list[Message] = funcs[source['name']](soup)
         posts.reverse()  # reversed so earlier posts are read and sent first if there are multiple
         
         # remove any already-seen posts
@@ -733,6 +736,7 @@ class NamiFeeds(commands.Cog):
         
         # save id to seen ids (these loops are separated so posts with the same id can be both posted if they were made in the same update)
         for post in posts:
+            post.ready_images()
             if post.id not in source['saved_ids']:
                 source['saved_ids'].append(post.id)
 
@@ -764,7 +768,7 @@ class NamiFeeds(commands.Cog):
 
             if len(message.attachments) > 0:
                 m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
-                if channel.is_news():
+                if self.bot.is_nougat and channel.is_news():
                     await m.publish()
         
         # save new stuff

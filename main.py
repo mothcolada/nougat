@@ -56,13 +56,14 @@ class Nougat(commands.Bot):
 
     async def on_ready(self):
         await self.log("good morning world")
-        # channel = self.get_channel(1445985711605158010)
-        # message = await channel.fetch_message(1512008175371554896)
+        # channel = self.get_channel(1325603603611914330)
+        # message = await channel.fetch_message(1516256205889077298)
         # print(message.embeds[0])
-        # # embed = message.embeds[0]
-        # # embed.set_image(url='https://nomnomnami.com/images/announcement-ag_release.png')
-        # # await message.edit(content=message.content, embed=embed)
+        # embed = message.embeds[0]
+        # embed.set_image(url='https://nomnomnami.com/images/announcement-sf.png')
+        # await message.edit(content=message.content, embed=embed)
         # await self.close()
+        # exit()
 
 
     async def on_message(self, message: discord.Message):
