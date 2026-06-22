@@ -56,12 +56,12 @@ class Nougat(commands.Bot):
 
     async def on_ready(self):
         await self.log("good morning world")
-        # channel = self.get_channel(1325603603611914330)
-        # message = await channel.fetch_message(1516256205889077298)
+        # channel = self.get_channel(1330485605515264030)
+        # message = await channel.fetch_message(1518103209644920852)
         # print(message.embeds[0])
         # embed = message.embeds[0]
-        # embed.set_image(url='https://nomnomnami.com/images/announcement-sf.png')
-        # await message.edit(content=message.content, embed=embed)
+        # embed.set_image(url='https://nomnomnami.com/posts/images/cooked.jpg')
+        # await message.edit(content='<@&1330488425006239797>  Vinegar is a demigirl and (non-canonically) lesbian!', embed=embed)
         # await self.close()
         # exit()
 

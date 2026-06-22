@@ -166,7 +166,7 @@ class Message():
             for img in self.images:
                 response = requests.get(urljoin('https://nomnomnami.com', img['src']))
                 filename = img['src'].split('/')[-1]
-                if source == 'trick':  # exception for trick pika page
+                if self.source == 'trick':  # exception for trick pika page
                     filename += '.png'
                 discord_file = discord.File(io.BytesIO(response.content),
                                             filename = filename,
