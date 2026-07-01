@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
 MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
-MOD_ROLE_ID = 1325039139099381812
+MOD_ROLE_ID = 1521632400604397672
 
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
 
@@ -100,7 +100,7 @@ async def main():
         ) as bot,
     ):
         discord.utils.setup_logging()
-        await bot.start(os.environ["TOKEN"])
+        await bot.start(os.environ["NOUGAT_TOKEN"])
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
     "announcements": {
         "name": "announcements",
         "link": "https://nomnomnami.com/index.html",
-        "channel": 1325603603611914330,
-        "role": 1325598062198128640,
+        "channel": 1521633877859500072,
+        "role": 1521632400491417770,
         "embed": {
             "author": null,
             "author_url": null,
@@ -19,15 +19,16 @@
             "/images/announcement-ag.png",
             "/images/announcement-ag_release.png",
             "/images/announcement-underlingpride.png",
-            "/images/announcement-sf.png"
+            "/images/announcement-sf.png",
+            "/images/announcement-sf-release.png"
         ],
-        "last_modified": 1782068590
+        "last_modified": 1782862696
     },
     "newsfeed": {
         "name": "newsfeed",
         "link": "https://nomnomnami.com/index.html",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "url": "https://nomnomnami.com/",
             "author": null,
@@ -98,15 +99,17 @@
             "6/13/2026",
             "6/15/2026",
             "6/19/2026",
-            "6/21/2026"
+            "6/21/2026",
+            "6/29/2026",
+            "6/30/2026"
         ],
-        "last_modified": 1782068590
+        "last_modified": 1782862696
     },
     "posts": {
         "name": "posts",
         "link": "https://nomnomnami.com/posts",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "color": 12433407,
             "url": "https://nomnomnami.com/posts",
@@ -231,15 +234,20 @@
             "6/15/2026, 6:45pm",
             "6/20/2026, 8:12pm",
             "6/21/2026, 7:17pm",
-            "6/21/2026, 10:01pm"
+            "6/21/2026, 10:01pm",
+            "6/27/2026, 8:08pm",
+            "6/29/2026, 12:26pm",
+            "6/30/2026, 7:06am",
+            "6/30/2026, 7:14am",
+            "6/30/2026, 8:23am"
         ],
-        "last_modified": 1782118881
+        "last_modified": 1782847436
     },
     "timber_posts": {
         "name": "timber_posts",
         "link": "https://nomnomnami.com/posts/timber",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {},
         "saved_ids": [],
         "last_modified": 0
@@ -247,8 +255,8 @@
     "blog": {
         "name": "blog",
         "link": "https://nomnomnami.pika.page/posts_feed",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "author": null,
             "author_url": null,
@@ -273,15 +281,16 @@
             "tag:nomnomnami.pika.page,2005:Post/110096",
             "tag:nomnomnami.pika.page,2005:Post/110439",
             "tag:nomnomnami.pika.page,2005:Post/110708",
-            "tag:nomnomnami.pika.page,2005:Post/111742"
+            "tag:nomnomnami.pika.page,2005:Post/111742",
+            "tag:nomnomnami.pika.page,2005:Post/112704"
         ],
         "last_modified": 0
     },
     "ask": {
         "name": "ask",
         "link": "https://nomnomnami.com/ask/latest",
-        "channel": 1330602659023028357,
-        "role": 1427133678173294654,
+        "channel": 1521632401334210659,
+        "role": 1521632400453402738,
         "embed": {
             "url": "https://nomnomnami.com/ask/latest",
             "author": null,
@@ -644,8 +653,8 @@
     "status_cafe": {
         "name": "status_cafe",
         "link": "https://status.cafe/users/nomnomnami.atom",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "author_url": "https://status.cafe/users/nomnomnami",
             "footer": "status.cafe",
@@ -692,14 +701,16 @@
             "https://status.cafe/users/nomnomnami/241439",
             "https://status.cafe/users/nomnomnami/242180",
             "https://status.cafe/users/nomnomnami/243477",
-            "https://status.cafe/users/nomnomnami/246815"
+            "https://status.cafe/users/nomnomnami/246815",
+            "https://status.cafe/users/nomnomnami/247613",
+            "https://status.cafe/users/nomnomnami/249112"
         ],
         "last_modified": 0
     },
     "neocities": {
         "name": "neocities",
         "link": "https://neocities.org/site/nomnomnami.rss",
-        "channel": 1327524115526979605,
+        "channel": 1521633846477721680,
         "role": null,
         "embed": {
             "author": null,
@@ -748,15 +759,19 @@
             "https://neocities.org/site/nomnomnami?event_id=7116176",
             "https://neocities.org/site/nomnomnami?event_id=7121665",
             "https://neocities.org/site/nomnomnami?event_id=7126883",
-            "https://neocities.org/site/nomnomnami?event_id=7132735"
+            "https://neocities.org/site/nomnomnami?event_id=7132735",
+            "https://neocities.org/site/nomnomnami?event_id=7141215",
+            "https://neocities.org/site/nomnomnami?event_id=7164223",
+            "https://neocities.org/site/nomnomnami?event_id=7171522",
+            "https://neocities.org/site/nomnomnami?event_id=7177528"
         ],
         "last_modified": 0
     },
     "trick": {
         "name": "trick",
         "link": "https://trick.pika.page/posts_feed",
-        "channel": 1325920952529457153,
-        "role": 1327518346178203670,
+        "channel": 1521634002576867589,
+        "role": 1521632400453402740,
         "embed": {
             "color": 14972037,
             "author": "Trick",
@@ -787,15 +802,16 @@
             "tag:trick.pika.page,2005:Post/82965",
             "tag:trick.pika.page,2005:Post/94078",
             "tag:trick.pika.page,2005:Post/101967",
-            "tag:trick.pika.page,2005:Post/104820"
+            "tag:trick.pika.page,2005:Post/104820",
+            "tag:trick.pika.page,2005:Post/112727"
         ],
         "last_modified": 0
     },
     "pillowfort": {
         "name": "pillowfort",
         "link": "https://www.pillowfort.social/nomnomnami/json/",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "color": 8594767,
             "author_url": "https://www.pillowfort.social/nomnomnami",
@@ -982,15 +998,17 @@
             7827199,
             7833954,
             7860918,
-            7860939
+            7860939,
+            7891552,
+            7895926
         ],
         "last_modified": 0
     },
     "apoc": {
         "name": "apoc",
         "link": "https://another-piece-of-candy.thecomicseries.com/rss/",
-        "channel": 1325599067060965466,
-        "role": 1325598094267650140,
+        "channel": 1521633953029685268,
+        "role": 1521632400453402741,
         "embed": {
             "author": null,
             "author_url": null,
@@ -1059,15 +1077,19 @@
             2886152,
             2889077,
             2890683,
-            2895308
+            2895308,
+            2895311,
+            2895316,
+            2895315,
+            2901669
         ],
         "last_modified": 0
     },
     "tcs": {
         "name": "tcs",
         "link": "https://tcs.thecomicseries.com/rss/",
-        "channel": 1325599067060965466,
-        "role": 1325598094267650140,
+        "channel": 1521633953029685268,
+        "role": 1521632400453402741,
         "embed": {
             "author": null,
             "author_url": null,
@@ -1111,15 +1133,17 @@
             "https://tcs.thecomicseries.com/comics/pl/2877805/",
             "https://tcs.thecomicseries.com/comics/pl/2887793/",
             "https://tcs.thecomicseries.com/comics/pl/2893256/",
-            "https://tcs.thecomicseries.com/comics/pl/2896964/"
+            "https://tcs.thecomicseries.com/comics/pl/2896964/",
+            "https://tcs.thecomicseries.com/comics/pl/2900993/",
+            "https://tcs.thecomicseries.com/comics/pl/2897055/"
         ],
         "last_modified": 0
     },
     "youtube": {
         "name": "youtube",
         "link": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSNzbhbYnbOFBVFzu_CQNmw",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "author": null,
             "author_url": "https://www.youtube.com/channel/UCSNzbhbYnbOFBVFzu_CQNmw",
@@ -1150,8 +1174,8 @@
     "site_updates": {
         "name": "site_updates",
         "link": "https://nomnomnami.com/index.html",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "url": "https://nomnomnami.com/",
             "author": null,
@@ -1203,15 +1227,17 @@
             "5/22/2026new [character pages](https://nomnomnami.com/characters/)",
             "5/28/2026redid the layout on my [guide to the namiverse](https://nomnomnami.com/namiverse.html) page so it's way less overwhelming and hopefully more useful!",
             "6/3/2026pronoun update (new gender blurb [here](https://nomnomnami.com/about.html))",
-            "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/nwt/slate-act1.html)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think..."
+            "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/nwt/slate-act1.html)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think...",
+            "6/23/2026added character pages for [spice](https://nomnomnami.com/characters/spice.html) and [nil](https://nomnomnami.com/characters/nil.html). made icons for the drowning drowning cast, so i might make pages for them in the future too...",
+            "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024"
         ],
-        "last_modified": 1782068590
+        "last_modified": 1782862696
     },
     "post_status": {
         "name": "post_status",
         "link": "https://nomnomnami.com/posts",
-        "channel": 1327524115526979605,
-        "role": 1327524420033712173,
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
         "embed": {
             "url": "https://nomnomnami.com/posts",
             "author": "@nomnomnami",
@@ -1223,13 +1249,13 @@
         "saved_ids": [
             "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
         ],
-        "last_modified": 1782118881
+        "last_modified": 1782847436
     },
     "patreon": {
         "name": "patreon",
         "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=76451&sort=-published_at&json-api-version=1.0",
         "channel": 1347721032932397066,
-        "role": 1327524420033712173,
+        "role": 1521632400453402739,
         "embed": {
             "author": null,
             "author_url": "https://www.patreon.com/nomnomnami",
@@ -1278,7 +1304,9 @@
             "159843603",
             "159949566",
             "160665870",
-            "160819683"
+            "160819683",
+            "161906939",
+            "162393054"
         ],
         "last_modified": 0
     }

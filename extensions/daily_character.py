@@ -8,9 +8,9 @@ from discord.ext import commands, tasks
 # TODO: types
 
 
-NAMIVERSE_ID = 1325038200452022334
-NAMIVERSE_DAILY_CHAR_THREAD = 1330485605515264030
-DAILY_CHAR_ROLE = 1330488425006239797
+NAMIVERSE_ID = 1521632400453402732
+NAMIVERSE_DAILY_CHAR_CHANNEL = 1521644859650474115
+DAILY_CHAR_ROLE = 1521632400491417772
 
 TEST_GUILD_ID = 422163243528617994
 TEST_CHANNEL = 1074754885070897202
@@ -43,11 +43,12 @@ class DailyCharacter(commands.Cog):
         await self.new_character()  # Check immediately if a new one is needed
 
     async def new_character(self):
+
         now_est = datetime.datetime.now(tz=eastern_time)
         char = get_char_for_date(now_est)
         if char == '':
             await self.bot.report('daily character not set for today')
-        
+
         if now_est.month == 6 or (now_est.month == 7 and now_est.day <= 7):
             filename = f"faces/pride/{char}.png"
         else:
@@ -62,9 +63,10 @@ class DailyCharacter(commands.Cog):
 
         # compare bytes of current icon and the icon we want to change it to, only continue if different
         current_icon = server.icon
+
         if not current_icon:
             raise Exception('icon not found')
-        
+
         current_icon = await current_icon.read()
         if new_icon == current_icon:
             logging.info("new icon matches current icon; cancelling daily character")
@@ -72,7 +74,7 @@ class DailyCharacter(commands.Cog):
 
         await server.edit(icon=new_icon)
 
-        channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_THREAD if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
+        channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_CHANNEL if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
         await channel.send(daily_message(now_est))
 
 
@@ -88,7 +90,7 @@ def daily_message(date: datetime.datetime):
     if (date.month == 6 or (date.month == 7 and date.day <= 8)) and char_id in char_data["pride"].keys(): # pride
         if day in char_data["birthdays"]:
             message += char + "!"
-        message += f" {char} is {char_data['pride'][char_id]}!"
+        message += f"{char} is {char_data['pride'][char_id]}!"
     else:
         message += char + "!"
 
