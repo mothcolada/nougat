@@ -22,7 +22,7 @@
             "/images/announcement-sf.png",
             "/images/announcement-sf-release.png"
         ],
-        "last_modified": 1782862696
+        "last_modified": 1783485818
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -101,9 +101,11 @@
             "6/19/2026",
             "6/21/2026",
             "6/29/2026",
-            "6/30/2026"
+            "6/30/2026",
+            "7/5/2026",
+            "7/7/2026"
         ],
-        "last_modified": 1782862696
+        "last_modified": 1783485818
     },
     "posts": {
         "name": "posts",
@@ -239,9 +241,13 @@
             "6/29/2026, 12:26pm",
             "6/30/2026, 7:06am",
             "6/30/2026, 7:14am",
-            "6/30/2026, 8:23am"
+            "6/30/2026, 8:23am",
+            "7/1/2026, 11:15am",
+            "7/1/2026, 11:18am",
+            "7/5/2026, 5:54pm",
+            "7/7/2026, 12:20pm"
         ],
-        "last_modified": 1782847436
+        "last_modified": 1783466514
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -703,7 +709,8 @@
             "https://status.cafe/users/nomnomnami/243477",
             "https://status.cafe/users/nomnomnami/246815",
             "https://status.cafe/users/nomnomnami/247613",
-            "https://status.cafe/users/nomnomnami/249112"
+            "https://status.cafe/users/nomnomnami/249112",
+            "https://status.cafe/users/nomnomnami/250739"
         ],
         "last_modified": 0
     },
@@ -763,7 +770,10 @@
             "https://neocities.org/site/nomnomnami?event_id=7141215",
             "https://neocities.org/site/nomnomnami?event_id=7164223",
             "https://neocities.org/site/nomnomnami?event_id=7171522",
-            "https://neocities.org/site/nomnomnami?event_id=7177528"
+            "https://neocities.org/site/nomnomnami?event_id=7177528",
+            "https://neocities.org/site/nomnomnami?event_id=7184161",
+            "https://neocities.org/site/nomnomnami?event_id=7206115",
+            "https://neocities.org/site/nomnomnami?event_id=7214688"
         ],
         "last_modified": 0
     },
@@ -1000,7 +1010,18 @@
             7860918,
             7860939,
             7891552,
-            7895926
+            7895926,
+            7898964,
+            7904197,
+            7904661,
+            7907889,
+            7908761,
+            7912875,
+            7912928,
+            7915839,
+            7921213,
+            7925701,
+            7925716
         ],
         "last_modified": 0
     },
@@ -1081,7 +1102,8 @@
             2895311,
             2895316,
             2895315,
-            2901669
+            2901669,
+            2907797
         ],
         "last_modified": 0
     },
@@ -1229,9 +1251,10 @@
             "6/3/2026pronoun update (new gender blurb [here](https://nomnomnami.com/about.html))",
             "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/nwt/slate-act1.html)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think...",
             "6/23/2026added character pages for [spice](https://nomnomnami.com/characters/spice.html) and [nil](https://nomnomnami.com/characters/nil.html). made icons for the drowning drowning cast, so i might make pages for them in the future too...",
-            "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024"
+            "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024",
+            "7/7/2026updating some [character pages](https://nomnomnami.com/characters/) a little"
         ],
-        "last_modified": 1782862696
+        "last_modified": 1783485818
     },
     "post_status": {
         "name": "post_status",
@@ -1249,12 +1272,12 @@
         "saved_ids": [
             "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
         ],
-        "last_modified": 1782847436
+        "last_modified": 1783466514
     },
     "patreon": {
         "name": "patreon",
         "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=76451&sort=-published_at&json-api-version=1.0",
-        "channel": 1347721032932397066,
+        "channel": 1521632401904763111,
         "role": 1521632400453402739,
         "embed": {
             "author": null,
@@ -1306,7 +1329,9 @@
             "160665870",
             "160819683",
             "161906939",
-            "162393054"
+            "162393054",
+            "162360083",
+            "162931915"
         ],
         "last_modified": 0
     }

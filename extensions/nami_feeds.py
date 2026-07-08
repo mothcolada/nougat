@@ -62,10 +62,15 @@ icons = {
     'fennel': '<:icon_fennel:1464368764731527335>',
     'mason': '<:icon_mason:1493038274854260786>',
     'slate': '<:icon_slate:1515864471162322974>',
+    'leaf': '<:icon_leaf:1524268345355010248>',
     'searina': '<:icon_searina:1515864486710480896>',
     'illi': '<:icon_illi:1515864501189345420>',
     'vido': '<:icon_vido:1515864521783247070>',
-    'ezel': '<:icon_ezel:1515864532877316098>'
+    'ezel': '<:icon_ezel:1515864532877316098>',
+    'maia': '<:icon_maia:1524268755717324831>',
+    'amphithoe': '<:icon_amphithoe:1524268753406132405>',
+    'clio': '<:icon_clio:1524268754295586837>',
+    'eudora': '<:icon_eudora:1524268754974933042>'
 }
 emoji = {
     'eggbug': '<:eggbug:1444074342576033793>',

@@ -49,7 +49,7 @@ class DailyCharacter(commands.Cog):
         if char == '':
             await self.bot.report('daily character not set for today')
 
-        if now_est.month == 6 or (now_est.month == 7 and now_est.day <= 7):
+        if now_est.month == 6 or (now_est.month == 7 and now_est.day <= 8):
             filename = f"faces/pride/{char}.png"
         else:
             filename = f"faces/{char}.png"
@@ -87,7 +87,7 @@ def daily_message(date: datetime.datetime):
     char = name_of_char(char_id)
     if day in char_data["birthdays"]:
         message += "Happy birthday, "
-    if (date.month == 6 or (date.month == 7 and date.day <= 8)) and char_id in char_data["pride"].keys(): # pride
+    if (date.month == 6 or (date.month == 7 and date.day <= 9)) and char_id in char_data["pride"].keys(): # pride
         if day in char_data["birthdays"]:
             message += char + "!"
         message += f"{char} is {char_data['pride'][char_id]}!"
