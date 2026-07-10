@@ -22,7 +22,7 @@
             "/images/announcement-sf.png",
             "/images/announcement-sf-release.png"
         ],
-        "last_modified": 1783485818
+        "last_modified": 1783659805
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -103,9 +103,10 @@
             "6/29/2026",
             "6/30/2026",
             "7/5/2026",
-            "7/7/2026"
+            "7/7/2026",
+            "7/9/2026"
         ],
-        "last_modified": 1783485818
+        "last_modified": 1783659805
     },
     "posts": {
         "name": "posts",
@@ -245,9 +246,10 @@
             "7/1/2026, 11:15am",
             "7/1/2026, 11:18am",
             "7/5/2026, 5:54pm",
-            "7/7/2026, 12:20pm"
+            "7/7/2026, 12:20pm",
+            "7/9/2026, 5:31pm"
         ],
-        "last_modified": 1783466514
+        "last_modified": 1783657918
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -773,7 +775,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7177528",
             "https://neocities.org/site/nomnomnami?event_id=7184161",
             "https://neocities.org/site/nomnomnami?event_id=7206115",
-            "https://neocities.org/site/nomnomnami?event_id=7214688"
+            "https://neocities.org/site/nomnomnami?event_id=7214688",
+            "https://neocities.org/site/nomnomnami?event_id=7226646"
         ],
         "last_modified": 0
     },
@@ -1021,7 +1024,9 @@
             7915839,
             7921213,
             7925701,
-            7925716
+            7925716,
+            7928587,
+            7929275
         ],
         "last_modified": 0
     },
@@ -1103,7 +1108,8 @@
             2895316,
             2895315,
             2901669,
-            2907797
+            2907797,
+            2920260
         ],
         "last_modified": 0
     },
@@ -1252,9 +1258,10 @@
             "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/nwt/slate-act1.html)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think...",
             "6/23/2026added character pages for [spice](https://nomnomnami.com/characters/spice.html) and [nil](https://nomnomnami.com/characters/nil.html). made icons for the drowning drowning cast, so i might make pages for them in the future too...",
             "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024",
-            "7/7/2026updating some [character pages](https://nomnomnami.com/characters/) a little"
+            "7/7/2026updating some [character pages](https://nomnomnami.com/characters/) a little",
+            "7/9/2026posted all my [brush settings](https://nomnomnami.com/ask/brush-settings.html), which you can download if you want!"
         ],
-        "last_modified": 1783485818
+        "last_modified": 1783659805
     },
     "post_status": {
         "name": "post_status",
@@ -1272,7 +1279,7 @@
         "saved_ids": [
             "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
         ],
-        "last_modified": 1783466514
+        "last_modified": 1783657918
     },
     "patreon": {
         "name": "patreon",
