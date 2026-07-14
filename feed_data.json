@@ -20,9 +20,10 @@
             "/images/announcement-ag_release.png",
             "/images/announcement-underlingpride.png",
             "/images/announcement-sf.png",
-            "/images/announcement-sf-release.png"
+            "/images/announcement-sf-release.png",
+            "/images/steam-eventcover.png"
         ],
-        "last_modified": 1783659805
+        "last_modified": 1784013660
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -104,9 +105,10 @@
             "6/30/2026",
             "7/5/2026",
             "7/7/2026",
-            "7/9/2026"
+            "7/9/2026",
+            "7/13/2026"
         ],
-        "last_modified": 1783659805
+        "last_modified": 1784013660
     },
     "posts": {
         "name": "posts",
@@ -247,9 +249,11 @@
             "7/1/2026, 11:18am",
             "7/5/2026, 5:54pm",
             "7/7/2026, 12:20pm",
-            "7/9/2026, 5:31pm"
+            "7/9/2026, 5:31pm",
+            "7/11/2026, 8:13am",
+            "7/12/2026, 9:26pm"
         ],
-        "last_modified": 1783657918
+        "last_modified": 1783931231
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -290,7 +294,8 @@
             "tag:nomnomnami.pika.page,2005:Post/110439",
             "tag:nomnomnami.pika.page,2005:Post/110708",
             "tag:nomnomnami.pika.page,2005:Post/111742",
-            "tag:nomnomnami.pika.page,2005:Post/112704"
+            "tag:nomnomnami.pika.page,2005:Post/112704",
+            "tag:nomnomnami.pika.page,2005:Post/114768"
         ],
         "last_modified": 0
     },
@@ -712,7 +717,8 @@
             "https://status.cafe/users/nomnomnami/246815",
             "https://status.cafe/users/nomnomnami/247613",
             "https://status.cafe/users/nomnomnami/249112",
-            "https://status.cafe/users/nomnomnami/250739"
+            "https://status.cafe/users/nomnomnami/250739",
+            "https://status.cafe/users/nomnomnami/252308"
         ],
         "last_modified": 0
     },
@@ -776,7 +782,10 @@
             "https://neocities.org/site/nomnomnami?event_id=7184161",
             "https://neocities.org/site/nomnomnami?event_id=7206115",
             "https://neocities.org/site/nomnomnami?event_id=7214688",
-            "https://neocities.org/site/nomnomnami?event_id=7226646"
+            "https://neocities.org/site/nomnomnami?event_id=7226646",
+            "https://neocities.org/site/nomnomnami?event_id=7233504",
+            "https://neocities.org/site/nomnomnami?event_id=7242941",
+            "https://neocities.org/site/nomnomnami?event_id=7249816"
         ],
         "last_modified": 0
     },
@@ -1026,7 +1035,10 @@
             7925701,
             7925716,
             7928587,
-            7929275
+            7929275,
+            7939088,
+            7939238,
+            7939247
         ],
         "last_modified": 0
     },
@@ -1259,9 +1271,10 @@
             "6/23/2026added character pages for [spice](https://nomnomnami.com/characters/spice.html) and [nil](https://nomnomnami.com/characters/nil.html). made icons for the drowning drowning cast, so i might make pages for them in the future too...",
             "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024",
             "7/7/2026updating some [character pages](https://nomnomnami.com/characters/) a little",
-            "7/9/2026posted all my [brush settings](https://nomnomnami.com/ask/brush-settings.html), which you can download if you want!"
+            "7/9/2026posted all my [brush settings](https://nomnomnami.com/ask/brush-settings.html), which you can download if you want!",
+            "7/12/2026a massive [blog update](https://nomnomnami.com/blog/) is under way... (still in progress)"
         ],
-        "last_modified": 1783659805
+        "last_modified": 1784013660
     },
     "post_status": {
         "name": "post_status",
@@ -1277,9 +1290,10 @@
             "color": 6973555
         },
         "saved_ids": [
-            "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n"
+            "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
+            "7/12/2026**working on:** WEBSITE!!!!!!!\n**listening to:** [\u60aa\u9b54\u306b\u9858\u3044\u3092\u3002](https://youtu.be/hfnk3cfp2UQ?si=6lCT6XqpY_kS9DK_)\n**the vibe:** i think doing things the tedious difficult way just works better for me when it comes to websites for some reason (looking slightly manic)\n**playing:** fortune's foundation from the zachtronics solitaire collection\n"
         ],
-        "last_modified": 1783657918
+        "last_modified": 1783931231
     },
     "patreon": {
         "name": "patreon",
@@ -1338,7 +1352,9 @@
             "161906939",
             "162393054",
             "162360083",
-            "162931915"
+            "162931915",
+            "163728314",
+            "163730625"
         ],
         "last_modified": 0
     }
