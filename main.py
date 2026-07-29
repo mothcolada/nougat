@@ -56,7 +56,9 @@ class Nougat(commands.Bot):
 
     async def on_ready(self):
         await self.log("good morning world")
-        # channel = self.get_channel(1330485605515264030)
+        # channel = self.get_channel(1521632401585864731)
+        # while True:
+        #     await channel.send("-# <:toffeeSmirk:1522231925425705110>")
         # message = await channel.fetch_message(1518103209644920852)
         # print(message.embeds[0])
         # embed = message.embeds[0]

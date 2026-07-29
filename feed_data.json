@@ -21,9 +21,10 @@
             "/images/announcement-underlingpride.png",
             "/images/announcement-sf.png",
             "/images/announcement-sf-release.png",
-            "/images/steam-eventcover.png"
+            "/images/steam-eventcover.png",
+            "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1784013660
+        "last_modified": 1784833722
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -106,9 +107,10 @@
             "7/5/2026",
             "7/7/2026",
             "7/9/2026",
-            "7/13/2026"
+            "7/13/2026",
+            "7/23/2026"
         ],
-        "last_modified": 1784013660
+        "last_modified": 1784833722
     },
     "posts": {
         "name": "posts",
@@ -251,9 +253,17 @@
             "7/7/2026, 12:20pm",
             "7/9/2026, 5:31pm",
             "7/11/2026, 8:13am",
-            "7/12/2026, 9:26pm"
+            "7/12/2026, 9:26pm",
+            "7/18/2026, 10:26am",
+            "7/22/2026, 5:30am",
+            "7/23/2026, 8:40am",
+            "7/25/2026, 8:08am",
+            "7/27/2026, 7:56pm",
+            "7/28/2026, 12:25pm",
+            "7/28/2026, 12:36pm",
+            "7/28/2026, 3:18pm"
         ],
-        "last_modified": 1783931231
+        "last_modified": 1785291507
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -718,7 +728,10 @@
             "https://status.cafe/users/nomnomnami/247613",
             "https://status.cafe/users/nomnomnami/249112",
             "https://status.cafe/users/nomnomnami/250739",
-            "https://status.cafe/users/nomnomnami/252308"
+            "https://status.cafe/users/nomnomnami/252308",
+            "https://status.cafe/users/nomnomnami/255543",
+            "https://status.cafe/users/nomnomnami/255693",
+            "https://status.cafe/users/nomnomnami/257648"
         ],
         "last_modified": 0
     },
@@ -785,7 +798,14 @@
             "https://neocities.org/site/nomnomnami?event_id=7226646",
             "https://neocities.org/site/nomnomnami?event_id=7233504",
             "https://neocities.org/site/nomnomnami?event_id=7242941",
-            "https://neocities.org/site/nomnomnami?event_id=7249816"
+            "https://neocities.org/site/nomnomnami?event_id=7249816",
+            "https://neocities.org/site/nomnomnami?event_id=7270046",
+            "https://neocities.org/site/nomnomnami?event_id=7276131",
+            "https://neocities.org/site/nomnomnami?event_id=7281259",
+            "https://neocities.org/site/nomnomnami?event_id=7294871",
+            "https://neocities.org/site/nomnomnami?event_id=7301136",
+            "https://neocities.org/site/nomnomnami?event_id=7311617",
+            "https://neocities.org/site/nomnomnami?event_id=7325217"
         ],
         "last_modified": 0
     },
@@ -1038,7 +1058,33 @@
             7929275,
             7939088,
             7939238,
-            7939247
+            7939247,
+            7959294,
+            7977214,
+            7978508,
+            7978524,
+            7981736,
+            7982257,
+            7984697,
+            7984737,
+            7984801,
+            7988326,
+            7988372,
+            7988549,
+            7988590,
+            7988606,
+            7988610,
+            7988658,
+            7989482,
+            7989955,
+            7989981,
+            7989993,
+            7995135,
+            7995192,
+            7995263,
+            7995331,
+            8013269,
+            8018434
         ],
         "last_modified": 0
     },
@@ -1121,7 +1167,11 @@
             2895315,
             2901669,
             2907797,
-            2920260
+            2920260,
+            2928208,
+            2938478,
+            2938727,
+            2939422
         ],
         "last_modified": 0
     },
@@ -1175,7 +1225,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2893256/",
             "https://tcs.thecomicseries.com/comics/pl/2896964/",
             "https://tcs.thecomicseries.com/comics/pl/2900993/",
-            "https://tcs.thecomicseries.com/comics/pl/2897055/"
+            "https://tcs.thecomicseries.com/comics/pl/2897055/",
+            "https://tcs.thecomicseries.com/comics/pl/2946073/"
         ],
         "last_modified": 0
     },
@@ -1272,9 +1323,11 @@
             "6/29/2026posted my old [japan trip](https://nomnomnami.com/comics/autobio/japan2024.html) comics from 2024",
             "7/7/2026updating some [character pages](https://nomnomnami.com/characters/) a little",
             "7/9/2026posted all my [brush settings](https://nomnomnami.com/ask/brush-settings.html), which you can download if you want!",
-            "7/12/2026a massive [blog update](https://nomnomnami.com/blog/) is under way... (still in progress)"
+            "7/12/2026a massive [blog update](https://nomnomnami.com/blog/) is under way... (still in progress)",
+            "7/17/2026new page: [how do i css?](https://nomnomnami.com/ask/how-do-i-css.html) - a collection of html/css uhhh tutorials i guess, very casual. will be adding more in the future.",
+            "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)"
         ],
-        "last_modified": 1784013660
+        "last_modified": 1784833722
     },
     "post_status": {
         "name": "post_status",
@@ -1291,9 +1344,10 @@
         },
         "saved_ids": [
             "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
-            "7/12/2026**working on:** WEBSITE!!!!!!!\n**listening to:** [\u60aa\u9b54\u306b\u9858\u3044\u3092\u3002](https://youtu.be/hfnk3cfp2UQ?si=6lCT6XqpY_kS9DK_)\n**the vibe:** i think doing things the tedious difficult way just works better for me when it comes to websites for some reason (looking slightly manic)\n**playing:** fortune's foundation from the zachtronics solitaire collection\n"
+            "7/12/2026**working on:** WEBSITE!!!!!!!\n**listening to:** [\u60aa\u9b54\u306b\u9858\u3044\u3092\u3002](https://youtu.be/hfnk3cfp2UQ?si=6lCT6XqpY_kS9DK_)\n**the vibe:** i think doing things the tedious difficult way just works better for me when it comes to websites for some reason (looking slightly manic)\n**playing:** fortune's foundation from the zachtronics solitaire collection\n",
+            "7/18/2026**working on:** week with timber\n**listening to:** [\u60aa\u9b54\u306b\u9858\u3044\u3092\u3002](https://youtu.be/hfnk3cfp2UQ?si=6lCT6XqpY_kS9DK_)\n**the vibe:** i only want to make one thing and it's WWT\n**playing:** WWT (lol)\n"
         ],
-        "last_modified": 1783931231
+        "last_modified": 1785291507
     },
     "patreon": {
         "name": "patreon",
@@ -1354,7 +1408,8 @@
             "162360083",
             "162931915",
             "163728314",
-            "163730625"
+            "163730625",
+            "164346182"
         ],
         "last_modified": 0
     }
