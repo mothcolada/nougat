@@ -24,7 +24,7 @@
             "/images/steam-eventcover.png",
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1784833722
+        "last_modified": 1785349538
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -108,9 +108,11 @@
             "7/7/2026",
             "7/9/2026",
             "7/13/2026",
-            "7/23/2026"
+            "7/23/2026",
+            "7/27/2026",
+            "7/29/2026"
         ],
-        "last_modified": 1784833722
+        "last_modified": 1785349538
     },
     "posts": {
         "name": "posts",
@@ -805,7 +807,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7294871",
             "https://neocities.org/site/nomnomnami?event_id=7301136",
             "https://neocities.org/site/nomnomnami?event_id=7311617",
-            "https://neocities.org/site/nomnomnami?event_id=7325217"
+            "https://neocities.org/site/nomnomnami?event_id=7325217",
+            "https://neocities.org/site/nomnomnami?event_id=7333426"
         ],
         "last_modified": 0
     },
@@ -1084,7 +1087,9 @@
             7995263,
             7995331,
             8013269,
-            8018434
+            8018434,
+            8021831,
+            8022166
         ],
         "last_modified": 0
     },
