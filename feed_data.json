@@ -24,7 +24,7 @@
             "/images/steam-eventcover.png",
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1785617193
+        "last_modified": 1785699751
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -111,9 +111,10 @@
             "7/23/2026",
             "7/27/2026",
             "7/29/2026",
-            "8/1/2026"
+            "8/1/2026",
+            "8/2/2026"
         ],
-        "last_modified": 1785617193
+        "last_modified": 1785699751
     },
     "posts": {
         "name": "posts",
@@ -316,7 +317,8 @@
             "tag:nomnomnami.pika.page,2005:Post/111742",
             "tag:nomnomnami.pika.page,2005:Post/112704",
             "tag:nomnomnami.pika.page,2005:Post/114768",
-            "tag:nomnomnami.pika.page,2005:Post/116684"
+            "tag:nomnomnami.pika.page,2005:Post/116684",
+            "tag:nomnomnami.pika.page,2005:Post/116825"
         ],
         "last_modified": 0
     },
@@ -1349,7 +1351,7 @@
             "7/17/2026new page: [how do i css?](https://nomnomnami.com/ask/how-do-i-css.html) - a collection of html/css uhhh tutorials i guess, very casual. will be adding more in the future.",
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)"
         ],
-        "last_modified": 1785617193
+        "last_modified": 1785699751
     },
     "post_status": {
         "name": "post_status",
