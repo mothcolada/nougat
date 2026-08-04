@@ -24,7 +24,7 @@
             "/images/steam-eventcover.png",
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1785699751
+        "last_modified": 1785822091
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -112,9 +112,10 @@
             "7/27/2026",
             "7/29/2026",
             "8/1/2026",
-            "8/2/2026"
+            "8/2/2026",
+            "8/3/2026"
         ],
-        "last_modified": 1785699751
+        "last_modified": 1785822091
     },
     "posts": {
         "name": "posts",
@@ -822,7 +823,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7311617",
             "https://neocities.org/site/nomnomnami?event_id=7325217",
             "https://neocities.org/site/nomnomnami?event_id=7333426",
-            "https://neocities.org/site/nomnomnami?event_id=7350932"
+            "https://neocities.org/site/nomnomnami?event_id=7350932",
+            "https://neocities.org/site/nomnomnami?event_id=7361537"
         ],
         "last_modified": 0
     },
@@ -1250,7 +1252,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2900993/",
             "https://tcs.thecomicseries.com/comics/pl/2897055/",
             "https://tcs.thecomicseries.com/comics/pl/2946073/",
-            "https://tcs.thecomicseries.com/comics/pl/2951551/"
+            "https://tcs.thecomicseries.com/comics/pl/2951551/",
+            "https://tcs.thecomicseries.com/comics/pl/2955776/"
         ],
         "last_modified": 0
     },
@@ -1349,9 +1352,10 @@
             "7/9/2026posted all my [brush settings](https://nomnomnami.com/ask/brush-settings.html), which you can download if you want!",
             "7/12/2026a massive [blog update](https://nomnomnami.com/blog/) is under way... (still in progress)",
             "7/17/2026new page: [how do i css?](https://nomnomnami.com/ask/how-do-i-css.html) - a collection of html/css uhhh tutorials i guess, very casual. will be adding more in the future.",
-            "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)"
+            "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
+            "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe"
         ],
-        "last_modified": 1785699751
+        "last_modified": 1785822091
     },
     "post_status": {
         "name": "post_status",
