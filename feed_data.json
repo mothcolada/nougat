@@ -24,7 +24,7 @@
             "/images/steam-eventcover.png",
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1785822091
+        "last_modified": 1785957939
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -113,9 +113,11 @@
             "7/29/2026",
             "8/1/2026",
             "8/2/2026",
-            "8/3/2026"
+            "8/3/2026",
+            "8/4/2026",
+            "8/5/2026"
         ],
-        "last_modified": 1785822091
+        "last_modified": 1785957939
     },
     "posts": {
         "name": "posts",
@@ -273,9 +275,11 @@
             "8/1/2026, 11:50am",
             "8/1/2026, 7:28pm",
             "8/1/2026, 7:51pm",
-            "8/1/2026, 8:00pm"
+            "8/1/2026, 8:00pm",
+            "8/4/2026, 2:20pm",
+            "8/4/2026, 5:45pm"
         ],
-        "last_modified": 1785654005
+        "last_modified": 1785905147
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -319,7 +323,10 @@
             "tag:nomnomnami.pika.page,2005:Post/112704",
             "tag:nomnomnami.pika.page,2005:Post/114768",
             "tag:nomnomnami.pika.page,2005:Post/116684",
-            "tag:nomnomnami.pika.page,2005:Post/116825"
+            "tag:nomnomnami.pika.page,2005:Post/116825",
+            "tag:nomnomnami.pika.page,2005:Post/117189",
+            "tag:nomnomnami.pika.page,2005:Post/117106",
+            "tag:nomnomnami.pika.page,2005:Post/117191"
         ],
         "last_modified": 0
     },
@@ -824,7 +831,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7325217",
             "https://neocities.org/site/nomnomnami?event_id=7333426",
             "https://neocities.org/site/nomnomnami?event_id=7350932",
-            "https://neocities.org/site/nomnomnami?event_id=7361537"
+            "https://neocities.org/site/nomnomnami?event_id=7361537",
+            "https://neocities.org/site/nomnomnami?event_id=7367772"
         ],
         "last_modified": 0
     },
@@ -1106,7 +1114,12 @@
             8018434,
             8021831,
             8022166,
-            8027133
+            8027133,
+            8049955,
+            8050014,
+            8054704,
+            8054713,
+            8054717
         ],
         "last_modified": 0
     },
@@ -1196,7 +1209,8 @@
             2939422,
             2948949,
             2951169,
-            2939322
+            2939322,
+            2958928
         ],
         "last_modified": 0
     },
@@ -1355,7 +1369,7 @@
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe"
         ],
-        "last_modified": 1785822091
+        "last_modified": 1785957939
     },
     "post_status": {
         "name": "post_status",
@@ -1376,7 +1390,7 @@
             "7/18/2026**working on:** week with timber\n**listening to:** [\u60aa\u9b54\u306b\u9858\u3044\u3092\u3002](https://youtu.be/hfnk3cfp2UQ?si=6lCT6XqpY_kS9DK_)\n**the vibe:** i only want to make one thing and it's WWT\n**playing:** WWT (lol)\n",
             "7/29/2026**working on:** gotta make new builds for google play... (boring!!!!)\n**listening to:** speedrun streams\n**the vibe:** can't stop thinking about week with timber\n**playing:** DDR!!!!!\n"
         ],
-        "last_modified": 1785654005
+        "last_modified": 1785905147
     },
     "patreon": {
         "name": "patreon",
