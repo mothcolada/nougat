@@ -63,6 +63,10 @@ icons = {
     'mason': '<:icon_mason:1493038274854260786>',
     'slate': '<:icon_slate:1515864471162322974>',
     'leaf': '<:icon_leaf:1524268345355010248>',
+    'marzipan': '<:icon_marzipan:1536014739652481155>',
+    'jam': '<:icon_jam:1536014738230738955>',
+    'olog': '<:icon_olog:1536014740923355156>',
+    'chirval': '<:icon_chirval:1536014737341546588>',
     'searina': '<:icon_searina:1515864486710480896>',
     'illi': '<:icon_illi:1515864501189345420>',
     'vido': '<:icon_vido:1515864521783247070>',
@@ -666,34 +670,17 @@ class NamiFeeds(commands.Cog):
         self.feeds.cancel()
 
 
-    # # refresh for webcomic updates when they're expected
-    # @tasks.loop(time=webcomic_time, seconds=5.0, count=5)
-    # async def webcomic_feeds(self):
-    #     try:
-    #         source = SOURCES['apoc']
-    #         await self.check(source)
-    #         source = SOURCES['tcs']
-    #         await self.check(source)
-
-    #         # save new stuff
-    #         json.dump(SOURCES, open('feed_data.json', 'w'), indent=4)
-    #     except Exception as e:
-    #         await self.bot.report(e)
-
     @tasks.loop(seconds=15.0)
     async def feeds(self):
         # soups = {}
-        # for s in SOURCES:
-        #     if s in ['neocities', 'patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
-        #         try:
-        #             source: str = SOURCES[s]
-        #             soups[source['link']] = self.get_feed(source)
 
         for s in SOURCES:
             if s in ['neocities', 'patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)
+        #             source: str = SOURCES[s]
+        #             soups[source['link']] = self.get_feed(source)
                 except Exception as e:
                     await self.bot.report(s + str(e))
 

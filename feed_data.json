@@ -24,7 +24,7 @@
             "/images/steam-eventcover.png",
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1786086333
+        "last_modified": 1786274108
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -116,9 +116,11 @@
             "8/3/2026",
             "8/4/2026",
             "8/5/2026",
-            "8/6/2026"
+            "8/6/2026",
+            "8/7/2026",
+            "8/8/2026"
         ],
-        "last_modified": 1786086333
+        "last_modified": 1786274108
     },
     "posts": {
         "name": "posts",
@@ -328,7 +330,9 @@
             "tag:nomnomnami.pika.page,2005:Post/117189",
             "tag:nomnomnami.pika.page,2005:Post/117106",
             "tag:nomnomnami.pika.page,2005:Post/117191",
-            "tag:nomnomnami.pika.page,2005:Post/117387"
+            "tag:nomnomnami.pika.page,2005:Post/117387",
+            "tag:nomnomnami.pika.page,2005:Post/117533",
+            "tag:nomnomnami.pika.page,2005:Post/117648"
         ],
         "last_modified": 0
     },
@@ -835,7 +839,9 @@
             "https://neocities.org/site/nomnomnami?event_id=7350932",
             "https://neocities.org/site/nomnomnami?event_id=7361537",
             "https://neocities.org/site/nomnomnami?event_id=7367772",
-            "https://neocities.org/site/nomnomnami?event_id=7382704"
+            "https://neocities.org/site/nomnomnami?event_id=7382704",
+            "https://neocities.org/site/nomnomnami?event_id=7388681",
+            "https://neocities.org/site/nomnomnami?event_id=7394419"
         ],
         "last_modified": 0
     },
@@ -1122,7 +1128,8 @@
             8050014,
             8054704,
             8054713,
-            8054717
+            8054717,
+            8069255
         ],
         "last_modified": 0
     },
@@ -1373,7 +1380,7 @@
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe"
         ],
-        "last_modified": 1786086333
+        "last_modified": 1786274108
     },
     "post_status": {
         "name": "post_status",

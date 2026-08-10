@@ -2,7 +2,7 @@ import datetime
 import json
 import zoneinfo
 import logging
-
+from pathlib import Path
 from discord.ext import commands, tasks
 
 # TODO: types
@@ -28,10 +28,14 @@ class DailyCharacter(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.daily_character.start()
-        print_calendar()
+        now_est = datetime.datetime.now(tz=eastern_time)
+        print_calendar(now_est, now_est + datetime.timedelta(14))
+        
+
 
     def cog_unload(self):
         self.daily_character.cancel()
+
 
     @tasks.loop(time=midnight)
     async def daily_character(self):
@@ -114,35 +118,36 @@ def get_char_for_date(date: datetime.datetime):
 
 
 def name_of_char(id: str):
-    # specifal formatting
+    name = id.split("-")[0].replace("_", " ").title()
+
     if id == "":
         return ""
-    if id == "mrbrew":
+    if id == "Mr Brew":
         return "Mr. Brew"
-    if id == "canarymama":
-        return "Canary Mama"
-    if id == "crabwitch":
-        return "Crab Witch"
-    if id == "ukulelebat":
-        return "Ukulele Bat"
-    if id == "sardinequeen":
-        return "Sardine Queen"
-    if id == "nougat":
+    if id == "Nougat":
         return "Me"
-    if id in ['searina', 'illi', 'ezel', 'vido']:
+    if id in ['Searina', 'Illi', 'Ezel', 'Vido']:
         return id.upper()
 
-    # other characters
-    name = id.title()
-    if name[-1] in "0123456789":
-        return name[:-1]
     return name
 
 
-def print_calendar():
-    date = datetime.datetime(2016, 1, 1)
-    while date.year == 2016:
-        print(f"{date.month}/{date.day} - {get_char_for_date(date)} - {daily_message(date)}")
+def print_calendar(start_date, end_date):
+    now_est = datetime.datetime.now(tz=eastern_time)
+    date = start_date # datetime.datetime(now_est.year, 1, 1)
+    while date < end_date:
+        char_id = get_char_for_date(date)
+        
+        if date.month == 6 or (date.month == 7 and date.day <= 8):
+            filename = f"faces/pride/{char_id}.png"
+        else:
+            filename = f"faces/{char_id}.png"
+
+        if not Path(filename).exists():
+            print("X", end=" ")
+
+        print(f"{date.month}/{date.day} - {char_id} - {daily_message(date)}")
+
         date += datetime.timedelta(days=1)
 
 
@@ -157,4 +162,6 @@ def ordinal(n: int):  # stolen from stack overflow because i'm lazy
 async def setup(bot: commands.Bot):
     await bot.add_cog(DailyCharacter(bot))
 
-print_calendar()
+if __name__ == "__main__":
+    now_est = datetime.datetime.now(tz=eastern_time)
+    print_calendar(datetime.datetime(now_est.year, 1, 1), datetime.datetime(now_est.year+1, 1, 1))
