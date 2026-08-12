@@ -750,7 +750,6 @@ class NamiFeeds(commands.Cog):
             await self.bot.report('too many messages to send')
 
         for message in messages:
-            continue
             if len(message.attachments) > 10:
                 raise Exception('more than 10 files time to die')
             

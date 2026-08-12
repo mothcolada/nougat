@@ -14,7 +14,7 @@
         "saved_ids": [
             "/images/announcement-kaimamv.png"
         ],
-        "last_modified": 1786274108
+        "last_modified": 1786438954
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -90,9 +90,10 @@
             "8/5/2026",
             "8/6/2026",
             "8/7/2026",
-            "8/8/2026"
+            "8/8/2026",
+            "8/10/2026"
         ],
-        "last_modified": 1786274108
+        "last_modified": 1786438954
     },
     "posts": {
         "name": "posts",
@@ -300,7 +301,8 @@
             "tag:nomnomnami.pika.page,2005:Post/117191",
             "tag:nomnomnami.pika.page,2005:Post/117387",
             "tag:nomnomnami.pika.page,2005:Post/117533",
-            "tag:nomnomnami.pika.page,2005:Post/117648"
+            "tag:nomnomnami.pika.page,2005:Post/117648",
+            "tag:nomnomnami.pika.page,2005:Post/117880"
         ],
         "last_modified": 0
     },
@@ -726,7 +728,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7367772",
             "https://neocities.org/site/nomnomnami?event_id=7382704",
             "https://neocities.org/site/nomnomnami?event_id=7388681",
-            "https://neocities.org/site/nomnomnami?event_id=7394419"
+            "https://neocities.org/site/nomnomnami?event_id=7394419",
+            "https://neocities.org/site/nomnomnami?event_id=7405971"
         ],
         "last_modified": 0
     },
@@ -830,7 +833,8 @@
             2948949,
             2951169,
             2939322,
-            2958928
+            2958928,
+            2971308
         ],
         "last_modified": 0
     },
@@ -936,7 +940,7 @@
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe"
         ],
-        "last_modified": 1786274108
+        "last_modified": 1786438954
     },
     "post_status": {
         "name": "post_status",
@@ -992,7 +996,8 @@
             "163730625",
             "164346182",
             "165219852",
-            "165323893"
+            "165323893",
+            "166428284"
         ],
         "last_modified": 0
     }
