@@ -701,7 +701,8 @@
             "https://status.cafe/users/nomnomnami/255693",
             "https://status.cafe/users/nomnomnami/257648",
             "https://status.cafe/users/nomnomnami/258381",
-            "https://status.cafe/users/nomnomnami/259031"
+            "https://status.cafe/users/nomnomnami/259031",
+            "https://status.cafe/users/nomnomnami/262814"
         ],
         "last_modified": 0
     },
@@ -801,7 +802,8 @@
             8054713,
             8054717,
             8069255,
-            8073473
+            8073473,
+            8096390
         ],
         "last_modified": 0
     },
@@ -867,7 +869,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2951551/",
             "https://tcs.thecomicseries.com/comics/pl/2955776/",
             "https://tcs.thecomicseries.com/comics/pl/2961726/",
-            "https://tcs.thecomicseries.com/comics/pl/2965839/"
+            "https://tcs.thecomicseries.com/comics/pl/2965839/",
+            "https://tcs.thecomicseries.com/comics/pl/2975642/"
         ],
         "last_modified": 0
     },
@@ -966,8 +969,8 @@
     "patreon": {
         "name": "patreon",
         "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=76451&sort=-published_at&json-api-version=1.0",
-        "channel": 1521632401904763111,
-        "role": 1521632400453402739,
+        "channel": 1537116001492017160,
+        "role": 1537115998426235060,
         "embed": {
             "author": null,
             "author_url": "https://www.patreon.com/nomnomnami",
@@ -998,6 +1001,35 @@
             "165219852",
             "165323893",
             "166428284"
+        ],
+        "last_modified": 0
+    },
+    "nsfw_patreon": {
+        "name": "patreon",
+        "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=14567067&sort=-published_at&json-api-version=1.0",
+        "channel": 1537118182131769426,
+        "role": 1537115998426235060,
+        "embed": {
+            "author": null,
+            "author_url": "https://www.patreon.com/NomnomNSFW",
+            "author_icon": null,
+            "footer": "nsfw patreon",
+            "color": 1184274,
+            "timestamp_format": "%Y-%m-%dT%X.%f%z"
+        },
+        "saved_ids": [
+            "135111331",
+            "135184593",
+            "135110911",
+            "135186529",
+            "135189321",
+            "135189770",
+            "140323512",
+            "147570021",
+            "147572483",
+            "158865512",
+            "161864749",
+            "165395282"
         ],
         "last_modified": 0
     }

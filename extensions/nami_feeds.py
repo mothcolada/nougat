@@ -654,7 +654,8 @@ funcs = {
     'site_updates':     parse_site_updates,
     # 'youtube':          parse_youtube,
     'pillowfort':       parse_pillowfort,
-    'patreon':          parse_patreon
+    'patreon':          parse_patreon,
+    'nsfw_patreon':          parse_patreon
 }
 
 
@@ -675,7 +676,7 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         for s in SOURCES:
-            if s in ['neocities', 'patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
+            if s in ['neocities', 'patreon', 'nsfw_patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)

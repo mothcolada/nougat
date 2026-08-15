@@ -19,6 +19,8 @@ MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
 MOD_ROLE_ID = 1521632400604397672
 
+NAMIVERSE_GUILD_ID = 1521632400453402732
+
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
 
 INTENTS = discord.Intents.default()
@@ -71,6 +73,15 @@ class Nougat(commands.Bot):
     async def on_message(self, message: discord.Message):
         if (message.type == discord.MessageType.auto_moderation_action):
             await message.channel.send(f"<@&{MOD_ROLE_ID}>")
+
+
+    # async def on_reaction_add(self, reaction: discord.Reaction, user: discord.Member):
+    #     message = reaction.message
+    #     if user.guild_permissions.administrator and message.author.id in [NOUGAT_ID, MOTHCOLADA_ID]:
+    #         if reaction.emoji == "🔞" and message.guild and message.guild.id == NAMIVERSE_GUILD_ID:  # move to namitavern
+                
+    #             await sel
+    #             await reaction.message.delete()
 
 
     async def log(self, message):
