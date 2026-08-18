@@ -58,14 +58,13 @@ class Nougat(commands.Bot):
 
     async def on_ready(self):
         await self.log("good morning world")
-        # channel = self.get_channel(1521632401585864731)
-        # while True:
-        #     await channel.send("-# <:toffeeSmirk:1522231925425705110>")
-        # message = await channel.fetch_message(1518103209644920852)
-        # print(message.embeds[0])
+        # channel = self.get_channel(1521633846477721680)
+        # if isinstance(channel, discord.TextChannel):
+        #     message = await channel.fetch_message(1539274757290332272)
+        #     print(message.embeds[0].image)
         # embed = message.embeds[0]
-        # embed.set_image(url='https://nomnomnami.com/posts/images/cooked.jpg')
-        # await message.edit(content='<@&1330488425006239797>  Vinegar is a demigirl and (non-canonically) lesbian!', embed=embed)
+        # embed.set_image(url='https://img.comicfury.com/comics/457/82272a1786977291b69397f2143083719.png')
+        # await message.edit(content=message.content, embed=embed)
         # await self.close()
         # exit()
 
@@ -75,13 +74,54 @@ class Nougat(commands.Bot):
             await message.channel.send(f"<@&{MOD_ROLE_ID}>")
 
 
-    # async def on_reaction_add(self, reaction: discord.Reaction, user: discord.Member):
-    #     message = reaction.message
-    #     if user.guild_permissions.administrator and message.author.id in [NOUGAT_ID, MOTHCOLADA_ID]:
-    #         if reaction.emoji == "🔞" and message.guild and message.guild.id == NAMIVERSE_GUILD_ID:  # move to namitavern
-                
-    #             await sel
-    #             await reaction.message.delete()
+    async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
+        emoji = payload.emoji
+        user = payload.member
+        if not user:
+            return
+        channel = self.get_channel(payload.channel_id)
+        if not isinstance(channel, discord.TextChannel):
+            return
+        message = await channel.fetch_message(payload.message_id)
+
+        if user.guild_permissions.manage_messages and message.author.id == self.user.id:  # moderator performing action on nougat message
+            print('so')
+            # refresh image url of embed
+            if emoji.name in "🔄🔃🔁":
+                await message.edit(content=message.content, embeds=message.embeds)
+
+            # move nami post to namitavern
+            if emoji.name == "🔞":
+                channel_targets = {  # every possible sfw channel and its target 18+ channel in Namitavern
+                    1074754885070897202: 1537552461605249064,  # test
+                    1521633877859500072: 1537117062416302150,  # nami-news
+                    1521633846477721680: 1537117062416302150,  # nami-feeds (same target channel as above)
+                    1521632401334210659: 1537116000212877392   # nami-asks
+                }
+                role_targets = {  # every possible role ping and its respective role in Namitavern
+                    "<@&1539330597577560164>": "<@&1539330623947276288>",  # Test Ping
+                    "<@&1521632400491417770>": "<@&1537115998442889268>",  # Nami News
+                    "<@&1521632400453402739>": "<@&1537115998426235060>",  # Nami Feeds
+                    "<@&1521632400453402738>": "<@&1537115998426235059>"   # Nami Asks
+                }
+                try:  # will error if channel not found (should not happen)
+                    target_channel = self.get_channel(channel_targets[channel.id])
+                    if not isinstance(target_channel, discord.TextChannel):
+                        return
+                    # replace role pings
+                    new_content = message.content
+                    for original_role in role_targets:
+                        new_content = new_content.replace(original_role, role_targets[original_role])
+
+                    if len(message.attachments) == 0:
+                        await target_channel.send(content=new_content, embeds=message.embeds)
+                    else:
+                        await message.forward(target_channel)
+
+                except:
+                    await self.report("move to namitavern failed!")
+                finally:  # regardless of error, delete post in sfw channel
+                    await message.delete()
 
 
     async def log(self, message):

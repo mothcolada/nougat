@@ -753,11 +753,15 @@ class NamiFeeds(commands.Cog):
         for message in messages:
             if len(message.attachments) > 10:
                 raise Exception('more than 10 files time to die')
-            
-            m: discord.Message = await channel.send(message.role_ping(), embed=message.get_embed())  # type: ignore -- channel is assumed to support send
+
+            if self.bot.is_nougat:
+                ping = message.role_ping()
+            else:
+                ping = "<@&1539330597577560164>"
+
+            m: discord.Message = await channel.send(ping, embed=message.get_embed())  # type: ignore -- channel is assumed to support send
             if self.bot.is_nougat and channel.is_news():
                 await m.publish()
-
 
             if len(message.attachments) > 0:
                 m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
