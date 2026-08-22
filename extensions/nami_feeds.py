@@ -8,20 +8,26 @@ import io
 import json
 import lxml  # do not remove
 from urllib.parse import urljoin
-
+import os
+from dotenv import load_dotenv
 import discord
 import requests
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
+from bs4.element import NavigableString, PageElement
 from discord.ext import commands, tasks
+import re
+import copy
+
+load_dotenv()
 
 # good lord this file is messy
-# TODO: announcements, newsfeed, neocities, youtube, pillowfort
+# TODO: youtube
 
 GMT = datetime.timezone(datetime.timedelta(0), 'GMT')
 
 TEST_CHANNEL = 1074754885070897202
 
-icons = {
+ICONS = {
     'none': '<:icon_none:1454889234853793842>',
     'eggbug': '<:icon_eggbug:1425576567945564272>',
     'anon': '<:icon_anon:1425576581815992320>',
@@ -76,7 +82,7 @@ icons = {
     'clio': '<:icon_clio:1524268754295586837>',
     'eudora': '<:icon_eudora:1524268754974933042>'
 }
-emoji = {
+EMOJI = {
     'eggbug': '<:eggbug:1444074342576033793>',
     'eggbug_asleep': '<:eggbug_asleep:1444074343951765686>',
     'eggbug_devious': '<:eggbug_devious:1444074344845283390>',
@@ -92,16 +98,30 @@ emoji = {
     'eggbug_uwu': '<:eggbug_uwu:1444074356878606396>',
     'eggbug_wink': '<:eggbug_wink:1444074357914599537>'
 }
+TAVERN_CHANNEL_TARGETS = {  # every possible sfw channel and its target 18+ channel in Namitavern
+    1074754885070897202: 1537552461605249064,  # test
+    1521633877859500072: 1537117062416302150,  # nami-news
+    1521633846477721680: 1537117062416302150,  # nami-feeds (same target channel as above)
+    1521632401334210659: 1537116000212877392   # nami-asks
+}
+TAVERN_ROLE_TARGETS = {  # every possible role ping and its respective role in Namitavern
+    "<@&1539330597577560164>": "<@&1539330623947276288>",  # Test Ping
+    "<@&1521632400491417770>": "<@&1537115998442889268>",  # Nami News
+    "<@&1521632400453402739>": "<@&1537115998426235060>",  # Nami Feeds
+    "<@&1521632400453402738>": "<@&1537115998426235059>"   # Nami Asks
+}
 
 SOURCES: dict = json.load(open('feed_data.json', 'r'))
 
+
+censor_nsfw = False  # god this global variable feels stupid and hacky why did i program everything like this
 
 class Message():
     def __init__(
         self,
         source: str,
         id: (int | str),
-        description: str,
+        description: (str | None) = None,
         title: (str | None) = None,
         url: (str | None) = None,
         author: (str | None) = None,
@@ -109,7 +129,10 @@ class Message():
         images = [],
         thumbnail: (str | None) = None,
         timestamp: (str | None) = None,
-        tags: (str | None) = None
+        tags: (str | None) = None,
+        embed: bool = True,
+        content: str = "",
+        nsfw: bool = False
     ):
         self.source      = SOURCES[source]
         self.id          = id
@@ -117,13 +140,28 @@ class Message():
         self.title       = title
         self.url         = url    or self.source['embed']['url']
         self.author      = author or self.source['embed']['author']
-        self.author_url  = self.source['embed']['author_url']
         self.author_icon = author_icon or self.source['embed']['author_icon']
         self.footer      = self.source['embed']['footer']
         self.color       = self.source['embed']['color']
         self.thumbnail   = thumbnail
         self.tags        = tags
         self.images      = images
+        self.embed       = embed
+        self.content     = content
+        self.nsfw        = nsfw
+        self.footer_icon = self.source['embed']['footer_icon']
+
+        # TEMPORARY FOR SLATE AU
+        if self.footer == "ask" and len(self.images) > 0 and self.description and "# slate AU" in self.description:
+            self.content += " <@&1521632400453402741>"
+            self.footer = "slate au"
+            self.color = 0xa15c3e
+            self.footer_icon = "https://nomnomnami.com/ask/images/slate.png"
+
+
+        self.author_url  = self.source['embed']['author_url']
+        if self.author_url == "[url]":
+            self.author_url = self.url
 
         if tags:
             self.footer += '  •  ' + tags
@@ -140,7 +178,7 @@ class Message():
                 self.footer += '  •  ' + timestamp
 
         # limit description to 4000 chars
-        if len(self.description) > 4000:
+        if self.description and len(self.description) > 4000:
             # do my best to spoiler anything that should be spoilered (could have false positives but that's fine)
             self.description = self.description[:4000]
             if ('||' in self.description[:4000] and '||' in self.description[3999:]):
@@ -160,10 +198,13 @@ class Message():
         return False
 
     
-    def role_ping(self):
+    def get_content(self):
+        content = ""
         if self.source['role']:
-            return f"-# <@&{self.source['role']}>"
-        return None
+            content += f"-# <@&{self.source['role']}>"
+        if self.content:
+            content += " " + self.content
+        return content
     
 
     def ready_images(self):
@@ -183,13 +224,17 @@ class Message():
                 self.attachments.append(discord_file)
 
 
-    def get_embed(self) -> discord.Embed:
+    def get_embed(self) -> discord.Embed | None:
+        if not self.embed:
+            return None
+        
         embed = discord.Embed(  color       = self.color,
                                 description = self.description,
                                 title       = self.title,
                                 url         = self.url,
                                 timestamp   = self.timestamp)
-        embed.set_footer(       text        = self.footer)
+        embed.set_footer(       text        = self.footer,
+                                icon_url    = self.footer_icon)
         if self.image:
             embed.set_image(    url         = self.image)
         if self.author:
@@ -201,11 +246,11 @@ class Message():
         return embed
 
 
-def clean(string: str):
+def clean(string: str) -> str:
     return html.unescape(string).replace('*', '\\*').replace('\n', '')
 
 
-def paragraph(p):  # TODO: totally rewrite this?? for tag in tag in <p> tag
+def paragraph(p) -> str:  # TODO: totally rewrite this?? for tag in tag in <p> tag
     text = ''
     for c in p.children:
         if isinstance(c, NavigableString):
@@ -231,7 +276,8 @@ def paragraph(p):  # TODO: totally rewrite this?? for tag in tag in <p> tag
     return text.strip()
 
 
-def html_to_discord(html: BeautifulSoup):
+def html_to_discord(html: Tag):
+    global censor_nsfw
     text = ''
     images = []
     for child in html.children:
@@ -240,30 +286,33 @@ def html_to_discord(html: BeautifulSoup):
             for grandchild in child.descendants:
                 if grandchild.name == 'img':
                     if '/ask/images/emoji/' in grandchild['src']:
-                        text += ' ' + emoji[grandchild['src'].split('/')[-1].split('.')[0]] + ' '
+                        text += ' ' + EMOJI[grandchild['src'].split('/')[-1].split('.')[0]] + ' '
                     else:
                         images.append(grandchild)
         elif child.name == 'h3':
             text += '\n### ' + paragraph(child)
         elif child.name == 'small':
-            text += '\n\n-# ' + paragraph(child)
-        elif child.name == 'ul':
-            if 'class' in child.attrs and 'tags' in child['class']:
+            text += "\n\n-# " + paragraph(child)
+        elif child.name == "ul":
+            if "class" in child.attrs and "tags" in child['class']:
                 pass
             else:
                 for grandchild in child.descendants:
                     if grandchild.name == 'li':
                         text += '\n- ' + paragraph(grandchild)
-        elif child.name == 'ol':
+        elif child.name == "ol":
             for grandchild in child.descendants:
                 n = 1
-                if grandchild.name == 'li':
+                if grandchild.name == "li":
                     text += '\n' + str(n) + '. ' + paragraph(grandchild)
                     n += 1
-        elif child.name == 'details':
+        elif child.name == "details":
             text += '\n\n' + paragraph(child.find('summary'))
-            text += '\n||' + html_to_discord(child)['text'].strip() + '||'
-            images = images + html_to_discord(child)['images']
+            if censor_nsfw and "nsfw" in child.find('summary').string:
+                text += "\n[*too gay for Namiverse!*]"
+            else:
+                text += '\n||' + html_to_discord(child)['text'].strip() + '||'
+                images = images + html_to_discord(child)['images']
         elif child.name == 'img':
             images.append(child)
         elif child.name == 'div':
@@ -278,10 +327,10 @@ def html_to_discord(html: BeautifulSoup):
             elif 'asker' in child['class']:
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
-                if child['class'][1] in icons.keys():
-                    text += icons[child['class'][1]]  # TODO: actually test this
+                if child['class'][1] in ICONS.keys():
+                    text += ICONS[child['class'][1]]  # TODO: actually test this
                 else:
-                    text += icons['none']
+                    text += ICONS['none']
             elif 'ask' in child['class']:
                 text += html_to_discord(child)['text']
             elif 'youtube-embed' in child['class']:
@@ -342,7 +391,7 @@ def parse_posts(soup):
         footer = 'posts'
         if post.find('section', {'class': 'tags'}) != None:
             post.find('section', {'class': 'tags'})
-            tags = [c.string for c in post.find('section', {'class': 'tags'}).children if isinstance(c, Tag)]
+            tags = [c.string for c in post.find('section', {'class': 'tags'}).children if isinstance(c, Tag) and c.string]
             if len(tags) > 0:
                 footer += '  •  ' + '  '.join(tags)
 
@@ -375,34 +424,62 @@ def parse_blog(soup):
     return messages
 
 
-def parse_ask(soup):
+def parse_ask(soup: BeautifulSoup):
     posts = soup.find_all('article')
+    global censor_nsfw
 
     messages = []
     for post in posts:
         tags = ''
-        tags_element = post.find('ul', {'class': 'tags'})
+        tags_element = post.find("ul", {'class': 'tags'})
         if tags_element:
             tags_list: list[str] = []
             for c in tags_element.children:
                 if isinstance(c, Tag) and c.string:
                     tags_list.append(c.string)
-            tags = '  '.join(tags_list)
+            tags = "  ".join(tags_list)
 
-        paragraph = post.find('p')
-        beginning = ''
+        paragraph = post.find("p")
+        beginning = ""
         if paragraph:
             beginning = paragraph.text
             if len(beginning) >= 20:
                 beginning = beginning[:20]
-        id = beginning + hashlib.sha1(bytes(post.text, 'utf-8')).hexdigest()
+        id = beginning + hashlib.sha1(bytes(post.text, "utf-8")).hexdigest()
 
-        message = Message('ask',
-                          id = id,
-                          description = html_to_discord(post)['text'],
-                          images = [image for image in html_to_discord(post)['images']],
-                          tags = tags)
-        messages.append(message)
+        # has nsfw content (post uncensored in namitavern)
+        has_nsfw = len(post.find_all("summary", string=re.compile("nsfw text"))) > 0  # if any <summary> has the string "nsfw text" in it
+        if has_nsfw:
+            message = Message('ask',
+                            id = id,
+                            description = html_to_discord(post)['text'],
+                            images = [image for image in html_to_discord(post)['images']],
+                            tags = tags,
+                            nsfw = True)
+            messages.append(message)
+
+        fully_nsfw = False
+        if has_nsfw:
+            post_without_nsfw = copy.copy(post)
+            if not post_without_nsfw.details:
+                raise Exception("no details but yes details?? i dont know i wrote this code when i was tired")
+            nsfw_details = post_without_nsfw.details.extract()
+            first_details_nsfw = nsfw_details.summary and nsfw_details.summary.string and "nsfw text" in nsfw_details.summary.string
+            post_is_only_details = html_to_discord(post_without_nsfw)['text'].strip() == ""
+            if first_details_nsfw and post_is_only_details:
+                fully_nsfw = True
+
+        # isn't fully nsfw (post in namiverse, censored if applicable)
+        if not fully_nsfw:
+            censor_nsfw = True
+            message = Message('ask',
+                            id = id,
+                            description = html_to_discord(post)['text'],
+                            images = [image for image in html_to_discord(post)['images']],
+                            tags = tags)
+            censor_nsfw = False
+            messages.append(message)
+            
 
     return messages
 
@@ -468,6 +545,8 @@ def parse_neocities(soup):
 
 
 def parse_pillowfort(soup):
+    if isinstance(soup, BeautifulSoup):
+        return []
     posts_json = json.loads(soup)
     posts = posts_json['posts']
     messages = []
@@ -493,15 +572,33 @@ def parse_pillowfort(soup):
                 else:
                     desc += '\n\n' + media['url']
 
-        message = Message('pillowfort',
-                          id = post['id'],
-                          title = post['title'],
-                          description = desc,
-                          url = url,
-                          images = images,
-                          timestamp = post['publish_at'],
-                          author = post['username'],
-                          author_icon = post['avatar_url'])
+        if post['privacy'] == "public":
+            message = Message("pillowfort",
+                            id = post['id'],
+                            title = post['title'],
+                            description = desc,
+                            url = url,
+                            images = images,
+                            timestamp = post['publish_at'],
+                            author = post['username'],
+                            author_icon = post['avatar_url'],
+                            tags = " ".join(["#" + tag for tag in post['tags']]),
+                            nsfw = post['nsfw'])
+        else:
+            if post['privacy'] == "users":
+                desc = "This post is only visible to logged in users."
+            elif post['privacy'] == "followers":
+                desc = "This post is only visible to followers."
+            else:
+                raise ValueError("unknown pillowfort post privacy value")
+            message = Message('pillowfort',
+                            id = post['id'],
+                            description=desc,
+                            url = url,
+                            timestamp = post['publish_at'],
+                            author = post['username'],
+                            author_icon = post['avatar_url'],
+                            nsfw = post['nsfw'])
         messages.append(message)
     return messages
 
@@ -583,35 +680,30 @@ def parse_post_status(soup):
     table = status.find('table')
     desc = ''
     for tr in table.find_all('tr'):
-        th = tr.find('th')
-        td = tr.find('td')
+        th = tr.find("th")
+        td = tr.find("td")
         desc += f"**{th.text}** {paragraph(td)}\n"
 
     messages = [Message('post_status',
-                        id = status.find('time').string + desc,  # can change twice in a day i suppose
+                        id = status.find("time").string + desc,  # can change twice in a day i suppose
                         description = desc,
-                        timestamp = status.find('time').string)]
+                        timestamp = status.find("time").string)]
 
     return messages
 
 
 def parse_youtube(soup):
     pass
-    # posts = soup.find_all('entry')
+    posts = soup.find_all('entry')
 
-    # messages = []
-    # for post in posts:
-    #     message = Message('youtube',
-    #                       author = post.find('author').find('name').string,
-    #                       title = post.find('title').string,
-    #                       url = post.find('link')['href'],
-    #                       id = post.find('id').string,
-    #                       description = 'examplesesess',
-    #                       images = [{'src': 'https://www.youtube.com/v/RwfRpffJf94'}],
-    #                       timestamp = post.find('published').string)
-    #     messages.append(message)
+    messages = []
+    for post in posts:
+        message = Message('youtube',
+                          id = post.find("id"),
+                          content = post.find("link")['href'])
+        messages.append(message)
 
-    # return messages
+    return messages
 
 
 def parse_patreon(soup):
@@ -660,7 +752,6 @@ funcs = {
 
 
 eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
-webcomic_time = datetime.time(hour=15, minute=0, second=0, tzinfo=eastern_time)  # 3pm EST
 
 class NamiFeeds(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -676,7 +767,7 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         for s in SOURCES:
-            if s in ['neocities', 'patreon', 'nsfw_patreon', 'announcements', 'post_status', 'pillowfort', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
+            if s in ['pillowfort', 'neocities', 'patreon', 'nsfw_patreon', 'announcements', 'post_status', 'tcs', 'apoc', 'posts', 'newsfeed', 'site_updates', 'ask', 'status_cafe', 'blog', 'trick', 'timber']:
                 try:
                     source = SOURCES[s]
                     await self.check(source)
@@ -696,7 +787,15 @@ class NamiFeeds(commands.Cog):
     def get_feed(self, source: dict):
         last_modified = datetime.datetime.fromtimestamp(source['last_modified'], GMT)
         last_modified_string = last_modified.strftime('%a, %d %b %Y %X %Z')
-        response = requests.get(source['link'], headers={'If-Modified-Since': last_modified_string})
+        headers = {}
+        if source['name'] == "pillowfort":
+            headers = {
+                "Cookie": os.environ['PF_COOKIE'],
+                "X-CSRF-Token": os.environ['PF_X-CSRF-TOKEN']
+            }
+        headers['If-Modified-Since'] = last_modified_string
+
+        response = requests.get(source['link'], headers=headers)
 
         if response.status_code == 304:  # not modified since (FIXME: this seems to not actually ever happen?)
             return None
@@ -738,33 +837,47 @@ class NamiFeeds(commands.Cog):
 
     async def check(self, source):
         if self.bot.is_nougat:
-            channel = self.bot.get_channel(source['channel'])
+            channel_id: int = source['channel']
         else:
-            channel = self.bot.get_channel(TEST_CHANNEL)
+            channel_id: int = TEST_CHANNEL
+        channel = self.bot.get_channel(channel_id)
+        tavern_channel = self.bot.get_channel(TAVERN_CHANNEL_TARGETS[channel_id])
 
-        if not channel:
-            await self.bot.report('could not retrieve feed channel')
+        if not isinstance(channel, discord.TextChannel):
+            raise Exception("could not retrieve feed channel")
+        if not isinstance(tavern_channel, discord.TextChannel):
+            raise Exception("could not retrieve tavern feed channel")
 
         # get all the messages to send
         messages: list[Message] = self.feed(source)
-        if (len(messages) > 50 and source['name'] != 'ask') or len(messages) > 150:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
+        if (len(messages) > 5 and source['name'] != 'ask') or len(messages) > 15:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             await self.bot.report('too many messages to send')
 
         for message in messages:
             if len(message.attachments) > 10:
-                raise Exception('more than 10 files time to die')
+                raise ValueError("cannot send more than 10 attachments at once")
 
             if self.bot.is_nougat:
-                ping = message.role_ping()
-            else:
-                ping = "<@&1539330597577560164>"
+                content = message.get_content()
+            else: # oh my GOD this needs to be simplified BAD. TODO: another nougat rewrite may be in order
+                content = "-# <@&1539330597577560164>"
+                if message.content:
+                    content += " " + message.content
+                if message.nsfw:
+                    for original_role in TAVERN_ROLE_TARGETS:
+                        content = content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
 
-            m: discord.Message = await channel.send(ping, embed=message.get_embed())  # type: ignore -- channel is assumed to support send
+            m: discord.Message
+            if message.nsfw:
+                m = await tavern_channel.send(content, embed=message.get_embed())  # type: ignore
+            else:
+                m = await channel.send(content, embed=message.get_embed())  # type: ignore
+
             if self.bot.is_nougat and channel.is_news():
                 await m.publish()
 
             if len(message.attachments) > 0:
-                m = await channel.send(files=message.attachments)  # type: ignore -- channel is assumed to support send
+                m = await channel.send(files=message.attachments)
                 if self.bot.is_nougat and channel.is_news():
                     await m.publish()
         

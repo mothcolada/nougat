@@ -14,12 +14,25 @@ from dotenv import load_dotenv
 
 # TODO: use database instead of json for nami feeds
 
-NOUGAT_ID = 1425561875885719634  # FIXME: Make a configuration option
+NOUGAT_ID = 1425561875885719634
 MOTHCOLADA_ID = 422162909582589963
 LOG_CHANNEL = 1425915517184512041
 MOD_ROLE_ID = 1521632400604397672
 
 NAMIVERSE_GUILD_ID = 1521632400453402732
+
+TAVERN_CHANNEL_TARGETS = {  # every possible sfw channel and its target 18+ channel in Namitavern
+    1074754885070897202: 1537552461605249064,  # test
+    1521633877859500072: 1537117062416302150,  # nami-news
+    1521633846477721680: 1537117062416302150,  # nami-feeds (same target channel as above)
+    1521632401334210659: 1537116000212877392   # nami-asks
+}
+TAVERN_ROLE_TARGETS = {  # every possible role ping and its respective role in Namitavern
+    "<@&1539330597577560164>": "<@&1539330623947276288>",  # Test Ping
+    "<@&1521632400491417770>": "<@&1537115998442889268>",  # Nami News
+    "<@&1521632400453402739>": "<@&1537115998426235060>",  # Nami Feeds
+    "<@&1521632400453402738>": "<@&1537115998426235059>"   # Nami Asks
+}
 
 DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
 
@@ -88,30 +101,22 @@ class Nougat(commands.Bot):
             print('so')
             # refresh image url of embed
             if emoji.name in "🔄🔃🔁":
+                try:
+                    await message.remove_reaction(emoji, user)
+                except discord.NotFound as e:
+                    pass
                 await message.edit(content=message.content, embeds=message.embeds)
 
             # move nami post to namitavern
             if emoji.name == "🔞":
-                channel_targets = {  # every possible sfw channel and its target 18+ channel in Namitavern
-                    1074754885070897202: 1537552461605249064,  # test
-                    1521633877859500072: 1537117062416302150,  # nami-news
-                    1521633846477721680: 1537117062416302150,  # nami-feeds (same target channel as above)
-                    1521632401334210659: 1537116000212877392   # nami-asks
-                }
-                role_targets = {  # every possible role ping and its respective role in Namitavern
-                    "<@&1539330597577560164>": "<@&1539330623947276288>",  # Test Ping
-                    "<@&1521632400491417770>": "<@&1537115998442889268>",  # Nami News
-                    "<@&1521632400453402739>": "<@&1537115998426235060>",  # Nami Feeds
-                    "<@&1521632400453402738>": "<@&1537115998426235059>"   # Nami Asks
-                }
                 try:  # will error if channel not found (should not happen)
-                    target_channel = self.get_channel(channel_targets[channel.id])
+                    target_channel = self.get_channel(TAVERN_CHANNEL_TARGETS[channel.id])
                     if not isinstance(target_channel, discord.TextChannel):
                         return
                     # replace role pings
                     new_content = message.content
-                    for original_role in role_targets:
-                        new_content = new_content.replace(original_role, role_targets[original_role])
+                    for original_role in TAVERN_ROLE_TARGETS:
+                        new_content = new_content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
 
                     if len(message.attachments) == 0:
                         await target_channel.send(content=new_content, embeds=message.embeds)

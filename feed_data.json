@@ -1,4 +1,40 @@
 {
+    "pillowfort": {
+        "name": "pillowfort",
+        "link": "https://www.pillowfort.social/nomnomnami/json/",
+        "channel": 1521633846477721680,
+        "role": 1521632400453402739,
+        "embed": {
+            "color": 8594767,
+            "author_url": "[url]",
+            "footer": "pillowfort",
+            "timestamp_format": "%Y-%m-%dT%X.%f%z",
+            "footer_icon": "https://www.pillowfort.social/assets/favicon/Favicon%202%20-%20Dark%20Blue@3x-515c35a56c5b49119a9a697b23f9c70a5ac5740d610fab316545ff74f15be3f2.png"
+        },
+        "saved_ids": [
+            8021260,
+            8021831,
+            8022166,
+            8027133,
+            8049947,
+            8049955,
+            8050014,
+            8054704,
+            8054713,
+            8054717,
+            8069255,
+            8073473,
+            8096390,
+            8110982,
+            8110987,
+            8110997,
+            8113425,
+            8116676,
+            8120995,
+            8114263
+        ],
+        "last_modified": 0
+    },
     "announcements": {
         "name": "announcements",
         "link": "https://nomnomnami.com/index.html",
@@ -9,12 +45,14 @@
             "author_url": null,
             "author_icon": null,
             "footer": "announcement",
-            "color": 15000812
+            "color": 15000812,
+            "footer_icon": null
         },
         "saved_ids": [
-            "/images/announcement-kaimamv.png"
+            "/images/announcement-kaimamv.png",
+            "/posts/images/puppers4.png"
         ],
-        "last_modified": 1786960175
+        "last_modified": 1787270237
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -27,7 +65,8 @@
             "author_url": null,
             "author_icon": null,
             "footer": "newsfeed",
-            "color": 9342360
+            "color": 9342360,
+            "footer_icon": null
         },
         "saved_ids": [
             "1/1/2026",
@@ -94,9 +133,11 @@
             "8/10/2026",
             "8/14/2026",
             "8/15/2026",
-            "8/16/2026"
+            "8/16/2026",
+            "8/19/2026",
+            "8/20/2026"
         ],
-        "last_modified": 1786960175
+        "last_modified": 1787270237
     },
     "posts": {
         "name": "posts",
@@ -110,7 +151,8 @@
             "author_url": "https://nomnomnami.com/posts/",
             "author_icon": "https://nomnomnami.com/images/icon_nami2.png",
             "footer": "posts",
-            "timestamp_format": "%m/%d/%Y, %I:%M%p%z"
+            "timestamp_format": "%m/%d/%Y, %I:%M%p%z",
+            "footer_icon": null
         },
         "saved_ids": [
             "1/10/2026, 8:26am",
@@ -260,9 +302,11 @@
             "8/15/2026, 9:40pm",
             "8/16/2026, 4:52pm",
             "8/17/2026, 8:04am",
-            "8/18/2026, 7:07am"
+            "8/18/2026, 7:07am",
+            "8/19/2026, 7:58am",
+            "8/20/2026, 9:06am"
         ],
-        "last_modified": 1787076453
+        "last_modified": 1787256398
     },
     "timber_posts": {
         "name": "timber_posts",
@@ -284,7 +328,8 @@
             "author_icon": null,
             "footer": "nomnomblogging",
             "color": 6937599,
-            "timestamp_format": "%Y-%m-%dT%XZ"
+            "timestamp_format": "%Y-%m-%dT%XZ",
+            "footer_icon": null
         },
         "saved_ids": [
             "tag:nomnomnami.pika.page,2005:Post/75015",
@@ -312,7 +357,8 @@
             "tag:nomnomnami.pika.page,2005:Post/117880",
             "tag:nomnomnami.pika.page,2005:Post/118286",
             "tag:nomnomnami.pika.page,2005:Post/118354",
-            "tag:nomnomnami.pika.page,2005:Post/118483"
+            "tag:nomnomnami.pika.page,2005:Post/118483",
+            "tag:nomnomnami.pika.page,2005:Post/119015"
         ],
         "last_modified": 0
     },
@@ -327,7 +373,8 @@
             "author_url": null,
             "author_icon": null,
             "footer": "ask",
-            "color": 16767144
+            "color": 16767144,
+            "footer_icon": null
         },
         "saved_ids": [
             "at chapter 6's releabf8763b075616e3a2c54c3c5fbd9d48ca0752611",
@@ -404,7 +451,6 @@
             "Would I be correct i1ace02ef55bea777e27aad3f5055fe7c5ecf1175",
             "is there gonna be anadff282828afe13aaa2cb66194bb247c982e8257",
             "It was mentioned ear5585ee884c07bd6056e7337a068095f30207eccd",
-            "in the music room in37dcf66cd00a911be27eac819ca3c4827959a280",
             "\u201cHow do you always m571748add48eedc0e535e644045ac7e6b4a3673d",
             "so...what IS the rel5fa1634ca56c7accdea63f2e3779a8dae0be3223",
             "My aim is very good e631df83c14fc21cbe4ec34c8fdbfb99272bec64",
@@ -540,7 +586,6 @@
             "Ok I know this isn't0bdd0d2c0aeda62b78224039c83861e5bf7daae9",
             "Everyone wanting to cb67a0963be6048b0bd935cf556bcd133fb02f5e",
             "How would you feel af4f1847bc383f36f4a4b35196a81da1c7001698c",
-            "if you could only drf5a4cc449e2710d30803256581a554d2c8e5a9fd",
             "Where did the 24 houacb4a495888923fd4795872b608fbdc5ad4ebcc6",
             "What's a relationshi97e72d9069a1cb2d9f81d9bb266b00b58926c25c",
             "Not necessarily aski02a3ac2a652b7e31d9e0d7489ad1fea7c3b60679",
@@ -573,8 +618,6 @@
             "have you ever watche61d492f70a6ec89a942e07ffa760d1f6e4817b4c",
             "Bro Lilium is SALIVA2d5a522d06de9b94b97afb05bb29548c6a9ca036",
             "With that popcorn pa28be6971007af0bc0370b9c251682f853d46a9ec",
-            "not sure how to descff732f88b55ca856a0432fc3116c03305ba2cbed",
-            "HEHEHEH intermission9256bc94f69ac268a92d1ab1df84f55dd915910e",
             "Is Pine's hair norma0d86b6c09b34d0567d812922122a62b093f7dbb9",
             "hi! i think phoenix aef9c5bcfda4eda826eeef9cfba749fae4a4af0a",
             "This might be obviou78470b55b94d9a8ec967baa97a1ce9fcb8ba12dc",
@@ -628,8 +671,6 @@
             "one of my favorite pbeb184ea4c34a2ba244e2b1c776ea0da79b35a2e",
             "Wait you get spam ond439497d6570889890ba90d612f2b12af2c7e95a",
             "\r\nI wanna play disga8ca041ab1da6808b208def7f4dbcc667fca8e7b5",
-            "Mason changed timelidd9003aef6760b8d7697acaa96f60b9e7dd703df",
-            "Sort of a nsfw ask- 9a94c5a0664b5cbd644a85586ca0cc1249e3f4da",
             "There is another soc007b9432159ad17c26769f2cc414f52ccf5bd207",
             "Day 3 of asking for 2a907c835566c6e4a8497e6c8abea1dc84ce2686",
             "Following on from so99453e3c092df54d320f93400d57354e54ce16a4",
@@ -676,7 +717,13 @@
             "Wait so if apoc charea551829fd9672c9a998a4fa6d03dded3c90f0a7",
             "a322c44fa16f2a79f839319a269e50fd9b47a35f",
             "I'm not sure anyone'141591fd4e8dac2df079f74bcb3caf34f0686fb4",
-            "Hypothetically in thc071d68c207dfcc7402482806656c07b26fcf13a"
+            "Hypothetically in thc071d68c207dfcc7402482806656c07b26fcf13a",
+            "not sure how to descff732f88b55ca856a0432fc3116c03305ba2cbed",
+            "HEHEHEH intermission9256bc94f69ac268a92d1ab1df84f55dd915910e",
+            "in the music room in37dcf66cd00a911be27eac819ca3c4827959a280",
+            "if you could only drf5a4cc449e2710d30803256581a554d2c8e5a9fd",
+            "Mason changed timelidd9003aef6760b8d7697acaa96f60b9e7dd703df",
+            "Sort of a nsfw ask- 9a94c5a0664b5cbd644a85586ca0cc1249e3f4da"
         ],
         "last_modified": 1781951748
     },
@@ -688,8 +735,9 @@
         "embed": {
             "author_url": "https://status.cafe/users/nomnomnami",
             "footer": "status.cafe",
-            "color": null,
-            "timestamp_format": "%Y-%m-%dT%X%z"
+            "color": 15794175,
+            "timestamp_format": "%Y-%m-%dT%X%z",
+            "footer_icon": null
         },
         "saved_ids": [
             "https://status.cafe/users/nomnomnami/230648",
@@ -712,7 +760,8 @@
             "https://status.cafe/users/nomnomnami/257648",
             "https://status.cafe/users/nomnomnami/258381",
             "https://status.cafe/users/nomnomnami/259031",
-            "https://status.cafe/users/nomnomnami/262814"
+            "https://status.cafe/users/nomnomnami/262814",
+            "https://status.cafe/users/nomnomnami/264613"
         ],
         "last_modified": 0
     },
@@ -727,7 +776,8 @@
             "author_icon": null,
             "footer": "neocities",
             "color": 15282768,
-            "timestamp_format": "%a, %d %b %Y %X %z"
+            "timestamp_format": "%a, %d %b %Y %X %z",
+            "footer_icon": "https://neocities.org/img/favicon.png"
         },
         "saved_ids": [
             "https://neocities.org/site/nomnomnami?event_id=7301136",
@@ -744,7 +794,9 @@
             "https://neocities.org/site/nomnomnami?event_id=7427961",
             "https://neocities.org/site/nomnomnami?event_id=7433218",
             "https://neocities.org/site/nomnomnami?event_id=7438736",
-            "https://neocities.org/site/nomnomnami?event_id=7445799"
+            "https://neocities.org/site/nomnomnami?event_id=7445799",
+            "https://neocities.org/site/nomnomnami?event_id=7451716",
+            "https://neocities.org/site/nomnomnami?event_id=7457562"
         ],
         "last_modified": 0
     },
@@ -759,7 +811,8 @@
             "author_url": "https://trick.pika.page",
             "author_icon": "https://nomnomnami.com/games/treat/charasort/src/assets/chars/trick.png",
             "footer": "Letters from Trick",
-            "timestamp_format": "%Y-%m-%dT%XZ"
+            "timestamp_format": "%Y-%m-%dT%XZ",
+            "footer_icon": null
         },
         "saved_ids": [
             "tag:trick.pika.page,2005:Post/1315",
@@ -784,44 +837,8 @@
             "tag:trick.pika.page,2005:Post/94078",
             "tag:trick.pika.page,2005:Post/101967",
             "tag:trick.pika.page,2005:Post/104820",
-            "tag:trick.pika.page,2005:Post/112727"
-        ],
-        "last_modified": 0
-    },
-    "pillowfort": {
-        "name": "pillowfort",
-        "link": "https://www.pillowfort.social/nomnomnami/json/",
-        "channel": 1521633846477721680,
-        "role": 1521632400453402739,
-        "embed": {
-            "color": 8594767,
-            "author_url": "https://www.pillowfort.social/nomnomnami",
-            "footer": "pillowfort",
-            "timestamp_format": "%Y-%m-%dT%X.%f%z"
-        },
-        "saved_ids": [
-            7989993,
-            7995135,
-            7995192,
-            7995263,
-            7995331,
-            8013269,
-            8018434,
-            8021831,
-            8022166,
-            8027133,
-            8049955,
-            8050014,
-            8054704,
-            8054713,
-            8054717,
-            8069255,
-            8073473,
-            8096390,
-            8110982,
-            8110987,
-            8110997,
-            8113425
+            "tag:trick.pika.page,2005:Post/112727",
+            "tag:trick.pika.page,2005:Post/119139"
         ],
         "last_modified": 0
     },
@@ -836,7 +853,8 @@
             "author_icon": null,
             "footer": "another piece of candy",
             "color": 13512298,
-            "timestamp_format": "%a, %d %b %Y %X %Z"
+            "timestamp_format": "%a, %d %b %Y %X %Z",
+            "footer_icon": "https://comicfury.com/comicavatars/394/43854_1750447178b69397c400d400f816438656.webp"
         },
         "saved_ids": [
             2895308,
@@ -854,7 +872,8 @@
             2951169,
             2939322,
             2958928,
-            2971308
+            2971308,
+            2982768
         ],
         "last_modified": 0
     },
@@ -869,7 +888,8 @@
             "author_icon": null,
             "footer": "Timber's Community Service",
             "color": 2565927,
-            "timestamp_format": "%a, %d %b %Y %X %Z"
+            "timestamp_format": "%a, %d %b %Y %X %Z",
+            "footer_icon": "https://comicfury.com/comicavatars/431/82272_1771172871b69397c400d400f737959537.webp"
         },
         "saved_ids": [
             "https://tcs.thecomicseries.com/comics/pl/2848242/",
@@ -889,7 +909,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2961726/",
             "https://tcs.thecomicseries.com/comics/pl/2965839/",
             "https://tcs.thecomicseries.com/comics/pl/2975642/",
-            "https://tcs.thecomicseries.com/comics/pl/2981202/"
+            "https://tcs.thecomicseries.com/comics/pl/2981202/",
+            "https://tcs.thecomicseries.com/comics/pl/2987199/"
         ],
         "last_modified": 0
     },
@@ -904,7 +925,8 @@
             "author_icon": null,
             "footer": "youtube",
             "color": 16711731,
-            "timestamp_format": "%Y-%m-%dT%X%z"
+            "timestamp_format": "%Y-%m-%dT%X%z",
+            "footer_icon": null
         },
         "saved_ids": [],
         "last_modified": 0
@@ -920,7 +942,8 @@
             "author_url": null,
             "author_icon": null,
             "footer": "site updates",
-            "color": 9342360
+            "color": 9342360,
+            "footer_icon": null
         },
         "saved_ids": [
             "1/1/2026added a [disgaea fan comics](https://nomnomnami.com/comics/disgaea/) gallery (full of old art from like 10 years ago), also updated my [news archive](https://nomnomnami.com/news/) up through november 2025",
@@ -961,9 +984,10 @@
             "7/17/2026new page: [how do i css?](https://nomnomnami.com/ask/how-do-i-css.html) - a collection of html/css uhhh tutorials i guess, very casual. will be adding more in the future.",
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe",
-            "8/15/2026going through my [blog archive](https://nomnomnami.com/blog/archive.html) lately to update older posts to the new CSS... the migration is slow but going well!"
+            "8/15/2026going through my [blog archive](https://nomnomnami.com/blog/archive.html) lately to update older posts to the new CSS... the migration is slow but going well!",
+            "8/19/2026updated [links](https://nomnomnami.com/links/) page (mostly just style change), added a few more character names to the [random pairing generator](https://nomnomnami.com/games/random-pairing.html)"
         ],
-        "last_modified": 1786960175
+        "last_modified": 1787270237
     },
     "post_status": {
         "name": "post_status",
@@ -976,7 +1000,8 @@
             "author_url": "https://nomnomnami.com/posts/",
             "author_icon": "https://nomnomnami.com/images/icon_nami2.png",
             "footer": "status",
-            "color": 6973555
+            "color": 6973555,
+            "footer_icon": null
         },
         "saved_ids": [
             "6/9/2026**working on:** steam rereleases\n**listening to:** [\u30e8\u30eb\u30b7\u30ab - \u3042\u3076\u304f](https://youtu.be/OHAjc-ayhus?si=bvCvQFg5tPYj3_hb)\n**the vibe:** thinking about WWT\n**playing:** tomodachi life (posting [here](https://nomnomnami.com/posts/tomodachi-life/))\n",
@@ -985,7 +1010,7 @@
             "7/29/2026**working on:** gotta make new builds for google play... (boring!!!!)\n**listening to:** speedrun streams\n**the vibe:** can't stop thinking about week with timber\n**playing:** DDR!!!!!\n",
             "8/15/2026**working on:** game jam with a friend\n**listening to:** pinocchio p albums\n**the vibe:** either hyperfocus or none at all, like cmon at least pick one or even out\n**playing:** a solitaire mystery\n"
         ],
-        "last_modified": 1787076453
+        "last_modified": 1787256398
     },
     "patreon": {
         "name": "patreon",
@@ -998,7 +1023,8 @@
             "author_icon": null,
             "footer": "patreon",
             "color": 1184274,
-            "timestamp_format": "%Y-%m-%dT%X.%f%z"
+            "timestamp_format": "%Y-%m-%dT%X.%f%z",
+            "footer_icon": "https://c5.patreon.com/external/favicon/rebrand/pwa-192.png"
         },
         "saved_ids": [
             "156888034",
@@ -1022,7 +1048,9 @@
             "165219852",
             "165323893",
             "166428284",
-            "166945345"
+            "166945345",
+            "167046359",
+            "167158218"
         ],
         "last_modified": 0
     },
@@ -1037,7 +1065,8 @@
             "author_icon": null,
             "footer": "nsfw patreon",
             "color": 1184274,
-            "timestamp_format": "%Y-%m-%dT%X.%f%z"
+            "timestamp_format": "%Y-%m-%dT%X.%f%z",
+            "footer_icon": null
         },
         "saved_ids": [
             "135111331",
