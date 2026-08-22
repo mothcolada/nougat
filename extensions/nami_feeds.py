@@ -841,7 +841,11 @@ class NamiFeeds(commands.Cog):
         else:
             channel_id: int = TEST_CHANNEL
         channel = self.bot.get_channel(channel_id)
-        tavern_channel = self.bot.get_channel(TAVERN_CHANNEL_TARGETS[channel_id])
+
+        if channel_id in TAVERN_CHANNEL_TARGETS.keys():
+            tavern_channel = self.bot.get_channel(TAVERN_CHANNEL_TARGETS[channel_id])
+        else:
+            tavern_channel = channel  # shouldnt ever matter but this works until i rewrite it
 
         if not isinstance(channel, discord.TextChannel):
             raise Exception("could not retrieve feed channel")
