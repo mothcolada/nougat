@@ -17,6 +17,7 @@ from bs4.element import NavigableString, PageElement
 from discord.ext import commands, tasks
 import re
 import copy
+from main import Nougat
 
 load_dotenv()
 
@@ -276,16 +277,16 @@ def paragraph(p) -> str:  # TODO: totally rewrite this?? for tag in tag in <p> t
     return text.strip()
 
 
-def html_to_discord(html: Tag):
-    global censor_nsfw
-    text = ''
+def html_to_discord(html: Tag):  # TODO: rewrite this too
+    global censor_nsfw  # ughhhhhh
+    text = ""
     images = []
     for child in html.children:
         if child.name == 'p':
             text += '\n\n' + paragraph(child)
             for grandchild in child.descendants:
-                if grandchild.name == 'img':
-                    if '/ask/images/emoji/' in grandchild['src']:
+                if grandchild.name == "img":
+                    if "/ask/images/emoji/" in grandchild['src']:
                         text += ' ' + EMOJI[grandchild['src'].split('/')[-1].split('.')[0]] + ' '
                     else:
                         images.append(grandchild)
@@ -316,14 +317,11 @@ def html_to_discord(html: Tag):
         elif child.name == 'img':
             images.append(child)
         elif child.name == 'div':
-            if 'class' not in child.attrs:
-                text += html_to_discord(child)['text']
+            if "class" not in child.attrs or "response" in child['class'] or "content" in child['class']:
+                text += html_to_discord(child)['text'] + "\n"
                 images = images + html_to_discord(child)['images']
             elif 'bubble' in child['class']:
                 text += '\n> '+html_to_discord(child)['text'].replace('\n', '\n> ')
-            elif 'response' in child['class'] or 'content' in child['class']:
-                text += html_to_discord(child)['text']
-                images = images + html_to_discord(child)['images']
             elif 'asker' in child['class']:
                 text += '### ' + html_to_discord(child)['text'] + ' ' + child.text.strip()
             elif 'icon' in child['class']:
@@ -756,7 +754,7 @@ funcs = {
 eastern_time = zoneinfo.ZoneInfo("America/New_York")  # Use zoneinfo so it tracks EST/EDT changes.
 
 class NamiFeeds(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: Nougat):
         self.bot = bot
         self.feeds.start()
 

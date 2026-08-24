@@ -3,7 +3,9 @@ import json
 import zoneinfo
 import logging
 from pathlib import Path
+import discord
 from discord.ext import commands, tasks
+from main import Nougat
 
 # TODO: types
 
@@ -25,7 +27,7 @@ midnight = datetime.time(hour=0, minute=0, tzinfo=eastern_time)
 
 
 class DailyCharacter(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: Nougat):
         self.bot = bot
         self.daily_character.start()
         now_est = datetime.datetime.now(tz=eastern_time)
@@ -78,6 +80,9 @@ class DailyCharacter(commands.Cog):
         await server.edit(icon=new_icon)
 
         channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_CHANNEL if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
+        if not isinstance(channel, discord.PartialMessageable):
+            raise Exception('daily character channel not found')
+            
         await channel.send(daily_message(now_est))
 
 
