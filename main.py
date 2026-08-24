@@ -75,8 +75,6 @@ class Nougat(commands.Bot):
         # if isinstance(channel, discord.TextChannel):
         #     message = await channel.fetch_message(1539274757290332272)
         #     print(message.embeds[0].image)
-        # embed = message.embeds[0]
-        # embed.set_image(url='https://img.comicfury.com/comics/457/82272a1786977291b69397f2143083719.png')
         # await message.edit(content=message.content, embed=embed)
         # await self.close()
         # exit()
@@ -98,7 +96,6 @@ class Nougat(commands.Bot):
         message = await channel.fetch_message(payload.message_id)
 
         if user.guild_permissions.manage_messages and message.author.id == self.user.id:  # moderator performing action on nougat message
-            print('so')
             # refresh image url of embed
             if emoji.name in "🔄🔃🔁":
                 try:
