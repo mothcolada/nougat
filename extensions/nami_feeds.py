@@ -586,9 +586,11 @@ def parse_pillowfort(soup):
                             nsfw = post['nsfw'])
         else:
             if post['privacy'] == "users":
-                desc = "This post is only visible to logged in users."
+                desc = "[This post is only visible to logged in users.]"
             elif post['privacy'] == "followers":
-                desc = "This post is only visible to followers."
+                desc = "[This post is only visible to followers.]"
+            elif post['privacy'] == "mutuals":
+                desc = "[This post is only visible to mutuals.]"
             else:
                 raise ValueError("unknown pillowfort post privacy value")
             message = Message('pillowfort',
