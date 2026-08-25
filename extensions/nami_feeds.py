@@ -201,14 +201,17 @@ class Message():
         return False
 
     
-    def get_content(self):
+    def get_content(self, nougat: bool):
         content = ""
-        if self.source["role"] and self.ping:
-            content += f"-# <@&{self.source['role']}>"
+        if self.ping and self.source["role"]:
+            if nougat:
+                content += f"-# <@&{self.source['role']}>"
+            else:
+                content += "-# <@&1539330597577560164>" if not self.nsfw else "<@&1539330623947276288>"
+
         if self.content:
             content += " " + self.content
         return content
-    
 
     def ready_images(self):
         self.image = None
@@ -690,13 +693,13 @@ def parse_post_status(soup):
 
 
 def parse_youtube(soup):
-    pass
     posts = soup.find_all("entry")
 
     messages = []
     for post in posts:
         message = Message("youtube",
-                          id = post.find("id"),
+                          embed = False,
+                          id = post.find("id").string,
                           content = post.find("link")["href"])
         messages.append(message)
 
@@ -731,7 +734,6 @@ funcs = {
     "newsfeed":         parse_newsfeed,
     "posts":            parse_posts,
     "post_status":      parse_post_status,
-    "timber":           parse_posts,
     "blog":             parse_blog,
     "ask":              parse_ask,
     "status_cafe":      parse_status_cafe,
@@ -740,10 +742,10 @@ funcs = {
     "apoc":             parse_apoc,
     "tcs":              parse_tcs,
     "site_updates":     parse_site_updates,
-    # "youtube":          parse_youtube,
+    "youtube":          parse_youtube,
     "pillowfort":       parse_pillowfort,
     "patreon":          parse_patreon,
-    "nsfw_patreon":          parse_patreon
+    "nsfw_patreon":     parse_patreon
 }
 
 
@@ -763,13 +765,14 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         for s in SOURCES:
-            if s in ["pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "tcs", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick", "timber"]:
+            if s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "tcs", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
                 # aiohttp asyncio stuff
+                print(s)
                 try:
                     source = SOURCES[s]
                     await self.check(source)
         #             source: str = SOURCES[s]
-        #             soups[source["link"]] = self.get_feed(source)
+        #             soups[source["link"]] = self.fetch_source(source)
                 except Exception as e:
                     await self.bot.report(s + " " + str(e))
 
@@ -781,19 +784,23 @@ class NamiFeeds(commands.Cog):
         await self.bot.wait_until_ready()
 
     
-    def get_feed(self, source: dict):
-        headers = {"If-None-Match": source["etag"]}
+    def fetch_source(self, source: dict):
+        headers = source["headers"].copy()
+        headers["If-None-Match"] = source["etag"]
         if source["name"] == "pillowfort":
-            headers.update({"Cookie": os.environ["PF_COOKIE"], "X-CSRF-Token": os.environ["PF_X-CSRF-TOKEN"]})
+            headers["Cookie"] = os.environ["PF_COOKIE"]
+            headers["X-CSRF-Token"] = os.environ["PF_X-CSRF-TOKEN"]
 
-        response = requests.get(source["link"], headers=headers, timeout=3.05)
+        response = requests.get(source["link"], headers=headers, timeout=6.1)
 
         if response.status_code == 304:  # not modified
             return None
         elif "ETag" in response.headers.keys():
             source["etag"] = response.headers["ETag"]
 
-        # soupify file type of retrieved feed (html, xml, or json)
+        # if not :
+        #     raise Exception(f"wrong content type for {source['name']}: (should be {source['content-type']})")
+
         if "text/html" in response.headers["Content-Type"]:
             soup = BeautifulSoup(response.content, "html.parser")
         elif "application/atom+xml" in response.headers["Content-Type"] or "application/xml" in response.headers["Content-Type"] or "text/xml" in response.headers["Content-Type"]:
@@ -807,7 +814,7 @@ class NamiFeeds(commands.Cog):
 
 
     def feed(self, source):
-        soup = self.get_feed(source)
+        soup = self.fetch_source(source)
         if not soup:
             return []
 
@@ -852,17 +859,7 @@ class NamiFeeds(commands.Cog):
             if len(message.attachments) > 10:
                 raise ValueError("cannot send more than 10 attachments at once")
 
-            if self.bot.is_nougat:
-                content = message.get_content()
-            else: # oh my GOD this needs to be simplified BAD. TODO: another nougat rewrite may be in order
-                content = ""
-                if message.ping:
-                    content += "-# <@&1539330597577560164>"
-                if message.content:
-                    content += " " + message.content
-                if message.nsfw:
-                    for original_role in TAVERN_ROLE_TARGETS:
-                        content = content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
+            content = message.get_content(self.bot.is_nougat)
 
             m: discord.Message
             if message.nsfw:

@@ -100,26 +100,25 @@ class Nougat(commands.Bot):
             if emoji.name in "🔄🔃🔁":
                 try:
                     await message.remove_reaction(emoji, user)
-                except discord.NotFound as e:
-                    pass
-                await message.edit(content=message.content, embeds=message.embeds)
+                    await message.edit(content=message.content, embeds=message.embeds)
+                except Exception as e:
+                    await self.report("refresh")
 
             # move nami post to namitavern
             if emoji.name == "🔞":
-                try:  # will error if channel not found (should not happen)
-                    target_channel = self.get_channel(TAVERN_CHANNEL_TARGETS[channel.id])
-                    if not isinstance(target_channel, discord.TextChannel):
-                        return
-                    # replace role pings
-                    new_content = message.content
-                    for original_role in TAVERN_ROLE_TARGETS:
-                        new_content = new_content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
+                target_channel = self.get_channel(TAVERN_CHANNEL_TARGETS[channel.id])
+                if not isinstance(target_channel, discord.TextChannel):
+                    return
+                # replace role pings
+                new_content = message.content
+                for original_role in TAVERN_ROLE_TARGETS:
+                    new_content = new_content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
 
+                try:  # will error if send fails
                     if len(message.attachments) == 0:
                         await target_channel.send(content=new_content, embeds=message.embeds)
                     else:
                         await message.forward(target_channel)
-
                 except:
                     await self.report("move to namitavern failed!")
                 finally:  # regardless of error, delete post in sfw channel
