@@ -35,7 +35,7 @@
             8133408,
             8133431
         ],
-        "etag": "W/\"5ba571fff7222c02054d0a489c6319f2\""
+        "etag": "W/\"7aebf043429b9ab819727c89a1e2da46\""
     },
     "announcements": {
         "name": "announcements",
@@ -54,7 +54,7 @@
             "/images/announcement-kaimamv.png",
             "/posts/images/puppers4.png"
         ],
-        "etag": "W/\"6a875c1d-ac41\""
+        "etag": "W/\"6a8cf700-b68c\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -139,7 +139,7 @@
             "8/19/2026",
             "8/20/2026"
         ],
-        "etag": "W/\"6a875c1d-ac41\""
+        "etag": "W/\"6a8cf700-b68c\""
     },
     "posts": {
         "name": "posts",
@@ -725,9 +725,10 @@
             "Okay so you've mentiea74326b7de6a678990e9280366860477c10954f",
             "If Osmanthus and Sla5c418f87436e7688d74252eb494c02a029bc5ba1",
             "I don't recall if yo0b4858eadc2c2f1ea4e5df19ef3ca73497ff5b8a",
-            "at chapter 6's releabf8763b075616e3a2c54c3c5fbd9d48ca0752611"
+            "at chapter 6's releabf8763b075616e3a2c54c3c5fbd9d48ca0752611",
+            "this page is where a905109e8f229b076aa4a435f3e948e145680cc8a"
         ],
-        "etag": "W/\"6a3634c4-6b70e\""
+        "etag": "W/\"6a8cceaa-167d\""
     },
     "status_cafe": {
         "name": "status_cafe",
@@ -798,7 +799,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7438736",
             "https://neocities.org/site/nomnomnami?event_id=7445799",
             "https://neocities.org/site/nomnomnami?event_id=7451716",
-            "https://neocities.org/site/nomnomnami?event_id=7457562"
+            "https://neocities.org/site/nomnomnami?event_id=7457562",
+            "https://neocities.org/site/nomnomnami?event_id=7480579"
         ],
         "etag": ""
     },
@@ -988,9 +990,10 @@
             "7/22/2026styled my [projects page](https://nomnomnami.com/projects.html) like a little kanban board (and updated some of the info there)",
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe",
             "8/15/2026going through my [blog archive](https://nomnomnami.com/blog/archive.html) lately to update older posts to the new CSS... the migration is slow but going well!",
-            "8/19/2026updated [links](https://nomnomnami.com/links/) page (mostly just style change), added a few more character names to the [random pairing generator](https://nomnomnami.com/games/random-pairing.html)"
+            "8/19/2026updated [links](https://nomnomnami.com/links/) page (mostly just style change), added a few more character names to the [random pairing generator](https://nomnomnami.com/games/random-pairing.html)",
+            "8/24/2026fiddled with my [ask pages](https://nomnomnami.com/ask/) a bit, and moved some things around on my homepage. asks will open next week or something idk"
         ],
-        "etag": "W/\"6a875c1d-ac41\""
+        "etag": "W/\"6a8cf700-b68c\""
     },
     "post_status": {
         "name": "post_status",

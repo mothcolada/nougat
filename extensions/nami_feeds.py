@@ -284,6 +284,8 @@ def html_to_discord(html: Tag):  # TODO: rewrite this too
     text = ""
     images = []
     for child in html.children:
+        if not child.name:
+            continue
         if child.name == "p":
             text += "\n\n" + paragraph(child)
             for grandchild in child.descendants:
@@ -762,13 +764,14 @@ class NamiFeeds(commands.Cog):
 
         for s in SOURCES:
             if s in ["pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "tcs", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick", "timber"]:
+                # aiohttp asyncio stuff
                 try:
                     source = SOURCES[s]
                     await self.check(source)
         #             source: str = SOURCES[s]
         #             soups[source["link"]] = self.get_feed(source)
                 except Exception as e:
-                    await self.bot.report(s + str(e))
+                    await self.bot.report(s + " " + str(e))
 
                 await asyncio.sleep(0.5)  # avoid heartbeat blocking
 
@@ -783,7 +786,7 @@ class NamiFeeds(commands.Cog):
         if source["name"] == "pillowfort":
             headers.update({"Cookie": os.environ["PF_COOKIE"], "X-CSRF-Token": os.environ["PF_X-CSRF-TOKEN"]})
 
-        response = requests.get(source["link"], headers=headers)
+        response = requests.get(source["link"], headers=headers, timeout=3.05)
 
         if response.status_code == 304:  # not modified
             return None

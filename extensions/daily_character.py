@@ -80,7 +80,7 @@ class DailyCharacter(commands.Cog):
         await server.edit(icon=new_icon)
 
         channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_CHANNEL if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
-        if not isinstance(channel, discord.PartialMessageable):
+        if not isinstance(channel, discord.TextChannel):
             raise Exception('daily character channel not found')
             
         await channel.send(daily_message(now_est))
