@@ -3,8 +3,7 @@
         "name": "pillowfort",
         "link": "https://www.pillowfort.social/nomnomnami/json/",
         "headers": {
-            "Accept": "application/json",
-            "If-None-Match": "\"6a0a1dc1-3f6\""
+            "Accept": "application/json"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -37,14 +36,13 @@
             8133408,
             8133431
         ],
-        "etag": "W/\"bbfdd32d8d8bba0fe6d7fa9614a40683\""
+        "etag": "W/\"553bc8b7fa40a20cbdaca22f1f2a6aca\""
     },
     "announcements": {
         "name": "announcements",
         "link": "https://nomnomnami.com/index.html",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a8cf700-b68c\""
+            "Accept": "text/html"
         },
         "channel": 1521633877859500072,
         "role": 1521632400491417770,
@@ -65,8 +63,7 @@
         "name": "newsfeed",
         "link": "https://nomnomnami.com/index.html",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a8cf700-b68c\""
+            "Accept": "text/html"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -154,8 +151,7 @@
         "name": "posts",
         "link": "https://nomnomnami.com/posts",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a87260e-1f3cc\""
+            "Accept": "text/html"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -326,8 +322,7 @@
         "name": "blog",
         "link": "https://nomnomnami.pika.page/posts_feed",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": "W/\"9bdd8499f77ba560d46da84d16d338d1\""
+            "Accept": "application/xml"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -375,8 +370,7 @@
         "name": "ask",
         "link": "https://nomnomnami.com/ask/latest",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a8cceaa-167d\""
+            "Accept": "text/html"
         },
         "channel": 1521632401334210659,
         "role": 1521632400453402738,
@@ -398,8 +392,7 @@
         "name": "status_cafe",
         "link": "https://status.cafe/users/nomnomnami.atom",
         "headers": {
-            "Accept": "application/atom+xml",
-            "If-None-Match": ""
+            "Accept": "application/atom+xml"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -431,15 +424,13 @@
             "https://status.cafe/users/nomnomnami/259031",
             "https://status.cafe/users/nomnomnami/262814",
             "https://status.cafe/users/nomnomnami/264613"
-        ],
-        "etag": ""
+        ]
     },
     "neocities": {
         "name": "neocities",
         "link": "https://neocities.org/site/nomnomnami.rss",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": ""
+            "Accept": "application/xml"
         },
         "channel": 1521633846477721680,
         "role": null,
@@ -463,15 +454,13 @@
             "https://neocities.org/site/nomnomnami?event_id=7451716",
             "https://neocities.org/site/nomnomnami?event_id=7457562",
             "https://neocities.org/site/nomnomnami?event_id=7480579"
-        ],
-        "etag": ""
+        ]
     },
     "trick": {
         "name": "trick",
         "link": "https://trick.pika.page/posts_feed",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": "W/\"a72f6b7b3dfa316097176eb6bd1d3c52\""
+            "Accept": "application/xml"
         },
         "channel": 1521634002576867589,
         "role": 1521632400453402740,
@@ -516,8 +505,7 @@
         "name": "apoc",
         "link": "https://another-piece-of-candy.thecomicseries.com/rss/",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": ""
+            "Accept": "application/xml"
         },
         "channel": 1521633953029685268,
         "role": 1521632400453402741,
@@ -546,15 +534,13 @@
             2958928,
             2971308,
             2982768
-        ],
-        "etag": ""
+        ]
     },
     "tcs": {
         "name": "tcs",
         "link": "https://tcs.thecomicseries.com/rss/",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": ""
+            "Accept": "application/xml"
         },
         "channel": 1521633953029685268,
         "role": 1521632400453402741,
@@ -583,19 +569,16 @@
             "https://tcs.thecomicseries.com/comics/pl/2981202/",
             "https://tcs.thecomicseries.com/comics/pl/2987199/",
             "https://tcs.thecomicseries.com/comics/pl/2991492/"
-        ],
-        "etag": ""
+        ]
     },
     "youtube": {
         "name": "youtube",
         "link": "https://www.youtube.com/feeds/videos.xml?channel_id=UCSNzbhbYnbOFBVFzu_CQNmw",
         "headers": {
-            "Accept": "application/xml",
-            "If-None-Match": ""
+            "Accept": "ml; charset=UTF-8"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
-        "content-type": "",
         "embed": {
             "url": null,
             "author": null,
@@ -622,15 +605,13 @@
             "yt:video:skIkrk7NfN4",
             "yt:video:GM7Se4ElxD0",
             "yt:video:e9quHfaSrq0"
-        ],
-        "etag": ""
+        ]
     },
     "site_updates": {
         "name": "site_updates",
         "link": "https://nomnomnami.com/index.html",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a8cf700-b68c\""
+            "Accept": "text/html"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -692,8 +673,7 @@
         "name": "post_status",
         "link": "https://nomnomnami.com/posts",
         "headers": {
-            "Accept": "text/html",
-            "If-None-Match": "W/\"6a87260e-1f3cc\""
+            "Accept": "text/html"
         },
         "channel": 1521633846477721680,
         "role": 1521632400453402739,
@@ -715,8 +695,7 @@
         "name": "patreon",
         "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=76451&sort=-published_at&json-api-version=1.0",
         "headers": {
-            "Accept": "application/vnd.api+json",
-            "If-None-Match": ""
+            "Accept": "application/vnd.api+json"
         },
         "channel": 1537116001492017160,
         "role": 1537115998426235060,
@@ -750,15 +729,13 @@
             "167158218",
             "167408520",
             "167416453"
-        ],
-        "etag": ""
+        ]
     },
     "nsfw_patreon": {
         "name": "patreon",
         "link": "https://www.patreon.com/api/posts?fields[post]=created_at%2Ctitle%2Curl&filter[campaign_id]=14567067&sort=-published_at&json-api-version=1.0",
         "headers": {
-            "Accept": "application/vnd.api+json",
-            "If-None-Match": ""
+            "Accept": "application/vnd.api+json"
         },
         "channel": 1537118182131769426,
         "role": 1537115998426235060,
@@ -784,7 +761,6 @@
             "158865512",
             "161864749",
             "165395282"
-        ],
-        "etag": ""
+        ]
     }
 }

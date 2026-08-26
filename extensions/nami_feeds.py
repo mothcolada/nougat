@@ -764,19 +764,15 @@ class NamiFeeds(commands.Cog):
     async def feeds(self):
         # soups = {}
 
-        for s in SOURCES:
-            if s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "tcs", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
-                # aiohttp asyncio stuff
-                print(s)
-                try:
-                    source = SOURCES[s]
-                    await self.check(source)
-        #             source: str = SOURCES[s]
-        #             soups[source["link"]] = self.fetch_source(source)
-                except Exception as e:
-                    await self.bot.report(s + " " + str(e))
-
-                await asyncio.sleep(0.5)  # avoid heartbeat blocking
+        for s in ["tcs", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
+            # aiohttp asyncio stuff
+            try:
+                source: dict = SOURCES[s]
+                await self.check(source)
+                # soups[source["link"]] = self.fetch_source(source)
+            except Exception as e:
+                await self.bot.report(s + " " + str(e))
+            await asyncio.sleep(0.1)  # avoid heartbeat blocking
 
 
     @feeds.before_loop
@@ -786,7 +782,9 @@ class NamiFeeds(commands.Cog):
     
     def fetch_source(self, source: dict):
         headers = source["headers"].copy()
-        headers["If-None-Match"] = source["etag"]
+        if "etag" in source.keys():
+            print(source["name"])
+            headers["If-None-Match"] = source["etag"]
         if source["name"] == "pillowfort":
             headers["Cookie"] = os.environ["PF_COOKIE"]
             headers["X-CSRF-Token"] = os.environ["PF_X-CSRF-TOKEN"]
@@ -798,8 +796,8 @@ class NamiFeeds(commands.Cog):
         elif "ETag" in response.headers.keys():
             source["etag"] = response.headers["ETag"]
 
-        # if not :
-        #     raise Exception(f"wrong content type for {source['name']}: (should be {source['content-type']})")
+        if source["headers"]["Accept"] not in response.headers["Content-Type"]:
+            raise Exception(f"wrong content type for {source['name']}: got {response.headers['Content-Type']} but expected {source['headers']['Accept']}")
 
         if "text/html" in response.headers["Content-Type"]:
             soup = BeautifulSoup(response.content, "html.parser")
