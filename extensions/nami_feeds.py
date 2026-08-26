@@ -764,7 +764,8 @@ class NamiFeeds(commands.Cog):
     async def feeds(self):
         # soups = {}
 
-        for s in ["tcs", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "apoc", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
+        # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
+        for s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]
@@ -783,7 +784,6 @@ class NamiFeeds(commands.Cog):
     def fetch_source(self, source: dict):
         headers = source["headers"].copy()
         if "etag" in source.keys():
-            print(source["name"])
             headers["If-None-Match"] = source["etag"]
         if source["name"] == "pillowfort":
             headers["Cookie"] = os.environ["PF_COOKIE"]

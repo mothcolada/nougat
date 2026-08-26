@@ -540,7 +540,7 @@
         "name": "tcs",
         "link": "https://tcs.thecomicseries.com/rss/",
         "headers": {
-            "Accept": "application/xml"
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
         },
         "channel": 1521633953029685268,
         "role": 1521632400453402741,
