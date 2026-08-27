@@ -7,7 +7,7 @@ from functools import cached_property
 import logging
 
 import aiohttp
-# import asqlite
+import asqlite
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -34,7 +34,7 @@ TAVERN_ROLE_TARGETS = {  # every possible role ping and its respective role in N
     "<@&1521632400453402738>": "<@&1537115998426235059>"   # Nami Asks
 }
 
-DATABASE_PATH = pathlib.Path(__file__).parent / "database.sqlite"
+DATABASE_PATH = pathlib.Path(__file__).parent / "database.db"
 
 INTENTS = discord.Intents.default()
 INTENTS.message_content = True
@@ -52,12 +52,14 @@ class Nougat(commands.Bot):
         self,
         command_prefix,
         session: aiohttp.ClientSession,
-        # pool: asqlite.Pool,
+        conn: asqlite.ProxiedConnection,
+        cur: asqlite.Cursor,
         **options,
     ) -> None:
         super().__init__(command_prefix, **options)
         self.session = session
-        # self.pool = pool
+        self.conn = conn
+        self.cur = cur
         self.STARTED_AT = discord.utils.utcnow()
 
         self.log_webhook = discord.Webhook.from_url(os.environ["WEBHOOK_URL"], session=session)
@@ -70,14 +72,16 @@ class Nougat(commands.Bot):
 
 
     async def on_ready(self):
+        # await self.cur.execute('''CREATE TABLE sfsdf
+        #                             (date text, trans text, symbol text, qty real, price real)''')
+        # await self.conn.commit()
+
         await self.log("good morning world")
         # channel = self.get_channel(1521633846477721680)
         # if isinstance(channel, discord.TextChannel):
         #     message = await channel.fetch_message(1539274757290332272)
         #     print(message.embeds[0].image)
         # await message.edit(content=message.content, embed=embed)
-        # await self.close()
-        # exit()
 
 
     async def on_message(self, message: discord.Message):
@@ -145,10 +149,13 @@ async def main():
 
     async with (
         aiohttp.ClientSession() as session,
-        # asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
+        asqlite.create_pool(str(DATABASE_PATH)) as db_pool,
+        db_pool.acquire() as conn,
+        conn.cursor() as cur,
         Nougat(
             command_prefix=commands.when_mentioned,
-            # pool=db_pool,
+            conn=conn,
+            cur=cur,
             session=session,
             intents=INTENTS,
         ) as bot,

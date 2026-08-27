@@ -7,6 +7,7 @@ import html
 import io
 import json
 import lxml  # do not remove
+import asqlite
 from urllib.parse import urljoin
 import os
 from dotenv import load_dotenv
@@ -261,7 +262,7 @@ def paragraph(p) -> str:  # TODO: totally rewrite this?? for tag in tag in <p> t
     for c in p.children:
         if isinstance(c, NavigableString):
             text += clean(c)
-        elif isinstance(c, Tag):
+        elif isinstance(c, Tag) and c.string:
             if c.name == "a":
                 text += f"[{clean(c.string)}]({urljoin('https://nomnomnami.com', c['href'])})"
             elif c.name == "br":
@@ -287,11 +288,13 @@ def html_to_discord(html: Tag):  # TODO: rewrite this too
     text = ""
     images = []
     for child in html.children:
-        if not child.name:
+        if not isinstance(child, Tag):
             continue
         if child.name == "p":
             text += "\n\n" + paragraph(child)
             for grandchild in child.descendants:
+                if not isinstance(grandchild, Tag):
+                    continue
                 if grandchild.name == "img":
                     if "/ask/images/emoji/" in grandchild["src"]:
                         text += " " + EMOJI[grandchild["src"].split("/")[-1].split(".")[0]] + " "
@@ -306,11 +309,15 @@ def html_to_discord(html: Tag):  # TODO: rewrite this too
                 pass
             else:
                 for grandchild in child.descendants:
+                    if not isinstance(grandchild, Tag):
+                        continue
                     if grandchild.name == "li":
                         text += "\n- " + paragraph(grandchild)
         elif child.name == "ol":
+            n = 1
             for grandchild in child.descendants:
-                n = 1
+                if not isinstance(grandchild, Tag):
+                    continue
                 if grandchild.name == "li":
                     text += "\n" + str(n) + ". " + paragraph(grandchild)
                     n += 1
@@ -405,6 +412,8 @@ def parse_blog(soup):
     messages = []
     for post in posts:
         content = BeautifulSoup(post.find("content").string, "html.parser").find("div", {"class": "trix-content"})
+        if not content:
+            raise Exception("no blog post content found")
 
         url = post.find("link")["href"]
         message = Message("blog",
@@ -765,7 +774,7 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
+        for s in ["apoc", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]
@@ -782,7 +791,7 @@ class NamiFeeds(commands.Cog):
 
     
     def fetch_source(self, source: dict):
-        headers = source["headers"].copy()
+        headers = {} # source["headers"].copy()
         if "etag" in source.keys():
             headers["If-None-Match"] = source["etag"]
         if source["name"] == "pillowfort":

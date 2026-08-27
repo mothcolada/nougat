@@ -21,8 +21,11 @@ class RefreshFrantically(commands.Cog):
             timestamp = soup.find('div', {'class': 'update_timestamp'})
             if not timestamp:
                 return
-            if timestamp.find('abbr')['title'] != '30 July 2026 @ 01:19 UTC':
-                await self.bot.get_channel(1074754885070897202).send('<@422162909582589963> we might be back ' + str(response.status_code))
+            abbr = timestamp.find('abbr')
+            if abbr and abbr['title'] != '30 July 2026 @ 01:19 UTC':
+                channel = self.bot.get_channel(1074754885070897202)
+                if isinstance(channel, discord.TextChannel):
+                    await channel.send('<@422162909582589963> we might be back ' + str(response.status_code))
     
 
 async def setup(bot: commands.Bot):
