@@ -85,7 +85,7 @@ class Nougat(commands.Bot):
 
 
     async def on_message(self, message: discord.Message):
-        if (message.type == discord.MessageType.auto_moderation_action):
+        if (message.type == discord.MessageType.auto_moderation_action):  # bring attention to automod actions (may be raid)
             await message.channel.send(f"<@&{MOD_ROLE_ID}>")
 
 

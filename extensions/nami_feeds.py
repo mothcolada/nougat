@@ -769,12 +769,12 @@ class NamiFeeds(commands.Cog):
         self.feeds.cancel()
 
 
-    @tasks.loop(seconds=15.0)
+    @tasks.loop(seconds=20.0)
     async def feeds(self):
         # soups = {}
 
         # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["apoc", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
+        for s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]

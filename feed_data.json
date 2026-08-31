@@ -36,9 +36,11 @@
             8133408,
             8133431,
             8147039,
-            8147073
+            8147073,
+            8162589,
+            8162658
         ],
-        "etag": "W/\"a0439606f0e4fad7dd2dc94b9c5b1f30\""
+        "etag": "W/\"bf3ced429ce5190ebd8f7243bcb46d24\""
     },
     "announcements": {
         "name": "announcements",
@@ -425,7 +427,9 @@
             "https://status.cafe/users/nomnomnami/258381",
             "https://status.cafe/users/nomnomnami/259031",
             "https://status.cafe/users/nomnomnami/262814",
-            "https://status.cafe/users/nomnomnami/264613"
+            "https://status.cafe/users/nomnomnami/264613",
+            "https://status.cafe/users/nomnomnami/266597",
+            "https://status.cafe/users/nomnomnami/266878"
         ]
     },
     "neocities": {
@@ -543,7 +547,7 @@
         "name": "tcs",
         "link": "https://tcs.thecomicseries.com/rss/",
         "headers": {
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+            "Accept": "application/xml"
         },
         "channel": 1521633953029685268,
         "role": 1521632400453402741,
@@ -571,7 +575,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2975642/",
             "https://tcs.thecomicseries.com/comics/pl/2981202/",
             "https://tcs.thecomicseries.com/comics/pl/2987199/",
-            "https://tcs.thecomicseries.com/comics/pl/2991492/"
+            "https://tcs.thecomicseries.com/comics/pl/2991492/",
+            "https://tcs.thecomicseries.com/comics/pl/2996164/"
         ]
     },
     "youtube": {
@@ -731,7 +736,8 @@
             "167046359",
             "167158218",
             "167408520",
-            "167416453"
+            "167416453",
+            "168155815"
         ]
     },
     "nsfw_patreon": {
