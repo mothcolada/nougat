@@ -38,9 +38,10 @@
             8147039,
             8147073,
             8162589,
-            8162658
+            8162658,
+            8167250
         ],
-        "etag": "W/\"bf3ced429ce5190ebd8f7243bcb46d24\""
+        "etag": "W/\"b09622f222226f5c77d025ca02a5e220\""
     },
     "announcements": {
         "name": "announcements",
@@ -59,9 +60,10 @@
             "footer_icon": null
         },
         "saved_ids": [
-            "/posts/images/puppers4.png"
+            "/posts/images/puppers4.png",
+            "/images/announcement-fsm.png"
         ],
-        "etag": "W/\"6a8cf700-b68c\""
+        "etag": "W/\"6a95a68a-b88f\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -147,9 +149,10 @@
             "8/15/2026",
             "8/16/2026",
             "8/19/2026",
-            "8/20/2026"
+            "8/20/2026",
+            "8/31/2026"
         ],
-        "etag": "W/\"6a8cf700-b68c\""
+        "etag": "W/\"6a95a68a-b88f\""
     },
     "posts": {
         "name": "posts",
@@ -388,9 +391,21 @@
             "footer_icon": "https://nomnomnami.com/ask/images/emoji/eggbug_wink.png"
         },
         "saved_ids": [
-            "this page is where a905109e8f229b076aa4a435f3e948e145680cc8a"
+            "this page is where a905109e8f229b076aa4a435f3e948e145680cc8a",
+            "mmmmm if senbei x tied5b7bf9a8bc104ecea4c50f4deea39b60c1673a",
+            "Yippee, more asks! :da6fa262a906d6116b779823889fd4f97be76ec0",
+            "what was senbei like0f98af5897f76e6fec297c3ee9ead283106d52b1",
+            "is it true moxie the40f12dbc54a1e903352d785580a37a4b7040db89",
+            "Nami, can I draw an f8b7d257cc14bd698ee6ff44aae3a65f996f3a74",
+            "fed9aa3db090d4c7a8ed081d1c8d9eab87403d70",
+            "is there a chance ch384d7d4a07783e7346f16f07e746fe9fcc975f30",
+            "Hey Nami, how do we 46a7cabfc551d8d310c24f6dcbc4562a33661801",
+            "Is this the Krusty Kb1a3a640319ae0cfc70789e618b41185690cc57c",
+            "this page is where a491497509adcc0c74e0d2f2ff1daa8ca36db4d06",
+            "OMG hi Nami I've nevd16d491a315ea8e4ba39cf5a47567190577aa900",
+            "Hi nami! I turned eve3b30bb05befc6fe32ee59bfed9d7a9e68389b30"
         ],
-        "etag": "W/\"6a8cceaa-167d\""
+        "etag": "W/\"6a95b7d8-3d92\""
     },
     "status_cafe": {
         "name": "status_cafe",
@@ -429,7 +444,8 @@
             "https://status.cafe/users/nomnomnami/262814",
             "https://status.cafe/users/nomnomnami/264613",
             "https://status.cafe/users/nomnomnami/266597",
-            "https://status.cafe/users/nomnomnami/266878"
+            "https://status.cafe/users/nomnomnami/266878",
+            "https://status.cafe/users/nomnomnami/267665"
         ]
     },
     "neocities": {
@@ -459,7 +475,8 @@
             "https://neocities.org/site/nomnomnami?event_id=7445799",
             "https://neocities.org/site/nomnomnami?event_id=7451716",
             "https://neocities.org/site/nomnomnami?event_id=7457562",
-            "https://neocities.org/site/nomnomnami?event_id=7480579"
+            "https://neocities.org/site/nomnomnami?event_id=7480579",
+            "https://neocities.org/site/nomnomnami?event_id=7515210"
         ]
     },
     "trick": {
@@ -612,7 +629,14 @@
             "yt:video:5wHlcto25Lg",
             "yt:video:skIkrk7NfN4",
             "yt:video:GM7Se4ElxD0",
-            "yt:video:e9quHfaSrq0"
+            "yt:video:e9quHfaSrq0",
+            "yt:video:MwiJphJNCjk",
+            "yt:video:c106mr7SPEM",
+            "yt:video:KMhYAaPHY0o",
+            "yt:video:aMvbnprLymA",
+            "yt:video:twvR7enkWnE",
+            "yt:video:8yGnbrOtZrM",
+            "yt:video:f0R_sXWDmkU"
         ]
     },
     "site_updates": {
@@ -673,9 +697,10 @@
             "8/3/2026a couple [character gallery](https://nomnomnami.com/characters/) updates, styled the index page to be a little cuter hehe",
             "8/15/2026going through my [blog archive](https://nomnomnami.com/blog/archive.html) lately to update older posts to the new CSS... the migration is slow but going well!",
             "8/19/2026updated [links](https://nomnomnami.com/links/) page (mostly just style change), added a few more character names to the [random pairing generator](https://nomnomnami.com/games/random-pairing.html)",
-            "8/24/2026fiddled with my [ask pages](https://nomnomnami.com/ask/) a bit, and moved some things around on my homepage. asks will open next week or something idk"
+            "8/24/2026fiddled with my [ask pages](https://nomnomnami.com/ask/) a bit, and moved some things around on my homepage. asks will open next week or something idk",
+            "8/31/2026opening asks today!!!!!!"
         ],
-        "etag": "W/\"6a8cf700-b68c\""
+        "etag": "W/\"6a95a68a-b88f\""
     },
     "post_status": {
         "name": "post_status",
@@ -737,7 +762,8 @@
             "167158218",
             "167408520",
             "167416453",
-            "168155815"
+            "168155815",
+            "168212096"
         ]
     },
     "nsfw_patreon": {

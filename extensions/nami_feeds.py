@@ -769,12 +769,12 @@ class NamiFeeds(commands.Cog):
         self.feeds.cancel()
 
 
-    @tasks.loop(seconds=20.0)
+    @tasks.loop(seconds=10.0)
     async def feeds(self):
         # soups = {}
 
         # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "ask", "status_cafe", "blog", "trick"]:
+        for s in ["ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]
@@ -782,7 +782,7 @@ class NamiFeeds(commands.Cog):
                 # soups[source["link"]] = self.fetch_source(source)
             except Exception as e:
                 await self.bot.report(s + " " + str(e))
-            await asyncio.sleep(0.1)  # avoid heartbeat blocking
+            await asyncio.sleep(0.1)  # avoid heartbeat blocking?
 
 
     @feeds.before_loop
@@ -848,14 +848,18 @@ class NamiFeeds(commands.Cog):
         channel = self.bot.get_channel(channel_id)
 
         if channel_id in TAVERN_CHANNEL_TARGETS.keys():
-            tavern_channel = self.bot.get_channel(TAVERN_CHANNEL_TARGETS[channel_id])
+            nsfw_channel = self.bot.get_channel(TAVERN_CHANNEL_TARGETS[channel_id])
         else:
-            tavern_channel = channel  # shouldnt ever matter but this works until i rewrite it
+            nsfw_channel = channel  # shouldnt ever matter but this works until i rewrite it
+
+        tavern_sfw_channel = self.bot.get_channel(1544032787609288734 if self.bot.is_nougat else 1544033588364972162)
 
         if not isinstance(channel, discord.TextChannel):
             raise Exception("could not retrieve feed channel")
-        if not isinstance(tavern_channel, discord.TextChannel):
+        if not isinstance(nsfw_channel, discord.TextChannel):
             raise Exception("could not retrieve tavern feed channel")
+        if not isinstance(tavern_sfw_channel, discord.TextChannel):
+            raise Exception("could not retrieve tavern mirror feed channel")
 
         # get all the messages to send
         messages: list[Message] = self.feed(source)
@@ -870,9 +874,12 @@ class NamiFeeds(commands.Cog):
 
             m: discord.Message
             if message.nsfw:
-                m = await tavern_channel.send(content, embed=message.get_embed())  # type: ignore
+                m = await nsfw_channel.send(content, embed=message.get_embed())  # type: ignore
             else:
                 m = await channel.send(content, embed=message.get_embed())  # type: ignore
+                await tavern_sfw_channel.send(content, embed=message.get_embed())  # type: ignore
+                if len(message.attachments) > 0:
+                    await tavern_sfw_channel.send(files=message.attachments)
 
             if self.bot.is_nougat and channel.is_news():
                 await m.publish()
@@ -881,6 +888,8 @@ class NamiFeeds(commands.Cog):
                 m = await channel.send(files=message.attachments)
                 if self.bot.is_nougat and channel.is_news():
                     await m.publish()
+
+
         
         # save new stuff
         json.dump(SOURCES, open("feed_data.json", "w"), indent=4)
