@@ -82,7 +82,9 @@ ICONS = {
     "maia": "<:icon_maia:1524268755717324831>",
     "amphithoe": "<:icon_amphithoe:1524268753406132405>",
     "clio": "<:icon_clio:1524268754295586837>",
-    "eudora": "<:icon_eudora:1524268754974933042>"
+    "eudora": "<:icon_eudora:1524268754974933042>",
+    "lilium": "<:icon_lilium:1544084100296613888>",
+    "orchid": "<:icon_orchid:1544084101697503242>"
 }
 EMOJI = {
     "eggbug": "<:eggbug:1444074342576033793>",
