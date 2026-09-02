@@ -49,6 +49,7 @@ class DailyCharacter(commands.Cog):
         await self.new_character()  # Check immediately if a new one is needed
 
     async def new_character(self):
+        return
         now_est = datetime.datetime.now(tz=eastern_time)
         char = get_char_for_date(now_est)
         if char == '':

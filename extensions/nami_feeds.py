@@ -776,7 +776,7 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
+        for s in ["apoc", "tcs", "ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]
