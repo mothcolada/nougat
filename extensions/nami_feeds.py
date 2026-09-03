@@ -342,7 +342,7 @@ def html_to_discord(html: Tag):  # TODO: rewrite this too
                 text += "### " + html_to_discord(child)["text"] + " " + child.text.strip()
             elif "icon" in child["class"]:
                 if child["class"][1] in ICONS.keys():
-                    text += ICONS[child["class"][1]]  # TODO: actually test this
+                    text += ICONS[child["class"][1]]
                 else:
                     text += ICONS["none"]
             elif "ask" in child["class"]:
@@ -414,8 +414,7 @@ def parse_blog(soup):
     messages = []
     for post in posts:
         content = BeautifulSoup(post.find("content").string, "html.parser").find("div", {"class": "trix-content"})
-        if not content:
-            raise Exception("no blog post content found")
+        assert content, "no blog post content found"
 
         url = post.find("link")["href"]
         message = Message("blog",
@@ -466,8 +465,7 @@ def parse_ask(soup: BeautifulSoup):
         fully_nsfw = False
         if has_nsfw:
             post_without_nsfw = copy.copy(post)
-            if not post_without_nsfw.details:
-                raise Exception("no details but yes details?? i dont know i wrote this code when i was tired")
+            assert post_without_nsfw.details, "no details but yes details?? i dont know i wrote this code when i was tired"
             nsfw_details = post_without_nsfw.details.extract()
             first_details_nsfw = nsfw_details.summary and nsfw_details.summary.string and "nsfw text" in nsfw_details.summary.string
             post_is_only_details = html_to_discord(post_without_nsfw)["text"].strip() == ""
@@ -513,8 +511,7 @@ def parse_trick(soup):
     messages = []
     for post in posts:
         content = BeautifulSoup(post.find("content").string, "html.parser").find("div", {"class": "trix-content"})
-        if not content:
-            raise Exception("no content found")
+        assert content, "no content found"
 
         message = Message("trick",
                           id = post.find("id").string,
@@ -622,8 +619,7 @@ def parse_apoc(soup):
         if id not in saved_ids:
             soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
             comic_title = soup.find('h2', {'class': 'comictitle'})
-            if not comic_title:
-                raise Exception("no comic title")
+            assert comic_title, "no apoc comic title"
 
             num = int(comic_title.text.split('#')[1].split(' ')[0])
             authornotes = soup.find('div', {'class': 'authornotes'})
@@ -776,7 +772,7 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["apoc", "tcs", "ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
+        for s in ["ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
             # aiohttp asyncio stuff
             try:
                 source: dict = SOURCES[s]
@@ -856,21 +852,18 @@ class NamiFeeds(commands.Cog):
 
         tavern_sfw_channel = self.bot.get_channel(1544032787609288734 if self.bot.is_nougat else 1544033588364972162)
 
-        if not isinstance(channel, discord.TextChannel):
-            raise Exception("could not retrieve feed channel")
-        if not isinstance(nsfw_channel, discord.TextChannel):
-            raise Exception("could not retrieve tavern feed channel")
-        if not isinstance(tavern_sfw_channel, discord.TextChannel):
-            raise Exception("could not retrieve tavern mirror feed channel")
+        assert isinstance(channel, discord.TextChannel), "could not retrieve feed channel"
+        assert isinstance(nsfw_channel, discord.TextChannel), "could not retrieve tavern feed channel"
+        assert isinstance(tavern_sfw_channel, discord.TextChannel), "could not retrieve tavern mirror feed channel"
 
         # get all the messages to send
         messages: list[Message] = self.feed(source)
         if (len(messages) > 5 and source["name"] != "ask") or len(messages) > 15:  # prevent spam pings if a bug happens that makes it detect 5+ new messages from one source at once
             await self.bot.report("too many messages to send")
+            return
 
         for message in messages:
-            if len(message.attachments) > 10:
-                raise ValueError("cannot send more than 10 attachments at once")
+            assert len(message.attachments) <= 10, "cannot send more than 10 attachments at once"
 
             content = message.get_content(self.bot.is_nougat)
 

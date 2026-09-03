@@ -43,16 +43,16 @@ class DailyCharacter(commands.Cog):
     async def daily_character(self):
         await self.new_character()
 
+
     @daily_character.before_loop
     async def before_daily_character(self):
         await self.bot.wait_until_ready()
-        await self.new_character()  # Check immediately if a new one is needed
+
 
     async def new_character(self):
         now_est = datetime.datetime.now(tz=eastern_time)
         char = get_char_for_date(now_est)
-        if char == '':
-            await self.bot.report('daily character not set for today')
+        assert char, "daily character not set for today"
 
         if now_est.month == 6 or (now_est.month == 7 and now_est.day <= 8):
             filename = f"faces/pride/{char}.png"
@@ -63,25 +63,12 @@ class DailyCharacter(commands.Cog):
             new_icon = image.read()
 
         server = self.bot.get_guild(NAMIVERSE_ID if self.bot.is_nougat else TEST_GUILD_ID)
-        if not server:
-            raise Exception('server not found')
-
-        # compare bytes of current icon and the icon we want to change it to, only continue if different
-        current_icon = server.icon
-
-        if not current_icon:
-            raise Exception('icon not found')
-
-        current_icon = await current_icon.read()
-        if new_icon == current_icon:
-            logging.info("new icon matches current icon; cancelling daily character")
-            return
+        assert server, "server not found"
 
         await server.edit(icon=new_icon)
 
         channel = self.bot.get_channel(NAMIVERSE_DAILY_CHAR_CHANNEL if self.bot.is_nougat else TEST_CHANNEL)  # Daily Character thread
-        if not isinstance(channel, discord.TextChannel):
-            raise Exception('daily character channel not found')
+        assert isinstance(channel, discord.TextChannel), "daily character channel is invalid"
             
         await channel.send(daily_message(now_est))
 
