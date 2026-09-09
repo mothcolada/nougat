@@ -610,19 +610,19 @@ def parse_pillowfort(posts_json):
 
 
 def parse_apoc(soup):
-    saved_ids = json.load(open('feed_data.json', 'r'))['apoc']['saved_ids']
+    saved_ids = json.load(open("feed_data.json", "r"))['apoc']['saved_ids']
     # we want to check id early to avoid checking every single recent comic
-    posts = soup.find_all('item')
+    posts = soup.find_all("item")
     messages = []
     for post in posts:
-        id = int(post.find('link').text.split('/')[-2])
+        id = post.find("guid").string
         if id not in saved_ids:
-            soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
-            comic_title = soup.find('h2', {'class': 'comictitle'})
+            new_soup = BeautifulSoup(requests.get(post.find('link').text).content, 'html.parser')
+            comic_title = new_soup.find('h2', {'class': 'comictitle'})
             assert comic_title, "no apoc comic title"
 
             num = int(comic_title.text.split('#')[1].split(' ')[0])
-            authornotes = soup.find('div', {'class': 'authornotes'})
+            authornotes = new_soup.find('div', {'class': 'authornotes'})
             if authornotes:
                 desc = paragraph(authornotes.find('div', {'class': 'notecontent'}))
             else:
@@ -633,7 +633,7 @@ def parse_apoc(soup):
                               description = desc,
                               title = post.find('title').text,
                               url = f'https://another-piece-of-candy.thecomicseries.com/comics/{num}/',
-                              images = [BeautifulSoup(post.find('description').text, 'html.parser').find('img')],
+                              images = BeautifulSoup(post.find('description').text, 'html.parser').find_all('img'),
                               timestamp = post.find('pubDate').text)
             messages.append(message)
 
@@ -646,22 +646,22 @@ def parse_tcs(soup):
     posts = soup.find_all("item")
     messages = []
     for post in posts:
-        id = int(post.find('link').text.split('/')[-2])
+        id = post.find("guid").string
         if id not in saved_ids:
-            soup = BeautifulSoup(requests.get(post.find("link").text).content, "html.parser")
+            new_soup = BeautifulSoup(requests.get(post.find("link").text).content, "html.parser")
 
-            authornotes = soup.find('div', {'class': 'authornotes'})
+            authornotes = new_soup.find('div', {'class': 'authornotes'})
             if authornotes:
                 desc = paragraph(authornotes.find("div", {"class": "notecontent"}))
             else:
                 desc = ""
 
             message = Message("tcs",
-                              id = post.find("guid").string,
+                              id = id,
                               description = desc,
                               title = post.find("title").string,
                               url = post.find("link").string,
-                              images = [BeautifulSoup(post.find("description").text, "html.parser").find("img")],
+                              images = BeautifulSoup(post.find("description").text, "html.parser").find_all("img"),
                               timestamp = post.find("pubDate").text)
             messages.append(message)
 
@@ -767,13 +767,13 @@ class NamiFeeds(commands.Cog):
         self.feeds.cancel()
 
 
-    @tasks.loop(seconds=10.0)
+    @tasks.loop(seconds=15.0)
     async def feeds(self):
         # soups = {}
 
-        # TODO: RE-ADD APOC AND TCS WHEN YOU FIGURE IT OUT!!
-        for s in ["ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
-            # aiohttp asyncio stuff
+        for s in ["apoc", "tcs", "ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
+            if s in ["apoc", "tcs"] and not datetime.datetime.now().minute % 15 == 0:
+                continue
             try:
                 source: dict = SOURCES[s]
                 await self.check(source)

@@ -31,8 +31,7 @@ class DailyCharacter(commands.Cog):
         self.bot = bot
         self.daily_character.start()
         now_est = datetime.datetime.now(tz=eastern_time)
-        print_calendar(now_est, now_est + datetime.timedelta(14))
-        
+        print_calendar(now_est, now_est + datetime.timedelta(14))  # next two weeks
 
 
     def cog_unload(self):
@@ -43,6 +42,10 @@ class DailyCharacter(commands.Cog):
     async def daily_character(self):
         await self.new_character()
 
+    @commands.command()
+    async def update_character(self, ctx: commands.Context):
+        if isinstance(ctx.author, discord.Member) and ctx.author.guild_permissions.manage_guild:
+            await self.new_character()
 
     @daily_character.before_loop
     async def before_daily_character(self):
@@ -77,6 +80,9 @@ def daily_message(date: datetime.datetime):
     message = f"<@&{DAILY_CHAR_ROLE}> "  # ping
 
     # "Treat!" or "Happy birthday, Treat!"
+    if date.month == 9 and date.day == 10:  # TEMPORARY
+        message += "Happy LATE birthday to Lime! Because her birthday was supposed to be yesterday (9/9) but I forgot! Fuck!"
+        return message
     day = f"{date.month}/{date.day}"
     char_id = get_char_for_date(date)
     char = name_of_char(char_id)
