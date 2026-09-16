@@ -90,43 +90,49 @@ class Nougat(commands.Bot):
 
 
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
-        emoji = payload.emoji
-        user = payload.member
-        if not user:
+        member = payload.member
+        assert member
+        if not member.guild_permissions.manage_messages:  # reacting user must have proper permissions
             return
+        if payload.message_author_id != self.user.id:  #  must be nougat message
+            return
+
+        emoji = payload.emoji
+        if emoji.name not in "🔄🔃🔁🔞":
+            return
+
         channel = self.get_channel(payload.channel_id)
         if not isinstance(channel, discord.TextChannel):
             return
         message = await channel.fetch_message(payload.message_id)
 
-        if user.guild_permissions.manage_messages and message.author.id == self.user.id:  # moderator performing action on nougat message
-            # refresh image url of embed
-            if emoji.name in "🔄🔃🔁":
-                try:
-                    await message.remove_reaction(emoji, user)
-                    await message.edit(content=message.content, embeds=message.embeds)
-                except Exception as e:
-                    await self.report("refresh")
+        # refresh image url of embed
+        if emoji.name in "🔄🔃🔁":
+            try:
+                await message.remove_reaction(emoji, user)
+                await message.edit(content=message.content, embeds=message.embeds)
+            except Exception as e:
+                await self.report("refresh")
 
-            # move nami post to namitavern
-            if emoji.name == "🔞":
-                target_channel = self.get_channel(TAVERN_CHANNEL_TARGETS[channel.id])
-                if not isinstance(target_channel, discord.TextChannel):
-                    return
-                # replace role pings
-                new_content = message.content
-                for original_role in TAVERN_ROLE_TARGETS:
-                    new_content = new_content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
+        # move nami post to namitavern
+        if emoji.name == "🔞":
+            target_channel = self.get_channel(TAVERN_CHANNEL_TARGETS[channel.id])
+            if not isinstance(target_channel, discord.TextChannel):
+                return
+            # replace role pings
+            new_content = message.content
+            for original_role in TAVERN_ROLE_TARGETS:
+                new_content = new_content.replace(original_role, TAVERN_ROLE_TARGETS[original_role])
 
-                try:  # will error if send fails
-                    if len(message.attachments) == 0:
-                        await target_channel.send(content=new_content, embeds=message.embeds)
-                    else:
-                        await message.forward(target_channel)
-                except:
-                    await self.report("move to namitavern failed!")
-                finally:  # regardless of error, delete post in sfw channel
-                    await message.delete()
+            try:  # will error if send fails
+                if len(message.attachments) == 0:
+                    await target_channel.send(content=new_content, embeds=message.embeds)
+                else:
+                    await message.forward(target_channel)
+            except:
+                await self.report("move to namitavern failed!")
+            finally:  # regardless of error, delete post in sfw channel
+                await message.delete()
 
 
     async def log(self, message):
