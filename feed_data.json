@@ -40,9 +40,10 @@
             8162589,
             8162658,
             8167250,
-            8182837
+            8182837,
+            8210507
         ],
-        "etag": "W/\"bc345e0158f6e558469a05df2b65e477\""
+        "etag": "W/\"de1ab10f2d33c998ba2c8455802d37c9\""
     },
     "announcements": {
         "name": "announcements",
@@ -64,7 +65,7 @@
             "/posts/images/puppers4.png",
             "/images/announcement-fsm.png"
         ],
-        "etag": "W/\"6aa0df66-b92c\""
+        "etag": "W/\"6aa7125b-bc02\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -151,9 +152,10 @@
             "8/16/2026",
             "8/19/2026",
             "8/20/2026",
-            "8/31/2026"
+            "8/31/2026",
+            "9/13/2026"
         ],
-        "etag": "W/\"6aa0df66-b92c\""
+        "etag": "W/\"6aa7125b-bc02\""
     },
     "posts": {
         "name": "posts",
@@ -323,9 +325,14 @@
             "8/18/2026, 7:07am",
             "8/19/2026, 7:58am",
             "8/20/2026, 9:06am",
-            "9/9/2026, 10:19am"
+            "9/9/2026, 10:19am",
+            "9/9/2026, 7:34pm",
+            "9/10/2026, 4:26pm",
+            "9/11/2026, 3:35pm",
+            "9/13/2026, 2:24pm",
+            "9/13/2026, 8:08pm"
         ],
-        "etag": "W/\"6aa19571-1f527\""
+        "etag": "W/\"6aa7654b-20246\""
     },
     "blog": {
         "name": "blog",
@@ -373,7 +380,7 @@
             "tag:nomnomnami.pika.page,2005:Post/118483",
             "tag:nomnomnami.pika.page,2005:Post/119015"
         ],
-        "etag": "W/\"161738979b541bf8ae891725f2437548\""
+        "etag": "W/\"400a0b487a6b9558b6043fd5f8d49eb6\""
     },
     "ask": {
         "name": "ask",
@@ -813,9 +820,10 @@
             "I can feel the MST3K2e8383b275f2da6c5228ea97e5cdbc0df30285e8",
             "(WWT spoilers) is Tw16a555353eb4f982dda8dc02778e3dd96802e71d",
             "slate and senbei arm5b349563e246d815097a07fe67617b0fd2c417c4",
-            "Timber may be done tdfb891cff211e41c77f46fca08a9787893af4410"
+            "Timber may be done tdfb891cff211e41c77f46fca08a9787893af4410",
+            "this page is where acce97005a19e0fa70e8267244bd01ba43ac3e3c7"
         ],
-        "etag": "W/\"6aa0de8d-8180d\""
+        "etag": "W/\"6aa2ce63-1456\""
     },
     "status_cafe": {
         "name": "status_cafe",
@@ -895,7 +903,10 @@
             "https://neocities.org/site/nomnomnami?event_id=7542247",
             "https://neocities.org/site/nomnomnami?event_id=7548816",
             "https://neocities.org/site/nomnomnami?event_id=7554703",
-            "https://neocities.org/site/nomnomnami?event_id=7560779"
+            "https://neocities.org/site/nomnomnami?event_id=7560779",
+            "https://neocities.org/site/nomnomnami?event_id=7566773",
+            "https://neocities.org/site/nomnomnami?event_id=7577004",
+            "https://neocities.org/site/nomnomnami?event_id=7584824"
         ]
     },
     "trick": {
@@ -941,7 +952,7 @@
             "tag:trick.pika.page,2005:Post/112727",
             "tag:trick.pika.page,2005:Post/119139"
         ],
-        "etag": "W/\"ddddcfa36140820b32d2358acd1b7cb7\""
+        "etag": "W/\"8c546b6eeb7b169f5fac27e55cb050a4\""
     },
     "apoc": {
         "name": "apoc",
@@ -1010,7 +1021,8 @@
             "https://tcs.thecomicseries.com/comics/pl/2996164/",
             "https://tcs.thecomicseries.com/comics/pl/3001264/",
             "https://tcs.thecomicseries.com/comics/pl/3009449/",
-            "https://tcs.thecomicseries.com/comics/pl/3013671/"
+            "https://tcs.thecomicseries.com/comics/pl/3013671/",
+            "https://tcs.thecomicseries.com/comics/pl/3020277/"
         ]
     },
     "youtube": {
@@ -1116,9 +1128,14 @@
             "8/19/2026updated [links](https://nomnomnami.com/links/) page (mostly just style change), added a few more character names to the [random pairing generator](https://nomnomnami.com/games/random-pairing.html)",
             "8/24/2026fiddled with my [ask pages](https://nomnomnami.com/ask/) a bit, and moved some things around on my homepage. asks will open next week or something idk",
             "8/31/2026opening asks today!!!!!!",
-            "9/8/2026asks are closed! gonna be adding archive versions of slate au comic tomorrow."
+            "9/8/2026asks are closed! gonna be adding archive versions of slate au comic tomorrow.",
+            "4/15/2026new NWT doodle comic: [Mason AU](https://nomnomnami.com/comics/masonAU/)",
+            "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/slateAU/)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think...",
+            "9/8/2026asks are closed! gonna be adding archive versions of slate au comic tomorrow. **edit:** [it's up](https://nomnomnami.com/comics/slateAU/).",
+            "9/10/2026updated my [ask page FAQ](https://nomnomnami.com/ask/faq.html), been updating various minor things across the site... mostly fixing links and outdated info.",
+            "9/13/2026guess who finally made [WALLPAPERS](https://nomnomnami.com/downloads/wallpapers/)!!!!!!!!!!!!"
         ],
-        "etag": "W/\"6aa0df66-b92c\""
+        "etag": "W/\"6aa7125b-bc02\""
     },
     "post_status": {
         "name": "post_status",
@@ -1139,9 +1156,10 @@
         },
         "saved_ids": [
             "8/15/2026**working on:** game jam with a friend\n**listening to:** pinocchio p albums\n**the vibe:** either hyperfocus or none at all, like cmon at least pick one or even out\n**playing:** a solitaire mystery\n",
-            "8/15/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** uhh i have a cold\n**playing:** nothing atm\n"
+            "8/15/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** uhh i have a cold\n**playing:** nothing atm\n",
+            "9/13/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** i got over my cold! now im deciding what project to tackle next...\n**playing:** nothing atm\n"
         ],
-        "etag": "W/\"6aa19571-1f527\""
+        "etag": "W/\"6aa7654b-20246\""
     },
     "patreon": {
         "name": "patreon",
