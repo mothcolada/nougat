@@ -772,8 +772,8 @@ class NamiFeeds(commands.Cog):
         # soups = {}
 
         for s in ["apoc", "tcs", "ask", "youtube", "pillowfort", "neocities", "patreon", "nsfw_patreon", "announcements", "post_status", "posts", "newsfeed", "site_updates", "status_cafe", "blog", "trick"]:
-            if s in ["apoc", "tcs"] and not datetime.datetime.now().minute % 15 == 0:
-                continue
+            # if s in ["apoc", "tcs"] and not datetime.datetime.now().minute % 15 == 0:
+            #     continue
             try:
                 source: dict = SOURCES[s]
                 await self.check(source)

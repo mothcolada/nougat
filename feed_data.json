@@ -41,9 +41,13 @@
             8162658,
             8167250,
             8182837,
-            8210507
+            8210507,
+            8236656,
+            8236664,
+            8241945,
+            8241954
         ],
-        "etag": "W/\"de1ab10f2d33c998ba2c8455802d37c9\""
+        "etag": "W/\"b3db8df4016f8c2f6fa53f829838b74f\""
     },
     "announcements": {
         "name": "announcements",
@@ -380,7 +384,7 @@
             "tag:nomnomnami.pika.page,2005:Post/118483",
             "tag:nomnomnami.pika.page,2005:Post/119015"
         ],
-        "etag": "W/\"400a0b487a6b9558b6043fd5f8d49eb6\""
+        "etag": "W/\"39742d4018a8e9ed2e5f63d9bd80642b\""
     },
     "ask": {
         "name": "ask",
@@ -952,7 +956,7 @@
             "tag:trick.pika.page,2005:Post/112727",
             "tag:trick.pika.page,2005:Post/119139"
         ],
-        "etag": "W/\"8c546b6eeb7b169f5fac27e55cb050a4\""
+        "etag": "W/\"43880cada445ac749bc184d7c680557a\""
     },
     "apoc": {
         "name": "apoc",
@@ -1022,7 +1026,8 @@
             "https://tcs.thecomicseries.com/comics/pl/3001264/",
             "https://tcs.thecomicseries.com/comics/pl/3009449/",
             "https://tcs.thecomicseries.com/comics/pl/3013671/",
-            "https://tcs.thecomicseries.com/comics/pl/3020277/"
+            "https://tcs.thecomicseries.com/comics/pl/3020277/",
+            "https://tcs.thecomicseries.com/comics/pl/3024055/"
         ]
     },
     "youtube": {
@@ -1201,7 +1206,9 @@
             "167416453",
             "168155815",
             "168212096",
-            "168914539"
+            "168914539",
+            "169662858",
+            "169668749"
         ]
     },
     "nsfw_patreon": {
