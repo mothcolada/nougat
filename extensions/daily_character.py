@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 import discord
 from discord.ext import commands, tasks
-from main import Nougat
+# from main import Nougat
 
 # TODO: types
 
@@ -27,7 +27,7 @@ midnight = datetime.time(hour=0, minute=0, tzinfo=eastern_time)
 
 
 class DailyCharacter(commands.Cog):
-    def __init__(self, bot: Nougat):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.daily_character.start()
         now_est = datetime.datetime.now(tz=eastern_time)
@@ -36,7 +36,6 @@ class DailyCharacter(commands.Cog):
 
     def cog_unload(self):
         self.daily_character.cancel()
-
 
     @tasks.loop(time=midnight)
     async def daily_character(self):
