@@ -46,9 +46,16 @@
             8236664,
             8241945,
             8241954,
-            8246350
+            8246350,
+            8267190,
+            8273362,
+            8282942,
+            8283044,
+            8283229,
+            8288084,
+            8303094
         ],
-        "etag": "W/\"0ed8dfb9485fb6c99b20fccc27097e0c\""
+        "etag": "W/\"814914ccbc04fd61181feedee67610c6\""
     },
     "announcements": {
         "name": "announcements",
@@ -68,9 +75,10 @@
         },
         "saved_ids": [
             "/posts/images/puppers4.png",
-            "/images/announcement-fsm.png"
+            "/images/announcement-fsm.png",
+            "/images/announcement-tcsv1.png"
         ],
-        "etag": "W/\"6aa7125b-bc02\""
+        "etag": "W/\"6abb2ef4-bd87\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -158,9 +166,12 @@
             "8/19/2026",
             "8/20/2026",
             "8/31/2026",
-            "9/13/2026"
+            "9/13/2026",
+            "9/18/2026",
+            "9/25/2026",
+            "9/28/2026"
         ],
-        "etag": "W/\"6aa7125b-bc02\""
+        "etag": "W/\"6abb2ef4-bd87\""
     },
     "posts": {
         "name": "posts",
@@ -335,9 +346,12 @@
             "9/10/2026, 4:26pm",
             "9/11/2026, 3:35pm",
             "9/13/2026, 2:24pm",
-            "9/13/2026, 8:08pm"
+            "9/13/2026, 8:08pm",
+            "9/18/2026, 4:35pm",
+            "9/20/2026, 2:50pm",
+            "9/20/2026, 2:55pm"
         ],
-        "etag": "W/\"6aa7654b-20246\""
+        "etag": "W/\"6ab05682-208f6\""
     },
     "blog": {
         "name": "blog",
@@ -383,9 +397,10 @@
             "tag:nomnomnami.pika.page,2005:Post/118286",
             "tag:nomnomnami.pika.page,2005:Post/118354",
             "tag:nomnomnami.pika.page,2005:Post/118483",
-            "tag:nomnomnami.pika.page,2005:Post/119015"
+            "tag:nomnomnami.pika.page,2005:Post/119015",
+            "tag:nomnomnami.pika.page,2005:Post/129489"
         ],
-        "etag": "W/\"39742d4018a8e9ed2e5f63d9bd80642b\""
+        "etag": "W/\"187fb759722ae4ba44a751d9d4e628e2\""
     },
     "ask": {
         "name": "ask",
@@ -869,7 +884,8 @@
             "https://status.cafe/users/nomnomnami/266597",
             "https://status.cafe/users/nomnomnami/266878",
             "https://status.cafe/users/nomnomnami/267665",
-            "https://status.cafe/users/nomnomnami/270108"
+            "https://status.cafe/users/nomnomnami/270108",
+            "https://status.cafe/users/nomnomnami/275756"
         ]
     },
     "neocities": {
@@ -911,7 +927,13 @@
             "https://neocities.org/site/nomnomnami?event_id=7560779",
             "https://neocities.org/site/nomnomnami?event_id=7566773",
             "https://neocities.org/site/nomnomnami?event_id=7577004",
-            "https://neocities.org/site/nomnomnami?event_id=7584824"
+            "https://neocities.org/site/nomnomnami?event_id=7584824",
+            "https://neocities.org/site/nomnomnami?event_id=7614580",
+            "https://neocities.org/site/nomnomnami?event_id=7626348",
+            "https://neocities.org/site/nomnomnami?event_id=7645155",
+            "https://neocities.org/site/nomnomnami?event_id=7653929",
+            "https://neocities.org/site/nomnomnami?event_id=7659055",
+            "https://neocities.org/site/nomnomnami?event_id=7672547"
         ]
     },
     "trick": {
@@ -957,7 +979,7 @@
             "tag:trick.pika.page,2005:Post/112727",
             "tag:trick.pika.page,2005:Post/119139"
         ],
-        "etag": "W/\"43880cada445ac749bc184d7c680557a\""
+        "etag": "W/\"d000bcaef1f6e06b718b710581c412a8\""
     },
     "apoc": {
         "name": "apoc",
@@ -992,7 +1014,12 @@
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3007985/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3001581/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3017296/",
-            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3027580/"
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3027580/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028014/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028200/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028201/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028202/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028203/"
         ]
     },
     "tcs": {
@@ -1029,7 +1056,10 @@
             "https://tcs.thecomicseries.com/comics/pl/3009449/",
             "https://tcs.thecomicseries.com/comics/pl/3013671/",
             "https://tcs.thecomicseries.com/comics/pl/3020277/",
-            "https://tcs.thecomicseries.com/comics/pl/3024055/"
+            "https://tcs.thecomicseries.com/comics/pl/3024055/",
+            "https://tcs.thecomicseries.com/comics/pl/3024113/",
+            "https://tcs.thecomicseries.com/comics/pl/3029324/",
+            "https://tcs.thecomicseries.com/comics/pl/3029357/"
         ]
     },
     "youtube": {
@@ -1140,9 +1170,11 @@
             "6/19/2026new NWT doodle comics: [Slate AU](https://nomnomnami.com/comics/slateAU/)! made his [character page](https://nomnomnami.com/characters/slate.html) too but it's missing some links and summaries, will be updating more character pages tomorrow i think...",
             "9/8/2026asks are closed! gonna be adding archive versions of slate au comic tomorrow. **edit:** [it's up](https://nomnomnami.com/comics/slateAU/).",
             "9/10/2026updated my [ask page FAQ](https://nomnomnami.com/ask/faq.html), been updating various minor things across the site... mostly fixing links and outdated info.",
-            "9/13/2026guess who finally made [WALLPAPERS](https://nomnomnami.com/downloads/wallpapers/)!!!!!!!!!!!!"
+            "9/13/2026guess who finally made [WALLPAPERS](https://nomnomnami.com/downloads/wallpapers/)!!!!!!!!!!!!",
+            "9/18/2026new wallpapers for [another piece of candy](https://nomnomnami.com/downloads/wallpapers/#apoc)",
+            "9/26/2026lots of [character gallery](https://nomnomnami.com/characters/) updates, and cleaning up the ask archive a little."
         ],
-        "etag": "W/\"6aa7125b-bc02\""
+        "etag": "W/\"6abb2ef4-bd87\""
     },
     "post_status": {
         "name": "post_status",
@@ -1164,9 +1196,10 @@
         "saved_ids": [
             "8/15/2026**working on:** game jam with a friend\n**listening to:** pinocchio p albums\n**the vibe:** either hyperfocus or none at all, like cmon at least pick one or even out\n**playing:** a solitaire mystery\n",
             "8/15/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** uhh i have a cold\n**playing:** nothing atm\n",
-            "9/13/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** i got over my cold! now im deciding what project to tackle next...\n**playing:** nothing atm\n"
+            "9/13/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** i got over my cold! now im deciding what project to tackle next...\n**playing:** nothing atm\n",
+            "9/20/2026**working on:** week with timber (always!!!)\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** happy!\n**playing:** nothing atm\n"
         ],
-        "etag": "W/\"6aa7654b-20246\""
+        "etag": "W/\"6ab05682-208f6\""
     },
     "patreon": {
         "name": "patreon",
@@ -1210,7 +1243,10 @@
             "168212096",
             "168914539",
             "169662858",
-            "169668749"
+            "169668749",
+            "169861106",
+            "170552109",
+            "170864944"
         ]
     },
     "nsfw_patreon": {

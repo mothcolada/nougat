@@ -870,7 +870,7 @@ class NamiFeeds(commands.Cog):
                 m = await nsfw_channel.send(content, embed=message.get_embed())  # type: ignore
             else:
                 m = await channel.send(content, embed=message.get_embed())  # type: ignore
-                if "patreon" not in message.source:
+                if "patreon" not in message.footer:
                     await tavern_sfw_channel.send(content, embed=message.get_embed())  # type: ignore
                 if len(message.attachments) > 0:
                     await tavern_sfw_channel.send(files=message.attachments)
