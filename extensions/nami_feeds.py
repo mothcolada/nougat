@@ -75,6 +75,7 @@ ICONS = {
     "jam": "<:icon_jam:1536014738230738955>",
     "olog": "<:icon_olog:1536014740923355156>",
     "chirval": "<:icon_chirval:1536014737341546588>",
+    "lime": "<:icon_lime:1555425189527814154>",
     "searina": "<:icon_searina:1515864486710480896>",
     "illi": "<:icon_illi:1515864501189345420>",
     "vido": "<:icon_vido:1515864521783247070>",
