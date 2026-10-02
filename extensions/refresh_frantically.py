@@ -17,7 +17,6 @@ class RefreshFrantically(commands.Cog):
     async def refresh(self):
         if self.bot.is_ready():
             response = requests.get("https://toby.fangamer.com/newsletters/autumn26/")
-            print(response.status_code)
             if response.status_code < 400:
                 channel = self.bot.get_channel(1074754885070897202)
                 if isinstance(channel, discord.TextChannel):

@@ -115,7 +115,7 @@ def get_char_for_date(date: datetime.datetime):
 
 
 def name_of_char(id: str):
-    name = id.split("-")[0].replace("_", " ").title()
+    name = id.split("-")[0].replace("_", " ").title()  # name before hyphen, titlecase each word
 
     if id == "":
         return ""
@@ -123,7 +123,7 @@ def name_of_char(id: str):
         return "Mr. Brew"
     if id == "Nougat":
         return "Me"
-    if id in ['Searina', 'Illi', 'Ezel', 'Vido']:
+    if id in ['Searina', 'Illi', 'Ezel', 'Vido', "Tragedy"]:
         return id.upper()
 
     return name

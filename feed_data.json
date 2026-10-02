@@ -54,9 +54,11 @@
             8283229,
             8288084,
             8303094,
-            8313233
+            8313233,
+            8325051,
+            8325103
         ],
-        "etag": "W/\"fab29b43d8df7fc5ae1eb45e16638b8b\""
+        "etag": "W/\"85b8b1da9ebb2433214756361caed98a\""
     },
     "announcements": {
         "name": "announcements",
@@ -79,7 +81,7 @@
             "/images/announcement-fsm.png",
             "/images/announcement-tcsv1.png"
         ],
-        "etag": "W/\"6abb2ef4-bd87\""
+        "etag": "W/\"6abe974a-be52\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -172,7 +174,7 @@
             "9/25/2026",
             "9/28/2026"
         ],
-        "etag": "W/\"6abb2ef4-bd87\""
+        "etag": "W/\"6abe974a-be52\""
     },
     "posts": {
         "name": "posts",
@@ -350,9 +352,10 @@
             "9/13/2026, 8:08pm",
             "9/18/2026, 4:35pm",
             "9/20/2026, 2:50pm",
-            "9/20/2026, 2:55pm"
+            "9/20/2026, 2:55pm",
+            "9/29/2026, 4:08pm"
         ],
-        "etag": "W/\"6ab05682-208f6\""
+        "etag": "W/\"6abc44e6-20e12\""
     },
     "blog": {
         "name": "blog",
@@ -401,7 +404,7 @@
             "tag:nomnomnami.pika.page,2005:Post/119015",
             "tag:nomnomnami.pika.page,2005:Post/129489"
         ],
-        "etag": "W/\"187fb759722ae4ba44a751d9d4e628e2\""
+        "etag": "W/\"b59457d28ff673eb4db09039bec50d71\""
     },
     "ask": {
         "name": "ask",
@@ -886,7 +889,9 @@
             "https://status.cafe/users/nomnomnami/266878",
             "https://status.cafe/users/nomnomnami/267665",
             "https://status.cafe/users/nomnomnami/270108",
-            "https://status.cafe/users/nomnomnami/275756"
+            "https://status.cafe/users/nomnomnami/275756",
+            "https://status.cafe/users/nomnomnami/276391",
+            "https://status.cafe/users/nomnomnami/276655"
         ]
     },
     "neocities": {
@@ -934,7 +939,9 @@
             "https://neocities.org/site/nomnomnami?event_id=7645155",
             "https://neocities.org/site/nomnomnami?event_id=7653929",
             "https://neocities.org/site/nomnomnami?event_id=7659055",
-            "https://neocities.org/site/nomnomnami?event_id=7672547"
+            "https://neocities.org/site/nomnomnami?event_id=7672547",
+            "https://neocities.org/site/nomnomnami?event_id=7678006",
+            "https://neocities.org/site/nomnomnami?event_id=7683833"
         ]
     },
     "trick": {
@@ -980,7 +987,7 @@
             "tag:trick.pika.page,2005:Post/112727",
             "tag:trick.pika.page,2005:Post/119139"
         ],
-        "etag": "W/\"d000bcaef1f6e06b718b710581c412a8\""
+        "etag": "W/\"9ac2bff106f9a96ac0cc6b91ba2385e3\""
     },
     "apoc": {
         "name": "apoc",
@@ -1020,7 +1027,8 @@
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028200/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028201/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028202/",
-            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028203/"
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028203/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028289/"
         ]
     },
     "tcs": {
@@ -1173,9 +1181,10 @@
             "9/10/2026updated my [ask page FAQ](https://nomnomnami.com/ask/faq.html), been updating various minor things across the site... mostly fixing links and outdated info.",
             "9/13/2026guess who finally made [WALLPAPERS](https://nomnomnami.com/downloads/wallpapers/)!!!!!!!!!!!!",
             "9/18/2026new wallpapers for [another piece of candy](https://nomnomnami.com/downloads/wallpapers/#apoc)",
-            "9/26/2026lots of [character gallery](https://nomnomnami.com/characters/) updates, and cleaning up the ask archive a little."
+            "9/26/2026lots of [character gallery](https://nomnomnami.com/characters/) updates, and cleaning up the ask archive a little.",
+            "10/01/2026added a [music project files](https://nomnomnami.com/downloads/music/) page to my downloads section! i will put more songs up later."
         ],
-        "etag": "W/\"6abb2ef4-bd87\""
+        "etag": "W/\"6abe974a-be52\""
     },
     "post_status": {
         "name": "post_status",
@@ -1200,7 +1209,7 @@
             "9/13/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** i got over my cold! now im deciding what project to tackle next...\n**playing:** nothing atm\n",
             "9/20/2026**working on:** week with timber (always!!!)\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** happy!\n**playing:** nothing atm\n"
         ],
-        "etag": "W/\"6ab05682-208f6\""
+        "etag": "W/\"6abc44e6-20e12\""
     },
     "patreon": {
         "name": "patreon",
