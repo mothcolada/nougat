@@ -12,6 +12,8 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
+import io
+
 # TODO: use database instead of json for nami feeds
 
 NOUGAT_ID = 1425561875885719634
@@ -77,11 +79,20 @@ class Nougat(commands.Bot):
         # await self.conn.commit()
 
         await self.log("good morning world")
-        # channel = self.get_channel(1521633846477721680)
+        # channel = self.get_channel(1074754885070897202)  # 1537117062416302150
         # if isinstance(channel, discord.TextChannel):
-        #     message = await channel.fetch_message(1539274757290332272)
-        #     print(message.embeds[0].image)
-        # await message.edit(content=message.content, embed=embed)
+        #     embed = discord.Embed(description="i can't believe i'm actually posting this. the timbei blowjob comic. enjoy", color=8594767, timestamp=datetime.datetime.now())
+        #     embed.set_author(name="nomnomnami", url="", icon_url="https://img3.pillowfort.social/avatars/0b440e5e9a0095678d00.jpeg")
+        #     embed.set_footer(text="penisfort  •  #timbei  •  #surely it'll actually drop soon  •  #i did this instead of my homework due in less than an hour  •  #i hope none of the mods ping the whole server before reading it",
+        #                      icon_url="https://www.pillowfort.social/assets/favicon/Favicon%202%20-%20Dark%20Blue@3x-515c35a56c5b49119a9a697b23f9c70a5ac5740d610fab316545ff74f15be3f2.png")
+        #     await channel.send(embed=embed)
+        #     f = open("image-1.png.png", "rb").read()
+        #     discord_file = discord.File(io.BytesIO(f),
+        #                     filename = "lol.png",
+        #                     spoiler  = True)
+        #     await channel.send(file=discord_file)
+        # await self.close()
+        # exit()
 
 
     async def on_message(self, message: discord.Message):

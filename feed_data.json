@@ -56,9 +56,36 @@
             8303094,
             8313233,
             8325051,
-            8325103
+            8325103,
+            8358772,
+            8359071,
+            8359811,
+            8360387,
+            8364213,
+            8367398,
+            8376706,
+            8384623,
+            8388617,
+            8390980,
+            8394187,
+            8398759,
+            8401305,
+            8401787,
+            8401809,
+            8403822,
+            8407084,
+            8410058,
+            8410828,
+            8415223,
+            8415344,
+            8415708,
+            8416087,
+            8416153,
+            8416634,
+            8416924,
+            8418196
         ],
-        "etag": "W/\"85b8b1da9ebb2433214756361caed98a\""
+        "etag": "W/\"04a3441b775be78097b0d7f90a06c0fe\""
     },
     "announcements": {
         "name": "announcements",
@@ -79,9 +106,10 @@
         "saved_ids": [
             "/posts/images/puppers4.png",
             "/images/announcement-fsm.png",
-            "/images/announcement-tcsv1.png"
+            "/images/announcement-tcsv1.png",
+            "/music/albums/images/album-art.png"
         ],
-        "etag": "W/\"6abe974a-be52\""
+        "etag": "W/\"6ad3cd03-c72c\""
     },
     "newsfeed": {
         "name": "newsfeed",
@@ -172,9 +200,15 @@
             "9/13/2026",
             "9/18/2026",
             "9/25/2026",
-            "9/28/2026"
+            "9/28/2026",
+            "10/3/2026",
+            "10/7/2026",
+            "10/08/2026",
+            "10/13/2026",
+            "10/15/2026",
+            "10/17/2026"
         ],
-        "etag": "W/\"6abe974a-be52\""
+        "etag": "W/\"6ad3cd03-c72c\""
     },
     "posts": {
         "name": "posts",
@@ -353,9 +387,13 @@
             "9/18/2026, 4:35pm",
             "9/20/2026, 2:50pm",
             "9/20/2026, 2:55pm",
-            "9/29/2026, 4:08pm"
+            "9/29/2026, 4:08pm",
+            "10/3/2026, 10:07am",
+            "10/7/2026, 12:57pm",
+            "10/16/2026, 4:24pm",
+            "10/17/2026, 12:22pm"
         ],
-        "etag": "W/\"6abc44e6-20e12\""
+        "etag": "W/\"6ad3cb28-22159\""
     },
     "blog": {
         "name": "blog",
@@ -402,9 +440,11 @@
             "tag:nomnomnami.pika.page,2005:Post/118354",
             "tag:nomnomnami.pika.page,2005:Post/118483",
             "tag:nomnomnami.pika.page,2005:Post/119015",
-            "tag:nomnomnami.pika.page,2005:Post/129489"
+            "tag:nomnomnami.pika.page,2005:Post/129489",
+            "tag:nomnomnami.pika.page,2005:Post/129932",
+            "tag:nomnomnami.pika.page,2005:Post/130605"
         ],
-        "etag": "W/\"b59457d28ff673eb4db09039bec50d71\""
+        "etag": "W/\"5c229fc57a8d42877b4958d9ea2a0905\""
     },
     "ask": {
         "name": "ask",
@@ -891,7 +931,8 @@
             "https://status.cafe/users/nomnomnami/270108",
             "https://status.cafe/users/nomnomnami/275756",
             "https://status.cafe/users/nomnomnami/276391",
-            "https://status.cafe/users/nomnomnami/276655"
+            "https://status.cafe/users/nomnomnami/276655",
+            "https://status.cafe/users/nomnomnami/278957"
         ]
     },
     "neocities": {
@@ -941,7 +982,16 @@
             "https://neocities.org/site/nomnomnami?event_id=7659055",
             "https://neocities.org/site/nomnomnami?event_id=7672547",
             "https://neocities.org/site/nomnomnami?event_id=7678006",
-            "https://neocities.org/site/nomnomnami?event_id=7683833"
+            "https://neocities.org/site/nomnomnami?event_id=7683833",
+            "https://neocities.org/site/nomnomnami?event_id=7689950",
+            "https://neocities.org/site/nomnomnami?event_id=7695977",
+            "https://neocities.org/site/nomnomnami?event_id=7701888",
+            "https://neocities.org/site/nomnomnami?event_id=7720195",
+            "https://neocities.org/site/nomnomnami?event_id=7727168",
+            "https://neocities.org/site/nomnomnami?event_id=7746651",
+            "https://neocities.org/site/nomnomnami?event_id=7752842",
+            "https://neocities.org/site/nomnomnami?event_id=7763673",
+            "https://neocities.org/site/nomnomnami?event_id=7771147"
         ]
     },
     "trick": {
@@ -987,7 +1037,7 @@
             "tag:trick.pika.page,2005:Post/112727",
             "tag:trick.pika.page,2005:Post/119139"
         ],
-        "etag": "W/\"9ac2bff106f9a96ac0cc6b91ba2385e3\""
+        "etag": "W/\"da3f0e909a40813f6c43e91e5b14a9cc\""
     },
     "apoc": {
         "name": "apoc",
@@ -1028,7 +1078,13 @@
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028201/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028202/",
             "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028203/",
-            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028289/"
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3028289/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3027592/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3089194/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3089195/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3089196/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3089197/",
+            "https://another-piece-of-candy.thecomicseries.com/comics/pl/3089200/"
         ]
     },
     "tcs": {
@@ -1068,7 +1124,11 @@
             "https://tcs.thecomicseries.com/comics/pl/3024055/",
             "https://tcs.thecomicseries.com/comics/pl/3024113/",
             "https://tcs.thecomicseries.com/comics/pl/3029324/",
-            "https://tcs.thecomicseries.com/comics/pl/3029357/"
+            "https://tcs.thecomicseries.com/comics/pl/3029357/",
+            "https://tcs.thecomicseries.com/comics/pl/3084011/",
+            "https://tcs.thecomicseries.com/comics/pl/3092858/",
+            "https://tcs.thecomicseries.com/comics/pl/3096845/",
+            "https://tcs.thecomicseries.com/comics/pl/3108606/"
         ]
     },
     "youtube": {
@@ -1111,7 +1171,10 @@
             "yt:video:aMvbnprLymA",
             "yt:video:twvR7enkWnE",
             "yt:video:8yGnbrOtZrM",
-            "yt:video:f0R_sXWDmkU"
+            "yt:video:f0R_sXWDmkU",
+            "yt:video:OAhkYu9yJGc",
+            "yt:video:EGcDQaUa0AI",
+            "yt:video:QskiKk0ySgg"
         ]
     },
     "site_updates": {
@@ -1182,9 +1245,13 @@
             "9/13/2026guess who finally made [WALLPAPERS](https://nomnomnami.com/downloads/wallpapers/)!!!!!!!!!!!!",
             "9/18/2026new wallpapers for [another piece of candy](https://nomnomnami.com/downloads/wallpapers/#apoc)",
             "9/26/2026lots of [character gallery](https://nomnomnami.com/characters/) updates, and cleaning up the ask archive a little.",
-            "10/01/2026added a [music project files](https://nomnomnami.com/downloads/music/) page to my downloads section! i will put more songs up later."
+            "10/01/2026added a [music project files](https://nomnomnami.com/downloads/music/) page to my downloads section! i will put more songs up later.",
+            "10/12/2026added a dedicated page for [NomnomRadio](https://nomnomnami.com/radio.html)",
+            "10/13/2026made thumbnails for everything in the [NWT doodle comic gallery](https://nomnomnami.com/comics/nwt/), i will be updating the other galleries at some point too",
+            "10/15/2026updating the css for my games/music/comics release archive pages today~",
+            "10/16/2026put up a page for my new album, [ruminations](https://nomnomnami.com/music/albums/ruminations.html) (haven't made a proper announcement yet but whatever it's my site i do what i want)"
         ],
-        "etag": "W/\"6abe974a-be52\""
+        "etag": "W/\"6ad3cd03-c72c\""
     },
     "post_status": {
         "name": "post_status",
@@ -1207,9 +1274,10 @@
             "8/15/2026**working on:** game jam with a friend\n**listening to:** pinocchio p albums\n**the vibe:** either hyperfocus or none at all, like cmon at least pick one or even out\n**playing:** a solitaire mystery\n",
             "8/15/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** uhh i have a cold\n**playing:** nothing atm\n",
             "9/13/2026**working on:** website\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** i got over my cold! now im deciding what project to tackle next...\n**playing:** nothing atm\n",
-            "9/20/2026**working on:** week with timber (always!!!)\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** happy!\n**playing:** nothing atm\n"
+            "9/20/2026**working on:** week with timber (always!!!)\n**listening to:** [\u30c7\u30d3\u30c3\u30c8\u30d3\u30c3\u30c8](https://www.youtube.com/watch?v=7O9PFfabVkk)\n**the vibe:** happy!\n**playing:** nothing atm\n",
+            "10/16/2026**working on:** comics\n**listening to:** [\u3046\u305f\u305f\u306d\u5fc3\u7642\u5185\u79d1](https://youtu.be/-6NfPHeWxI4?si=CXh0HBfdVMoviFa2)\n**the vibe:** i have not gotten done any of the things i was suppposed to!!!!!!!!!!\n**playing:** disgaea hour of darkness on ps2\n"
         ],
-        "etag": "W/\"6abc44e6-20e12\""
+        "etag": "W/\"6ad3cb28-22159\""
     },
     "patreon": {
         "name": "patreon",
@@ -1257,7 +1325,12 @@
             "169861106",
             "170552109",
             "170864944",
-            "170941890"
+            "170941890",
+            "171510771",
+            "171616501",
+            "171718185",
+            "172061953",
+            "172652901"
         ]
     },
     "nsfw_patreon": {
